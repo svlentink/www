@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<meta name="author" content="svlentink"/>
+
+		<title>Chord finder</title>
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+		<!--<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+
+		<link rel="stylesheet" href="css.css"/>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- -- For offline programming in train/bus
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- -->
+
+		<!-- Not used
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<!-- -->
+		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/canvas.js"></script>
+		<script type="text/javascript" src="js/chords.js"></script>
+		<script type="text/javascript" src="js/guitarNeck.js"></script>
+		<script type="text/javascript" src="js/canvasClock.js"></script>
+		<script type="text/javascript" src="js/algorithm.js"></script>
+		<script type="text/javascript" src="js/buttons.js"></script>
+		<script>
+			var songs = {'Alles in dit huis' : 'F, F#/F, G/F, Cm7, Bb/F, Gm7, Eb, Ab, Bb, Csus4, C, F, Bb, Dm7, C, Eb, Bb/D, Am7, Gm7, G7, A/C#',
+						'684 capo 3' : 'D, G, A, D/C#, G/B, Bm7, Em7',
+						'764' : 'C, Am, Dm7, Gsus4, G/B, G, Dm/C, F',
+						'717' : 'G, C, Em, D, Am7',
+						'at the centre' : 'D, Em, D/F#, G, A, Bm, A/C#',
+						'happy day' : 'C, F, Am, G, Gsus4, C/E',
+						'happy day in A' : 'A, D/A, A/C#, D, F#m, D/E, E, Esus4, A/G, Fmaj7, C/E, C#m',
+						'spirit break out' : 'Cmaj7, Em, D, Bm7, C',
+						'you never let go' : 'G,Em,C,D'
+			};
+			$( document ).ready(function() {
+			    initStorage({'songs':songs});
+
+			    reloadSongs();
+			});
+
+			function reloadSongs(){
+				var sngs = getStorage('songs','object');
+
+				var onchange = 'changeSong(this.value);';
+			    var dropdn = getDropdown(sngs,onchange,'get chords of song');
+			    $('#songBtn').html(dropdn);
+			}
+
+			function changeSong(chordString){
+				$('#chordsIn').val(chordString);
+				$('#transpose').val(0);
+				transpose();
+			}
+		</script>
+	</head>
+
+	<body>
+		<section style='max-width:625px;'>
+			<header>
+				<h1>Guitar chord finder</h1>
+				This page is under construction..
+				<br/>
+				I'm going to wrap the guitar neck and chord clock in a Polymer element
+				and structure the js code in Dec 2015.
+			</header>
+			<hr/>
+
+			<article>
+				<div style='margin:0px;'>
+					<input type='checkbox' onclick='useFlat = !useFlat;showButtons();'/>
+					use flat
+					<br/>
+					<br/>
+					<span id="known"></span>
+				</div>
+				<div style='float:right;margin:0px;'>
+					<canvas id="clock" width="300" height="300" name="svlentink"></canvas>
+				</div>
+				<div style='float:right'>
+					<span id='saveChordBtn'></span>
+				</div>
+			</article>
+<!--
+			<input id='chord' value='G#6add9' style='display:none;'/>
+			<button onclick='var chord = document.getElementById(&quot;chord&quot;).value; drawClock(chord,&quot;clock&quot;)' style='display:none;'>
+				Show chord
+			</button>
+-->
+			<article>
+				<span style='color:LightGray'>
+					Chords for the path planning alogrithm;
+				</span>
+				<div class='articleRow'>
+					<textarea id='chordsIn'></textarea>
+					<button style='display:block;float:left;margin-left:5px;' onclick='alert("not yet implemented");'>
+						Run<br/>algo<br/>rithm
+					</button>
+					</div>
+				<div class='articleRow'>
+					Transpose
+					<input type='number' onchange='transpose()' value='0' min='-11' max='11' id='transpose'/>
+					|
+					<input id='songName' />
+					<button onclick='pushSongToStorage()'>save current</button>
+				</div>
+				<div class='articleRow'>
+					<span id='songBtn'></span>
+
+				</div>
+
+				<div id='chordsOut'></div>
+				<script>
+					function transpose(){
+						var inp = $('#chordsIn').val();
+						var trans = $('#transpose').val();
+
+						$('#chordsOut').html(transposeChords(inp,trans));
+					}
+					function pushSongToStorage(){
+						var key = $('#songName').val();
+						var val = $('#chordsIn').val();
+
+						var obj = getStorage('songs', 'object');
+						obj[key] = val;
+						setStorage('songs',obj);
+
+						reloadSongs();
+					}
+				</script>
+			</article>
+		</section>
+		<section id='head'><!-- see js code: createHead()-->
+		    <div class="tunerColumn">
+		        <div class="tuner tunerContainer" id="tuner3">
+		        	<select id='tune2' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner2">
+		        	<select id='tune1' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner1">
+		        	<select id='tune0' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tunerContainer">
+		        	Frets:
+		        	<br/>
+		        	<input id='fretCount' type='number' value='13' min='8' max='23' onchange='redrawNeck()'/>
+		        	<br/>
+		        	<br/>
+		        	Capo:
+		        	<br/>
+		        	<input id='capo' type='number' value='0' min='0' max='12' onchange='redrawNeck()'/>
+		        </div>
+		    </div>
+		    <div class="spacerColumn">
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		    </div>
+		    <div class="headWood">
+		    	<canvas id="canvas" width="205" height="1175" name="svlentink"></canvas>
+		    </div>
+		    <div class="spacerColumn">
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		    </div>
+		    <div class="tunerColumn">
+		        <div class="tuner tunerContainer" id="tuner4">
+		        	<select id='tune3' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner5">
+		        	<select id='tune4' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner6">
+		        	<select id='tune5' onchange='redrawNeck()'></select>
+		        </div>
+		        <div class="tunerContainer" style='color:LightGray;'>
+		        	Finger range:
+		        	<br/>
+		        	<input id='fingerRange' type='number' value='4' min='3' max='5'/>
+		        	frets
+		        </div>
+		    </div>
+		</section>
+		<section id='tips'>
+			<header>
+				<h3>
+					Guitar tips
+				</h3>
+			</header>
+			<article>
+				<h4>
+					Straplocks
+				</h4>
+				<div>
+					<div>
+						<img src='http://cdn.lent.ink/img/chordsroundHead.jpg' height='200px'/>
+						<br/>
+						Round Head
+					</div>
+					<div>
+						<img src='http://cdn.lent.ink/img/chordsflatHead.jpg' height='200px'/>
+						<br/>
+						Flat Head
+					</div>
+					<div>
+						<img src='http://cdn.lent.ink/img/chordssize1.jpg' height='200px'/>
+						<br/>
+						Round example
+					</div>
+					<div>
+						<img src='http://cdn.lent.ink/img/chordssize2.jpg' height='200px'/>
+						<br/>
+						Round example 2
+					</div>
+				</div>
+				<p>
+					If you question the importance of straplocks, please watch
+					<a href='http://www.youtube.com/watch?v=rTkQNhS2k3c'>RiffNinjaGuitar</a>.
+					Now we know that we need them, lets look at them.
+					<br/>
+					First to note, there are round and flat heads.
+					I personally prefer the rounded heads.
+					<br/>
+					Order only one type for all your guitars, otherwise your straps aren't interchangeable!
+					<br/>
+					On ebay they are around
+					<a href='http://www.ebay.nl/sch/i.html?_from=R40%7CR40&_sacat=0&LH_BIN=1&LH_ItemCondition=3&_sop=15&_mPrRngCbx=1&_udlo=2&_udhi=&_nkw=strap+lock+guitar+2&LH_PrefLoc=2&_ipg=200&rt=nc'>
+						&euro; 3.50 for two
+					</a>.
+				</p>
+			</article>
+			<article>
+				<header>
+					<h4>
+						Standard guitar tuning
+					</h4>
+				</header>
+				<span>
+					Memory aid:
+				</span>
+				<br/>
+				<span>
+					<Strong>E</Strong>at
+					<Strong>A</Strong>ll
+					<strong>D</strong>ay
+					<strong>G</strong>et
+					<strong>B</strong>ig
+					<strong>E</strong>asy
+				</span>
+			</article>
+		</section>
+	</body>
+</html>

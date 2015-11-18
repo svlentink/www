@@ -1,0 +1,70 @@
+// based on:
+// http://bl.ocks.org/mbostock/996370
+// http://bl.ocks.org/mbostock/950642
+var d3 = window.d3 // http://d3js.org/d3.v3.min.js
+
+var w = window.innerWidth * 0.95
+var h = window.innerHeight * 0.95
+var currentScale = Math.sqrt(window.innerHeight * window.innerWidth) / 150
+
+var vis = d3.select('#chart')
+  .append('svg:svg')
+  .attr('width', w)
+  .attr('height', h)
+
+var nodes = d3.selectAll('li')[0]
+var links = nodes.slice(1).map(function (d) {
+  return {source: d, target: d.parentNode.parentNode}
+})
+
+var force = d3.layout.force()
+    .charge(-1 * currentScale * 100)
+    .distance(10 * currentScale)
+    .nodes(nodes)
+    .links(links)
+    .size([w, h])
+    .start()
+
+var link = vis.selectAll('line.link')
+    .data(links)
+  .enter().append('svg:line')
+    .style('stroke', '#aaa')
+    .attr('x1', function (d) { return d.source.x })
+    .attr('y1', function (d) { return d.source.y })
+    .attr('x2', function (d) { return d.target.x })
+    .attr('y2', function (d) { return d.target.y })
+
+var node = vis.selectAll('circle.node')
+  .data(nodes).enter().append('g')
+  .attr('class', 'node')
+  .call(force.drag)
+
+var circleD = 1 + currentScale
+node.append('svg:circle')
+    .style('fill', '#000')
+    .style('stroke', '#fff')
+    .attr('r', circleD)
+
+var clickAction = function (d) {
+  var a = d.childNodes[0]
+  /* if (a.target === '_blank')*/ a.click()
+//  else // load content in the body div using xmlhttpreq.
+}
+
+node.append('text')
+  .on('click', clickAction)
+  .attr('dx', 12)
+  .attr('dy', '.35em')
+  .text(function (d) { return d.childNodes[0].innerText })
+
+force.on('tick', function () {
+  link.attr('x1', function (d) { return d.source.x })
+      .attr('y1', function (d) { return d.source.y })
+      .attr('x2', function (d) { return d.target.x })
+      .attr('y2', function (d) { return d.target.y })
+
+  node.attr('transform', function (d) { return 'translate(' + d.x + ',' + d.y + ')' })
+})
+
+// see the following as a noscript solution
+document.getElementById('list').style.display = 'none'

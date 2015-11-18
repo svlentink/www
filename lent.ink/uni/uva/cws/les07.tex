@@ -1,0 +1,159 @@
+%compile with writelatex.com
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgfplots}%plotting graphs
+\usepackage{epigraph}%for quotes
+%\epigraphfontsize{\small\itshape}
+\setlength\epigraphwidth{1\textwidth}
+\setlength\epigraphrule{0pt}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{sidecap}%enables figcap next to picture for larger captions
+\usepackage[yyyymmdd,hhmmss]{datetime}%for generating auto time stemp
+%from geogebra
+\usepackage{pstricks-add}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+\newrgbcolor{xdxdff}{0.49 0.49 1}
+\newrgbcolor{uququq}{0.25 0.25 0.25}
+\newrgbcolor{vvvvvv}{0.33 0.33 0.33}
+\newrgbcolor{ayayay}{0.66 0.66 0.66}
+\newrgbcolor{srsrsr}{0.13 0.13 0.13}
+\definecolor{qqwuqq}{rgb}{0.13,0.13,0.13}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\definecolor{xdxdff}{rgb}{0.66,0.66,0.66}
+\definecolor{qqqqff}{rgb}{0.33,0.33,0.33}
+\newcommand{\degre}{\ensuremath{^\circ}}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+%end from geogebra
+\renewcommand{\deg}{\ensuremath{^{\circ}}}%enable degree symbol for angles and celcius
+\pagestyle{fancy}
+\newcommand{é}{\'e}
+\newcommand{ë}{\"e}
+%edit this if you need a different date
+\newcommand{\todayDate}{\today}
+\rfoot{Compiled on \todayDate\ at \currenttime GMT}
+\cfoot{}
+\lfoot{Page \thepage}
+
+
+\begin{document}
+    \centering
+
+	\title{Les 07\\*
+		\small
+		$\in$\\*
+		homework assignments\\*
+		$\subset$\\*
+		Continue wiskunde en statistiek}
+	\author{\href{http://svlentink.co.nf}{Sander Lentink} \small 10422439 \\*
+		\small
+        	Artificial intelligence,
+            \href{http://uva.nl}{Universiteit van Amsterdam},
+            the Netherlands}
+
+	\date{\todayDate}
+
+\maketitle
+
+\scriptsize - The pdf version of this document contains hyperlinks. -
+\normalsize
+
+\section{2.5.3}
+
+a. P(C) = P(A|$B^c$)
+\\
+b. P(D) = $P(A\cup B|(A\cap B)^c)$
+
+\section{2.5.4}
+
+Given that (source: Elementary Probability for Applications, p13):
+\\
+\begin{equation}
+P (A) = P (A \cap B) + P (A \cap B^c )
+\end{equation}
+\begin{equation}
+P (B) = P (B \cap A) + P (B \cap A^c )
+\end{equation}
+\begin{equation}
+P (A) + P (B) - P (A \cap B) =
+P (A \cap B) + P (A \cap B^c )
++ P (B \cap A^c ) = P (A \cup B)
+\end{equation}
+
+From this we get
+
+\begin{equation}
+P (A \cap B) = -P (A \cup B) + P (A) + P (B)
+\end{equation}
+\begin{equation}
+P(A^c \cup B^c) = P((A \cap B)^c) %= P(A^c) + P(B^c) -
+\end{equation}
+\begin{equation}
+P (A^c \cap B) =
+P (B) - P (A \cap B)
+\end{equation}
+
+Also given:
+
+$P (A) = \frac{1}{3}, P (B) = \frac{1}{2}, P (A \cup B) = \frac{3}{4}$
+\\
+$P (A^c) = \frac{2}{3}, P (B^c) = \frac{1}{2}, P ((A \cup B)^c) = \frac{1}{4}$
+\\[.5cm]
+
+a. $\frac{1}{3} + \frac{1}{2} - \frac{3}{4} = \frac{1}{12}$
+\\
+b. $1- \frac{1}{12} = \frac{11}{12}$
+\\
+c. $\frac{1}{2} - \frac{1}{12} = \frac{5}{12}$
+
+\newpage
+
+\section{2.5.7}
+
+a. $P(K) = \frac{13}{52} = \frac{1}{4}$
+\\
+b. $P(A|K) = \frac{4}{52} \cdot \frac{13}{52} = \frac{1}{52}$ which is intuitively correct, there is only one of it.
+\\
+c. No, for no info we get $P(A) = \frac{4}{52}$, with info we see it as $P(A) = \frac{1}{13}$.
+
+\section{2.5.9}
+
+$P(C) = \frac{4}{5}$ (C = werkCollege)
+\\
+$P(N) = \frac{1}{2}$ (N = no werkcollege)
+\\
+$(A) = \frac{7}{10}$ (A = attendance)
+\\[.5cm]
+
+a. $P(C|A) + P(N|A^c) = \frac{4}{5} \cdot \frac{7}{10} +
+\frac{1}{2} \cdot \frac{3}{10} = \frac{71}{100}$
+\\
+b. I first write the above forumula as $a \cdot b + c \cdot d = e$
+\\
+We want to know b, the attendance.
+\\
+$b + \frac{c \cdot d}{a} = \frac{e}{a}$
+\\
+$b = \frac{e}{a} - \frac{c \cdot d}{a}$
+
+\begin{equation}
+\frac{71}{100} / \frac{4}{5} - (\frac{1}{2} \cdot \frac{3}{10}) / \frac{4}{5} =
+\frac{71}{100} \cdot \frac{5}{4} - \frac{1}{2} \cdot \frac{3}{10} \cdot \frac{5}{4} =
+(\frac{71}{100} - \frac{1}{2} \cdot \frac{3}{10}) \cdot \frac{5}{4} =
+\frac{56}{100} \cdot \frac{5}{4} = \frac{45}{100}
+\end{equation}
+
+
+\section{Practicum 1}
+
+Zie .m file.
+
+
+\end{document}

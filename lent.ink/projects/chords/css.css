@@ -1,0 +1,114 @@
+
+section{
+	float:left;
+	margin:5px;
+	border-left:1px solid;
+	border-right:1px solid grey;
+	border-radius:10px;
+}
+article{
+	float:left;
+	padding:5px;
+	margin:5px;
+	border-top:1px solid;
+	border-bottom:1px solid grey;
+	border-radius:10px;
+}
+div{
+	float:left;
+	padding: 5px;
+	margin: 5px;
+	
+}
+textarea{
+	display:block;
+	float:left;
+}
+#chordsOut{
+	background-color:LightGray;
+	min-width:500px;
+	min-height:75px;
+	border:1px solid gray;
+}
+#chordsIn{
+	min-width:500px;
+	min-height:75px;
+}
+.articleRow{
+	margin: 0px;
+	padding:0px;
+	width: 95%;
+}
+img{
+	border-radius:35px;
+	border:1px solid;
+}
+#tips{
+	opacity:.3;
+}
+#tips:hover{
+	opacity:1;
+}
+.headWood{
+	padding:0px;
+	background-color:SaddleBrown;
+	min-height: 250px;
+	min-width: 175px;
+	margin:0px;
+	border: 1px solid;
+	border-radius: 10px;
+}
+.tunerContainer{
+	padding:0px;
+	min-height: 50px;
+	max-width: 75px;
+	min-width:75px;
+	margin:0px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.tuner{
+	background-color:gold;
+	border: 1px solid;
+	border-radius: 10px;
+}
+.tunerColumn{
+	border:0px;
+	padding:0px;
+	max-width: 75px;
+	min-width:75px;
+	margin:0px;
+	padding:0px;
+}
+.tunerSpacer{
+	border: 1px solid;
+	padding:0px;
+	background-color:gold;
+	min-width: 25px;
+	min-height: 10px;
+	margin:0px;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+.spacerColumn{
+	border:0px;
+	padding:0px;
+	margin:0px;
+	max-width:25px;
+}
+select{
+	margin:15px;
+}
+#canvas{
+	background-color:Peru;
+	margin-top:5px;
+}
+#clock{
+	border:1px solid;
+}
+a{
+	border:1px solid;
+}
+input[type='number']{
+	max-width:40px;
+}

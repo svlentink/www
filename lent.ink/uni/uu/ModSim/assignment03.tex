@@ -1,0 +1,667 @@
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{float}
+%\usepackage{html}
+
+
+\begin{document}
+
+
+	\title{Volvo suspension\\*
+		\small
+		$\in$\\*
+		assignments\\*
+		$\subset$\\*
+		ModSim}
+	\author{Juan Claramunt \small F130712\\*
+    	Sander Lentink \small F131999 \\*
+		\small
+        	\href{http://wiskuu.nl}{Mathematisch Instituut},
+            \href{http://uu.nl}{Universiteit Utrecht},
+            the Netherlands}
+
+	\date{\today}
+
+\maketitle
+\begin{abstract}
+This paper looks at the indepentent suspension of a car wheel and the forces applied on it.
+\end{abstract}
+
+%\href{http://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Packard_wishbone_front_suspension_(Autocar_Handbook,_13th_ed,_1935).jpg/414px-Packard_wishbone_front_suspension_(Autocar_Handbook,_13th_ed,_1935).jpg}{front page picture}
+
+
+
+
+\newpage
+
+
+
+\section{Introduction}
+
+The course "Modellen en simulaties", taught by prof. dr. ir. J.E. Frank,
+provides us with assignments given in the "dictaat" written by F. Beukers.
+
+In this document we look at assignment 4.4.19, about the suspension system of a Volvo.
+We will first give a short introduction to the situation.
+\\*
+\\*
+One of the critical points of designing Volvo's new car, the M1503, is the suspension.
+Volvo values the safety and comfort of their cars;
+with the safety requirement comes the aim that the wheels stay in contact with the road at all times.
+The comfort of the cabinet is given by the accelaration of it.
+This means, the faster a cabinet accelerates (e.g. taking a speed bumb without slowing down),
+the less comfort the passager will experience.
+
+For this new car, the aim is to design a suspension system that maximizes the comfort,
+while remaing contact with the road at all times.
+\\*
+\\*
+This new car has independent suspension for each wheel.
+This means that every wheel, roughly speaking, caries 25\% of the mass.
+The wheels are as follow.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.25\textwidth]{sistemaSeperatoBasica.png}
+\caption{\label{fig:basicConstructionWheel}Basic concept [1]}
+\end{figure}
+%\href{https://ccrma.stanford.edu/wiki/Images/f/fb/Accelerometer_mass_spring.gif}{link to figure}
+%\href{http://ctms.engin.umich.edu/CTMS/Content/Suspension/Simulink/Modeling/figures/susp1.png}{link to figure}
+It is a system with two springs which are damped.
+On one side by the tire and on the other by the suspension.
+The weight of the wheel is approx. 10kg.
+The weight of the car, pressing down on a wheel, is between 250 and 400kg (depending on the cargo).
+
+
+\newpage
+
+
+\section{Surfaces}
+
+We are going to test our suspension system on three different surfaces.
+Each one is selected due to their characteristics.
+The three surfaces are represented in two dimensions as a sine wave.
+The first surface $u_1(t)$ has an amplitude of 5 cm and a period of 20 meters.
+Then, the equation of the sine wave is:
+
+\begin{equation}
+u_1(x)=0.05sin(\frac{\pi}{10}x)
+\end{equation}
+
+And, as $x=v t+x_0$:
+
+\begin{equation}
+u_1(t,x_0)=0.05sin(\frac{\pi}{10}(v t+x_0))
+\end{equation}
+
+The function sine is periodic, so the result is independent of $x_0$.
+
+Assuming $x_0=0$ gives us:
+\begin{equation}
+u_1(t)=0.05sin(\frac{\pi}{10}v t)
+\end{equation}
+
+This surface is soft, this is, the height increases (or decreases) 1 cm when the car moves 1 m (average slope 1\%).
+Consequently, the suspension can be slowly adapted to the surface.
+\\
+\\*
+The second one $u_2(t)$ has an amplitude of 25 cm and a period of 2 m.
+The equation of this surface is:
+
+\begin{equation}
+u_2(x)=0.025sin(\pi x) \Rightarrow u_2(t)=0.025sin(\pi v t)
+\end{equation}
+
+In this case, the height increases (or decreases) 2.5 cm when the car moves 0.5 m.
+The average slope is 5 times bigger than the first surfice (5\%).
+\\
+\\*
+The third surface $u_3(t)$ has an amplitude of 1 cm and a period of 20 cm.
+Its correspondent equation is:
+
+\begin{equation}
+u_3(x)=0.01sin(10\pi x) \Rightarrow u_3(t)=0.01sin(10\pi v t)
+\end{equation}
+
+This surface is very irregular.
+The height increases (or decreases) 1 cm when the car moves 2.5 cm.
+The average slope is 40\%,
+much bigger than the other surfaces average slope.
+\\
+\\*
+The three are very different.
+The first one models a large and not so high obstacle
+(a regular road with small slope), then, the slope is small.
+The second one models several small obstacles in a short space (e.g. a road with some damage).
+The third one models many tiny obstacles which are close to each other (a very irregular road).
+Using these three surfaces we are modeling very different scenarios.
+Furthermore, other surfaces can be modeled as composition of these surfaces.
+Every periodic function or continuous function in an interval can be written as
+a Fourier serie [2],
+then, every surface can be approximated by a "kind of Fourier serie" with the following form:
+
+\begin{equation}
+f(t)=\frac{(a_0+b_0+c_0)}{2}\sum_{n=1}^{\infty} a_n u_1(t)+b_n u_2(t)+c_n u_3(t)
+\end{equation}
+
+
+\newpage
+
+
+\section{Structure of the suspension}
+The suspension system is formed by two "blocks" with the form of figure \ref{fig:suspensionbasica}.
+Where k is the spring constant,
+d the damping constant and x the displacement of the mass.
+
+Our model with both blocks connected is of the form of figure \ref{fig:sistemacompleto}.
+Where $m_1$ is 1/4 of the mass of the car, $m_2$ the mass of the wheel,
+$x_1$ the displacement of the car, $x_2$ the displacement of the wheel,
+u is the surface funcion,
+and $k_b$,$k_s$,$d_b$ and $d_s$ the constants for the tire and the suspension.\\
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{suspensionbasica.jpg}
+\caption{\label{fig:suspensionbasica}Structure of one block[4]}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{sistemacompleto.png}
+\caption{\label{fig:sistemacompleto}Structure of the suspension system [3]}
+\end{figure}
+
+
+
+\newpage
+
+
+
+\section{Mathematical model}
+
+The mathematical model is based on the forces we find in the suspension.
+The three forces are:
+\begin{enumerate}
+	\item The gravitational force.
+	\item The damping force.
+	\item The spring force.\\
+\end{enumerate}
+
+The car is being influenced by the following forces:
+\begin{enumerate}
+	\item The gravitational force working on the car.
+	\item The damping force of the suspension.
+	\item The spring force of the suspension.\\
+\end{enumerate}
+
+And the wheel is being influenced by:
+\begin{enumerate}
+	\item The gravitational force working on the wheel.
+	\item The damping force of the tire.
+	\item The spring force of the tire.
+	\item The damping force of the suspension.
+	\item The spring force of the suspension.\\
+\end{enumerate}
+
+The damping force is proportional to the speed at which the length of the spring will change
+(we denote with $d_b$ the constant of the damping force of the tire and $d_s$ the constant of the damping force of the suspension).
+The spring force is proportional to the deflection of the spring
+(in the same way as before,
+we denote with $k_b$ the constant of the spring force of the tire and $k_s$ the constant of the spring force of the suspension).\\
+
+
+The equations we obtain using the forces are,
+related to the mass of the car:
+\begin{equation}
+	F_1=-d_s(x'_1-x'_2)-k_s(x1-x2)-(g\,m_1)
+\end{equation}
+As $F=m x''$ by Newton's second law[5]:
+\begin{equation}
+	m_1 x''_1=-d_s(x'_1-x'_2)-k_s(x1-x2)-(g\, m_1)
+\end{equation}
+And related to the mass of the wheel:
+\begin{equation}
+	F_2=d_s(x'_1-x'_2)+k_s(x1-x2)+d_b(u'-x'_2)+k_b(u-x_2)-(g\, m_2)
+\end{equation}
+\begin{equation}
+	m_2 x''_2=d_s(x'_1-x'_2)+k_s(x1-x2)+d_b(u'-x'_2)+k_b(u-x_2)-(g\, m_2)
+\end{equation}
+
+
+\newpage
+%https://www.youtube.com/watch?v=O2fU28Pehdc&list=PLcfQmtiAG0X86jeHk7Tbhjqr6HaYLvZ-c
+
+
+In order to know if the system fulfills the requirements,
+we will analyse the stability of the system depending on the spring and demping constants.
+
+Firstly, Volvo give us a test car with the following suspension characteristics:
+$$d_b=2000 Ns/m  \,\,\,\,\, d_s=400 Ns/m  \,\,\,\,\,\,k_b=100000 N/m \,\,\,\,\,\,k_s=40000N/m$$
+
+We also know that the car mass (for a single wheel) is between 250 and 400 kg
+and the mass of the wheel is 10 kg.
+We also assume g=10 m/$s^2$.
+
+We start by looking at the stability of the homogeneous part of the system,
+which matrix form is:
+\begin{equation}\label{matrix_form}
+  \begin{pmatrix} 
+    x'_1 \\
+    y'_1 \\
+    x'_2 \\
+    y'_2\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix} 
+    0 & 1 & 0 & 0 \\
+    \frac{-k_s}{m_1} & \frac{-d_s}{m_1} & \frac{k_s}{m_1} & \frac{d_s}{m_1} \\
+    0 & 0 & 0 & 1\\
+    \frac{k_s}{m_2} & \frac{d_s}{m_2} & \frac{-k_s-k_b}{m_2}&\frac{-d_s-d_b}{m_2}\\
+  \end{pmatrix}
+  \begin{pmatrix} 
+    x_1 \\
+    y_1 \\
+    x_2 \\
+    y_2\\
+  \end{pmatrix}
+\end{equation}
+\\*
+Introducing the values of the constants we obtain:
+\begin{equation}
+  \begin{pmatrix} 
+    x'_1 \\
+    y'_1 \\
+    x'_2 \\
+    y'_2\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix} 
+    0 & 1 & 0 & 0 \\
+    \frac{-40000}{m_1} & \frac{-400}{m_1} & \frac{40000}{m_1} & \frac{400}{m_1} \\
+    0 & 0 & 0 & 1\\
+    4000 & 40 & -14000 & -240 \\
+  \end{pmatrix}
+  \begin{pmatrix} 
+    x_1 \\
+    y_1 \\
+    x_2 \\
+    y_2\\
+  \end{pmatrix}
+\end{equation}
+\\*
+The conditions to reach an equilibrium are:
+\begin{equation}\label{der_x1}
+	x'_1(t)=0
+\end{equation}
+\begin{equation}\label{der_y1}
+	y'_1(t)=0
+\end{equation}
+\begin{equation}\label{der_x2}
+	x'_2(t)=0
+\end{equation}
+\begin{equation}\label{der_y2}
+	y'_2(t)=0
+\end{equation}
+\\*
+Then, from \ref{der_x1} and \ref{der_x2} we obtain:
+\begin{equation}
+	y_1=0 \,\,\& \,\, y_2=0
+\end{equation}
+\\*
+From \ref{der_y1}:
+\begin{equation}\label{x1_equals_x2}
+	\frac{-k_s}{m_1}x_1+\frac{k_s}{m_1}x_2=0 \Rightarrow x1=x2
+\end{equation}
+\\*
+and from \ref{der_y2} and \ref{x1_equals_x2}:
+\begin{equation}
+  \frac{k_s}{m_2}x_1+\frac{-k_s-k_b}{m_2}x_2=0
+  \Rightarrow
+  \frac{k_s}{m_2}x_2+\frac{-k_s-k_b}{m_2}x_2=0
+  \Rightarrow
+  \frac{-k_b}{m_2}x_2=0
+  \Rightarrow
+  x_2=0
+  \Rightarrow
+  x_1=x_2=0 
+\end{equation}
+(We assume $k_b\neq 0$, which is physically supported,
+if not, the spring force is 0).
+
+
+\newpage
+
+
+The equilibrium is:
+$$x_1=x_2=y_1=y_2=0$$
+
+The result is independent of the values of the constants,
+so we can use it in the general case.
+
+To evaluate the stability we use the eigenvalues of the matrix:\\
+\\
+$$
+  \begin{pmatrix} 
+	0 & 1 & 0 & 0 \\
+    \frac{-40000}{m_1} & \frac{-400}{m_1} & \frac{40000}{m_1} & \frac{400}{m_1} \\
+    0 & 0 & 0 & 1\\
+    4000 & 40 & -14000 & -240 \\
+  \end{pmatrix}
+$$
+\\
+which characteristic polynomial is:
+\begin{equation}
+  P(\lambda) =
+  \frac{400000000}{m_1} +
+  \frac{12000000}{m_1}\lambda +
+  14000\lambda^2 +
+  \frac{120000}{m_1} \lambda^2+240\lambda^3 +
+  \frac{400}{m_1}\lambda^3 +
+  \lambda^4
+\end{equation}
+\\
+\\
+As every coefficient is positive and $P(0)\neq 0$, the eigenvalues are going to be negative.
+Let's see it with the roots of $P(\lambda)$:
+
+$$
+  \lambda_1 =
+  \frac{
+  	10(-2(20+7m_1) -
+  	\frac{
+    	i(-i+\sqrt{3})(400-320m_1+49m_1^2)}
+        {(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3}}}
+  {3m_1}
+$$
+
+$$
+  \frac{i(i+\sqrt{3})(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3})}
+  {3m_1}
+$$
+\\*
+\\
+\\
+Re$(\lambda_1)\approx -140\,\, \forall m_1 \in [250,400]$
+\\
+\\
+$$
+  \lambda_2 =
+  \frac{
+  	20(-20-7m_1 +
+  	\frac{
+    	400-320m_1+49m_1^2}
+        {(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3}}}
+  {3 m_1}
+$$
+
+$$
+  \frac{
+  	(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3})}
+    {3m_1}
+$$
+\\*
+\\
+\\
+Re$(\lambda_2)\in [-0.735,-0.459]\,\, \forall m_1 \in [250,400]$
+
+\newpage
+
+$$
+  \lambda_3 =
+  	\frac{
+    	10(-2(20+7m_1) +
+        \frac{
+        	i(i+\sqrt{3})(400-320m_1+49m_1^2)}
+            {(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3}}}
+    {3m_1}
+$$
+
+$$
+  -\frac{(1+i\sqrt{3})(-8000 + 9600 m_1 - 3390 m_1^2-343m_1^3+30\sqrt{15}\sqrt{m_1^3(800-965m_1+343m^2)})^{1/3})}
+  {3m_1}
+$$
+\\*
+\\
+\\
+Re$(\lambda_3)\in [-0.735,-0.459]\,\, \forall m_1 \in [250,400]$
+\\
+\\
+$$
+	\lambda_4=-100 \,\, \forall m_1 \in [250,400]
+$$
+[solutions obtained using Mathematica]\\
+
+As the real part of each eigenvalue is less than 0,
+then, the homogeneous part is stable.[6]
+
+
+
+
+
+
+The other factor that can cause unstability is the not homogeneous part.
+First, we find a specific solution for our system.
+
+We look for a particular solution of the form:
+$$x_1(t)=A sin(\omega t)+B cos(\omega t)+C$$
+\begin{equation}
+	x_2(t)=D sin(\omega t)+E cos(\omega t)+F
+\end{equation}
+
+Using the computational software program Mathematica,
+we obtain the solutions for the constants A,B,C,D,E,F depending on the speed, v.
+The solutions (in this case the road $u_3(t)$,
+and the mass of the car set to 400 kg) are shown as graphs:
+
+A:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{graficaA.jpg}
+\caption{\label{fig:valOfA}Value of A depending on v}
+\end{figure}
+
+\newpage
+
+B:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{graficaB.jpg}
+\caption{\label{fig:valOfB}Value of B depending on v}
+\end{figure}
+
+$C=-0.141$
+\\
+\\*
+D:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaC.jpg}
+\caption{\label{fig:valOfC}Value of C depending on v}
+\end{figure}
+
+\newpage
+
+E:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaD.jpg}
+\caption{\label{fig:valOfD}Value of D depending on v}
+\end{figure}
+$F=-0.041$
+\\
+\\*
+As we see in the graphs if we choose $v\in[0,200]$,
+the contants $A,B,E\rightarrow \infty$ and $D\rightarrow -\infty$,
+then the solution is unstable.
+Therefore, the suspension system of the test car does not satisty the conditions of our problem.\\
+
+
+
+\newpage
+
+
+
+As the test car is not stable;
+we are going to determine new values for the parameters $d_b$, $d_s$, $k_b$ and $k_s$ satisfying the conditions.
+
+The values we propose are:
+\begin{equation}
+	d_b=4000 Ns/m
+\end{equation}
+\begin{equation}
+	d_s=2000 Ns/m
+\end{equation}
+\begin{equation}
+	k_b=80000 N/m
+\end{equation}
+\begin{equation}
+	k_s=30000 N/m
+\end{equation}
+\\*
+Let's look at these values fulfilling the requirements.
+
+First, we will see that the homogeneous solutions are stable using the eigenvalues
+of the matrix in \ref{matrix_form} with the new values.
+\\
+\\*
+The characteristic polynomial is\\
+$
+  P(\lambda) =
+  \frac{240000000}{m_1} +
+  \frac{28000000}{m_1} \lambda +
+  11000\lambda^2 +
+  \frac{830000}{m_1} \lambda^2 +
+  600 \lambda^3 +
+  \frac{2000}{m_1} \lambda^3 +
+  \lambda^4
+$
+\\
+\\*
+Then, the real part of the eigenvalues are:
+$$(\lambda_1)\in[-18.8521,-18.8032]\,\, \forall m \in [250,400]$$
+\\*
+Re$(\lambda_2)\in [-2.70107,-1.69044]\,\, \forall m \in [250,400]$
+
+$$\lambda_3= $$ %\textcolor{red}{lambda 3}
+\\*
+Re$(\lambda_3)\in [-2.70107,-1.69044]\,\, \forall m \in [250,400]$
+
+\begin{equation}
+	\lambda_4\in [-583.795,-582.767] \,\, \forall m \in [250,400]
+\end{equation}
+[solutions obtained using Mathematica]
+\\
+\\*
+As the real part of each eigenvalue is less than 0, then, the homogeneous part is stable.[6]
+\\
+\\*
+Now, let's see that the not homogeneous part is also stable:
+\\*
+We look for a particular solution of the form:
+$$x_1(t)=A sin(\omega t)+B cos(\omega t)+C$$
+\begin{equation}
+	x_2(t)=D sin(\omega t)+E cos(\omega t)+F
+\end{equation}
+
+
+
+\newpage
+
+
+
+In the case of the surface $u_1(t)$ the graphs of the variables are:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespientre10.jpg}
+\caption{\label{fig:3d_u1_400}Values of A,B,D,E depending on v and t ($m_1=400$)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespientre102.png}
+\caption{\label{fig:3d_u1_250}Values of A,B,D,E depending on v and t ($m_1=250$)}
+\end{figure}
+
+
+\newpage
+
+
+In the case of the surface $u_2(t)$ the graphs of the variables are:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespi.jpg}
+\caption{\label{fig:3d_u2_400}Values of A,B,D,E depending on v and t ($m_1=400$)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespi2.jpg}
+\caption{\label{fig:3d_u2_250}Values of A,B,D,E depending on v and t ($m_1=250$)}
+\end{figure}
+
+
+\newpage
+
+
+
+And finally, in the case of the surface $u_3(t)$ the graphs of the variables are:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespipor10.jpg}
+\caption{\label{fig:3d_u3_400}Values of A,B,D,E depending on v and t ($m_1=400$)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{graficaconstantespipor102.jpg}
+\caption{\label{fig:3d_u3_250}Values of A,B,D,E depending on v and t ($m_1=250$)}
+\end{figure}
+
+
+\newpage
+
+
+With the new values of $k_b$,$k_s$,$d_b$ and $d_s$,
+the values of the constants A,B,D,E do not go to$ \pm \infty$ for $v\in [0,200]$, $t\in [0,2\pi]$.
+\\
+$$C=\frac{-10 m_1}{k_s}+F<\infty$$
+$$F=\frac{-10\frac{-10 m_1}{m_2}}{k_b}<\infty$$
+\\
+Then, the suspension system with the last values of $k_b$,$k_s$,$d_b$ and $d_s$ is stable
+and satisfies the requirements of the problem. 
+
+
+
+\newpage
+
+
+
+\section{References}
+
+The references are shown following alphabetical order:\\
+
+\begin{itemize}
+	\item [1]Beukers, F. Dictaat "Modellen en simulaties"
+	\item [2]Fernandez, L.A. Introducción a las ecuaciones en derivadas parciales. Universidad de Cantabria.2013.
+    \item [3]Florin, A.,Ioan, M.,Liliana P. Pasive suspension modeling using matlab, quarter car model, imput signal step type.  
+    \item [4]Milliken, W. F., Milliken, D. L.1995 Race Car vehicle dynamics
+	\item [5]Newton, I.Principia mathematica.
+	\item [6]Sleijpen G. Slides chapter 4 'Modellen en simulatie'.
+
+\end{itemize}
+
+
+
+\end{document}

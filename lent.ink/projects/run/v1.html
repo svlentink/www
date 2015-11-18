@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="runSimApp">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="description" content="Simulation about running in pairs"/>
+		<meta name="keywords" content="duorun"/>
+		<meta name="author" content="svlentink"/>
+		
+		<title>Duorun</title>
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<style>
+			th{
+				text-align:left;
+				border:1px solid;
+			}
+			.selectedspeed{
+				display:inline-block;
+				min-width:32px;
+				color:blue;
+			}
+			.smallSlider{
+				width:250px;
+			}
+			.largeSlider{
+				width:500px;
+			}
+			td{
+				border:1px solid;
+			}
+			.one{
+				color:blue;
+			}
+			.two{
+				color:orange;
+			}
+			.bike{
+				color:green;
+			}
+			section{
+				float:left;
+				border:1px solid grey;
+			}
+		</style>
+	</head>
+
+	<body ng-controller="runSimCtrl">
+		<section>
+			<header>
+				<h1>
+					Duo run simulation
+				</h1>
+				<p>
+					This simulation is meant to give an impression what is possible when you are in a duo run (one on bike, other running).
+					<br/>
+					For information or questions: <a href="http://twitter.com/svlentink">#svlentink</a>
+				</p>
+			</header>
+			<div>
+				<table>
+					<tr>
+						<th>Runner &nbsp;</th>
+						<th colspan="2">
+							Speed
+						</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							Running
+						</td>
+						<td>
+							Biking <span class="bike">█</span>
+						</td>
+					</tr>
+					<tr ng-repeat="runner in runners">
+						<td>
+							<span style="color:{{runner.color}}">█</span>
+							<input ng-model="runner.name"/>
+						</td>
+						<td>
+							<input class="smallSlider" type="range" ng-model="runner.runSpeed" min="8" max="18" value="12" step="0.1" />
+							<span class="selectedspeed">{{runner.runSpeed}}</span>km/h
+						</td>
+						<td>
+							<input class="largeSlider" type="range" ng-model="runner.bikeSpeed" min="8" max="50" step="0.1" value="20" />
+							<span class="selectedspeed" >{{runner.bikeSpeed}}</span>km/h
+						</td>
+					</tr>
+					<!--
+					<tr>
+						<td>
+							One <span class="one">█</span>
+						</td>
+						<td>
+							<input class="runslider" type="range" id="run1in" min="8" max="18" value="12" step="0.1" onchange="$('#run1out').text($('#run1in').val());">
+							<span class="selectedspeed" id="run1out"> </span>km/h
+						</td>
+						<td>
+							<input class="bikeslider" type="range" id="bike1in" min="8" max="50" step="0.1" value="20" onchange="$('#bike1out').text($('#bike1in').val());">
+							<span class="selectedspeed" id="bike1out"> </span>km/h
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Two <span class="two">█</span>
+						</td>
+						<td>
+							<input class="runslider" type="range" id="run2in" min="8" max="18" step="0.1" value="12" onchange="$('#run2out').text($('#run2in').val());">
+							<span class="selectedspeed" id="run2out"> </span>km/h
+						</td>
+						<td>
+							<input class="bikeslider" type="range" id="bike2in" min="8" max="50" step="0.1" value="20" onchange="$('#bike2out').text($('#bike2in').val());">
+							<span class="selectedspeed" id="bike2out"> </span>km/h
+						</td>
+					</tr>
+					-->
+				</table>
+				<!-- not ask, just always the same
+				<br/>
+				Who starts on the bike?
+				<br/>
+				Runner
+				<input type="radio" name="bikestarter" checked="checked" value="one">one
+				<input type="radio" name="bikestarter" value="two">two
+				-->
+				<br/>
+				<br/>
+				What is the distance which you want to switch from biking to running?
+				<br/>
+				<input class="smallSlider" type="range" ng-model="switchDist" min=".5" max="5" step=".1" />
+				<span class="selectedspeed">{{switchDist}}</span>km
+				<br/>
+				<br/>
+				<!-- stupid question, offcourse you keep running
+				When someone has done his distance with running, but the bike isn't there to jump on (biker still on his way),
+				<br/>
+				that runner could stop and wait, or run until the biker catches up.
+				<br/>
+				<input type="checkbox" name="wait" ng-model="stopAndWait">stop and wait for the biker
+				<br/>
+				<br/>
+				-->
+				This is just a simulation, it's not calculated but checked every time interval.
+				<!-- this sentence becomes relevant when we going to make something visual, not the case at the moment
+				<br/>
+				4hours and using 10 sec as a check rate = 4h*60m*60s/10s = 1440 pixels on your screen.
+				-->
+				<br/>
+				<input class="smallSlider" type="range" ng-model="stepSizeSec" min="2" max="60" step="2">
+				<span class="selectedspeed">{{stepSizeSec}}</span>sec (10 or 30 is recommended)
+				<br/>
+				<br/>
+				<button ng-click="runSimulation()">Run simulation</button> Need fresh data? just hit F5 (refresh page)
+				<!--
+				<button id="runSlowSim" disabled>Run slow simulation</button>
+				<input type="range" min="1" max="51" step="5" id="simSpeed" disabled/>
+				-->
+				<br/>
+				<br/>
+			</div>
+		</section>
+		<section>
+			<table>
+				<tr>
+					<th>
+						Time in sec
+					</th>
+					<th>
+						Person
+					</th>
+					<th>
+						total distance in m
+					</th>
+					<th>
+						on bike
+					</th>
+					<th>
+						distance since last switch
+					</th>
+					<th>
+						message
+					</th>
+				</tr>
+				<tr ng-repeat="row in outputTable">
+					<td>
+						{{row.time}}
+					</td>
+					<td>
+						{{row.person}}
+					</td>
+					<td>
+						{{row.dist | number:0}}
+					</td>
+					<td>
+						{{row.onBike}}
+					</td>
+					<td>
+						{{row.switchDist | number:0}}
+					</td>
+					<td>
+						{{row.message}}
+					</td>
+				</tr>
+			</table>
+		</section>
+		<script>
+			var runSimApp = angular.module('runSimApp', []);
+			 
+			runSimApp.controller('runSimCtrl', function ($scope) {
+			  $scope.runners = [
+			    {'name': 'Michael',
+			     'runSpeed': '12',//km/h
+			     'bikeSpeed': '20',//km/h
+			     'color': 'orange'},
+			    {'name': 'svlentink',
+			     'runSpeed': '12',//km/h
+			     'bikeSpeed': '20',//km/h
+			     'color': 'blue'}
+			  ];
+			  $scope.stepSizeSec = 30;
+			  $scope.distance = 42.2;//in km
+			  $scope.switchDist = 1;//in km
+			  $scope.stopAndWait = false;
+			  //all data that is generated for the table is stored here
+			  $scope.outputTable = [];
+			  //all data while generating
+			  var time = 0;
+			  var pers1onBike = true;
+			  var pers2onBike = false;
+			  var totalDistPers1 = 0;//in meters
+			  var totalDistPers2 = 0;
+			  var lastSwitchPers1 = 0;//in meters
+			  var lastSwitchPers2 = 0;
+			  
+			  //developer mode
+			  var logMode = false;
+			  function lg(input){
+			  	if(logMode)
+			  		console.log(input);
+			  }
+			  
+			  $scope.runSimulation = function(){
+			  	console.log("run simulation");
+			  	//resetting
+			  	/*
+			  	time = 0;
+				pers1onBike = true;
+				pers2onBike = false;
+				totalDistPers1 = 0;//in meters
+				totalDistPers2 = 0;
+				lastSwitchPers1 = 0;//in meters
+				lastSwitchPers2 = 0;
+				$scope.outputTable = [];
+				*/
+				$scope.fillTableRecursive();
+			  };
+			  
+			  $scope.fillTableRecursive = function() {
+			  	lg("fillTableRecursive");
+			  	//first, update the new values
+			  	var gainedDist1 = (pers1onBike?$scope.runners[0].bikeSpeed:$scope.runners[0].runSpeed)*1000*$scope.stepSizeSec/(60*60);
+			  	lg("gainedDist1 = " + gainedDist1);
+			  	totalDistPers1 += gainedDist1;
+			  	lastSwitchPers1 += gainedDist1;
+			  	var gainedDist2 = (pers2onBike?$scope.runners[1].bikeSpeed:$scope.runners[1].runSpeed)*1000*$scope.stepSizeSec/(60*60);
+			  	lg("gainedDist2 = " + gainedDist2);
+			  	totalDistPers2 += gainedDist2;
+			  	lastSwitchPers2 += gainedDist2;
+			  	time += parseInt($scope.stepSizeSec);
+			  	lg("time = " + time);	  	
+			  	
+			  	var pers1finished = totalDistPers1 > ($scope.distance*1000);
+			  	lg("pers1finished = " + pers1finished);
+			  	var pers2finished = totalDistPers2 > ($scope.distance*1000);
+			  	lg("pers2finished = " + pers2finished);
+			  	
+			  	if(pers1finished && pers2finished)
+			  		return;
+			  	
+			  	var pers1wantsSwitch = (parseInt(lastSwitchPers1) >= parseInt($scope.switchDist*1000));
+			  	lg("pers1wantsSwitch = " + pers1wantsSwitch + " lastSwitchPers1 = " + lastSwitchPers1 + " switchDist = " + $scope.switchDist);
+			  	var pers2wantsSwitch = (lastSwitchPers2 >= $scope.switchDist*1000);
+			  	lg("pers2wantsSwitch = " + pers2wantsSwitch);
+			  	
+			  	var message1 = "";
+			  	var message2 = "";
+			  	
+			  	//now look if the bike wants to get off, and let him switch (getting off = always possible)
+			  	if(pers1onBike && pers1wantsSwitch){
+			  		pers1onBike = false;
+			  		pers1wantsSwitch = false;
+			  		lastSwitchPers1 = 0;
+			  		message1 = "got off bike";
+			  	}
+			  	if(pers2onBike && pers2wantsSwitch){
+			  		pers2onBike = !pers2onBike;
+			  		pers2wantsSwitch = false;
+			  		lastSwitchPers2 = 0;
+			  		message2 = "got off bike";
+			  	}
+			  	
+			  	//now look if someone wants the bike
+			  	if(pers1wantsSwitch){
+			  		if(pers2onBike)
+			  			message1 = "switch prevented, bike in use by " + $scope.runners[1].name;
+			  		else{
+			  			pers1onBike = true;
+			  			lastSwitchPers1 = 0;
+			  			message1 = "got on bike";
+			  		}
+		  		}
+		  		if(pers2wantsSwitch){
+			  		if(pers1onBike)
+			  			message2 = "switch prevented, bike in use by " + $scope.runners[0].name;
+			  		else{
+			  			pers2onBike = true;
+			  			lastSwitchPers2 = 0;
+			  			message2 = "got on bike";
+			  		}
+		  		}
+		  		lg("lastSwitchDist 1=" + lastSwitchPers1 + " 2=" + lastSwitchPers2);
+		  		
+
+		  		var firstRow = {"time": time.toString(),
+		  						'person': $scope.runners[0].name,
+		  						'dist': totalDistPers1.toString(),
+		  						'onBike': pers1onBike.toString(),
+		  						'switchDist': lastSwitchPers1.toString(),
+		  						'message': message1
+		  						};
+		  		var secondRow = {"time": time.toString(),
+		  						'person': $scope.runners[1].name,
+		  						'dist': totalDistPers2.toString(),
+		  						'onBike': pers2onBike.toString(),
+		  						'switchDist': lastSwitchPers2.toString(),
+		  						'message': message2
+		  						};
+		  	
+		  		$scope.outputTable.push(firstRow);
+		  		$scope.outputTable.push(secondRow);
+		  		
+		  		//recursive
+		  		$scope.fillTableRecursive();
+			  };
+			});
+		</script>
+	</body>
+</html>

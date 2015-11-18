@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>untrace</title>
+		<meta name="description" content="untraceable">
+		<meta name="author" content="svlentink">
+		
+		<style>
+			#ruler { visibility: hidden; white-space: nowrap; }
+			#input{
+				width:45%;
+				min-height:500px;
+				display:block;
+				float:left;
+				outline: 15px groove gray;
+				margin:15px;
+			}
+			#output{
+				width:45%;
+				min-height:500px;
+				display:block;
+				float:left;
+				outline: 15px groove gray;
+				margin:15px;
+			}
+			hr{
+				min-width:95%;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			var chars = new Array();/*chars with same width as space*/
+			
+			$( document ).ready(function() {
+			    chars = getSpaceWidthChars();
+			    console.log("var chars contains now the characters with the same width as a space");
+			    
+			    $('#plainBtn').on( "click", convertToPlain );
+			    $('#htmlBtn').on( "click", convertToHtml );
+			});
+			
+			function convertToPlain(){
+				console.log("convertToPlain");
+				convertText();
+			}
+			
+			function convertToHtml(){
+				console.log("convertToHtml");
+				//alert("<!--Copy everything and paste it in a html file-->"+convertText());
+				var output = $('#output');
+				output.text(convertText());
+			}
+			
+			function convertText(){
+				var rtrnBegin = "";
+				var rtrnEnd = "";
+				var untraceableClassName = "untrace";
+				
+				var input = $('#input');
+				var output = $('#output');
+				var bgColor = $('#bgColor').val();
+				
+				/*inside this the text will be paste*/
+				rtrnBegin += "<!DOCTYPE html>"
+							+"<html lang='en'>"
+								+"<head>"
+									+"<meta charset='utf-8'>"
+									+"<meta name='description' content='untraceable'>"
+									+"<meta name='author' content='svlentink'>"
+									+"<style>"
+										+"."+untraceableClassName+"{"
+											+"color:"+bgColor+";"
+										+"}"
+										+"div{"
+											+"word-wrap:break-word;"
+										+"}"
+									+"</style>"
+								+"</head>"
+								+"<body>"
+									+"<div id='untraceableOutput'>";
+				rtrnEnd +=			"</div>"
+								+"</body>"
+							+"</html>";
+				
+				/*add the text to the html => body => div*/			
+				for(var i=0;i<input.val().length;i++){
+					var chr = input.val().charAt(i);
+					if(chr == ' ')/*only if its a space you need to change it*/
+						chr =	"<span class='"+untraceableClassName+"'>"
+									+getRandomSpaceWidthChar()
+								+"</span>";
+					
+					rtrnBegin += chr;
+				}
+				
+				var rtrn = rtrnBegin+rtrnEnd;
+				output.html(rtrn);
+				return rtrn;
+			}
+			
+			function getRandomSpaceWidthChar(){
+				var onlySpaceWidthChars = $("#onlySpaceWidth").is(':checked');
+				var arr;
+				if(onlySpaceWidthChars)
+					arr = chars;
+				else
+					arr = getAlphaNumericChars();
+				
+				var arrLength = arr.length;
+				var position = Math.floor((Math.random()*arrLength));
+				
+				return arr[position];
+			}
+			
+			function getSpaceWidthChars(){
+				var rtrn = new Array();
+				
+				var ruler = $("#ruler");
+				var rulerSize = 25;/*ill use 25 chars to measure*/
+				
+				/*put 25 spaces in ruler*/
+				var spaces = ".";
+				for(var i = 0;i < rulerSize;i++)
+					spaces += " .";
+				/*put the spaces in the ruler an measure it*/
+			    ruler.html(spaces);
+			    var spacesLength = ruler.outerWidth();
+			    //console.log("spacesLength = "+spacesLength);
+			    
+			    /*foreach the alphaNumerics to see if it's about the same length*/
+			    var alphaNums = getAlphaNumericChars();
+			    alphaNums.forEach(function(chr) {
+			    	var tempstring = ".";
+				    for(var i = 0;i < rulerSize;i++)
+						tempstring += chr+'.';
+						
+					ruler.html(tempstring);
+					var tempLength = ruler.outerWidth();
+					//console.log("length of char '"+chr+"' = "+tempLength);
+					
+					/*if length is less than 20% different, than we can use it as a substitute of a space*/
+					if((tempLength > spacesLength*0.8) && (tempLength < spacesLength*1.2))
+						rtrn.push(chr);
+				});
+				
+				return rtrn;
+			};
+			
+			function getAlphaNumericChars(){
+				var rtrn = new Array();
+				
+				/*add numbers*/
+				for(var i = 0;i<10;i++)
+					rtrn.push(i.toString());
+				
+				/*add lowercase*/
+				for(var i = "a".charCodeAt(0);i<"a".charCodeAt(0)+26;i++)
+					rtrn.push(String.fromCharCode(i));
+					
+				/*add uppercase*/
+				for(var i = "A".charCodeAt(0);i<"A".charCodeAt(0)+26;i++)
+					rtrn.push(String.fromCharCode(i));
+				
+				return rtrn;
+			}
+		</script>
+	</head>
+
+	<body>
+		<span id="ruler"></span>
+		<section>
+			<header>
+				<h1>Untraceable</h1>
+				<span>
+					Use this text transformation tool to make your text untraceable for school/university duplicate checkers.
+					<br/>
+					Or just use it to generate text for your website that visitors are unable to copy.					
+				</span>
+			</header>
+		</section>
+		<hr/>
+		<section>
+			<div>
+				<input type="submit" id="plainBtn" value="Generate untraceable/uncopyable text"/>
+				<input type="submit" id="htmlBtn" value="Generate untraceable/uncopyable html code"/>
+				TextColor
+				<select id="bgColor">
+				  <option value="transparent" selected>transparent</option>
+				  <option value="white">white</option>
+				  <option value="black">black</option>
+				  <option value="red">red</option>
+				</select>
+				<br/>
+				<input type="checkbox" id="onlySpaceWidth" checked="checked">Use only spacewidth characters
+			</div>
+			<div>
+				<textarea id="input" placeholder="input text here"></textarea>
+				<!--<textarea id="output" placeholder="output text here" readonly></textarea>-->
+				<div id="output"><span style="color:gray;">output text here</span></div>
+			</div>
+		</section>
+		<hr/>
+		<section>
+			<footer>
+				<span>
+					HOW IT WORKS: it replaces every space (' ') with a alphanumeric character that has the same width.
+					<br/>
+					The alphanumeric character has the same color as the background, so you won't see it.
+					<br/>
+					When you copy the text (ctrl+C = copy) and than paste the text (ctrl+shift+V = paste without markup) you get the hidden characters with it.
+					<br/>
+					When your school system checks for sentences and word match it won't find anything, the whole sentence is just one long word!
+					<br/>
+					<br/>
+					Made by: <a href="http://twitter.com/svlentink">#svlentink</a>, any suggestions, problems, let me know!
+					Special credits to <a href="http://jappieklooster.nl">Jappie</a>, it was his idea to convert spaces to white chars, i just programmed it.
+				</span>
+			</footer>
+		</section>
+	</body>
+</html>

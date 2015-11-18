@@ -1,0 +1,416 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{amsfonts}
+\usepackage{color}
+
+
+\begin{document}
+
+
+	\title{Bouncing ball\\*
+		\small
+		$\in$\\*
+		assignments\\*
+		$\subset$\\*
+		ModSim}
+	\author{Juan Claramunt \small F130712\\*
+    	Sander Lentink \small F131999 \\*
+		\small Mathematisch Instituut, Universiteit Utrecht, the Netherlands}
+
+	\date{\today}
+
+\maketitle
+\begin{abstract}
+In this paper we are going to study the behaviour of a ball bouncing on a table. In the first model, the table is static and in the second model, the table moves perpendicular to the ball flight.
+\end{abstract}
+
+
+
+\newpage
+
+
+
+\section{Introduction}
+
+The course "Modellen en simulaties", taught by prof. dr. ir. J.E. Frank, provides us with assignments given in the "dictaat" written by F. Beukers.
+
+In this document we look at assignment 3.4.6, about a ball bouncing on a table. We will first give an short introduction to the situation.
+\\*
+\\*
+We let a ball drop on a table, from which it bounces back. The given formula for the time to the subsequent impact:
+\begin{equation}
+\tau=\frac{2v}{g}
+\end{equation}
+with $g$ being the gravitational acceleration (the $2$ stands for the up and down movement).
+The speed will gradually decrease during its flight upwards until it reaches the upper level, when all kinetic energy is transformed to potential energy and the ball falls downwards again.
+The next impact will transform the potential energy back to kinetic energy again.
+\\*
+\\*
+When we look at the $n$-th impact, the subsequent,
+($n$+1)th impact is given by the time step $t_{n+1} = t_n + \tau$.
+Here the index $n$ states that the time in between $\tau$,
+is dependent on the initial velocity $v_n$
+and the new starting velocity $v_{n+1} = \alpha v_n$.
+For the enery loss during flight and bouncing back we take $\alpha \in [0,1]$.
+Air resistance is disregarded. When $\alpha = 1$ the ball doesn't lose any energy, when $\alpha = 0$ the ball won't bounce at all. [1]
+
+
+
+
+
+\newpage
+
+
+
+% assignment 1, opdracht 1
+
+\section{First model}
+When we use a gravitational acceleration $g=2$, the time to the next impact becomes $\tau=v$.
+%\textcolor{red}{%
+%As g=2 in those units, the time untill next impact $\tau=v$.}%
+Then, $t_{n+1}=t_n+v_n$ and $v_{n+1}=\alpha v_n$.
+%\textcolor{red}{%
+%where $\alpha$ is a constant that measure the loss of energy.($\alpha=1$ there is no loss of energy, $\alpha=0$ the ball lose all the energy.As these cases are not very realistic we suppose $0\leq \alpha \leq 1$ ).}%
+For the behavior of the ball we are interested in a bouncing effect.
+As we can learn from the introduction we need $0\leq \alpha \leq 1$ for this to happen.
+So we have:
+\begin{equation}
+f_{\alpha}:\begin{pmatrix} 
+t\\
+v\\
+\end{pmatrix}=\begin{pmatrix} 
+t+v\\
+\alpha v\\
+\end{pmatrix}
+\end{equation}
+\label{sec:examples}
+We see that (t,v) is a fixed point when
+%\textcolor{red}{
+%Which points (t,v) are fixed points?
+%(t,v) is a fixed point if}
+$(t_{n+1},v_{n+1})=f_\alpha(t_n,v_n)=(t_n,v_n)$.
+First we have to solve the following system of equations:
+\begin{equation}\label{t=t+v}
+t=t+v
+\end{equation}
+\begin{equation}
+v=\alpha v
+\end{equation}
+
+From equation \ref{t=t+v} we obtain:
+\begin{equation}
+v=0
+\end{equation}
+Then, the fixed points are the points (t,0) $\forall t$.
+This means that the fixed points are the points with velocity 0, and in this case,
+as $\tau=v$, there are the moments of impact.
+%\textcolor{red}{
+%Now, t}
+To compute the stability of the fixed poits we need to obtain the Jacobian matrix of $f_\alpha$:
+\begin{equation}
+Df(t,0)=\begin{pmatrix} 
+1 & 1\\
+0 & \alpha \\
+\end{pmatrix}
+\end {equation}
+The eigenvalues of this matrix are clearly $\lambda_1=1$ and $\lambda_2=\alpha$. As $\alpha<1$ and $\lambda_1=1$ we have no information [3].
+Then, we choose a point (t,v) close to the fixed point (t,0), the point ($t_0,v_0$), such that:
+$v_0 \approx 0 , v_0\neq 0,t_0\approx t$. Applying $f_\alpha$ resursively we obtain:
+\begin{equation}
+t_1=t_0+v_0
+v_1=\alpha v_0 
+\end{equation}
+\begin{equation}
+t_2=t_1+v_1=t_0+v_0+\alpha v_0
+v_2=\alpha v_1=\alpha^2 v_0
+\end{equation}
+\begin{equation}
+t_n=t_0+v_0+\alpha v0+\alpha^2 v_0+...+\alpha^{n-1} v_0=t_0+v_0(1+\alpha+...+\alpha^{n-1})
+v_n=\alpha^n v_0
+\end{equation}
+If we compute the limit when $n\rightarrow \infty$, $v_n\rightarrow 0 \, \forall(t_0,v_0)$,
+\\*
+however, $t_n\rightarrow t \Leftrightarrow \lim_{n \rightarrow \infty} (t_0+v_0(1+\alpha+...+\alpha^{n-1}))=t$.
+\\*
+Then, $(t_n,v_n)\rightarrow (t,0)$ if $(t_0,v_0)$ satisfy: $\lim_{n \rightarrow \infty} (t_0+v_0(1+\alpha+...+\alpha^{n-1}))=t$, this is $t=t_0+v_0\frac{1}{1-\alpha}$.
+As not every $(t_0,v_0 )\approx (t,0)$ satisfies it, the fixed points are not stable. 
+
+
+
+
+\newpage
+
+
+
+% assignment 2, opdracht 2
+
+\section{Second model}
+
+For the next situation we look at a table that is propelled periodically.
+The table top stays perpendicular to the vertical shaft,
+but moves up and down according to $-\beta sin(t)$.
+For the time unit we use a period in which the table vibration is set to $2\pi$.
+We asume $\beta << v$.
+\\*
+The moving table top causes the distance to increase or decrease,
+which in turn has effect on the time it takes for the ball to bounce back.
+In this situation that effect is negligible, and isn't used.
+
+
+$t_{n+1}$ depends on $t_n$ and $v_n$ as in the first model: 
+\begin{equation}\label{secMod_first}
+t_{n+1}=t_n + v_n
+\end{equation}
+The movement of the ball is the same, then $v_{n+1}^{ball}=\alpha v_n^{ball}$
+The table moves according to $x=-\beta sin(t)$, then, the velocity is $v^{table}=x'=-\beta cos(t)$, and as t depends on t and v we obtain $v^{table}=-\beta cos(t+v)$. If we compose both movements and add a term caused by the lost of energy ($\alpha v^{table}$), we obtain:
+\begin{equation}\label{secMod_second}
+v_{n+1}=\alpha v_n -\alpha \beta cos(t_n+v_n) -\beta cos(t_n+v_n)=\alpha v_n-(1+\alpha)\beta cos(t_n+v_n)
+\end{equation}
+We define $\gamma=(1+\alpha)\beta$.\\
+Using equations \ref{secMod_first} and \ref{secMod_second}, we obtain:
+
+\begin{equation}
+f_{\alpha,\gamma}:\begin{pmatrix} 
+t\\
+v\\
+\end{pmatrix}=\begin{pmatrix} 
+t+v\\
+\alpha v-\gamma cos(t_n+v_n)\\
+\end{pmatrix}
+\end{equation}
+
+Again, $0\leq \alpha \leq 1$ (as we are interested in a realistic situation), and as $\beta$ is the amplitude so $\beta>0$, $\gamma>0$.
+\\
+\\
+Now, we wonder if $f_{\alpha,\gamma}$ is invertible.\
+First, we compute the Jacobian determinant:
+\begin{equation}
+Df(t,v)=\left|\begin{pmatrix}
+1 & 1\\
+\gamma sin(t+v) & \alpha + \gamma sin(t+v) \\
+\end{pmatrix}\right|=\alpha + \gamma sin(t+v) - \gamma sin(t+v) =\alpha
+\end{equation}
+
+As the determinant is a constant (in this case $0 \leq \alpha \leq 1$) we can chose a value for the parameters such that f is invertible. It is ensured by the inverse function theorem.The theorem is: Let $f:A\subseteq \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a $C^1$ function, $a\in A$, as $Df(a)\neq 0$ and f(a)=b, $\exists \, U,V \subset \mathbb{R}^n$ open sets such that $a\in U$, $b\in V$ and $f:U\rightarrow V$ is a bijection, $f^{-1}$ exists and $f^{-1}:V\rightarrow U$ is $C^1$. Our function satisfies the conditions of the theorem, then, the inverse of $f_{\alpha,\gamma}$ exists. [1]
+
+
+
+
+\newpage
+
+
+
+In order to find the inverse function, we propose the following system of equations:
+\begin{equation}\label{x=t+v}
+x=t+v
+\end{equation}
+\begin{equation}\label{secMod_y=alpha}
+y=\alpha v - \gamma cos(t+v)
+\end{equation}
+Now, we isolate the variables t and v:\\
+From equation \ref{x=t+v}:
+\begin{equation}\label{x=t-v}
+t=x-v
+\end{equation}
+From equations \ref{x=t+v} and \ref{secMod_y=alpha}:
+\begin{equation}
+y=\alpha v - \gamma cos(x) \Rightarrow v=\frac{y+\gamma cos(x)}{\alpha}
+\end{equation}
+And back in equation \ref{x=t-v}:
+\begin{equation}
+t=x-\frac{y+\gamma cos(x)}{\alpha}
+\end{equation}
+
+Then, the inverse function is:
+$f^{-1}(x,y)=(x-\frac{y+\gamma cos(x)}{\alpha},\frac{y+\gamma cos(x)}{\alpha})$.
+
+Now, we introduce a new function $\psi_n$ to define a coordinate transformation.\\
+For all $n\in \mathbb{Z}$:
+$$
+\psi_n:\mathbb{R}^2\longrightarrow \mathbb{R}^2\\
+$$
+\begin{equation}
+(t,v)\mapsto (t+2\pi n,v)
+\end{equation}
+
+The composition of $f_{\alpha,\gamma}$ and $\psi_n$ is commutative, this is,
+\\*
+$f_{\alpha,\gamma}(\psi_n(t,v))=\psi_n(f_{\alpha,\gamma}(t,v))$.
+Let's prove it:
+\begin{equation}
+f_{\alpha,\gamma}(\psi_n(t,v))=(t+v+2\pi n,\alpha v-cos(t+v+2\pi n))
+\end{equation}
+\begin{equation}
+\psi_n(f_{\alpha,\gamma}(t,v))=(t+v+2\pi n,\alpha v-cos(t+v))
+\end{equation}
+\\
+Then:
+$$
+f_{\alpha,\gamma}(\psi_n(t,v))=\psi_n(f_{\alpha,\gamma}(t,v)) \Longleftrightarrow$$
+$$f_{\alpha,\gamma}(\psi_n(t,v))_1=\psi_n(f_{\alpha,\gamma}(t,v))_1 \,\& \,
+f_{\alpha,\gamma}(\psi_n(t,v))_2=\psi_n(f_{\alpha,\gamma}(t,v))_2
+$$
+$$
+\Longleftrightarrow t+v+2\pi n=t+v+2\pi n \, \& \, \alpha v-cos(t+v+2\pi n) = \alpha v-cos(t+v)
+$$   
+It is clear that $t+v+2\pi n=t+v+2\pi n$.\\
+Let's see that $\alpha v-cos(t+v+2\pi n) = \alpha v-cos(t+v)$.
+\\As the funtion cos(x) is $2\pi$-periodic, $cos(x)=cos(x+2\pi n) \, \forall n\in \mathbb{Z}$,
+\\then, $\alpha v-cos(t+v+2\pi n) = \alpha v-cos(t+v) \, \forall n\in \mathbb{Z}$.
+
+Then, the result is independent of the order of the composition.
+Then, adding $2\pi n$ to the first component, before or after applying $f_{\alpha,\gamma}$,
+does not affect the result.
+Then, as the first component is independent of $2\pi n$, we can work with the first coordinate in $[0,2\pi)$.
+
+
+
+
+\newpage
+
+
+
+
+Next, we are wondering if the redefined function is also invertible.
+This means we have to compute the Jacobian matrix.
+As the difference between both functions only depends on a constant term ($2\pi n$,
+as in the redefined funcion t lies in $[0,2\pi)$,
+the partial derivatives of both functions are going to be the same, and the Jacobian matrix is:
+
+\begin{equation}\label{secMod_dfRedefined}
+Df_{redefined}:\begin{pmatrix} 
+1 & 1\\
+\gamma sin(t+v) & \alpha + \gamma sin(t+v)\\
+\end{pmatrix}=Df_{\alpha,\gamma}
+\end{equation}
+
+The jacobian determinant is again $\alpha$, so,
+by the inverse function theorem we are sure that the inverse of the redefined function exists.
+We have the system:
+\begin{equation}\label{x=modPi}
+x=(t+v)mod2\pi
+\end{equation}
+\begin{equation}\label{secMod_y=alphaV-gamm}
+y=\alpha v -\gamma cos(t+v)
+\end{equation}
+We proceed by isolating t and v as functions of x and y (t(x,y),v(x,y)).
+\\*
+From equation \ref{secMod_y=alphaV-gamm}:
+\begin{equation}\label{secMod_alphaV=y+}
+\alpha v=y +\gamma cos(t+v)\Rightarrow v=\frac{y +\gamma cos(t+v)}{\alpha}
+\end{equation}
+From equations \ref{x=modPi} and \ref{secMod_alphaV=y+}
+\begin{equation}
+x=(t+v)mod2\pi \Rightarrow x=t+v+2\pi n
+\end{equation}
+With $n \in \mathbb{Z}$ such that $(t+v+2\pi n) \in [0,2\pi)$
+Then:
+\begin{equation}
+x=t+v+2\pi n \Rightarrow t=x-v-2\pi n ,\,n \in \mathbb{Z}|(t+v+2\pi n) \in [0,2\pi)
+\end{equation}
+
+To find which points (t,v) are fixed points,
+we remember that (t,v) is a fixed point if $(t_{n+1},v_{n+1})=f(t_n,v_n)=(t_n,v_n)$.
+Written as equations: 
+\begin{equation}\label{t=modPi}
+t=(t+v)mod2\pi
+\end{equation}
+\begin{equation}\label{secMod_v=alphaV-gamm}
+v=\alpha v -\gamma cos(t+v)
+\end{equation}
+From equation \ref{t=modPi}:
+\begin{equation}\label{secMod_t=t+v+2PIn}
+t=t+v+2\pi n ,\,n \in \mathbb{Z}|(t+v+2\pi n) \in [0,2\pi) \Rightarrow v=-2\pi n
+\end{equation}
+And from equations \ref{secMod_v=alphaV-gamm} and \ref{secMod_t=t+v+2PIn}:
+$$
+-2\pi n=\alpha (-2\pi n) -\gamma cos(t-2\pi n)\Rightarrow -2\pi n(1-\alpha)=-\gamma cos(t)$$
+\begin{equation}
+\Rightarrow cos(t)=\frac{2\pi n(1-\alpha)}{\gamma}\Rightarrow t=arccos(\frac{2\pi n(1-\alpha)}{\gamma})
+\end{equation}
+
+
+
+
+\newpage
+
+
+
+
+The "possible" fixed points with $v<0$ (n positive) make no sense when $\tau=v$ and $\tau$ is the time to next impact, because time cannot be negative.
+The fixed points when $v=0$ are the points when the ball is impacting.
+If $v=0 \, \forall t$ the ball bounces in an infinitesimal way,
+we are not interested in that case (similar to $\alpha=0$ case).
+\\
+Next we will look at, if the points are stable or not?
+
+First we compute the eigenvalues of $Df_{redefined}$.
+The fixed points are stable $\Leftrightarrow \lambda_2<\lambda_1<1 \Leftrightarrow -2(1+\alpha)<\mu<0$,
+where $\mu=\gamma sin(t)$.
+\\First:
+\begin{equation}\label{secMod_mu_lessThan_zero}
+\mu<0\Leftrightarrow \gamma sin(t)<0, (\gamma>0) \Leftrightarrow sin(t)<0 \Leftrightarrow 0<t<\pi
+\end{equation}
+$$-2(1+\alpha)<\mu \Leftrightarrow -2(1+\alpha)<\gamma sin(t) \Leftrightarrow -2(1+\alpha)<(1+\alpha)\beta sin(t) $$
+\begin{equation}
+\Leftrightarrow -2<\beta sin(t) \Leftrightarrow
+\left\{
+\begin{array}{cl}
+\beta>\frac{-2}{sin(t)}&\mbox{si } 0 < t < \pi \\
+\beta<\frac{-2}{sin(t)}&\mbox{si } \pi < t < 2\pi \\
+-2<0 &\mbox{si } t=0,\pi
+\end{array}\right.
+\end{equation}
+Then, from equation \ref{secMod_mu_lessThan_zero},
+$0<t<\pi \Rightarrow \beta>\frac{-2}{sin(t)}$ and as $\beta>0$ it is always true.
+Therefore, the fixed points are stable if $0<t<\pi$.
+
+For well chosen parameters we can find a stable 2-period orbit.
+Then, if we increase the value of $\gamma$, this orbit branch of in an stable orbit of period 4, then in and stable orbit of period 8 and so on.
+
+As in the logistic case, the period doubling leads to chaos.
+In order to show this behaviour we are going to use the Smale horseshoe.\\
+First, we look for a quedrilateral, Q, such that f(Q) folded in a half lies in Q.
+If we take Q=$[1.5,2]x[\frac{1}{10},2\pi+\frac{1}{10}]$ with $\alpha=0.75$ and $\gamma=0.125 \Rightarrow \beta=\frac{0.125}{1.75}<<v$,
+we obtain the quadrilateral f(Q) determined by the points (1.5,-0.0088),(1.5,4.7035), (2,0.0520), (2,4.7644).
+If we would fold it in half,the new quadrilateral $f(Q)_{folded}$ is determined by the points (1.75,0.0216), (1.75, 4.7340), (2,0.0520) and (2,4.7644).\\
+As f is continuous in (at least) $[0,2\pi)$x$\mathbb{R}$, $f(Q), Q \subset [0,2\pi)$x$\mathbb{R}$ and (1.75,0.0216),\\(1.75, 4.7340), (2,0.0520), (2,4.7644)$\in Q$, then  $f(Q)_{folded}\subset Q$.\\ 
+Now, we are interested in the intersection over k ($k\in \mathbb{Z}$) of $f^k(Q)$, this is $\Lambda =\underset{k\in \mathbb{Z}}{\bigcap}f^k(Q)$.
+We generate the recursion $Q_{n+1}=f^{-1}(Q_n)\cap f(Q_n) \cap Q_n$.
+Then, $\Lambda =\underset{k\in \mathbb{Z}}{\bigcap}f^k(Q)=\underset{k\in \mathbb{N}}{\bigcap}Q_k$.
+The sequence of sets $(Q_n)_{n\geq0}$ are divided at each step,
+so they became smaller, but the amount of points is infinite (the cardinal of the set $Q_n$ is $\aleph_1 \, \forall n$). Then, what we have is a kind of Cantor set. 
+Consider the restriction of f to $\Lambda$:
+$$ f|_{\Lambda}:\Lambda \longrightarrow \Lambda$$
+%The dynamics of this restriction is a significant part of the dynamics of the whole Q at f.
+The process $x_{n+1}=f(x_n)$ on $\Lambda$ is chaotic.[3]
+For well chosen parameters we can find this chaotic behaviour.
+This implies that, for these values the ball bounces in a chaotic way. Then, a small change in the initial values could lead to extremely different results.
+For example, we have two close points ($t_1,v_1$) and ($t_2,v_2$) such that the ball of the first point impacts with the table while the table is going up,
+and the second one impacts with the table while the table is going down.
+In this case, both movements start close, but the result(the different impacts, times, velocities) is not so close.
+
+
+
+
+
+\section{References}
+
+The references are shown following alphabetical order:\\
+
+[1]Beukers, F. Dictaat "Modellen en simulaties"
+
+[2]Rudin, W. (1976). Principles of mathematical analysis. International Series in Pure and Applied Mathematics (Third ed.). New York: McGraw-Hill Book Co. pp. 221–223.
+
+[3]Sleijpen G. Slides chapter 3 'Modellen en simulatie'.
+
+
+
+
+
+\end{document}

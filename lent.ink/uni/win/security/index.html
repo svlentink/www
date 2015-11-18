@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="description" content="SECURITY"/>
+<meta name="keywords" content="Windesheim,Portfolio,s1051023,Security"/>
+<meta name="author" content="svlentink"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<title>SEC wk01 s1051023</title>
+<!--
+<link rel="shortcut icon" href="temp.ico">
+-->
+<html manifest="./cache.manifest">
+
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<style>
+td{
+	text-align:center;
+	padding:5px;
+	border:1px solid;
+}
+th{
+	padding:15px;
+	padding-bottom:3px;
+}
+
+table{
+	border:1px solid;
+	border-collapse:collapse;
+	float:left;
+}
+div{
+	float:left;
+}
+#changeBtn{
+	display:none;
+}
+</style>
+
+
+
+</head>
+<body>
+
+<button onclick="startAlg(this)">Start Alogrithm</button>
+<button onclick="printAnswer()" id="changeBtn">printAnswer</button>
+<hr/>
+
+<table>
+	<tr>
+		<th>
+			N
+		</th>
+		<th>
+			e
+		</th>
+		<th>
+			c
+		</th>
+		<th>
+			p
+		</th>
+		<th>
+			q
+		</th>
+		<th>
+			answer
+		</th>
+	</tr>
+	<tr>
+		<td class="pq">
+			1079
+		</td>
+		<td class="e">
+			23
+		</td>
+		<td class="c">
+			245
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			3431
+		</td>
+		<td class="e">
+			29
+		</td>
+		<td class="c">
+			1229
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			3053
+		</td>
+		<td class="e">
+			163
+		</td>
+		<td class="c">
+			1831
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			3337
+		</td>
+		<td class="e">
+			11
+		</td>
+		<td class="c">
+			2599
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1081
+		</td>
+		<td class="e">
+			43
+		</td>
+		<td class="c">
+			225
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1679
+		</td>
+		<td class="e">
+			89
+		</td>
+		<td class="c">
+			792
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			287
+		</td>
+		<td class="e">
+			41
+		</td>
+		<td class="c">
+			185
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			713
+		</td>
+		<td class="e">
+			53
+		</td>
+		<td class="c">
+			260
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			713
+		</td>
+		<td class="e">
+			13
+		</td>
+		<td class="c">
+			3227
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			2867
+		</td>
+		<td class="e">
+			11
+		</td>
+		<td class="c">
+			707
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1333
+		</td>
+		<td class="e">
+			41
+		</td>
+		<td class="c">
+			815
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1037
+		</td>
+		<td class="e">
+			43
+		</td>
+		<td class="c">
+			413
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			2813
+		</td>
+		<td class="e">
+			5
+		</td>
+		<td class="c">
+			1579
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			267
+		</td>
+		<td class="e">
+			5
+		</td>
+		<td class="c">
+			158
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			473
+		</td>
+		<td class="e">
+			23
+		</td>
+		<td class="c">
+			23
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			6497
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			863
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			511
+		</td>
+		<td class="e">
+			5
+		</td>
+		<td class="c">
+			491
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			2491
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			684
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1909
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			782
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			299
+		</td>
+		<td class="e">
+			13
+		</td>
+		<td class="c">
+			47
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			851
+		</td>
+		<td class="e">
+			13
+		</td>
+		<td class="c">
+			487
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			623
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			83
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			3403
+		</td>
+		<td class="e">
+			13
+		</td>
+		<td class="c">
+			2519
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1157
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			679
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1643
+		</td>
+		<td class="e">
+			7
+		</td>
+		<td class="c">
+			572
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+	<tr>
+		<td class="pq">
+			1679
+		</td>
+		<td class="e">
+			5
+		</td>
+		<td class="c">
+			362
+		</td>
+		<td class="p">
+			..
+		</td>
+		<td class="q">
+			..
+		</td>
+		<td class="ans">
+			..
+		</td>
+	</tr>
+</table>
+<div id="console"><h1>Console</h1></div>
+</body>
+<script>
+var primes = null;
+
+function startAlg(src){
+	primes = getPrimes(111);
+	//get values
+	var pqElements = document.getElementsByClassName("pq");
+	var eElements = document.getElementsByClassName("e");
+	var cElements = document.getElementsByClassName("c");
+	var pElements = document.getElementsByClassName("p");
+	var qElements = document.getElementsByClassName("q");
+	var ansElements = document.getElementsByClassName("ans");
+	//use values
+	for(var i = 0; i < pqElements.length; i++){
+		calcVals(	pqElements[i],
+						eElements[i],
+						cElements[i],
+						pElements[i],
+						qElements[i],
+						ansElements[i]	);
+	}
+	//show the next button
+	document.getElementById("changeBtn").style.display = "block";
+	src.style.display = "none";
+}
+
+function calcVals(pq,e,c,p,q,ans){
+	var pqInt = parseInt($.trim(pq.innerHTML));
+	var eInt = parseInt($.trim(e.innerHTML));
+	var cInt = parseInt($.trim(c.innerHTML));
+	var pInt = null;
+	var qInt = null;
+	var ansInt = null;
+
+	//set p and q
+	for(var i = 0;i<primes.length;i++){
+		if(pqInt % primes[i] == 0){
+			pInt = primes[i];
+			qInt = pqInt / primes[i];
+		}
+	}
+
+	//get decrypt (ans)
+	//ed mod (p-1)(q-1) = 1
+	var d = null
+	for(var i = 0;i<pqInt*eInt;i++){
+		if( (eInt*i) % ((pInt-1)*(qInt-1)) == 1){
+			d = i;
+			break;
+		}
+	}
+	//c^d mod N= n
+	ansInt = getCodeFromHuge(cInt,d,pqInt);
+
+	var chr = String.fromCharCode(ansInt);
+	rowToConsole(ansInt + " = asci = "+chr);
+	ansInt = chr;
+
+	p.innerHTML = pInt;
+	q.innerHTML = qInt;
+	ans.innerHTML = ansInt;
+}
+
+function getCodeFromHuge(c,d,N){
+//c^d mod N= n
+
+	var n = 1;
+	for(var i = 0; i < d; i++){
+		n = n*c;
+		n = n%N;
+	}
+	return n;
+}
+
+function getPrimes(intMax){
+	var primes = new Array();
+
+	for(var i = 2; i < intMax; i++){
+		var isPrime = true;
+		for(var j = 0; j<primes.length;j++){
+			//rowToConsole(primes[j]+"value from index:"+j+". current in the race:"+i);
+			//check if the current is divisable by a prime in the array
+			if(i%parseInt(primes[j])==0){
+				isPrime = false;
+			}
+		}
+		if(isPrime == true){
+			primes.push(i);
+			rowToConsole("prime found:"+i);
+		}
+	}
+
+	return primes;
+}
+
+function rowToConsole(string){
+	var div = document.getElementById("console");
+	div.innerHTML += "<br>"+string;
+}
+
+function printAnswer(){
+	//get values
+	var ansElements = document.getElementsByClassName("ans");
+	//use values
+	var string = "";
+	for(var i = 0; i < ansElements.length; i++){
+		string += $.trim(ansElements[i].innerHTML);
+	}
+	rowToConsole(string);
+	alert(string);
+}
+</script>
+
+</html>

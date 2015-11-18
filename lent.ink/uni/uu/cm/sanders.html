@@ -1,0 +1,84 @@
+<tr>
+	<td>
+		<a name="links_06_25">&nbsp;</a>
+		<h3>
+			college 15
+		</h3>
+		<h4>
+			25 juni
+		</h4>
+	</td>
+	<td>
+		<h3>
+			Sander en Sander
+		</h3>
+		<p>
+			<a target="_blank" href="cm/2014_06_25_dictaat.pdf" onclick="return popup(this)" title="ga naar  dictaat">
+				<img class="nextimg" src="next.gif" alt="" title="ga naar  dictaat">
+				dictaat
+			</a>
+			<br>
+			<a target="_blank" href="cm/2014_06_25_presentatie.pdf" onclick="return popup(this)" title="ga naar  presentatie">
+				<img class="nextimg" src="next.gif" alt="" title="ga naar  presentatie">
+				presentatie
+			</a>
+			<br>
+			<a target="_blank" href="cm/2014_06_25_handout.pdf" onclick="return popup(this)" title="ga naar  handout">
+				<img class="nextimg" src="next.gif" alt="" title="ga naar  handout">
+				handout
+			</a>
+		</p>
+		<h3>
+			Links
+		</h3>
+		<p>
+			<a target="_blank" href="http://astro.unl.edu/animationsLinks.html" onclick="return popup(this)" title="Simulaties">
+				<img class="nextimg" src="next.gif" alt="" title="Simulaties">
+				Simulaties
+			</a>
+			<br/>
+			<!--Op advies van Rob van Gent, deze gebruiken:-->
+			<a target="_blank" href="http://www.astro.com/cgi/chart.cgi?btyp=w2at&rs=3" onclick="return popup(this)" title="Ascendant berekenen">
+				<img class="nextimg" src="next.gif" alt="" title="Ascendant berekenen">
+				Ascendant berekenen
+			</a> (gebruik "guest user")
+			<h4>
+				Formule dictaat: ((((d+(u+m/60)/24)*(366.25/365.25)*360)mod 360) + &lambda;
+			</h4>
+			<a href="http://www.timeanddate.com/date/durationresult.html?d1=21&m1=03&y1=1990&d2=21&m2=03&y2=1990&h1=12&i1=0&s1=0&h2=12&i2=0&s2=0" onclick="return popup(this)" title="Bereken tijdsverschil">
+				<img class="nextimg" src="next.gif" alt="" title="Bereken tijdsverschil">
+				Bereken tijdsverschil
+			</a>
+			<h4>
+				Wanneer tijdsverschil bekend is, bereken siderische tijd (sterrentijd)
+			</h4>
+			&lambda;
+			<input type="number" id="sid_lambda" min="-180" max="180" step="1" value="5"> (longitude)
+			<br/>
+			Tijdsverschil:
+			<input type="number" id="sid_d" min="-365" max="365" step="1" value="1">
+			d,
+			<input type="number" id="sid_h" min="0" max="24" step="1" value="2">
+			u,
+			<input type="number" id="sid_m" min="0" max="60" step="1" value="3">
+			m.
+			<button onclick="window.location='http://www.wolframalpha.com/input/?i=+%28%28%28%28'+
+				document.getElementById('sid_d').value
+				+'%2B%28'+
+				document.getElementById('sid_h').value
+				+'%2B'+
+				document.getElementById('sid_m').value
+				+'%2F60%29%2F24%29*%28366.25%2F365.25%29*360%29mod+360%29+%2B+'+
+				document.getElementById('sid_lambda').value
+				;">
+				Bereken
+			</button>
+			<br/>
+		</p>
+	</td>
+	<td class="boxr">
+		<p class="center">
+			<img src="http://www.hps.cam.ac.uk/starry/mathtechniqueslrg.jpg" alt="" class="posterimgw" title="" width="227px">
+		</p>
+	</td>
+</tr>

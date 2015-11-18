@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="runSimApp" id="runSimApp">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="description" content="Simulation about running in pairs"/>
+		<meta name="keywords" content="duorun"/>
+		<meta name="author" content="svlentink"/>
+		
+		<title>Duorun</title>
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<style>
+			th{
+				text-align:left;
+				border:1px solid;
+			}
+			.selectedspeed{
+				display:inline-block;
+				min-width:32px;
+				color:blue;
+			}
+			.smallSlider{
+				width:250px;
+			}
+			.largeSlider{
+				width:500px;
+			}
+			td{
+				border:1px solid;
+			}
+			.bike{
+				float:left;
+				overflow:hidden;
+				max-height:25px;
+				background-color:Pink;
+			}
+			.run{
+				float:left;
+				overflow:hidden;
+				max-height:25px;
+				background-color:yellow;
+			}
+			.time{
+				min-width:30px;
+				max-width:30px;
+				overflow:hidden;
+				float:left;
+				max-height:25px;
+				font-size:80%;
+			}
+			section{
+				float:left;
+				border:1px solid grey;
+				padding:5px;
+				margin:5px;
+				border-radius:10px;
+			}
+			article{
+				float:left;
+				border:1px solid grey;
+				padding:5px;
+				margin:5px;
+				border-radius:10px;
+				max-width:600px;
+			}
+		</style>
+	</head>
+
+	<body ng-controller="runSimCtrl" id="runSimCtrl">
+		<article>
+			<header>
+				<h1>
+					Duo run simulation
+				</h1>
+				<h3>
+					The aim of this simulation was to maximize the running duration compared to the biking duration.
+					<br/>
+					(less time spent on bike means faster on your feet again, running)
+				</h3>
+				<p>
+					This simulation is meant to give an impression what is possible when you are in a duo run (one on bike, other running).
+					<br/>
+					For information or questions: <a href="http://twitter.com/svlentink">#svlentink</a>
+				</p>
+				<p>
+					! Important ! You are looking for values in which no pink areas will overlap.
+				</p>
+			</header>
+		</article>
+
+		<section>
+			<div>
+				<table>
+					<tr>
+						<th>Runner &nbsp;</th>
+						<th colspan="2">
+							Speed
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" ng-model="firstOnBike" ng-change="autoUpdate()" />switch biker
+						</td>
+						<td>
+							Running
+						</td>
+						<td>
+							Biking <!--<span class="bike">█</span>-->
+						</td>
+					</tr>
+					<tr ng-repeat="runner in runners">
+						<td>
+							<span style="color:{{runner.color}}">█</span>
+							<input style="width:75px;" ng-model="runner.name"/>
+						</td>
+						<td>
+							<div class="run" style="min-width:333px;">
+								<input class="smallSlider" type="range" ng-model="runner.runSpeed" min="8" max="18" step="0.1" ng-change="autoUpdate()" />
+								<span class="selectedspeed">{{runner.runSpeed}}</span>km/h
+							</div>
+						</td>
+						<td>
+							<div class="bike" style="min-width:585px;">
+								<input class="largeSlider" type="range" ng-model="runner.bikeSpeed" min="8" max="50" step="0.1" ng-change="autoUpdate()" />
+								<span class="selectedspeed" >{{runner.bikeSpeed}}</span>km/h
+							</div>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				What is the distance which you want to switch from biking to running?
+				<br/>
+				<input class="smallSlider" type="range" ng-model="switchDist" ng-change="autoUpdate()" min=".5" max="5" step=".1" />
+				<span class="selectedspeed">{{switchDist}}</span>km
+				<br/>
+				What is the total distance?
+				<br/>
+				<input style="width:850px;" type="range" ng-change="autoUpdate()" ng-model="distance" min="10" max="250" step="0.2"/>
+				<span class="selectedspeed" >{{distance}}</span>km
+				<br/>
+				<button ng-click="runSimulation()">Run simulation</button>
+				<input type="checkbox" ng-model="autoupdate" ng-click="runSimulation()" />auto update
+				<br/>
+			</div>
+		</section>
+		<div style="float:none;width:90%;margin:auto;"></div>
+		<section style="width:98%;">
+			<div style="width:90px;float:left;">
+				<div style="height:25px;overflow:hidden;">
+					time in min
+				</div>
+				<div style="height:25px;overflow:hidden;">
+					{{runners[0].name}}
+				</div>
+				<div style="height:25px;overflow:hidden;">
+					{{runners[1].name}}
+				</div>
+			</div>
+			<div style="width:calc(100% - 95px);float:left;">
+				<div style="overflow-x: scroll;">
+					<div id="times" style="height:25px;">
+					</div>
+					<div id="runner1output" style="height:25px;">
+					</div>
+					<div id="runner2output" style="height:25px;">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<article>
+			<header>
+				<h1>
+					The concept
+				</h1>
+			</header>
+			<p>
+				Two athletes are going to run/bike a distance.
+				There is one bike, which will be exchanged between athletes.
+				Normally the biker stays next to the runner.
+				<br/>
+				This simulation is targeted at the athletes who want to run more instead of biking.
+				<br/>
+				Example: when you run 12kmH (5min/km) and bike 20kmH (3min/km) you'll take 8min for 2km, that is 15kmH (4min/km).
+				<br/>
+				The only difference:
+				<ul>
+					<li>
+						You go faster
+					</li>
+					<li>
+						Don't have your water, food all the time (assuming it's on the bike)
+					</li>
+					<li>
+						The biking part becomes harder
+					</li>
+					<li>
+						Need to have two keys and a quick release lock
+					</li>
+					<li>
+						You can't communicate about your progress/speed
+					</li>
+					<li>
+						A bicycle computer is needed
+					</li>
+				</ul>
+			</p>
+		</article>
+		
+		<article>
+			<header>
+				<h1>
+					Info
+				</h1>
+			</header>
+			<p>
+				When biking and running, the two athletes constant switch bike.
+				<br/>
+				This simulation shows how this will take place.
+				It is important to look for an alternating pattern in which there is no overlap,
+				since it isn't possible for two people to bike at the same time.
+				<br/>
+				One athlete cycles the bike in front of the other, leaves it there and starts running.
+				The other athlete jumps on the bike and bikes until the agreed switching distance.
+				<br/>
+				<br/>
+				If the biker is at the switching distance but hasn't passed the runner,
+				the biker needs to bike further until he has passed the runner and place the bike a couple of meters ahead of him
+				(you can exchange keys while passing since you only leave the bike for a couple of sec unattended).
+				When the biker needs to bike further it means that the runner was faster (biking and running).
+				But this results in the biker needing to bike more, and the runner needing to run more.
+				This will even out the difference. (assuming that biking is easier than running)
+				<br/>
+				<br/>
+				Example: You have agreed on switching at every KM,
+				the person on the bike cycles until the next whole KM is reached on the bike computer.
+				If he needs to bike further, e.g. 1.5km instead of 1km,
+				he bikes further and the runner will only do .5km until the next whole km.
+				<br/>
+				By doing this, the system will even out automatically.
+			</p>
+		</article>
+		
+		
+		<script>
+			var runSimApp = angular.module('runSimApp', []);
+			 
+			runSimApp.controller('runSimCtrl', function ($scope) {
+			  $scope.runners = [
+			    {'name': 'Michael',
+			     'runSpeed': '14',//km/h
+			     'bikeSpeed': '21',//km/h
+			     'color': 'orange'},
+			    {'name': 'Sander',
+			     'runSpeed': '13',//km/h
+			     'bikeSpeed': '23',//km/h
+			     'color': 'blue'}
+			  ];
+			  $scope.stepSizeSec = 30;
+			  $scope.distance = 42.2;//in km
+			  $scope.switchDist = 1;//in km
+			  $scope.autoupdate = true;
+			  $scope.firstOnBike = true;
+			  //all data that is generated for the table is stored here
+			  
+			  
+			  function KMh_to_Ms(KMh){
+			  	// *1000 / (60*60)
+			  	return parseFloat(KMh)/3.6;
+			  }
+			  
+			  $scope.runSimulation = function(){
+			  	console.log("run simulation");
+			  	
+			  	$('#runner1output').empty();
+			  	$('#runner2output').empty();
+			  	$('#times').empty();
+
+				$scope.setHash();
+				$scope.genNewData();
+			  };
+			  
+			  $scope.autoUpdate = function(){
+			  	if($scope.autoupdate)
+			  		$scope.runSimulation();
+			  };
+
+			$scope.setHash = function(){
+				//?sb=1
+				//&run1=12
+				//&bike1=20
+				//&run2=12
+				//&bike2=20
+				//&swtch=1
+				//&dist=42.2
+				var array = {};
+				array.sb = $scope.firstOnBike?"1":"0";//because its a boolean
+				array.run1 = $scope.runners[0].runSpeed;
+				array.bike1 = $scope.runners[0].bikeSpeed;
+				array.run2 = $scope.runners[1].runSpeed;
+				array.bike2 = $scope.runners[1].bikeSpeed;
+				array.swtch = $scope.switchDist;
+				array.dist = $scope.distance;
+				
+				array2hash(array);
+			};
+
+			$scope.loadHash = function(){
+				console.log("hash length:" + (window.location.hash+"").length);
+				if((window.location.hash+"").length < 52)
+					return;
+				var array = hash2array();
+					
+				console.log("loading hash");
+				console.log(array);
+				
+				$scope.firstOnBike = (array.sb == "0")?false:true;
+				if(array.run1.length >0)
+					$scope.runners[0].runSpeed = parseFloat(array.run1);
+				if(array.bike1.length >0)
+					$scope.runners[0].bikeSpeed = parseFloat(array.bike1);
+				if(array.run2.length >0)
+					$scope.runners[1].runSpeed = parseFloat(array.run2);
+				if(array.bike2.length >0)
+					$scope.runners[1].bikeSpeed = parseFloat(array.bike2);
+				if(array.swtch.length >0)
+					$scope.switchDist = parseFloat(array.swtch);
+				if(array.dist.length >0)
+					$scope.distance = parseFloat(array.dist);
+			};
+
+			$scope.genNewData = function() {
+				
+				var pers1totalTime = 0;
+				for(dist = 0, pers1biking = !$scope.firstOnBike; dist < $scope.distance*1000; pers1biking = !pers1biking){
+					//if distance to finish is shorter than the interval distance, use that one
+					var distanceToDo = dist+($scope.switchDist*1000) < $scope.distance*1000?$scope.switchDist*1000:$scope.distance*1000-dist;
+					dist += distanceToDo;
+					var speed = pers1biking?$scope.runners[0].bikeSpeed:$scope.runners[0].runSpeed;
+					// s = v.t    t = s/v
+					var time = distanceToDo/KMh_to_Ms(speed);
+					pers1totalTime += time;
+					
+					var output = "<div class='";
+					
+					if(pers1biking)
+						output += "bike";
+					else
+						output += "run";
+					
+					output += "' style='min-width:"+ parseInt(time) +"px;max-width:"+ parseInt(time) +"px;'>";
+					output += "| " + parseInt(dist) + "m -->";
+					output += "</div>";
+					
+					$('#runner1output').append(output);
+					$('#runner1output').width(pers1totalTime + 50);
+				}
+				
+				var pers2totalTime = 0;
+				for(dist = 0, pers2biking = $scope.firstOnBike; dist < $scope.distance*1000; pers2biking = !pers2biking){
+					//if distance to finish is shorter than the interval distance, use that one
+					var distanceToDo = dist+($scope.switchDist*1000) < $scope.distance*1000?$scope.switchDist*1000:$scope.distance*1000-dist;
+					dist += distanceToDo;
+					var speed = pers2biking?$scope.runners[1].bikeSpeed:$scope.runners[1].runSpeed;
+					// s = v.t    t = s/v
+					var time = distanceToDo/KMh_to_Ms(speed);
+					pers2totalTime += time;
+					
+					var output = "<div class='";
+					
+					if(pers2biking)
+						output += "bike";
+					else
+						output += "run";
+					
+					output += "' style='min-width:"+ parseInt(time) +"px;max-width:"+ parseInt(time) +"px;'>";
+					output += "| " + parseInt(dist) + "m -->";
+					output += "</div>";
+					
+					$('#runner2output').append(output);
+					$('#runner2output').width(pers2totalTime + 50);
+				}
+				
+				
+				//generating the timeline
+				  var longestTime = (pers1totalTime > pers2totalTime)?pers1totalTime:pers2totalTime;
+				  $('#times').width(longestTime + 75);
+				  
+				  for(time = 0; time <= longestTime/60; time+=0.5){
+				  	var output = "<div class='time'>";
+				  	output += "|" + time;
+				  	output += "</div>";
+				  	$('#times').append(output);
+				  }
+			  };
+			  
+			  
+			  
+			});
+			
+			
+			$( document ).ready(function(){
+				angular.element($("#runSimCtrl")).scope().loadHash();
+				angular.element($("#runSimCtrl")).scope().$apply();
+				angular.element($("#runSimCtrl")).scope().runSimulation();
+			});
+			
+			
+			
+			function hash2array(){
+				var initVal = "" + window.location.hash;
+				val = "";
+				//removing hash
+				for(var i = "#".length;i < initVal.length;i++)
+					val += initVal[i];
+					
+				var strings = val.split('&');
+				var array = {};
+				
+				for(var i = 0; i < strings.length;i++){
+					var temp = strings[i];
+					var tempArr = temp.split('=');
+					if(tempArr.length == 2){//2; a key and a value
+						array[tempArr[0]] = tempArr[1];
+					}
+				}
+				
+				return array;
+			}
+			function array2hash(input){
+				var output = "";
+
+				for(key in input)
+					if(input.hasOwnProperty(key))
+						output += '&' + key.toString() + '=' + input[key].toString();
+					
+				window.location.hash = '#' + output;
+			}
+		</script>
+	</body>
+</html>

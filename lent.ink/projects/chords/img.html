@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<meta name="author" content="svlentink"/>
+
+		<title>Binary image</title>
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+		<!--<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+
+		<link rel="stylesheet" href="css.css"/>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- -- For offline programming in train/bus
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- -->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<!--  -- Not used
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<!-- -->
+		<script type="text/javascript" src="js/global.js"></script>
+		<script>
+		  $(function() {
+		    $( "#slider-range" ).slider({
+		      range: true,
+		      min: 0,
+		      max: 500,
+		      values: [ 75, 300 ],
+		      slide: function( event, ui ) {
+		        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		      }
+		    });
+		    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+		      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+		  });
+		</script>
+		<style>
+			input[type='range']{
+				width:50px;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			#chromeExtenSideMenu{
+				height:50%;
+				width:50%;
+				margin-left:50%;
+				position:fixed;
+
+				border:5px solid orange;
+				background-color:orange;
+				border-radius:20px 10px 0px 10px;
+
+				transform-origin: 98% 98%;
+				transform: rotate(135deg);
+				transition: all .75s ease-in-out;
+			}
+			#chromeExtenSideMenu:hover{
+				transform: rotate(0deg);
+				background-color:white;
+			}
+		</style>
+	</head>
+
+	<body>
+		this is garbage, please do not use it,
+		my goal with this was to compress pictures
+		<p>
+		  <label for="amount">Price range:</label>
+		  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		</p>
+
+		<div id="slider-range"></div>
+		<br/>
+		<input type='range' min='0' max='3' step='1' value='0' onchange='document.getElementById("bitDepthOut").textContent = this.value'/>
+		2^<span id='bitDepthOut'>0</span>
+		colors (from monochrome to 8 bit; 256)
+		<br/>
+		http://stackoverflow.com/questions/10209227/open-local-image-in-canvas
+		http://stackoverflow.com/questions/14174105/client-side-conversion-of-rgb-jpg-to-8-bit-jpg-using-canvashtml5
+		30%R, 59%G, and 11%B
+		http://www.tannerhelland.com/4660/dithering-eleven-algorithms-source-code/
+		http://www.html5canvastutorials.com/advanced/html5-canvas-grayscale-image-colors-tutorial/
+		http://permadi.com/tutorial/jsCanvasGrayscale/index.html
+		http://www.htmlgoodies.com/html5/javascript/display-images-in-black-and-white-using-the-html5-canvas.html#fbid=OqTprytRpTL
+		http://www.html5rocks.com/en/tutorials/canvas/imagefilters/
+		http://tech.pro/tutorial/1083/html-5-canvas-tutorial-converting-images-to-grayscale
+		http://www.thewonderoflight.com/articles/definitive-guide-to-bw-conversion/
+
+
+		<hr/>
+
+		<div id='chromeExtenSideMenu'> Dit is een leuk verhaal.</div>
+
+
+	</body>
+</html>

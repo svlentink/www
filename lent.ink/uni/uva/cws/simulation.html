@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="author" content="svlentink"/>
+		
+		<title>Newton Method</title>
+		
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			function dfx(x,y){
+				//(3x^2 - 3y^2 -2x + 1)
+				var xOut = 3*x*x - 3*y*y - 2*x + 1;
+				//(6xy - 2y)
+				var yOut = 6*x*y - 2*y;
+				return [xOut,yOut];
+			}
+			function dfy(x,y){
+				//(-6xy + 2y)
+				var xOut = -6*x*y + 2*y;
+				//(3x^2 - 3y^2 - 2x + 1)
+				var yOut = 3*x*x - 3*y*y - 2*x + 1;
+				return [xOut,yOut];
+			}
+			function f(x,y){
+				//(x^3-3xy^2-x^2+y^2+x-1, 3x^2y-y^3-2xy+y)
+				var xOut = x*x*x - 3*x*y*y - x*x + y*y + x -1;
+				var yOut = 3*x*x*y - y*y*y - 2*x*y + y;
+				
+				return [xOut,yOut];
+			}
+						
+			function render(){
+				endPoints = [];//resetting
+				var xmin = parseInt($('#xmin').val());
+				var xrng = parseInt($('#xrng').val());
+				var ymin = parseInt($('#ymin').val());
+				var yrng = parseInt($('#yrng').val());
+				var size = parseInt($('#size').val());
+				var eps = parseFloat($('#epsilon').val());
+				
+				var canvas  = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				
+				var imageData = context.createImageData(size, size);
+				
+				for(var x = 0;x < size;x++)
+					for(var y = 0; y < size;y++){
+						xVal = xmin + x*xrng/size;
+        				yVal = ymin + y*yrng/size;
+						paintPixel(getPixelColor(xVal,yVal,eps), x, y, size, imageData);
+					}
+				
+				//last two var are the offset onto the canvas
+				context.putImageData(imageData, 0, 0);
+				
+				//$('#log').append("Endpoints found: " + endPoints.toString());
+			}
+			
+			function matrixTimesVector(matIn, vec){
+				var a = matIn[0];
+				var b = matIn[1];
+				var c = matIn[2];
+				var d = matIn[3];
+				
+				var x = vec[0];
+				var y = vec[1];
+				
+				var xOut = x*a + y*b;
+				var yOut = x*c + y*d;
+				
+				return [xOut,yOut];
+			}
+			
+			function inverse2dMatrix(matIn){
+				var a = matIn[0];
+				var b = matIn[1];
+				var c = matIn[2];
+				var d = matIn[3];
+				
+				var det = a*d - c*b;
+				
+				var aOut = d / det;
+				var bOut = -1*b / det;
+				var cOut = -1*c /det;
+				var dOut = a /det;
+				
+				return [aOut, bOut, cOut, dOut];
+			}
+			
+			function getPixelColor(x, y, epsilon){
+				var lastVec = [x,y];
+				//					/	lastVec		/					B				/	
+				//(x n+1 , y n+1 ) = (x n , y n ) − [Df(x n , y n )]^−1  *  f(x n , y n ).
+				for(var i = 0; i < 100; i++){
+					var xNew = lastVec[0];
+					var yNew = lastVec[1];
+					var dfX = dfx(xNew,yNew);
+					var dfY = dfy(xNew,yNew);
+					var Df = [dfX[0], dfY[0], dfX[1], dfY[1]];
+					var DfIn = inverse2dMatrix(Df);
+					var F = f(xNew,yNew);
+					var vecB = matrixTimesVector(DfIn, F);
+					
+					var delta = Math.sqrt(vecB[0]*vecB[0] + vecB[1]*vecB[1]);//pytagorithm
+					
+					var xOut = lastVec[0] - vecB[0];
+					var yOut = lastVec[1] - vecB[1];
+					lastVec = [xOut, yOut];
+					
+					if(i == 99)
+						$('#log').append("Unending loop found with delta "+ delta +", on pixel " + x + "/" + y + "<br/>");
+					if(delta < epsilon){
+						//var roundX = parseInt(lastVec[0]);
+						//var roundY = parseInt(lastVec[1]);
+						//if(!$.inArray([roundX,roundY], endPoints))
+						//	endPoints.push([roundX,roundY]);
+						break;
+					}
+					
+				}
+				
+				//var X = dfX[0] + dfY[0];
+				//var Y = dfX[1] + dfY[1];
+				//console.log(x + "/" + y + " = " + X + "/" + Y);
+				//console.log(determinant);
+				//if(x==y)
+				//	console.log(parseInt(x) + "/" + parseInt(y) + " = " + lastVec[0] + "/" + lastVec[1]);
+				
+				var red = 0;
+				var green = ((lastVec[0] < 0)?lastVec[0]*-1:lastVec[0]) *80 % 255;
+				var blue = ((lastVec[1] < 0)?lastVec[1]*-1:lastVec[1] + 1) *80 % 255;
+				
+				return [red, green, blue];
+			}
+			
+			
+			//Good to read: http://tutorials.jenkov.com/html5-canvas/pixels.html
+			function paintPixel(color, x, y, width, imageData){
+				var index = 4 * (x + y * width);
+				
+				var red = color[0];
+				var green = color[1];
+				var blue = color[2];
+				
+				imageData.data[index    ] = red;	// red   color
+				imageData.data[index + 1] = green;	// green color
+				imageData.data[index + 2] = blue;	// blue  color
+				imageData.data[index + 3] = 255;	// alpha
+			}
+			
+			
+			function changeUntil(){
+				document.getElementById('yuntil').innerHTML = parseInt(document.getElementById('ymin').value)
+																+ parseInt(document.getElementById('yrng').value);
+				document.getElementById('xuntil').innerHTML = parseInt(document.getElementById('xmin').value)
+																+ parseInt(document.getElementById('xrng').value);
+
+			}
+			function resize(pixels){
+				$('#canvas').attr('width', pixels).attr('height', pixels);
+			}
+		</script>
+		
+		<style>
+			canvas{
+				border:1px solid;
+				margin: 10px;
+			}
+			div{
+				float:left;
+			}
+			section{
+				border:1px solid gray;
+				border-radius: 5px;
+			}
+			button{
+				background-color:yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<section>
+				<h1>f( x, y )</h1>
+				<a href="http://www.wolframalpha.com/input/?i=x%5E3-3xy%5E2-x%5E2%2By%5E2%2Bx-1%2C+3x%5E2y-y%5E3-2xy%2By">
+					(x^3-3xy^2-x^2+y^2+x-1,&nbsp; 3x^2y-y^3-2xy+y)
+				</a>
+			</section>
+			<section>
+				<h1>dfx</h1>
+				<br/>
+				x = (3x^2 - 3y^2 -2x + 1)
+				<br/>
+				y = (6xy - 2y)
+			</section>
+			<section>
+				<h1>dfy</h1>
+				<br/>
+				x = = (-6xy + 2y)
+				<br/>
+				y = (3x^2 - 3y^2 - 2x + 1)
+			</section>
+			<section>
+				<h1>
+					Input
+				</h1>
+				Output size
+				<input type="number" min="50" max="1000" step="50" value="100" id="size" onchange="resize(this.value)">
+				epsilon
+				<input type="number" min="0.001" max="1" step="0.001" value="0.05" id="epsilon">
+				<br/>
+				xMin
+				<input type="number" min="-100" max="100" step="1" value="-10" id="xmin" onchange="changeUntil()">
+				range of x
+				<input type="number" min="5" max="200" step="1" value="20" id="xrng" onchange="changeUntil()">
+				(until <span id="xuntil">10</span>)
+				<br/>
+				yMin
+				<input type="number" min="-100" max="100" step="1" value="-10" id="ymin" onchange="changeUntil()">
+				range of y
+				<input type="number" min="5" max="200" step="1" value="20" id="yrng" onchange="changeUntil()">
+				(until <span id="yuntil">10</span>)
+				<br/>
+				<button onclick="render()"><b>render</b></button>
+			</section>
+			<section>
+				<h3>Info</h3>
+				<br/>
+				Sander Lentink &amp; Alex Ates
+				<br/>
+				st.no. 10422439 &amp; 107600628
+				<br/>
+				<br/>
+				This page is self contained.
+				<br/>
+				The js code,
+				which creates the images,
+				<br/>
+				is in the <code>HEAD</code> tag of this page.
+			</section>
+			<section>
+				<h3>C.</h3>
+				Met newton kun je lokale extremum vinden.
+				<br/>
+				Je weet nooit of je ze allemaal hebt.
+				<br/>
+				Bij ons convergeren ze wel naar de gegeven punten.
+			</section>
+		</div>
+		<div>
+			<canvas id="canvas" width="100" height="100">
+				Sorry your browser does not support canvas
+			</canvas>
+		</div>
+		<div id="log">
+			<h1>Log</h1>
+		</div>
+	</body>
+</html>
