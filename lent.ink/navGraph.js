@@ -55,7 +55,7 @@ node.append('text')
   .on('click', clickAction)
   .attr('dx', 12)
   .attr('dy', '.35em')
-  .text(function (d) { return d.childNodes[0].innerText })
+  .text(function (d) { return d.childNodes[0].textContent })
 
 force.on('tick', function () {
   link.attr('x1', function (d) { return d.source.x })
