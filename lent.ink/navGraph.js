@@ -46,9 +46,10 @@ node.append('svg:circle')
     .attr('r', circleD)
 
 var clickAction = function (d) {
+  console.log('fired a click action', d)
   var a = d.childNodes[0]
-  /* if (a.target === '_blank')*/ a.click()
-//  else // load content in the body div using xmlhttpreq.
+  if (a.target === '_blank') a.click() // here we check if the target is blank, then open it in a new window
+  else window.$('#bodyContent').load(a.target) // else, just use jquery to load the content in the div/section
 }
 
 node.append('text')
