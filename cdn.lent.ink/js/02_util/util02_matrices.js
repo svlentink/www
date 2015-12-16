@@ -81,8 +81,8 @@
       return getPosMM(m[coords.shift()], coords)
     } else return m
   }
-  SVL.set('help', 'math', 'matrices', 'getPosMM', getPosMMHelp)
-  SVL.set('math', 'matrices', 'getPosMM', getPosMM)
+  SVL.set(['help', 'math', 'matrices', 'getPosMM'], getPosMMHelp)
+  SVL.set(['math', 'matrices', 'getPosMM'], getPosMM)
 
   var setPosMMHelp = 'Set the position in a multi dimensional array'
   /**
@@ -97,8 +97,8 @@
       setPosMM(m[coords.shift()], coords, val)
     } else return false
   }
-  SVL.set('help', 'math', 'matrices', 'setPosMM', setPosMMHelp)
-  SVL.set('math', 'matrices', 'setPosMM', setPosMM)
+  SVL.set(['help', 'math', 'matrices', 'setPosMM'], setPosMMHelp)
+  SVL.set(['math', 'matrices', 'setPosMM'], setPosMM)
 
   /**
     * In an excel sheet (2d) you can have a total of the rows and of the columns,

@@ -7,6 +7,10 @@ var w = window.innerWidth * 0.95
 var h = window.innerHeight * 0.95
 var currentScale = Math.sqrt(window.innerHeight * window.innerWidth) / 150
 
+function nonLocalHref (href) {
+  return (href && href.indexOf('#') === -1)
+}
+
 var vis = d3.select('#chart')
   .append('svg:svg')
   .attr('width', w)
@@ -39,23 +43,33 @@ var node = vis.selectAll('circle.node')
   .attr('class', 'node')
   .call(force.drag)
 
-var circleD = 1 + currentScale
+var clickablenodes = vis.selectAll('g')
+  .filter(function (d, i) {
+    return nonLocalHref(d.childNodes[0].href)
+  })
+  .attr('class', 'node clickablenode')
+  .style('fill', '#00f')
+
+var circleD = 1 + (currentScale * 0.5)
 node.append('svg:circle')
     .style('fill', '#000')
     .style('stroke', '#fff')
     .attr('r', circleD)
 
 var clickAction = function (d) {
-  console.log('fired a click action', d)
   var a = d.childNodes[0]
   if (a.target === '_blank') a.click() // here we check if the target is blank, then open it in a new window
-  else window.$('#bodyContent').load(a.href, function () {
-    window.scrollBy(0, 200) // scroll to it
-  }) // else, just use jquery to load the content in the div/section
+  else { // else, just use jquery to load the content in the div/section
+    console.log(a.href)
+    window.$('#bodyContent').load(a.href, function () {
+      window.scrollBy(0, 200) // scroll to it
+    })
+  }
 }
 
+clickablenodes.on('click', clickAction)
+
 node.append('text')
-  .on('click', clickAction)
   .attr('dx', 12)
   .attr('dy', '.35em')
   .text(function (d) { return d.childNodes[0].textContent })

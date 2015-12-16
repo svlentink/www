@@ -21,7 +21,8 @@
     <!-- styling for the graph -->
     <style>
       .link { stroke: #ccc; }
-      .node text { font: 10px sans-serif; text-decoration: underline;}
+      .node text { font: 10px sans-serif;}
+      .clickablenode text {text-decoration: underline;}
     </style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,15 +45,8 @@
     </section>
     <section>
       <ul id="list">
-        <li><a href="#">My life as</a>
+        <li><a href="about">My life as</a>
           <ul>
-            <li><a href="#">Student</a>
-              <ul>
-                <li><a href="uni/win">Windesheim</a></li>
-                <li><a href="uni/uu">UU</a></li>
-                <li><a href="uni/uva">UvA</a></li>
-              </ul>
-            </li>
             <li><a href="#">Developer</a>
               <ul>
                 <li><a href="http://github.com/svlentink" target="_blank">Github</a></li>
@@ -61,12 +55,20 @@
                 <li><a href="projects">Projects</a></li>
                 <li><a href="https://github.com/svlentink/www/tree/master/blog.lent.ink" target="_blank">Blog</a></li>
                 <li><a href="http://cdn.lent.ink/pdf/cv_lentink.pdf" target="_blank">Resume</a></li>
+                <li><a href="projects/voting.htm">vote</a></li>
               </ul>
             </li>
             <li><a href="athlete">Athlete</a>
               <ul>
                 <li><a href="http://runkeeper.com/user/svlentink" target="_blank">RunKeeper</a></li>
                 <li><a href="athlete/diet.html">Diet</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Student</a>
+              <ul>
+                <li><a href="uni/win">Windesheim</a></li>
+                <li><a href="uni/uu">UU</a></li>
+                <li><a href="uni/uva">UvA</a></li>
               </ul>
             </li>
             <li><a href="http://cdn.lent.ink/img/instruments.jpg" target="_blank">Musician</a></li>
@@ -86,7 +88,7 @@
         </li>
       </ul>
     </section>
-    <section id="bodyContent" style='max-width:800px'>
+    <section id="bodyContent" style='max-width:600px;margin:auto;'>
       <!--  This is a work in prgress
             the nav graph should slide up,
             get a down arrow
