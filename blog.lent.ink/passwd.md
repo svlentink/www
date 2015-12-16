@@ -119,7 +119,9 @@ function convertWebsiteName (name) {
   return {
     letters : {
       count  : l,
-      isEven : !(l%2)
+      isEven : !(l%2),
+      first : name[0],
+      last : name[name.length-1]
     },
     vowels : {
       count  : v,
@@ -139,13 +141,26 @@ You can paste the code in the console from chrome (google it).
 
 ## Being creative
 
-We now have 3 numbers and 3 booleans,
+We now have 3 numbers, 3 booleans, a first letter and a last letter,
 and we want 2 uppercase letters, 2 normal, 3 digits and 3 special chars.
 
-Lets start with the most difficult, special chars.
+I'll skip the most difficult; special chars.
 I'm not going to tell you
 [which](http://ux.stackexchange.com/questions/72568/should-users-be-allowed-to-use-any-special-character-they-want-when-creating-a-p)
 characters you can choose from, since that is a topic I do not want to write about.
 
 
-- stopped half way writing this article -
+First start with a secret token,
+for example a passage from your favorite book; ["lorem ipsum dolor sit amet"](http://biblehub.com/john/17-3.htm).
+An now use this token to create your own magic.
+You could start counting from front, from back, using one of the three numbers,
+But at this part, I stop supplying you with suggestions,
+since people will likely copy my tips,
+which makes it less secure.
+
+
+Good luck on creating your own specific logic to calculate your passwords.
+The will be more safe, and you will stop forgetting them!
+And if you need to change a password, because it has been leaked,
+you could just keep the logic the same, but have a second or a third secret sentence,
+which you use for a second or third password on that same site/platform.
