@@ -6,20 +6,20 @@
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
+
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		<meta name="description" content="Simulation about running in pairs"/>
 		<meta name="keywords" content="duorun"/>
 		<meta name="author" content="svlentink"/>
-		
+
 		<title>Duorun</title>
-		
+
 		<!--[if lt IE 9]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 		<style>
 			th{
 				text-align:left;
@@ -217,7 +217,7 @@
 				</ul>
 			</p>
 		</article>
-		
+
 		<article>
 			<header>
 				<h1>
@@ -251,11 +251,11 @@
 				By doing this, the system will even out automatically.
 			</p>
 		</article>
-		
-		
+
+
 		<script>
 			var runSimApp = angular.module('runSimApp', []);
-			 
+
 			runSimApp.controller('runSimCtrl', function ($scope) {
 			  $scope.runners = [
 			    {'name': 'Michael',
@@ -273,16 +273,16 @@
 			  $scope.autoupdate = true;
 			  $scope.firstOnBike = true;
 			  //all data that is generated for the table is stored here
-			  
-			  
+
+
 			  function KMh_to_Ms(KMh){
 			  	// *1000 / (60*60)
 			  	return parseFloat(KMh)/3.6;
 			  }
-			  
+
 			  $scope.runSimulation = function(){
 			  	console.log("run simulation");
-			  	
+
 			  	$('#runner1output').empty();
 			  	$('#runner2output').empty();
 			  	$('#times').empty();
@@ -290,7 +290,7 @@
 				$scope.setHash();
 				$scope.genNewData();
 			  };
-			  
+
 			  $scope.autoUpdate = function(){
 			  	if($scope.autoupdate)
 			  		$scope.runSimulation();
@@ -312,7 +312,7 @@
 				array.bike2 = $scope.runners[1].bikeSpeed;
 				array.swtch = $scope.switchDist;
 				array.dist = $scope.distance;
-				
+
 				array2hash(array);
 			};
 
@@ -321,10 +321,10 @@
 				if((window.location.hash+"").length < 52)
 					return;
 				var array = hash2array();
-					
+
 				console.log("loading hash");
 				console.log(array);
-				
+
 				$scope.firstOnBike = (array.sb == "0")?false:true;
 				if(array.run1.length >0)
 					$scope.runners[0].runSpeed = parseFloat(array.run1);
@@ -341,7 +341,7 @@
 			};
 
 			$scope.genNewData = function() {
-				
+
 				var pers1totalTime = 0;
 				for(dist = 0, pers1biking = !$scope.firstOnBike; dist < $scope.distance*1000; pers1biking = !pers1biking){
 					//if distance to finish is shorter than the interval distance, use that one
@@ -351,22 +351,22 @@
 					// s = v.t    t = s/v
 					var time = distanceToDo/KMh_to_Ms(speed);
 					pers1totalTime += time;
-					
+
 					var output = "<div class='";
-					
+
 					if(pers1biking)
 						output += "bike";
 					else
 						output += "run";
-					
+
 					output += "' style='min-width:"+ parseInt(time) +"px;max-width:"+ parseInt(time) +"px;'>";
 					output += "| " + parseInt(dist) + "m -->";
 					output += "</div>";
-					
+
 					$('#runner1output').append(output);
 					$('#runner1output').width(pers1totalTime + 50);
 				}
-				
+
 				var pers2totalTime = 0;
 				for(dist = 0, pers2biking = $scope.firstOnBike; dist < $scope.distance*1000; pers2biking = !pers2biking){
 					//if distance to finish is shorter than the interval distance, use that one
@@ -376,27 +376,27 @@
 					// s = v.t    t = s/v
 					var time = distanceToDo/KMh_to_Ms(speed);
 					pers2totalTime += time;
-					
+
 					var output = "<div class='";
-					
+
 					if(pers2biking)
 						output += "bike";
 					else
 						output += "run";
-					
+
 					output += "' style='min-width:"+ parseInt(time) +"px;max-width:"+ parseInt(time) +"px;'>";
 					output += "| " + parseInt(dist) + "m -->";
 					output += "</div>";
-					
+
 					$('#runner2output').append(output);
 					$('#runner2output').width(pers2totalTime + 50);
 				}
-				
-				
+
+
 				//generating the timeline
 				  var longestTime = (pers1totalTime > pers2totalTime)?pers1totalTime:pers2totalTime;
 				  $('#times').width(longestTime + 75);
-				  
+
 				  for(time = 0; time <= longestTime/60; time+=0.5){
 				  	var output = "<div class='time'>";
 				  	output += "|" + time;
@@ -404,30 +404,30 @@
 				  	$('#times').append(output);
 				  }
 			  };
-			  
-			  
-			  
+
+
+
 			});
-			
-			
+
+
 			$( document ).ready(function(){
 				angular.element($("#runSimCtrl")).scope().loadHash();
 				angular.element($("#runSimCtrl")).scope().$apply();
 				angular.element($("#runSimCtrl")).scope().runSimulation();
 			});
-			
-			
-			
+
+
+
 			function hash2array(){
 				var initVal = "" + window.location.hash;
 				val = "";
 				//removing hash
 				for(var i = "#".length;i < initVal.length;i++)
 					val += initVal[i];
-					
+
 				var strings = val.split('&');
 				var array = {};
-				
+
 				for(var i = 0; i < strings.length;i++){
 					var temp = strings[i];
 					var tempArr = temp.split('=');
@@ -435,7 +435,7 @@
 						array[tempArr[0]] = tempArr[1];
 					}
 				}
-				
+
 				return array;
 			}
 			function array2hash(input){
@@ -444,7 +444,7 @@
 				for(key in input)
 					if(input.hasOwnProperty(key))
 						output += '&' + key.toString() + '=' + input[key].toString();
-					
+
 				window.location.hash = '#' + output;
 			}
 		</script>

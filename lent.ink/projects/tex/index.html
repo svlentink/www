@@ -6,14 +6,14 @@
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
+
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		<meta name="author" content="svlentink"/>
-		
+
 		<title>Tex tools</title>
-		
-		
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	</head>
 
 	<body>
@@ -43,7 +43,7 @@
 			Output:
 			<textarea disabled id="out" cols="120" rows="4"></textarea>
 			<br/>
-			
+
 			<span>
 				Example;
 				<br/>
@@ -98,7 +98,7 @@ or more formally:
 almost every problem will be characterized quickly and
 the fix will be obvious to someone."</textarea>
 		</section>
-		
+
 		<script>
 			function obfuscate(){
 				console.log('will start obfuscating');
@@ -122,7 +122,7 @@ the fix will be obvious to someone."</textarea>
 			function genComments(){
 				var lines = document.getElementById('txtarea').value.split('\n');
 				document.getElementById('txtarea').value = '';
-				
+
 				for(var i = 0;i < lines.length;i++){
 				    document.getElementById('txtarea').value += '%' + lines[i] + '\n';
 				}
@@ -130,19 +130,19 @@ the fix will be obvious to someone."</textarea>
 			function convert(){
 				var input = $.trim($('#in').val());
 				console.log("input; " + input);
-				
+
 				var output = "";
-				
+
 				for(var i = 0; i < input.length;i++){
 					if(input[i] == "%")
 						output += "\\%";
 					else
 						output += input[i];
 				}
-				
+
 				if($('#href').is(':checked'))
 					output = "\\href{"+ output +"}{\nlink desc.\n}";
-				
+
 				$('#out').val(output);
 			}
 		</script>

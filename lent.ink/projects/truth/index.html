@@ -6,12 +6,12 @@
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
+
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		<meta name="author" content="svlentink"/>
-		
+
 		<title>Waarheidstabel</title>
-		
+
 		<style>
 			div{
 				border: 1px solid;
@@ -19,20 +19,20 @@
 				float:left;
 				padding: 5px;
 				margin: 5px;
-				
+
 			}
 		</style>
-		
-		
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 	</head>
 
 	<body>
 		<h1>
 			Truth table converter latex
 		</h1>
-		
+
 		<div style="display:none;">
 			fix the inputs using angular!
 			<table>
@@ -154,7 +154,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div>
 			<span>
 				&quot;Inleiding logica&quot; had een leuk opdracht in het dictaat (opgave 5.23.6),
@@ -173,20 +173,20 @@
 			<!--Trim input? (i.e. $.trim())-->
 			Double sided arrows should be writen as &quot;&lt;&nbsp;&gt;&quot;
 			<br/>
-			<textarea disabled id="out" cols="100" rows="20"></textarea>			
+			<textarea disabled id="out" cols="100" rows="20"></textarea>
 		</div>
-		
+
 		<script>
 			function convert(){
 				var input = $('#input').val();
-				
+
 				//console.log(input);
-				
+
 				if($('#trim').is(':checked'))
 					input = $.trim(input);
-				
+
 				var output = input;
-				
+
 				for(var i = 0; i < 14;i++){
 					//console.log(output);
 					var inp = $('#in0'+i).val();
@@ -195,33 +195,33 @@
 					for(var j = 0; j < 99;j++)
 						output = output.replace(inp,outp);
 				}
-				
+
 				$('#out').val(output);
 			}
 		</script>
-		
+
 		<script>
 		//code from http://mrieppel.net/prog/truthtable.html
-		
+
 // Truth Table Generator
-// 
-// This program generates a truth table given a well formed input string. The characters 
-// used in the html, text, and LaTex outputs (to represent the connectives and truth 
-// values) are set in the htmlchar(), txtchar(), and latexchar() functions immediately 
+//
+// This program generates a truth table given a well formed input string. The characters
+// used in the html, text, and LaTex outputs (to represent the connectives and truth
+// values) are set in the htmlchar(), txtchar(), and latexchar() functions immediately
 // below.
-// 
+//
 // Copyright (C) 2014  Michael Rieppel <mrieppel at gmail dot com>
-// 
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License along
 // with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -239,7 +239,7 @@ function htmlchar(c) {
 		case '|' : return '|';
 		case '#' : return '&perp;'
 		default : return c;
-	}	
+	}
 }
 
 function txtchar(c) {
@@ -263,7 +263,7 @@ function latexchar(c) {
 		case '|' : return '$|$';
 		case '#' : return '$\\perp$';
 		default : return c;
-	}	
+	}
 }
 
 /*************************************************************************************/
@@ -273,7 +273,7 @@ function construct() {
 	var time = new Date().getTime();
 	var formulas = document.getElementById('in').value.replace(/ /g,'');// remove whitespace
 
-// added -------------------------------------------------------------------------------------------------------------------------------	
+// added -------------------------------------------------------------------------------------------------------------------------------
 for(var i = 0; i < 22;i++){
 	var inp = '→';
 	var outp = '>';
@@ -320,7 +320,7 @@ for(var i = 0; i < 22;i++){
 	formulas = formulas.replace(inp,outp);
 }
 
-	
+
 	if(formulas=='') {return alert("You have to enter a formula.");};
 	var r = badchar(formulas);
 	if(r>=0) {return alert("The string you entered contains the following unrecognized symbol: "+formulas[r]);};
@@ -329,7 +329,7 @@ for(var i = 0; i < 22;i++){
 	var main = false;//document.getElementById('main').checked;
 	var text = false;//document.getElementById('text').checked;
 	var latex = true;//document.getElementById('latex').checked;
-	
+
 	formulas = formulas.split(','); // create an array of formulas
 	var trees = formulas.map(parse); // create an array of parse trees
 	for(var i=0;i<trees.length;i++) { // adds outermost parentheses if needed
@@ -341,10 +341,10 @@ for(var i = 0; i < 22;i++){
 	if(trees.filter(function(a) {return a.length==0;}).length>0) { // checks if any formulas are still malformed
 		return alert("One of the formulas you entered is not well formed");
 	}
-	
+
 	var table = mkTable(formulas,trees);
 	console.log(table);
-	
+
 	if(full || main) {
 		var htmltable = htmlTable(table,trees,main);
 		document.getElementById('tt').innerHTML = htmltable;
@@ -355,10 +355,10 @@ for(var i = 0; i < 22;i++){
 	}
 	else if(latex) {
 		var latextable = latexTable(table,trees);
-		
-		
+
+
 //latextable = latextable.replace('( & ','');
-//latextable = latextable.replace(' & )','');		
+//latextable = latextable.replace(' & )','');
 $('#input').val(latextable);
 convert();
 
@@ -374,7 +374,7 @@ convert();
 
 // (Table,[Tree],Boolean) -> String
 // Takes a table (as output by mkTable), the trees it's a table of, and a boolean and
-// returns an HTML table. If the boolean is set to true, it only prints the column 
+// returns an HTML table. If the boolean is set to true, it only prints the column
 // under the main connective.
 function htmlTable(table,trees,flag) {
 	var rownum = table[0].length;
@@ -388,7 +388,7 @@ function htmlTable(table,trees,flag) {
 		out += mkTDrow(table,i);
 	}
 	return out+'</table>'; // return the html table
-	
+
 	function mkTHrow(tbl) {
 		var rw = '<tr>';
 		for(var i=0;i<tbl.length;i++) { // i = table segment
@@ -402,7 +402,7 @@ function htmlTable(table,trees,flag) {
 		}
 		return rw+'</tr>';
 	}
-	
+
 	function mkTDrow(tbl,r) {
 		var rw = '<tr>';
 		for(var i=0;i<tbl.length;i++) { // i = table segment
@@ -435,10 +435,10 @@ function textTable(table) {
 	out += mkrow(table,0); // make top row
 	out += '\r\n'+out.replace(/./g,'-')+'\r\n'; // put a string of '-' beneath the top row
 	for(var i=1;i<table[0].length;i++) { // make remaining rows
-		out += mkrow(table,i)+'\r\n';	
+		out += mkrow(table,i)+'\r\n';
 	}
 	return out;
-	
+
 	function mkrow(tbl,r) { // makes a table row
 		var rw = '';
 		for(var i=0;i<tbl.length;i++) { // i = table segment
@@ -454,7 +454,7 @@ function textTable(table) {
 		var bc = [];
 		a.map(function(e,i) {if(e=='<>') {bc.push(i);};});
 		return bc;
-	}	
+	}
 }
 
 
@@ -473,16 +473,16 @@ function latexTable(table,trees) {
 	out += mkrow(table,0); // make top row
 	out += '\\\\\r\n\\hline \r\n'; // put a string of '-' beneath the top row
 	for(var i=1;i<table[0].length;i++) { // make remaining rows
-		out += mkrow(table,i)+'\\\\\r\n';	
+		out += mkrow(table,i)+'\\\\\r\n';
 	}
 	var begintable = '\\begin{tabular}{';
 	for(var i=0;i<colnum;i++) {
 		if(dividers.indexOf(i)>=0) {begintable += '|';}
 		begintable += ' c ';
 	}
-	
+
 	return begintable+'}\r\n'+out+'\\end{tabular}';
-	
+
 	function mkrow(tbl,r) { // makes a table row
 		dividers = [];
 		colnum = 0;
@@ -525,7 +525,7 @@ function countleaves(t) {
 }
 
 // ([String],[Tree]) -> Table
-// Takes an array of formulas and their parse trees and returns a truth table as a 
+// Takes an array of formulas and their parse trees and returns a truth table as a
 // multidimensional array.  For n formulas, the array contains n+1 elements.  The first
 // element is the lhs of the table, and the succeeding elements are the table segments
 // for each passed formula.
@@ -556,8 +556,8 @@ function mklhs(fs) {
 }
 
 // (String, Tree, LHSTable) -> TableSegment
-// Takes a tree, the formula it's a tree of, and a LHSTable, and returns a TableSegment 
-// for the formula 
+// Takes a tree, the formula it's a tree of, and a LHSTable, and returns a TableSegment
+// for the formula
 function mktseg(f,t,lhs) {
 	var tbrows=[];
 	for(var i=1;i<lhs.length;i++) {
@@ -571,7 +571,7 @@ function mktseg(f,t,lhs) {
 }
 
 // String -> [Char]
-// Takes a wff and returns an array with all the atomic sentences in the wff.  The 
+// Takes a wff and returns an array with all the atomic sentences in the wff.  The
 // array has duplicates removed and is sorted in alphabetical order.
 function getatomic(s) {
 	var out = [];
@@ -602,7 +602,7 @@ function mkAss(s,b) {
 	return a;
 }
 
-// Tree -> Array 
+// Tree -> Array
 // Takes an evaluated tree and turns it into a one dimensional array
 function flatten(t) {
 	if(t.length==5) {
@@ -615,7 +615,7 @@ function flatten(t) {
 }
 
 // (Tree,Assignment) -> Tree
-// Takes a tree and an assignment of booleans to atomic sentences and returns an 
+// Takes a tree and an assignment of booleans to atomic sentences and returns an
 // evaluated tree (i.e. with all atomic sentences and connectives replaced by booleans).
 function evlTree(t,a) {
 	if(t.length==5) {
@@ -632,7 +632,7 @@ function evlTree(t,a) {
 
 // Array -> Boolean
 // Takes an array, the first element of which is a connective, and the rest of which
-// are evaluated trees of the formulas it connects, and returns the truth value 
+// are evaluated trees of the formulas it connects, and returns the truth value
 // associated with the connective
 function gtTv(arr) {
 	switch(arr[0]) {
@@ -720,7 +720,7 @@ function isU(s) {
 // String -> [String]
 // takes a string beginning with '(' and ending with ')', and determines if there is a
 // binary connective enclosed only by the outermost parentheses.  If so, returns an array
-// with the string to the left and the string to the right of the binary connective; 
+// with the string to the left and the string to the right of the binary connective;
 // otherwise returns an array of three undefined's.
 function gSub(s) {
 	var stk = [];
@@ -732,7 +732,7 @@ function gSub(s) {
 			stk.pop();
 		} else if(stk.length==1 && (l = isB(s.substring(i)))>0) {
 			return [s.substring(1,i),s.substring(i,i+l),s.substring(i+l,s.length-1)];
-		}	
+		}
 	}
 	return [undefined,undefined,undefined];
 }
