@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <title>Cover Letter</title>
+    <style>
+      article {
+        margin:auto;
+        max-width:700px;
+      }
+      section {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+      }
+      h4 {
+        margin-bottom: 5px;
+      }
+      button {
+        font-size:150%;
+        display:block;
+      }
+      hr {
+        width: 100%;
+      }
+      .nl {
+        display:none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      function showNL(){
+        console.log('Dutch fired')
+        $(".nl").show()
+        $(".en").hide()
+      }
+      function showEN(){
+        console.log('English fired')
+        $(".en").show()
+        $(".nl").hide()
+      }
+    </script>
+  </head>
+  <body>
+    <article>
+      <button onclick='showEN()' style="float:left;">English</button>
+      <button onclick="showNL()" style='float:right;'>Nederlands</button>
+      <hr/>
+      <h1>Cover Letter</h1>
+      <hr/>
+    </article>
+    <article>
+
+      <section class="nl">
+        Geachte Heer / Mevrouw,
+      </section>
+      <section class="en">
+        Dear Ms./Mrs./Mr.,
+      </section>
+
+      <section class="nl">
+        Als student informatica aan Windesheim,
+        zoek ik een afstudeeropdracht vanaf feb 2016.
+      </section>
+      <section class="en">
+        As a student software engineering (Windesheim),
+        I am looking for a graduation assignment, starting from feb 2016.
+      </section>
+
+      <h4>Intro</h4><!-- How I met / discovered the company, and why I want to work there -->
+      <section>
+        In this section I describe how I found the company and what motivated me to contact them.
+      </section>
+
+      <h4>Software</h4>
+      <section class="nl">
+        Het up-to-date blijven met nieuwe technologien is voor mij een hobby.
+        Van het maken van
+        <a href="https://github.com/svlentink/9292/">een app</a>
+        voor mijn pebble smartwatch,
+        tot het integreren van LetsEncrypt (dec 2015 gelanceerd),
+        op mijn
+        <a href="http://lent.ink">persoonlijke website</a>,
+        tot het automatiseren van documentatie voor mijn studie dmv. LaTeX,
+        en het te wrappen in een
+        <a href="https://hub.docker.com/r/svlentink/latex/">docker</a>.
+        <br/>
+        Of om gewoon <a href="http://curly.ninja">silly</a> content/domains op het internet te zetten.
+      </section>
+      <section class="en">
+        For me, staying up-to-date with new technologies is a hobby.
+        From writing
+        <a href="https://github.com/svlentink/9292/">an app</a>
+        for my pebble smartwatch,
+        to using LetsEncrypt (launched dec 2015),
+        to secure my
+        <a href="http://lent.ink">personal website</a>,
+        to automating my documentation using LaTeX for my study,
+        and wrapping it in a
+        <a href="https://hub.docker.com/r/svlentink/latex/">docker</a>.
+        <br/>
+        Or to just put <a href="http://curly.ninja">silly</a> content/domains on the internet.
+      </section>
+      <section class="en">
+        Currently I'm an intern at imgZine,
+        integrating a XMPP server that uses websockets.
+        In the past I've worked with various web frameworks;
+        Meteor (js), Grails (Java), PHP and MVC 4.
+        <br/>
+        For me, working with modern technologies is a requirement,
+        I would choice a web-based solution over a desktop application.
+      </section>
+      <section class="nl">
+        Momenteel loop ik stage by imgZine,
+        waar ik een XMPP server integreer die gebruik maakt van websockets.
+        In het het verleden heb ik met verschillende web frameworks gewerkt;
+        Meteor (js), Grails (Java), PHP en MVC 4.
+        <br/>
+        Voor mij is het werken met moderne technologien een vereiste,
+        ik zou een web oplossing verkiezen boven een desktop applicatie.
+      </section>
+
+<!-- Way too generic, adds nothing!
+      <section>
+        <h4>Internship</h4>
+        Tijdens mijn stage wil ik mijzelf ontwikkelen en op het niveau komen om een geslaagd eindproduct te leveren.
+        Wanneer ik de keuze heb, zou ik graag documenteren in het Engels en werken volgens een Agile approach.
+      </section>
+      <section>
+        <h4>Graduation assignment</h4>
+
+      </section>
+-->
+      <h4>Expected</h4>
+      <section class="nl">
+        <ul>
+          <li>Agile development (bv. Scrum)</li>
+          <li>(Technische) documentatie in Engels</li>
+          <li>Ontwikkeling van afgebakend onderdeel (eis opleiding)</li>
+          <li>Vergoeding (heb geen stufie, wel StudentenOV)</li>
+        </ul>
+      </section>
+      <section class="en">
+        <ul>
+          <li>Agile development (e.g. Scrum)</li>
+          <li>Development of a delimited/separate part (requirement of education)</li>
+          <li>Compensation (do not have 'stufie', do got StudentenOV, i.e. free public transit)</li>
+        </ul>
+      </section>
+
+      <h4>Weaks</h4>
+      <section class="nl">
+        Grafische designs maken kost mij vaak iets meer tijd,
+        dit gaat bij mij niet vanzelf, zoals bij designers.
+        <br/>
+        Verder game ik niet, dit is een nadeel bij het maken van een spel.
+      </section>
+      <section class="en">
+        My time spent on Graphical designs is higher than average,
+        since it does not come natural to me.
+        <br/>
+        I do not game, which is a disadvantage when creating one.
+      </section>
+
+      <section>
+        Resume / CV;
+        <a href="https://cdn.lent.ink/pdf/cv_lentink.pdf">https://cdn.lent.ink/pdf/cv_lentink.pdf</a>
+      </section>
+
+      <section class='nl'>
+        Graag zou ik op korte termijn met u in contact komen om mijzelf eens voor te stellen.
+      </section>
+      <section class='en'>
+        I would love a personal interview at your earliest convenience to further discuss my credentials with you.
+      </section>
+
+      <section class="nl">
+        *Bij mij stages heb ik op mijn eigen laptop gewerkt,
+        <br/>
+        dit is uiteraard weer een optie (2 laptops; SSD, i5, 8gb RAM, Lubuntu).
+      </section>
+      <section class="en">
+        *At my last internships, I worked on my own laptop,
+        <br/>
+        this is an option (2 laptops; SSD, i5, 8gb RAM, Lubuntu).
+      </section>
+
+      <section>
+        <hr/>
+        Yours sincerely / Met vriendelijke groet,
+        <br/>
+        <br/>
+        Sander <a href='http://lent.ink'>Lent.ink</a>
+        <br/>
+        <a href='mailto:svlentink@gmail.com'>svlentink@gmail.com</a>
+        <br/>
+        <a href='tel:+31617012655'>0031617012655</a>
+      </section>
+    </article>
+  </body>
+</html>
