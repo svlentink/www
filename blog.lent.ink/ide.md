@@ -87,5 +87,6 @@ string.quoted.single.js,
 comment.line.double-slash.js,
 comment.block.js,
 comment.block.documentation.js,
-comment.line.number-sign.shell
+comment.line.number-sign.shell,
+comment.line.double-dash.lua
 ```
