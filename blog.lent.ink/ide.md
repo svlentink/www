@@ -50,6 +50,7 @@ But with the following packages:
 + language-docker
 + language-latex
 + language-lua
++ language-nginx
 + linter
 + linter-js-standard
 + red-wavy-underline
@@ -89,5 +90,6 @@ comment.block.js,
 comment.block.documentation.js,
 comment.line.number-sign.shell,
 comment.line.double-dash.lua,
-comment.block.dockerfile
+comment.block.dockerfile,
+comment.line
 ```
