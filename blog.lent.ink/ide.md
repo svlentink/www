@@ -49,6 +49,7 @@ Of course there are some things that I would like
 But with the following packages:
 + language-docker
 + language-latex
++ language-lua
 + linter
 + linter-js-standard
 + red-wavy-underline
