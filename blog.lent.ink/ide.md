@@ -49,6 +49,8 @@ Of course there are some things that I would like
 But with the following packages:
 + language-docker
 + language-latex
++ language-lua
++ language-nginx
 + linter
 + linter-js-standard
 + red-wavy-underline
@@ -86,5 +88,8 @@ string.quoted.single.js,
 comment.line.double-slash.js,
 comment.block.js,
 comment.block.documentation.js,
-comment.line.number-sign.shell
+comment.line.number-sign.shell,
+comment.line.double-dash.lua,
+comment.block.dockerfile,
+comment.line
 ```
