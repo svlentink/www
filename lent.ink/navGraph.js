@@ -62,7 +62,7 @@ var clickAction = function (d) {
   else { // else, just use jquery to load the content in the div/section
     console.log(a.href)
     window.$('#bodyContent').load(a.href, function () {
-      window.scrollBy(0, window.innerHeight * 0.8) // scroll to it
+      window.scrollBy(0, window.innerHeight * 0.9) // scroll to it
     })
   }
 }
