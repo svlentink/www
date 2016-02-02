@@ -92,7 +92,7 @@ facebook : {
 }
 ```
 
-The syntax above you should understand, the following you should not.
+The syntax above; you should understand, the following; you should not.
 It is the code that can do it for you.
 
 ```javascript
