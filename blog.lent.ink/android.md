@@ -16,7 +16,7 @@ or just get an iPhone.
 ## Personal experience
 
 In the past I had a Nokia (3310)..
-No I'll stop here, that's way to far back.
+No I'll stop here, that's way too far back.
 
 
 We start with my first android phone.
