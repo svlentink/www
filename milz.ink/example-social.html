@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+      var data = {
+        name : {
+          'first' : 'John',
+          'surname': 'Smith'
+        },
+        uname : { // user names of various social media
+          youtube : 'RayWilliamJohnson',
+          instagram : 'danbilzerian',
+          pinterest: 'jessicamalba',
+          linkedin: 'svlentink',
+          soundcloud: 'official-jason-upton',
+          twitter: 'Snowden',
+          github: 'geohot',
+          runkeeper: 'svlentink',
+          couchsurfing: 'svlentink',
+          angellist: 'svlentink',
+          tumblr: 'svlentink'
+        },
+        uid : { // user id's of various social media
+          facebook : '100005257625275', // not every user has a username
+          googleplus: '109813896768294978296',
+          modelmayhem: '3848411',
+          upwork: '_~123'
+        },
+        contact : {
+          email : 'johnsmith@gmail.com',
+          phone: '+31612345678'
+        }
+      }
+    </script>
+
+
+<!--
+             _                  _ _ _     _   _
+  ___  _ __ | |_   _    ___  __| (_) |_  | |_| |__   ___
+ / _ \| '_ \| | | | |  / _ \/ _` | | __| | __| '_ \ / _ \
+| (_) | | | | | |_| | |  __/ (_| | | |_  | |_| | | |  __/
+ \___/|_| |_|_|\__, |  \___|\__,_|_|\__|  \__|_| |_|\___|
+               |___/
+     _          __  __         _
+ ___| |_ _   _ / _|/ _|   __ _| |__   _____   _____
+/ __| __| | | | |_| |_   / _` | '_ \ / _ \ \ / / _ \
+\__ \ |_| |_| |  _|  _| | (_| | |_) | (_) \ V /  __/
+|___/\__|\__,_|_| |_|    \__,_|_.__/ \___/ \_/ \___|
+
+-->
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    <style media="screen">
+      body {
+        max-width: 700px;
+        margin:auto;
+      }
+      section {
+        width: 100%
+      }
+      hr {
+        width: 100%;
+        color:gray;
+      }
+      footer {
+        bottom: 0;
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <section id='name-header'>
+      <header>
+        <h1 id='name-title'>You have JavaScript disabled!</h1>
+        <script type="text/javascript">
+          var name = data.name.first + ' ' + data.name.surname
+          window.document.title = name
+          document.querySelector('#name-title').innerText = name
+        </script>
+      </header>
+    </section>
+
+
+    <section id='yt-preview'>
+      <style media="screen">
+        #yt-iframe {
+          margin:auto;
+          width:600px;
+          display:block;
+        }
+      </style>
+      <!-- http://www.janes.co.za/embed-latest-video-from-channel/ -->
+      <iframe id='yt-iframe' width="600" height="400" src="" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+      <hr/>
+      <script type="text/javascript">
+        if (data.uname.youtube)
+          document.querySelector('#yt-iframe').src =
+            'http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list='
+            + data.uname.youtube
+        else
+          document.querySelector('#yt-preview').style.display = 'none'
+      </script>
+    </section>
+
+
+
+    <section id='links'>
+
+      <article id="links-container"></article>
+      <style media="screen">
+        .icon-link {
+          width:30px;
+          height:30px;
+          margin:25px;
+          border-radius:5px;
+        }
+        #links-container {
+          max-width:500px;
+          margin:auto;
+          display:block;
+        }
+        #links {
+          width: 100%;
+        }
+      </style>
+
+      <script type="text/javascript">
+        var icons = {
+          facebook : {
+            url : 'https://www.facebook.com/profile.php?id=',
+            icon: 'https://facebook.com/favicon.ico'
+          },
+          instagram : {
+            url : 'http://instagr.am/',
+            icon: 'https://instagram.com/favicon.ico'
+          },
+          upwork : {
+            url : 'https://www.upwork.com/o/profiles/users/',
+            icon: 'https://www.upwork.com/favicon.ico'
+          },
+          runkeeper : {
+            url : 'https://runkeeper.com/user/',
+            icon: 'https://runkeeper.com/favicon.ico'
+          },
+          youtube : {
+            url : 'https://www.youtube.com/user/',
+            icon: 'https://youtube.com/favicon.ico'
+          },
+          linkedin : {
+            url : 'http://linkedin.com/in/',
+            icon: 'https://www.linkedin.com/favicon.ico'
+          },
+          pinterest : {
+            url : 'https://pinterest.com/',
+            icon: 'https://www.pinterest.com/favicon.ico'
+          },
+          github : {
+            url : 'https://github.com/',
+            icon: 'https://github.com/favicon.ico'
+          },
+          angellist : {
+            url : 'https://angel.co/',
+            icon: 'https://angel.co/images/icons/iOS/Icon.png'
+          },
+          modelmayhem : {
+            url : 'http://www.modelmayhem.com/',
+            icon: 'http://www.modelmayhem.com/favicon.ico'
+          },
+          couchsurfing : {
+            url : 'https://www.couchsurfing.com/people/',
+            icon: 'https://assets.couchsurfing.com/assets/favicon-21a1f40d2bdc739d3084c9594f9d91df.ico'
+          },
+          tumblr : {
+            url : 'https://www.tumblr.com/blog/',
+            icon: 'https://www.tumblr.com/favicon.ico'
+          },
+          googleplus : {
+            url : 'https://plus.google.com/',
+            icon: 'https://plus.google.com/favicon.ico'
+          },
+          twitter : {
+            url : 'http://twitter.com/',
+            icon: 'https://twitter.com/favicon.ico'
+          },
+          soundcloud : {
+            url : 'https://soundcloud.com/',
+            icon: 'https://soundcloud.com/favicon.ico'
+          },
+          email : {
+            url : 'mailto:',
+            icon: 'https://mail.google.com/favicon.ico'
+          },
+          phone : {
+            url : 'tel:',
+            icon: 'https://www.whatsapp.com/favicon.ico'
+          }
+        }
+
+        function getLinkString (url, ico) {
+          return '<a href="' + url + '"><img class="icon-link" src="' + ico + '"/></a>'
+        }
+        function insertIcon (key, val) {
+          console.log('entering inserIcon with ' + key + ', ' + val)
+          if (!icons[key]) return console.log('error, key not found in icons')
+          if (!val) return console.log('no value')
+          totalicons += getLinkString(icons[key].url + val, icons[key].icon)
+        }
+
+        var totalicons = ''
+        for (var k in data.uname){
+          if (data.uname.hasOwnProperty(k)) {
+               insertIcon(k, data.uname[k])
+          }
+        }
+        for (var k in data.uid){
+          if (data.uid.hasOwnProperty(k)) {
+               insertIcon(k, data.uid[k])
+          }
+        }
+        for (var k in data.contact){
+          if (data.contact.hasOwnProperty(k)) {
+               insertIcon(k, data.contact[k])
+          }
+        }
+
+        document.querySelector('#links-container').innerHTML = totalicons;
+      </script>
+    </section>
+
+    <footer>
+      Made with L&hearts;ve in <a href='http://milz.ink'>Amsterdam</a>
+    </footer>
+
+  </body>
+</html>
