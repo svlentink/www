@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="description" content="Descriptive words" />
     <script type="text/javascript">
       var data = {
         name : {
           'first' : 'John',
           'surname': 'Smith'
         },
+        description : 'Hello my name is John, I am an example.',
         uname : { // user names of various social media
           youtube : 'RayWilliamJohnson',
           instagram : 'danbilzerian',
@@ -30,7 +32,13 @@
         contact : {
           email : 'johnsmith@gmail.com',
           phone: '+31612345678'
-        }
+        },
+        tags : [
+          'actor',
+          'star',
+          'tag01',
+          'tag02'
+        ]
       }
     </script>
 
@@ -73,12 +81,20 @@
     <section id='name-header'>
       <header>
         <h1 id='name-title'>You have JavaScript disabled!</h1>
-        <script type="text/javascript">
-          var name = data.name.first + ' ' + data.name.surname
-          window.document.title = name
-          document.querySelector('#name-title').innerText = name
-        </script>
+        <article id='description'>No description was found.</article>
       </header>
+      <script type="text/javascript">
+        var name = data.name.first + ' ' + data.name.surname
+        window.document.title = name
+        document.querySelector('#name-title').innerText = name
+        document.querySelector('#description').innerText = data.description
+      </script>
+      <style media="screen">
+        #description {
+          font-style: italic;
+        }
+      </style>
+      <hr/>
     </section>
 
 
@@ -96,7 +112,7 @@
       <script type="text/javascript">
         if (data.uname.youtube)
           document.querySelector('#yt-iframe').src =
-            'http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list='
+            'https://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list='
             + data.uname.youtube
         else
           document.querySelector('#yt-preview').style.display = 'none'
@@ -226,6 +242,24 @@
 
         document.querySelector('#links-container').innerHTML = totalicons;
       </script>
+      <hr/>
+    </section>
+
+    <section id='tags-section'>
+      Tags:
+      <span id='tags'></span>
+      <script type="text/javascript">
+        document.querySelector('#tags').innerText = data.tags.toString()
+      </script>
+      <style media="screen">
+        #tags-section {
+          display:block;
+          margin:auto;
+          color:gray;
+          text-align:center;
+        }
+      </style>
+      <hr/>
     </section>
 
     <footer>
