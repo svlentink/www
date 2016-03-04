@@ -49,4 +49,28 @@
     execBash(bashCMD, callback)
   }
   SVL.set(['hack', 'cURL'], cURL)
+  
+  /**
+  * Look through an object and find a word
+  * This can be useful in browser for debugging or hacking
+  * e.g. search for 'ads', to locate adversitement and block it with js
+  * @param {string} str Search term (case insensitive)
+  * @param {int} maxDepth
+  * @param {object} obj (optional) default = window
+  */
+  var treeSearcher = function (str, maxDepth, obj) {
+    if (!obj && window) obj = window // when non is given
+    else if (typeof obj !== 'object' && typeof obj !== 'function') return // can we search it?
+    if (!(typeof str === 'string' && str.length)) return // valid identifier
+    if (!maxDepth) return // stop at zero
+    var currPath = arguments[3] || '' // fourth argument is used for recursive looping
+  
+    for (var key in obj) {
+      if (key.toLowerCase().indexOf(str.toLowerCase()) !== -1) {
+        console.log('Found: ' + currPath + key + ' (not going deaper in this path)')
+      } else treeSearcher(obj[key], str, maxDepth - 1, key + '.')
+    }
+  }
+  SVL.set(['hack', 'treeSearcher'], treeSearcher)
+  
 }(typeof window !== 'undefined' ? window : global))
