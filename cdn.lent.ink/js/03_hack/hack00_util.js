@@ -66,9 +66,10 @@
     var currPath = arguments[3] || '' // fourth argument is used for recursive looping
   
     for (var key in obj) {
+      if(!obj.hasOwnProperty(key)) { console.log(currPath + '.' + key + ' is not own prop'); break}
       if (key.toLowerCase().indexOf(str.toLowerCase()) !== -1) {
-        console.log('Found: ' + currPath + key + ' (not going deaper in this path)')
-      } else treeSearcher(obj[key], str, maxDepth - 1, key + '.')
+        log.debug('Found: ' + currPath + '.' + key + ' (not going deeper in this path)', obj[key])
+      } else treeSearcher(str, maxDepth - 1, obj[key], currPath + '.' + key)
     }
   }
   SVL.set(['hack', 'treeSearcher'], treeSearcher)
