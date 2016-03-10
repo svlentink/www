@@ -24,6 +24,7 @@ function getCerts {
     openssl dhparam -out $dhparamLoc 2048
   fi
   echo now please look in $certLoc/
+  echo After changing your certs, you need to reload nginx
 }
 
 getCerts $@
