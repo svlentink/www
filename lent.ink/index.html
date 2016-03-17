@@ -106,5 +106,10 @@
     </section>
     <script src="d3.v3.min.js" charset="utf-8"></script>
     <script src='navGraph.js'></script>
+    <script> // Load about when loading page
+     window.$('#bodyContent').load('about', function () {
+      window.scrollBy(0, window.innerHeight * 0.9) // scroll to it
+     })
+    </script>
   </body>
 </html>
