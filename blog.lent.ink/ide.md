@@ -58,6 +58,15 @@ But with the following packages:
 + tabs-to-spaces
 it is an amazing IDE.
 
+I also disabled some default packages;
++ welcome
++ whitespace (only important in this list)
++ language-csharp
++ language-perl
++ language-clojure
++ language-ruby-on-rails
+
+
 
 If you want spell-check to work, you need to do some modifications.
 See the type of block/scope you want to be checked,

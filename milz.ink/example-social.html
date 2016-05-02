@@ -21,7 +21,10 @@
           runkeeper: 'svlentink',
           couchsurfing: 'svlentink',
           angellist: 'svlentink',
-          tumblr: 'svlentink'
+          tumblr: 'svlentink',
+          snapchat: 'snapchatteam',
+          tinder: 'random',
+          dockerhub: 'debian'
         },
         uid : { // user id's of various social media
           facebook : '100005257625275', // not every user has a username
@@ -87,7 +90,7 @@
         var name = data.name.first + ' ' + data.name.surname
         window.document.title = name
         document.querySelector('#name-title').innerText = name
-        document.querySelector('#description').innerText = data.description
+        document.querySelector('#description').innerHTML = data.description
       </script>
       <style media="screen">
         #description {
@@ -175,6 +178,10 @@
             url : 'https://github.com/',
             icon: 'https://github.com/favicon.ico'
           },
+          dockerhub : {
+            url : 'https://hub.docker.com/r/',
+            icon: 'http://hub.docker.com/favicon.ico'
+          },
           angellist : {
             url : 'https://angel.co/',
             icon: 'https://angel.co/images/icons/iOS/Icon.png'
@@ -210,6 +217,14 @@
           phone : {
             url : 'tel:',
             icon: 'https://www.whatsapp.com/favicon.ico'
+          },
+          snapchat : {
+            url : 'http://snapchat.com/add/',
+            icon: 'https://www.snapchat.com/static/assets/icon_100.png'
+          },
+          tinder : {
+            url : 'http://tinder.com/@',
+            icon: 'https://www.gotinder.com/favicon.ico'
           }
         }
 
@@ -263,7 +278,7 @@
     </section>
 
     <footer>
-      Made with L&hearts;ve in <a href='http://milz.ink'>Amsterdam</a>
+      Made with L&hearts;ve in <a href='http://lent.ink'>Amsterdam</a>
     </footer>
 
   </body>
