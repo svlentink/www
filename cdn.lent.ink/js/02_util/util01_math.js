@@ -11,6 +11,23 @@
   SVL.set(['math', 'gcd'], gcd)
   SVL.set(['help', 'math', 'gcd'], gcdHelp)
 
+  var meanHelp = 'Arithmetic mean from array or comma seperated string'
+  var arithmeticMean = function (inp) {
+    var arr
+    if (typeof inp === 'string') arr = inp.split(',')
+    else {
+      if (typeof inp === 'object') arr = inp
+      else throw new TypeError('Expected comma seperated string or object')
+    }
+
+    var total = 0
+    for (var i = 0; i < arr.length; i++) total += parseFloat(arr[i])
+
+    return total / arr.length
+  }
+  SVL.set(['math', 'mean'], arithmeticMean)
+  SVL.set(['help', 'math', 'mean'], meanHelp)
+
   var baseHelp = 'Convert array of numbers to a base system,' +
     'examples are binary, decimal, hexadecimal. ' +
     'Array of numbers, cannot contain a number, greater then the base.'
