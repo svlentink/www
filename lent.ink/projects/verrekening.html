@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Verrekening</title>
+    <style media="screen">
+      section{
+        max-width:800px;
+        min-width:450px;
+        border-bottom: 1px solid gray;
+      }
+      td {
+        padding-right:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>Finale verrekening formule</h1>
+      Dit is een logaritmische functie, die convergeert naar het gewenste percentage.
+    </section>
+    <section>
+      <h3>Formula</h3>
+      <a href="https://www.wolframalpha.com/input/?i=log_(65)(65%2B1)+*+50">log_(vht)(ht+1)*p</a>
+      <br/><br/>
+      <script type="text/javascript" src="//latex.codecogs.com/latexit.js"></script>
+<div lang="latex">
+$$\log_{vht}(ht+1) \cdot p$$
+</div>
+    </section>
+    <section>
+      <h3>Example</h3>
+      <table>
+        <tr>
+          <td>
+            lvm
+          </td>
+          <td>
+            <input type="range" name="lvm" id="lvm" min="60" max="120" value='79' onchange="calc()">
+          </td>
+          <td>
+            <span id="lvmVal"></span>
+          </td>
+          <td>
+            levensverwachting man
+          </td>
+        </tr>
+        <tr>
+          <td>
+            lvv
+          </td>
+          <td>
+            <input type="range" name="lvv" id="lvv" min="60" max="120" value='83' onchange="calc()">
+          </td>
+          <td>
+            <span id="lvvVal"></span>
+          </td>
+          <td>
+            levensverwachting vrouw
+          </td>
+        </tr>
+        <tr>
+          <td>
+            lm
+          </td>
+          <td>
+            <input type="range" name="lm" id="lm" min="18" max="100" value='25' onchange="calc()">
+          </td>
+          <td>
+            <span id="lmVal"></span>
+          </td>
+          <td>
+            leeftijd intrede huwelijk man
+          </td>
+        </tr>
+        <tr>
+          <td>
+            lv
+          </td>
+          <td>
+            <input type="range" name="lv" id="lv" min="17" max="100" value='22' onchange="calc()">
+          </td>
+          <td>
+            <span id="lvVal"></span>
+          </td>
+          <td>
+            leeftijd intrede huwelijk vrouw
+          </td>
+        </tr>
+        <tr>
+          <td>
+            vht
+          </td>
+          <td>
+            (lvm-lm + lvv-lv)/2
+          </td>
+          <td>
+            <span id="vhtVal"></span>
+          </td>
+          <td>
+            verwacht huwelijks termijn
+          </td>
+        </tr>
+        <tr>
+          <td>
+            p
+          </td>
+          <td>
+            <input type="range" name="p" id="p" min="0" max="50" value='50' onchange="calc()">
+          </td>
+          <td>
+            <span id="pVal"></span>
+          </td>
+          <td>
+            convergentie percentage, e.g. 50/50
+          </td>
+        </tr>
+      </table>
+      <input type="button" name="name" value="Calculate" onchange="calc()"> <br/>
+      
+      In het veld hieronder ziet u hoe de percentages zijn na het aantal jaren; <br/>
+      <textarea name="name" rows="20" cols="20" disabled id="output"></textarea>
+      
+      <script type="text/javascript">
+        function getBaseLog(x, y) { // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log
+          return Math.log(y) / Math.log(x);
+        }
+        function getPercentage(ht, vht, p){
+          var per = parseInt(getBaseLog(vht, ht+1) * p)
+          return ''+per+'/'+(100-per)
+        }
+        function calc(){
+          var lvm = parseInt(document.querySelector('#lvm').value)
+          var lvv = parseInt(document.querySelector('#lvv').value)
+          var lm = parseInt(document.querySelector('#lm').value)
+          var lv = parseInt(document.querySelector('#lv').value)
+          var p = parseInt(document.querySelector('#p').value)
+          document.querySelector('#lvmVal').innerText = lvm
+          document.querySelector('#lvvVal').innerText = lvv
+          document.querySelector('#lmVal').innerText = lm
+          document.querySelector('#lvVal').innerText = lv
+          document.querySelector('#pVal').innerText = p
+          var vht = (lvm-lm + lvv-lv)*0.5
+          document.querySelector('#vhtVal').innerText = vht
+          
+          var str = ''
+          for (var i = 2; i < vht; i+=2)
+            str += 'ht='
+                      + i
+                      + ': '
+                      + getPercentage(i,vht,p)
+                      + '     \n'
+          document.querySelector('#output').innerText = str
+        }
+        calc()
+      </script>
+    </section>
+    <section>
+      <h3>Variables</h3>
+      Variable lvm; levensverwachting mannen in Nederland,
+      afgerond naar meest nabije integer,
+      te verkrijgen uit statistieken
+      (bv. gegevens
+      <a href="http://www.nationaalkompas.nl/gezondheid-en-ziekte/sterfte-levensverwachting-en-daly-s/levensverwachting/wat-is-in-nederland-de-levensverwachting/">Rijksinstituut voor Volksgezondheid en Milieu</a>),
+      tenzij er aantoonbaar bewijs geleverd kan worden voor een andere verwachting (bv. recent levensverlengend wetenschappelijk onderzoek),
+      op moment van beeindiging huwelijks overeenkomst.
+      <br/>
+      Variable lvv; levensverwachting vrouwen ...
+      <br/>
+      Variable lm, leeftijd man in jaren bij intrede huwelijk.
+      <br/>
+      Variable lv, leeftijd vrouw in jaren bij intrede huwelijk.
+      <br/>
+      Variable vht, verwachte huwelijks termijn in jaren;
+      (lvm-lm + lvv-lv)/2
+      <br/>
+      Variable ht, huwelijks termijn in jaren, afgerond op integer.
+      <br/>
+      Variable p, percentage voor verrekening.
+      Default is 50 (50/50), koude uitsluitig is 0 (0/100).
+    </section>
+    <section>
+      <h3>Motivation variables</h3>
+      Levensverwachting dient niet vooraf vastgesteld te worden
+      omdat wetenschappelijk onderzoek deze sterk kan beinvloeden (e.g. magic pill).
+    </section>
+    <section>
+      <h3>Motivation</h3>
+      De motivatie hiervoor is, deste ouder je wordt, deste minder je in staat bent om te werken,
+      maar ook deste minder geld je verwacht nog nodig te hebben de komende jaren (dus je kunt meer delen),
+      immers, het einde is in zicht.
+      <br/>
+      Daarnaast kan het optioneel afgetopt worden op het gekozen percentage,
+      wanneer de ene partner significant ouder is.
+      <br/><br/>
+      De vht variable zou eigenlijk anders berekend moeten worden,
+      meer kijkend naar de oudste persoon, samen met de levensverwachting.
+      Maar de huidige aanpak is simpeler.
+    </section>
+  </body>
+</html>
