@@ -47,6 +47,7 @@ Currently I use Atom, which I really love!
 Of course there are some things that I would like
 [to see updated](https://github.com/atom/atom/issues/9411).
 But with the following packages:
++ markdown-preview-plus
 + language-docker
 + language-latex
 + language-lua
