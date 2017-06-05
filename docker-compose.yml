@@ -4,9 +4,9 @@ services:
     image: nginx:alpine # svlentink/naxsi
     volumes:
       - $PWD:/var/www:ro # static content being serverd
-      - $PWD/nginx.conf:/etc/nginx/conf.d/default.conf:ro # nginx config
-      - /etc/letsencrypt:/etc/letsencrypt # content
-      - /tmp/.well-known:/tmp/.well-known # hub.docker.com/r/svlentink/letsencrypt
+      - $PWD/nginx:/etc/nginx/sites-enabled:ro # nginx config
+      - /etc/letsencrypt:/etc/letsencrypt:ro # content
+      - /tmp/.well-known:/tmp/.well-known:ro # hub.docker.com/r/svlentink/letsencrypt
     ports:
       - "80:80"
       - "443:443"
