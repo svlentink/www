@@ -1,0 +1,12 @@
+version: '3'
+services:
+  cdn:
+    image: nginx:alpine # svlentink/naxsi
+    volumes:
+      - $PWD:/var/www:ro # static content being serverd
+      - $PWD/nginx.conf:/etc/nginx/conf.d/default.conf:ro # nginx config
+      - /etc/letsencrypt:/etc/letsencrypt # content
+      #- .well-known
+    ports:
+      - "80:80"
+      - "443:443"
