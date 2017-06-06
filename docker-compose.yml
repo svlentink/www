@@ -1,10 +1,10 @@
-version: '3'
+version: '2'
 services:
   cdn:
     image: nginx:alpine # svlentink/naxsi
     volumes:
       - $PWD:/var/www:ro # static content being serverd
-      - $PWD/nginx:/etc/nginx/sites-enabled:ro # nginx config
+      - $PWD/nginx:/etc/nginx/conf.d:ro # nginx config
       - /etc/letsencrypt:/etc/letsencrypt:ro # content
       - /tmp/.well-known:/tmp/.well-known:ro # hub.docker.com/r/svlentink/letsencrypt
     ports:
