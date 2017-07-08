@@ -28,6 +28,12 @@
           dockerhub: '',
           untappd: 'jerryklein95'
         },
+        ytvideoids: [
+          "WXQPop9EG7g",
+          "0WhkF6Vbs3Y",
+          "p6k51go79fY",
+          "JHXfnJWoqB4"
+        ],
         uid : { // user id's of various social media
           facebook : 'JerryKleinMedia', // not every user has a username
           googleplus: '',
@@ -120,7 +126,30 @@
       </script>
     </section>
 
-
+    <section id='yt-list'>
+      <style media="screen">
+        .ytlistitem {
+          margin: 13px;
+        }
+      </style>
+      <hr/>
+      <script type="text/javascript">
+        function createYtVid(id) {
+          var url = 'https://www.youtube.com/embed/' + id
+          var elem = document.createElement("iframe")
+          elem.setAttribute('width','320px')
+          elem.setAttribute('allowfullscreen','true')
+          elem.setAttribute('src',url)
+          elem.setAttribute('class','ytlistitem')
+          document.querySelector('#yt-list').appendChild(elem)
+        }
+        if (data.ytvideoids && data.ytvideoids.length)
+          for (vidid in data.ytvideoids)
+            createYtVid(data.ytvideoids[vidid])
+        else
+          document.querySelector('#yt-list').style.display = 'none'
+      </script>
+    </section>
 
     <section id='links'>
 
