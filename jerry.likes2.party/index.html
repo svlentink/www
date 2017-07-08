@@ -10,6 +10,7 @@
           'surname': 'Media'
         },
         description : 'Uw verhaal, vakkundig in beeld.',
+        imageurl : 'https://i1.sndcdn.com/avatars-000188183698-2v3xfb-t500x500.jpg',
         uname : { // user names of various social media
           youtube : 'RayWilliamJohnson',
           instagram : '',
@@ -259,6 +260,25 @@
         document.querySelector('#links-container').innerHTML = totalicons;
       </script>
       <hr/>
+    </section>
+
+    <section id='picture-frame'>
+      <style media="screen">
+        #picture-frame img {
+          margin:auto;
+          width:600px;
+          display:block;
+        }
+      </style>
+      <!-- http://www.janes.co.za/embed-latest-video-from-channel/ -->
+      <img id='image-holder' width="600" src="" />
+      <hr/>
+      <script type="text/javascript">
+        if (data.imageurl)
+          document.querySelector('#image-holder').src = data.imageurl
+        else
+          document.querySelector('#picture-frame').style.display = 'none'
+      </script>
     </section>
 
     <section id='tags-section'>

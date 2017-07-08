@@ -284,7 +284,6 @@
       <hr/>
     </section>
     
-    
     <section id='picture-frame'>
       <style media="screen">
         #picture-frame img {
@@ -304,13 +303,12 @@
       </script>
     </section>
     
-    
-
     <section id='tags-section'>
       Tags:
       <span id='tags'></span>
       <script type="text/javascript">
-        document.querySelector('#tags').innerText = data.tags.toString()
+        if (data.tags.length) document.querySelector('#tags').innerText = data.tags.toString()
+        else document.querySelector('#tags-section').style.display = 'none'
       </script>
       <style media="screen">
         #tags-section {
@@ -321,7 +319,7 @@
         }
       </style>
       <hr/>
-    </section>
+    </section>    
 
     <footer>
       Made with L&hearts;ve in <a href='http://lent.ink'>Amsterdam</a>
