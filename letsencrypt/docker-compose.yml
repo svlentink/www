@@ -6,5 +6,7 @@ services:
       - /tmp:/tmp/challenge
       - /etc/letsencrypt:/etc/letsencrypt
     environment:
-      - EMAIL=svlentink@gmail.com
-    command: lent.ink cdn.lent.ink dev.lent.ink 
+      EMAIL: ssl@lent.ink
+      COMMONNAME: h4x0r
+    command: curly.ninja zing.vecht.huil.bid
+
