@@ -1,0 +1,5 @@
+ssl_certificate         /etc/letsencrypt/live/lent.ink/cert.pem;
+ssl_certificate_key     /etc/letsencrypt/live/lent.ink/privkey.pem;
+ssl_trusted_certificate /etc/letsencrypt/live/lent.ink/chain.pem;
+include /var/www/nginx/shared/ssl.conf;
+
