@@ -7,6 +7,6 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
     environment:
       EMAIL: ssl@lent.ink
-      COMMONNAME: h4x0r
-    command: curly.ninja zing.vecht.huil.bid
+#      OUTPUTDIRNAME: mysslcert
+    command: lent.ink dev.lent.ink cdn.lent.ink
 

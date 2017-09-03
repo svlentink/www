@@ -1,7 +1,7 @@
 version: '2'
 services:
   cdn:
-    image: nginx:alpine # svlentink/naxsi
+    image: nginx:alpine
     volumes:
       - $PWD:/var/www:ro # static content being serverd
       - $PWD/nginx:/etc/nginx/conf.d:ro # nginx config
