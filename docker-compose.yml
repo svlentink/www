@@ -5,8 +5,18 @@ services:
     volumes:
       - $PWD:/var/www:ro # static content being serverd
       - $PWD/nginx:/etc/nginx/conf.d:ro # nginx config
-      - /etc/letsencrypt:/etc/letsencrypt:ro # content
+      - /etc/letsencrypt:/etc/letsencrypt:ro # content certificates
       - /tmp/.well-known:/tmp/.well-known:ro # hub.docker.com/r/svlentink/letsencrypt
+      - $PWD/passwd:/passwd:ro # Login for dev.lent.ink/homework
     ports:
       - "80:80"
       - "443:443"
+    links:
+      - ide
+      - ide:ide
+  ide:
+    image: sapk/cloud9
+    volumes:
+      - ~/cloud9:/workspace
+    command: ["-a", "$MYUSER:$PASSWD"] # .env should contain these variables
+
