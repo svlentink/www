@@ -39,11 +39,9 @@ We have proposed a system for electronic transactions without relying on trust.
 
 + a. "If two nodes broadcast different versions of the next block simultaneously, some
 nodes may receive one or the other first."
-+ b. "If a greedy attacker is able to
-assemble more CPU power than all the honest nodes"
++ b. "If a greedy attacker is able to assemble more CPU power than all the honest nodes"
 + c. "the simplified method can be fooled by an attacker's fabricated transactions"
-+ d. "The traditional banking model achieves a level of privacy by limiting access to information to the
-parties involved"
++ d. "The traditional banking model achieves a level of privacy by limiting access to information to the parties involved"
 + e. "linking could reveal other transactions that belonged to
 the same owner."
 
@@ -51,8 +49,7 @@ the same owner."
 ### Refutation
 *Statements which weaken Counterarguments*
 
-+ a. "The tie will be broken when the next proofof-work
-is found and one branch becomes longer"
++ a. "The tie will be broken when the next proof-of-work is found and one branch becomes longer"
 + b. "it more profitable to play by the rules"
 + c. "download the full block and alerted transactions to confirm the inconsistency."
 + d. "public can see that someone is sending
@@ -65,4 +62,4 @@ an amount [..] similar to the level of information released by stock exchanges"
 
 + "The proof-of-work also solves the problem of determining representation in majority decision making."
 
-## TODO insert image of model here
+![alt text](SAM.png "Open with draw.io to edit")
