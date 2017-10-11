@@ -3,7 +3,7 @@
 We first present the different parts,
 before constructing the graphical representation of SAM (Scientific Argumentation Model)
 (based on
-[sheets 21-13](https://www.os3.nl/_media/2016-2017/colloquia/reading_primary_literature_workshop_20161012.pdf)
+[sheets 21-23](https://www.os3.nl/_media/2016-2017/colloquia/reading_primary_literature_workshop_20161012.pdf)
 ).
 
 ## Introduction
