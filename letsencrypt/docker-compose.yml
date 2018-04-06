@@ -4,7 +4,7 @@ services:
     image: svlentink/letsencrypt
     volumes:
       - /tmp:/tmp/challenge
-      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/letsencrypt/archive:/etc/letsencrypt/archive
     environment:
       EMAIL: ssl@lent.ink
 #      OUTPUTDIRNAME: mysslcert

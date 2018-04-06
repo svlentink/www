@@ -1,4 +1,0 @@
-ssl_certificate         /etc/letsencrypt/live/curly.ninja/fullchain.pem;
-ssl_certificate_key     /etc/letsencrypt/live/curly.ninja/privkey.pem;
-include /var/www/nginx/shared/ssl.conf;
-
