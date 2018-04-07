@@ -1,0 +1,106 @@
+<html>
+<head>
+<script type="text/javascript" src="https://cdn.lent.ink/generated/bower_components/crypto-js/crypto-js.js"></script>
+<style>
+section {
+  width: 500px;
+  margin:0 auto;
+  padding: 25px;
+  margin-bottom: 50px;
+  border: 5px solid;
+  border-radius: 10px;
+  border-bottom: 0;
+}
+input { width: 350px; }
+</style>
+</head>
+<body>
+<section>
+<h1>Password generator</h1>
+<table>
+  <tr>
+    <td>
+      Prefix:
+    </td>
+    <td>
+      <input id='prefix' value='R!' style='width:30px;'/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href='https://www.google.com/search?q=what+is+an+apex+domain&oq=what+is+an+apex+domain'>Apex</a>
+    </td>
+    <td>
+      <input id="apex" value="google.com" onchange="generate()">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Secret phrase
+    </td>
+    <td>
+      <input id='secret' value='some long sentence' onchange='generate()'/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Password:
+    </td>
+    <td>
+      <input disabled id='output'/>
+    </td>
+  </tr>
+</table>
+
+<script>
+function generate() {
+  var apex = document.getElementById('apex').value
+  var secret = document.getElementById('secret').value
+  var prefix = document.getElementById('prefix').value
+  var pwd = prefix + CryptoJS.SHA1(apex + secret).toString()
+  document.getElementById('output').value = pwd 
+}
+</script>
+</section>
+
+<section>
+<h2>Is it secure?</h2>
+The hash generated gives you 128bit password strenght if you have
+a good passphrase.
+Since the password is a hash,
+it is unique for every website
+and when you create an account at a malicious service,
+it is not able to login into any of your other accounts.
+<br/>
+You could have multiple passphrases,
+e.g. one for all work related, one for social media and one for remaining accounts.
+<br/>
+NOTE: some website have a max length on a password,
+this means a lower strenght,
+especially since the hash part is hexadecimal.
+But the requirement of max length already indicates that such a service
+has bad security.
+</section>
+
+
+<section>
+<h2>How does it work?</h2>
+It is inspired by
+<a href='https://pwdhash.github.io/website/'>Stanford PwdHash</a>
+and works by doing
+<br/>
+<code>echo -n 'apex.tldPASSPHRASE' | shasum</code>
+<br/>
+It is a concatenation of the domain you want a password for,
+together with a phrase that you use.
+This string is then used to calculate a hash,
+which is your password.
+To allow for specific password requirements,
+we prefix the hash with a capital letter and a special character
+(we picked '!' since it is the first in the
+<a href='https://www.asciitable.com'>ASCII table</a>).
+We picked 'R' since it is the 18th letter of the alphabet
+and we changed the password of this website in 2018.
+</section>
+</body>
+</html>
