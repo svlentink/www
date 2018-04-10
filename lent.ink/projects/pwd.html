@@ -31,7 +31,7 @@ input { width: 350px; }
       <a href='https://www.google.com/search?q=what+is+an+apex+domain'>Apex</a>
     </td>
     <td>
-      <input id="apex" value="google.com" onchange="generate()">
+      <input id="apex" value="google.com"/>
     </td>
   </tr>
   <tr>
@@ -39,7 +39,16 @@ input { width: 350px; }
       Secret phrase
     </td>
     <td>
-      <input id='secret' value='some long sentence' onchange='generate()'/>
+      <input id='secret' value='some long sentence'/>
+      <button onclick='eye()'>&#128065;</button>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <button onclick='sha1()'>SHA1 (default)</button>
+      <button onclick='sha3()'>SHA3</button>
+      <button onclick='hmac()'>HMAC</button>
     </td>
   </tr>
   <tr>
@@ -53,23 +62,33 @@ input { width: 350px; }
 </table>
 
 <script>
-function generate() {
+function sha1(){ generate(function(m,k){return CryptoJS.SHA1(m+k)}) }
+function sha3(){ generate(function(m,k){return CryptoJS.SHA3(m+k)}) }
+function hmac(){ generate(function(m,k){return CryptoJS.HmacSHA3(m,k)})}
+function generate(func) {
   var apex = document.getElementById('apex').value
   var secret = document.getElementById('secret').value
   var prefix = document.getElementById('prefix').value
-  var pwd = prefix + CryptoJS.SHA1(apex + secret).toString()
+  var pwd = prefix + func(apex, secret).toString()
   document.getElementById('output').value = pwd 
+}
+function eye() {
+  var e = document.getElementById("secret")
+  if(e.type === 'password')
+    e.type = 'text'
+  else
+    e.type = 'password'
 }
 </script>
 </section>
 
 <section>
 <h2>Is it secure?</h2>
-The hash generated gives you 128bit password strenght if you have
-a good passphrase.
-Since the password is a hash,
-it is unique for every website
-and when you create an account at a malicious service,
+The hash generated gives you up to 160bit password strenght,
+depending on the passphrase.
+Passwords are unique for every website,
+since the domain is hashed.
+When you create an account at a malicious service,
 it is not able to login into any of your other accounts.
 <br/>
 You could have multiple passphrases,
@@ -111,7 +130,7 @@ The motivation for this password manager was the backup requirement
 of normal password managers.
 This is the main advantage of this solution.
 <br/>
-Disadvantages are;
+Disadvantages compared to password manager;
 <ul>
 <li>Less bits per char, resulting in weaker passwords when truncated
 (max length on password input field)</li>
@@ -123,6 +142,16 @@ also the passwords for not yet existing services,
 while a password manager only stores the passwords that are actually used</li>
 <li>This password mechanism allows one to generate them on the terminal
 and other insecure places, which could be a risk</li>
+<li>Just like a regular password manager with random passwords,
+the password cannot be memorized</li>
+<br/>
+Other disadvantages;
+<li>A key based hash (HMAC) or slow hash (Argon2, [S|B]crypt, PBKDF2)
+would make this system more secure,
+however,
+<code>shasum</code> was chosen,
+since it comes pre-installed on most machines</li>
+
 </ul>
 
 </section>
