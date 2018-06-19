@@ -3,7 +3,7 @@
 <script type="text/javascript" src="https://cdn.lent.ink/generated/bower_components/crypto-js/crypto-js.js"></script>
 <style>
 section {
-  width: 500px;
+  width: 550px;
   margin:0 auto;
   padding: 25px;
   margin-bottom: 50px;
@@ -41,6 +41,7 @@ input { width: 350px; }
     <td>
       <input id='secret' value='some long sentence'/>
       <button onclick='eye()'>&#128065;</button>
+      <button onclick='save()'>&#x1f4be;</button>
     </td>
   </tr>
   <tr>
@@ -62,22 +63,37 @@ input { width: 350px; }
 </table>
 
 <script>
+var saved = localStorage.getItem('pwddatastr')
+if (saved !== null) {
+  document.getElementById('secret').value = saved
+  sha1()
+}
+
 function sha1(){ generate(function(m,k){return CryptoJS.SHA1(m+k)}) }
 function sha3(){ generate(function(m,k){return CryptoJS.SHA3(m+k)}) }
 function hmac(){ generate(function(m,k){return CryptoJS.HmacSHA3(m,k)})}
 function generate(func) {
   var apex = document.getElementById('apex').value
-  var secret = document.getElementById('secret').value
+  var secret = getSecVal()
   var prefix = document.getElementById('prefix').value
   var pwd = prefix + func(apex, secret).toString()
-  document.getElementById('output').value = pwd 
+  document.getElementById('output').value = pwd
+}
+function getSecVal() {
+  var secretelem = document.getElementById('secret')
+  secretelem.type = 'password'
+  return secretelem.value
 }
 function eye() {
   var e = document.getElementById("secret")
-  if(e.type === 'password')
-    e.type = 'text'
-  else
-    e.type = 'password'
+  if(e.type === 'text') return
+
+  e.value = ''
+  e.type = 'text'
+}
+function save() {
+  localStorage.setItem('pwddatastr',getSecVal())
+  alert('Saved to LocalStorage')
 }
 </script>
 </section>
