@@ -1,5 +1,5 @@
 # https://letsecure.me/secure-web-deployment-with-lets-encrypt-and-nginx/
-ssl_certificate         /etc/letsencrypt/live/lent.ink/fullchain.pem;
-ssl_certificate_key     /etc/letsencrypt/live/lent.ink/privkey.pem;
+ssl_certificate         /sslcerts/fullchain.pem;
+ssl_certificate_key     /sslcerts/privkey.pem;
 include /var/www/nginx/shared/ssl.conf;
 
