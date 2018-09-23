@@ -1,7 +1,3 @@
-# /etc/nginx/ssl/mulidomain.conf
-# This document should contain the configuration for a certificate for mulitple domains
-# you can use include, in the virtual hosts
-
 # https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
 listen 443 ssl http2;
