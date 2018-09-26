@@ -147,3 +147,19 @@ webpack
   https://github.com/sebbo2002/ical-generator
   https://www.npmjs.com/package/crypto-browserify
 
+### raw feedback
+
+foreach
+postive sentice only healthy food
+socialite has goals
+believer, also goals (reading)
+date night?
+No_desc is verwarrend
+overview values =>personas => met stats (quantity)
+afwijken van planning ipv slacking
+
+slacking niet duidelijk
+
+real examples, with words such as personas, trigger
+
+correlate with intelligence
