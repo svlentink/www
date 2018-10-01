@@ -121,22 +121,37 @@ has bad security.
 
 <section>
 <h2>How does it work?</h2>
+<i>Found out later that
+<a href='http://lesspass.com'>lesspass</a>
+does the same thing.
+But requires more parameters and does not come preinstalled (<code>shasum</code>).</i>
+<br/>
 It is inspired by
 <a href='https://pwdhash.github.io/website/'>Stanford PwdHash</a>
 and works by doing
 <br/>
-<code>echo -n 'apex.tldPASSPHRASE' | shasum</code>
+<code> echo -n 'apex.tldPASSPHRASE' | shasum</code>
+<br/>
+(to avoid storing <code>history</code>, prepend a space to <code>echo</code>)
 <br/>
 It is a concatenation of the domain you want a password for,
 together with a phrase that you use.
 This string is then used to calculate a hash,
 which is your password.
 To allow for specific password requirements,
-we prefix the hash with a capital letter and a special character
-(we picked '!' since it is the first in the
-<a href='https://www.asciitable.com'>ASCII table</a>).
-We picked 'R' since it is the 18th letter of the alphabet
-and we changed the password of this website in 2018.
+we prefix the hash with a capital letter and a special character.
+We picked '<span id='prefixletter'>R</span>' since it is the
+<span class='yearnr'>18</span>th letter of the alphabet
+and we changed the password of this website in 20<span class='yearnr'>18</span>.
+(the prefilled prefix on the password generator is updated each year to promote password rotation,
+please also update your secret phrase)
+<script>
+  var year = Number((new Date()).getFullYear().toString().substr(2))
+  var prel = String.fromCharCode(year+64)
+  document.querySelector('#prefix').value = prel + '_'
+  document.querySelector('.yearnr').innerText = year
+  document.querySelector('#prefixletter').innerText = prel
+</script>
 </section>
 
 
@@ -160,6 +175,8 @@ while a password manager only stores the passwords that are actually used</li>
 and other insecure places, which could be a risk</li>
 <li>Just like a regular password manager with random passwords,
 the password cannot be memorized</li>
+<li>This system allows you to use multiple master passwords (e.g. social, work, finance, developers etc.)
+however, for teams, this would result in more password rotations.</li>
 <br/>
 Other disadvantages;
 <li>A key based hash (HMAC) or slow hash (Argon2, [S|B]crypt, PBKDF2)

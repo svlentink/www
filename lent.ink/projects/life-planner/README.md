@@ -163,3 +163,7 @@ slacking niet duidelijk
 real examples, with words such as personas, trigger
 
 correlate with intelligence
+
+
+Plan cognitive intensive (brainpower) tasks in the morning,
+the repetitive tasks later.
