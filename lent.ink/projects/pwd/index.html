@@ -207,11 +207,13 @@ we append
 to our initial command.
 If we now get no output (probability of 1%),
 we just preform a second shasum:
+<br/>
 <code>
 echo -n 360351|shasum|shasum|cut -f1 -d\ |
 <br/>
 xxd -r -p|base64|grep [0-9]|grep [A-Z]|grep [a-z]
 </code>
+<br/>
 But don't worry, the tool above does this for you,
 it's just to explain the inner working of this tool.
 <!--
