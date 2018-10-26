@@ -13,6 +13,7 @@ section {
 }
 input { width: 350px; }
 </style>
+<title>Password generator</title>
 </head>
 <body>
 <section>
@@ -72,15 +73,15 @@ input { width: 350px; }
 var saved = localStorage.getItem('pwddatastr')
 if (saved !== null) {
   document.getElementById('secret').value = saved
-  sha1()
+  sha1base64()
 }
 
 function sha1base64(){ generate(function(apex,secret, prefix){
   var str = apex + secret
   var hash = CryptoJS.SHA1(str).toString()
-  var loopinp = hash
   for (var i=0;i<10;i++) { // probability of 1/100^10 that it fails
-    var pairs = loopinp.match(/\w{2}/g)
+    console.log('Hash used for base64',hash)
+    var pairs = hash.match(/\w{2}/g)
     var binarr = pairs.map(function(a){return String.fromCharCode(parseInt(a, 16));} )
     var binstr = binarr.join("")
     var base64 = btoa(binstr)
@@ -89,7 +90,7 @@ function sha1base64(){ generate(function(apex,secret, prefix){
         && /[a-z]/.test(base64) )
       break
     else {
-      loopinp = base64
+      hash = CryptoJS.SHA1(hash).toString()
       console.log('Applying another shasum, this a 1/100.')
     }
 
@@ -185,8 +186,8 @@ please also update your secret phrase)
 
 <section>
 <h2>Update: base64</h2>
-Since multiple websites have a upperlimit of 32 character for a password,
-the default feature now produces &lt;= 32 characters with the same strength.
+Since multiple websites have a upperlimit of 32 characters for a password,
+the default feature now produces 28 chars with the same strength.
 But how did we do this?
 We just convert the SHA1 sum output (hex) to base64.
 <br/>
@@ -209,11 +210,14 @@ If we now get no output (probability of 1%),
 we just preform a second shasum:
 <br/>
 <code>
-echo -n 360351|shasum|shasum|cut -f1 -d\ |
+echo -n 360351|shasum|cut -f1 -d\ |tr -d $'\n'|shasum|cut -f1 -d\ |
 <br/>
 xxd -r -p|base64|grep [0-9]|grep [A-Z]|grep [a-z]
 </code>
 <br/>
+Note that we need to remove the newline (tr) after the first round,
+or you can manually use the output of the first round with
+<code>echo -n</code>.
 But don't worry, the tool above does this for you,
 it's just to explain the inner working of this tool.
 <!--
