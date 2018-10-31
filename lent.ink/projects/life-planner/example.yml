@@ -146,10 +146,20 @@ personas:
     - title: Believer
       desc: Based on the holy scripture, not on the interpretation of people of it.
       img: http://www.jewishjewels.org/wp-content/uploads/2012/02/Yeshua-Torah-jj.jpg
+      goals:
+        scriptures:
+          title: Holy scriptures
+          desc: Daily source of values
+          img: https://www.evangelicalsforsocialaction.org/wp-content/uploads/2016/01/quran-bible-torah-1024x394.jpg
     #family:
     - title: Family
       desc: Children are a blessing, don't see it any other way.
       img: https://www.iaspaper.net/wp-content/uploads/2017/01/Family-300x233.jpg
+      goals:
+        datenite:
+          title: Date night
+          desc: Quality time together
+          img: https://www.babble.com/wp-content/uploads/2015/08/ThinkstockPhotos-478406944.jpg
     #read:
     - title: Reader
       desc: lorem ipsum
@@ -157,9 +167,17 @@ personas:
       img2: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuwD62zN922S8wrgfH1srk6hI3z_Dagn7T0uy2-r2W6a5b9jWmiA
       img3: http://www.bemedialiterate.com/uploads/1/7/2/2/1722523/8910572_orig.jpg
     - title: Socialite
-      desc: One social event p/w and 1 new p/m
+      desc: As iron sharpens iron, so one person sharpens another.
       img: https://www.gevme.com/blog/wp-content/uploads/2017/02/wsi-imageoptim-GEVME-promoting-networking-event-success-2-1200x800.jpeg
       goals:
+        social:
+          title: Weekly social
+          desc: One social gathering p/w
+          img: https://previews.123rf.com/images/standrets/standrets1709/standrets170904022/86815964-group-of-creative-friends-sitting-at-wooden-table-people-having-fun-while-playing-board-game.jpg
+        meetnew:
+          title: Meet new people
+          desc: One new social event p/m
+          img: https://assets.entrepreneur.com/content/3x2/2000/20160328065249-shutterstock-387029653.jpeg?
         dance:
           title: Dancing
           img: http://themetapicture.com/media/funny-gif-dancing-man-pixel-retro.gif

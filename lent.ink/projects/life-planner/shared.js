@@ -17,3 +17,15 @@ function hideinfo() {
   for (var i in infos)
     infos[i].setAttribute('style','display:none;')
 }
+
+console.log('Start loading page from YAML')
+var hash = window.location.hash
+if (hash && hash.substr(0,5) === '#http') {// enables sharing with url
+  console.log('Found url in hash of url, using it to load yaml')
+  document.querySelector('#inputurl').value = hash.substr(1)
+  loadURL()
+} else if (localStorage.getItem('yaml')) {
+  console.log('Found content in localstorage, using it')
+  document.querySelector('#input').value = localStorage.getItem('yaml')
+  loadinput()
+} else loadURL() // use default value in inputfield

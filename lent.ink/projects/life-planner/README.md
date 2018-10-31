@@ -141,7 +141,7 @@ see deprecated/model.js
 
 ## TODO in UI
 
-info sections
+https://webpack.js.org/guides/getting-started/
 webpack
   ical export support
   https://github.com/sebbo2002/ical-generator
@@ -149,16 +149,10 @@ webpack
 
 ### raw feedback
 
-foreach
 postive sentice only healthy food
-socialite has goals
-believer, also goals (reading)
-date night?
 No_desc is verwarrend
 overview values =>personas => met stats (quantity)
-afwijken van planning ipv slacking
-
-slacking niet duidelijk
+'afwijken van planning' ipv slacking, slacking niet duidelijk
 
 real examples, with words such as personas, trigger
 

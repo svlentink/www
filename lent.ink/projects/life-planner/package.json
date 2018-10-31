@@ -1,0 +1,11 @@
+{
+  "name": "life-planner",
+  "version": "0.0.2",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "ical-generator": "*",
+    "yamljs" : "*", "fs":"*"
+  }
+}

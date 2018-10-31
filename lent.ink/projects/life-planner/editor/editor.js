@@ -1,3 +1,4 @@
+import YAML from 'yamljs';
 
 function renderAll(obj) {
   document.data = obj
