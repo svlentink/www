@@ -1,29 +1,49 @@
+/* @license GPLv3 */
 import YAML from 'yamljs';
 
-function renderAll(obj) {
-  document.data = obj
-  var data = document.data
-  renderpersonas('personas', data.personas.data)
-  renderfoundation('foundation', data.foundation)
-  renderroutines('routines', data.routines, data.activities)
-  var tmmdata = tmmToOneFormat(data.tmm,data.timemanagementmatrix)
-  rendertmm('tmm', tmmdata)
-}
-
-function loadURL() {
-  var url = document.querySelector('#inputurl').value
-  window.location.hash = '#' + url
-  YAML.load(url,
-//  $.getJSON("data.json",
-  function(obj) {
+(function (glob) { // IIFE pattern
+  'use strict';
+  
+  function renderAll(obj) {
+    document.data = obj
+    var data = document.data
+    glob.renderpersonas('personas', data.personas.data)
+    glob.renderfoundation('foundation', data.foundation)
+    glob.renderroutines('routines', data.routines, data.activities)
+    glob.rendertmm('tmm', [data.tmm, data.timemanagementmatrix])
+  }
+  
+  function loadURL() {
+    var url = document.querySelector('#inputurl').value
+    window.location.hash = '#' + url
+    YAML.load(url,
+    function(obj) {
+      renderAll(obj)
+    })
+  }
+  document.querySelector('#loadYAMLbtn').addEventListener('click',loadURL)
+  
+  function loadinput() {
+    var yamlinp = document.querySelector('#input').value
+    glob.localStorage.setItem('yaml',yamlinp)
+    console.log('Saved to localstorage')
+    var obj = YAML.parse(yamlinp)
     renderAll(obj)
+  }
+  document.querySelector('#renderbtn').addEventListener('click',loadinput)
+  
+  document.addEventListener("DOMContentLoaded",function(){
+    console.log('Start loading page from YAML')
+    var hash = window.location.hash
+    if (hash && hash.substr(0,5) === '#http') {// enables sharing with url
+      console.log('Found url in hash of url, using it to load yaml')
+      document.querySelector('#inputurl').value = hash.substr(1)
+      loadURL()
+    } else if (glob.localStorage.getItem('yaml')) {
+      console.log('Found content in localstorage, using it')
+      document.querySelector('#input').value = glob.localStorage.getItem('yaml')
+      loadinput()
+    } else loadURL() // use default value in inputfield
   })
-}
 
-function loadinput() {
-  var yamlinp = document.querySelector('#input').value
-  localStorage.setItem('yaml',yamlinp)
-  console.log('Saved to localstorage')
-  var obj = YAML.parse(yamlinp)
-  renderAll(obj)
-}
+}(typeof window !== 'undefined' ? window : global))

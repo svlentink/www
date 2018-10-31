@@ -32,7 +32,7 @@
     <li><a href='#habits'>Habits and routines</a></li>
     <li><a href='#time-management-matrix'>Time management matrix</a></li>
     <li><a href='#edit'>edit</a></li>
-    <li onclick='hideinfo()'><span>Hide &#9432;</span></li>
+    <li id='hideinfobtn'><span>Hide &#9432;</span></li>
   </ul>
 </nav>
 
@@ -119,9 +119,9 @@
 </section>
 <section id='editor'>
 <input id='inputurl' style='width:600px;' value='example.yml'/>
-<button onclick='loadURL()'>load YAML</button>
+<button id='loadYAMLbtn'>load YAML</button>
 <hr/>
-<button onclick='loadinput()'>Render textarea and save to <code>localStorage</code></button>
+<button id='renderbtn'>Render textarea and save to <code>localStorage</code></button>
 <textarea id='input'></textarea>
 </section>
 
