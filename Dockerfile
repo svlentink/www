@@ -8,6 +8,7 @@ RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
 
 RUN npm install -g webpack webpack-cli
 WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
+RUN npm install
 RUN npm run build
 
 FROM nginx:alpine
