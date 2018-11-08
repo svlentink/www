@@ -161,3 +161,8 @@ correlate with intelligence
 
 Plan cognitive intensive (brainpower) tasks in the morning,
 the repetitive tasks later.
+
+
+Splits uitdenken en uitwerken. (design phase)
+Verander je aanpak van diep naar breed. Als ik aan een bepaalde taak moet beginnen, vooral de creatieve dingen,
+new environment. novelty ffect https://en.wikipedia.org/wiki/Novelty_effect?utm_campaign=Werk%20Slim&utm_medium=email&utm_source=Revue%20newsletter

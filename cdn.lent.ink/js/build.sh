@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd $DIR
+#DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+#cd $DIR
 
 # this currently does not include versioning
 # since I never needed it, maybe later
@@ -10,7 +10,7 @@ file02=SVL_util.min.js
 file03=SVL_all.min.js #includes hack
 
 if [ -z "$(which uglifyjs)" ]; then
-  sudo npm install -g uglify-js
+  npm install -g uglify-js
 fi
 
 echo creating $file01

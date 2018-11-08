@@ -4,6 +4,10 @@
   "scripts": {
     "build": "webpack"
   },
+  "devDependencies": {
+    "webpack": "*",
+    "webpack-cli": "*"
+  },
   "dependencies": {
     "ical-generator": "*",
     "yamljs" : "*", "fs":"*"
