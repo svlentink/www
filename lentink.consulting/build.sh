@@ -2,7 +2,7 @@
 
 OUTP=index.html
 
-which pandoc || apk --no-cache add pandoc
+which pandoc || apt install -y pandoc
 
 cat head.htm > $OUTP
 pandoc --from markdown --to html README.md >> $OUTP
