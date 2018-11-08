@@ -6,6 +6,7 @@ RUN apt install -y python3 python3-pip
 RUN git clone https://github.com/mazen160/GithubCloner.git
 RUN pip3 install -r GithubCloner/requirements.txt
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
+COPY . /github-backup/svlentink_www
 
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
 RUN ./build.sh
