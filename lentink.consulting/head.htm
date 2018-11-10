@@ -10,6 +10,24 @@ section {
 a {
   text-decoration: none;
 }
+body {
+  background-color:skyblue;
+  width:100%;
+}
+body::after {
+  position:absolute;
+  content:'\2601 \2601 \2601';
+  font-size:3000%;
+  animation: cloudmove 10s infinite;
+  color:white;
+}
+@keyframes cloudmove {
+  0%   {opacity:.2; left:25%; top:0;}
+  25%  {opacity:.15; left:50%; top:25%;}
+  50%  {opacity:.1; left:25%; top:50%;}
+  75%  {opacity:.15; left:0; top:25%;}
+  100% {opacity:.2; left:25%; top:0;}
+}
 </style>
 </head>
 <body>
