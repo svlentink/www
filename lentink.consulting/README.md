@@ -21,8 +21,8 @@ MSc. [Security and Network engineering](https://os3.nl).
 ## links
 
 + [resume](https://cdn.lent.ink/pdf/cv_lentink.pdf)
-+ [&#9742; 31617012655](http://call.lent.ink)
-+ [&#128231; email](http://mail.lent.ink)
++ [tel:+31617012655](http://call.lent.ink)
++ [email](http://mail.lent.ink)
 + [Personal website](https://lent.ink)
 + [Github](https://github.com/svlentink)
 + [Docker hub](https://hub.docker.com/r/svlentink)

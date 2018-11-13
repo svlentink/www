@@ -143,8 +143,6 @@ see deprecated/model.js
 
 https://webpack.js.org/guides/getting-started/
 webpack
-  ical export support
-  https://github.com/sebbo2002/ical-generator
   https://www.npmjs.com/package/crypto-browserify
 
 ### raw feedback
