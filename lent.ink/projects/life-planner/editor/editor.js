@@ -5,8 +5,8 @@ import YAML from 'yamljs';
   'use strict';
   
   function renderAll(obj) {
-    document.data = obj
-    var data = document.data
+    glob.data = obj
+    var data = glob.data
     glob.renderpersonas('personas', data.personas.data)
     glob.renderfoundation('foundation', data.foundation)
     glob.renderroutines('routines', data.routines, data.activities)

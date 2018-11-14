@@ -78,5 +78,85 @@
     unused.innerText = 'Unplanned activities: ' + unusedacts.toString().replace(/,/g,' ')
     cont.appendChild(unused)
   }
+  
+  function eventsAsIcal(){
+    if (! (glob.data && glob.data.routines) ) return console.log('no routines found')
+    if (! glob.data.activities) return console.log('no activities found')
+
+    var events = getEvents(glob.data.routines, glob.data.activities)
+    glob.saveIcal(events)
+  }
+  document.querySelector('#icalbtn').addEventListener('click',eventsAsIcal)
+  
+  function getEvents(routines, activities){
+    var events = []
+    
+    var days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+    function getFirstOccurrence(extraMinutes){
+      for (var d = (new Date()).getDay(); d <= 14; d++){
+        var day = days[d%7]
+        if (day in start.days)
+          return new Date(
+            (new Date()).getYear(),
+            (new Date()).getMonth(),
+            (new Date()).getDate() + ((new Date()).getDay() - d),
+            parseInt(start.time.split(':')[0]),
+            parseInt(start.time.split(':')[1]) + (extraMinutes || 0)
+          )
+      }
+    }
+
+    for(var key in routines){
+      var routine = routines[key]
+      if (routine.start){
+        var title = key
+        if (routine.trigger) title += ' <= ' + routine.trigger
+
+        var desc = []
+        if (routine.desc) desc.push(routine.desc)
+        var totaltime = 0
+        if (routine.actions) for (var a in routine.actions) {
+          if (activities[a]){
+            var act = activities[a]
+            var time = (act.time || act.duration || 0)
+            totaltime += time
+            var row = time + ' '
+            row += a
+            if (act.desc) row += ', ' + act.desc
+            desc.push(row)
+          } else {
+            desc.push('0  ' + a)
+          }
+        }
+        
+        for (var s in routine.start){
+          var start = routine.start[s]
+          if (typeof start.days === 'string'){
+            if (start.days.toLowerCase() === 'weekdays')
+              start.days = ['mo', 'tu', 'we', 'th', 'fr']
+            else // daily
+              start.days = days
+          }
+          
+          var event = {
+            start: getFirstOccurrence(),
+            end: getFirstOccurrence(totaltime),
+            summary: title,
+            description: desc.join('\n'),
+            category: 'routine',
+            //location: 'planet earth',
+            //organizer: 'Some One <mail@some.one>',
+            url: 'http://lent.ink/projects/life-planner',
+            repeating: {
+              freq: 'DAILY',
+              byDay: start.days,
+              count: start.days.length * 2 //two weeks
+            }
+          }
+          events.push(event)
+        }
+      }
+    }
+  }
 
 }(typeof window !== 'undefined' ? window : global))
