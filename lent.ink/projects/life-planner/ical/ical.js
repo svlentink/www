@@ -12,13 +12,15 @@ import ical from 'ical-generator';
   })
 
   glob.saveIcal = function(events) {
-    if (! glob.saveAs) {
-      console.log('Browser does not support window.saveAs()')
-      return
+    for (var i in events){
+      var ev = events[i]
+      cal.createEvent(ev)
     }
-    ical.events = events
     var filename = 'routines.ical'
-    glob.saveAs(cal.toString(),filename)
+    if (glob.saveAs) return glob.saveAs(cal.toString(),filename)
+    var icaloutput = document.querySelector('#icaloutput')
+    icaloutput.setAttribute('style','display:block;')
+    icaloutput.innerHTML = cal.toString()
   }
 
 }(typeof window !== 'undefined' ? window : global))

@@ -95,9 +95,9 @@
     function getFirstOccurrence(extraMinutes){
       for (var d = (new Date()).getDay(); d <= 14; d++){
         var day = days[d%7]
-        if (day in start.days)
+        if (start.days.indexOf(day) !== -1)
           return new Date(
-            (new Date()).getYear(),
+            (new Date()).getFullYear(),
             (new Date()).getMonth(),
             (new Date()).getDate() + ((new Date()).getDay() - d),
             parseInt(start.time.split(':')[0]),
@@ -115,17 +115,18 @@
         var desc = []
         if (routine.desc) desc.push(routine.desc)
         var totaltime = 0
-        if (routine.actions) for (var a in routine.actions) {
-          if (activities[a]){
-            var act = activities[a]
+        if (routine.actions) for (var j in routine.actions) {
+          var action = routine.actions[j]
+          if (activities[action]){
+            var act = activities[action]
             var time = (act.time || act.duration || 0)
             totaltime += time
             var row = time + ' '
-            row += a
+            row += action
             if (act.desc) row += ', ' + act.desc
             desc.push(row)
           } else {
-            desc.push('0  ' + a)
+            desc.push('0  ' + action)
           }
         }
         
@@ -157,6 +158,7 @@
         }
       }
     }
+    return events
   }
 
 }(typeof window !== 'undefined' ? window : global))
