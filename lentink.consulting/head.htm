@@ -3,6 +3,9 @@
 <head>
 <title>Lentink Consulting</title>
 <style>
+body, section {
+  background-color:skyblue;
+}
 section {
   width: 550px;
   margin:0 auto;
@@ -11,7 +14,6 @@ a {
   text-decoration: none;
 }
 body {
-  background-color:skyblue;
   width:100%;
 }
 body::after {
@@ -20,6 +22,11 @@ body::after {
   font-size:3000%;
   animation: cloudmove 10s infinite;
   color:white;
+  z-index:-1;
+}
+img {
+  position:absolute;
+  right:0;
   z-index:-1;
 }
 @keyframes cloudmove {
@@ -32,4 +39,5 @@ body::after {
 </style>
 </head>
 <body>
+<img src='http://cdn.lent.ink/img/chair.jpg'/>
 <section>
