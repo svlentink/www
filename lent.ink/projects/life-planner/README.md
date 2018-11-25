@@ -168,3 +168,18 @@ new environment. novelty ffect https://en.wikipedia.org/wiki/Novelty_effect?utm_
 beat your future self,
 work from calendar, not todolist
 there will always be more to do, work on timeblocks and give your all in it, dont leave when you are 'done'
+
+noticing
+wanting
+doing
+liking
+
+failure premortem
+why do you expect to fail,
+tackle them by if else plan
+
+place guitar in middle of room, book on pillow
+optimize for starting line, not finish line
+we need reward
+
+ruminate

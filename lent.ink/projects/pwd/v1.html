@@ -3,7 +3,7 @@
 <script type="text/javascript" src="https://cdn.lent.ink/generated/bower_components/crypto-js/crypto-js.js"></script>
 <style>
 section {
-  width: 600px;
+  width: 550px;
   margin:0 auto;
   padding: 25px;
   margin-bottom: 50px;
@@ -11,19 +11,11 @@ section {
   border-radius: 10px;
   border-bottom: 0;
 }
-input { width: 400px; }
+input { width: 350px; }
 </style>
 <title>Password generator</title>
 </head>
 <body>
-
-<i>
-Generated a password in the past?
-The old version can be found
-<a href='https://lent.ink/projects/pwd/v1.html'>here</a>.
-</i>
-
-
 <section>
 <h1>Password generator</h1>
 <table>
@@ -46,9 +38,25 @@ The old version can be found
     </td>
   </tr>
   <tr>
+    <td>Generate</td>
+    <td>
+<!--
+      prefix
+      <input id='base64prefix' style='width:30px;'/>
+      +
+-->
+      <button onclick='sha1base64()'>SHA1base64 (default)</button>
+    </td>
+  </tr>
+  <tr style='opacity:0.5;'>
     <td></td>
     <td>
-      <button onclick='sha1base64()'>Generate password</button>
+      prefix
+      <input id='prefix' style='width:30px;'/>
+      +
+      <button onclick='sha1()'>SHA1</button>
+      <button onclick='sha3()'>SHA3</button>
+      <button onclick='hmac()'>HMAC</button>
     </td>
   </tr>
   <tr>
@@ -68,10 +76,10 @@ if (saved !== null) {
   sha1base64()
 }
 
-function sha1base64(){ generate(function(apex,secret){
+function sha1base64(){ generate(function(apex,secret, prefix){
   var str = apex + secret
+  var hash = CryptoJS.SHA1(str).toString()
   for (var i=0;i<10;i++) { // probability of 1/100^10 that it fails
-    var hash = CryptoJS.SHA1(str).toString()
     console.log('Hash used for base64',hash)
     var pairs = hash.match(/\w{2}/g)
     var binarr = pairs.map(function(a){return String.fromCharCode(parseInt(a, 16));} )
@@ -82,16 +90,22 @@ function sha1base64(){ generate(function(apex,secret){
         && /[a-z]/.test(base64) )
       break
     else {
-      str += 'p'
-      console.log('Adding a p as padding, this a 1/100 chance.')
+      hash = CryptoJS.SHA1(hash).toString()
+      console.log('Applying another shasum, this a 1/100.')
     }
+
   }
+  //var prefix = document.getElementById('base64prefix').value
   return base64
 }) }
+function sha1(){ generate(function(a,s,p){return p + CryptoJS.SHA1(a+s)}) }
+function sha3(){ generate(function(a,s,p){return p + CryptoJS.SHA3(a+s)}) }
+function hmac(){ generate(function(a,s,p){return p + CryptoJS.HmacSHA3(a,s)})}
 function generate(func) {
   var apex = document.getElementById('apex').value
   var secret = getSecVal()
-  var pwd = func(apex, secret).toString()
+  var prefix = document.getElementById('prefix').value
+  var pwd = func(apex, secret, prefix).toString()
   document.getElementById('output').value = pwd
 }
 function getSecVal() {
@@ -113,7 +127,6 @@ function save() {
 </script>
 </section>
 
-
 <section>
 <h2>Is it secure?</h2>
 The hash generated gives you up to 160bit password strength,
@@ -126,9 +139,10 @@ it is not able to login into any of your other accounts.
 You could have multiple pass phrases,
 e.g. one for all work related, one for social media and one for remaining accounts.
 <br/>
-NOTE: some websites have a max length on a password,
+NOTE: some website have a max length on a password,
 this means a lower strenght,
-especially since the hash part is.
+especially since the hash part is
+<a href='https://stackoverflow.com/questions/12618321/what-pool-of-characters-do-md5-and-sha-have'>hexadecimal</a>.
 But the requirement of max length already indicates that such a service
 has bad security.
 </section>
@@ -138,33 +152,48 @@ has bad security.
 <h2>How does it work?</h2>
 <i>Found out later that
 <a href='http://lesspass.com'>lesspass</a>
-does the similar thing.
-but requires more parameters and does not come preinstalled (<code>shasum</code>).</i>
+does the same thing.
+But requires more parameters and does not come preinstalled (<code>shasum</code>).</i>
 <br/>
 It is inspired by
 <a href='https://pwdhash.github.io/website/'>Stanford PwdHash</a>
 and works by doing
 <br/>
-<code>base64( shasum(apex.tld + PASSPHRASE) )</code>
+<code> echo -n 'apex.tldPASSPHRASE' | shasum</code>
+<br/>
+(to avoid storing <code>history</code>, prepend a space to <code>echo</code>)
 <br/>
 It is a concatenation of the domain you want a password for,
 together with a phrase that you use.
-This string is then used to calculate a hash.
-This hash uses base16 or
-<a href='https://stackoverflow.com/questions/12618321/what-pool-of-characters-do-md5-and-sha-have'>hexadecimal</a>,
-resulting in 40 characters, which we convert to bas64 (28 characters).
+This string is then used to calculate a hash,
+which is your password.
+To allow for specific password requirements,
+we prefix the hash with a capital letter and a special character.
+We picked '<span id='prefixletter'>R</span>' since it is the
+<span class='yearnr'>18</span>th letter of the alphabet
+and we changed the password of this website in 20<span class='yearnr'>18</span>.
+(the prefilled prefix on the password generator is updated each year to promote password rotation,
+please also update your secret phrase)
+<script>
+  var year = Number((new Date()).getFullYear().toString().substr(2))
+  var prel = String.fromCharCode(year+64)
+  document.querySelector('#prefix').value = prel + '_'
+  //document.querySelector('#base64prefix').value = prel.toLowerCase() + 0 + prel
+  document.querySelector('.yearnr').innerText = year
+  document.querySelector('#prefixletter').innerText = prel
+</script>
 </section>
 
 <section>
-<h2>base64</h2>
+<h2>Update: base64</h2>
 Since multiple websites have a upperlimit of 32 characters for a password,
-this tool now only supports 28 character (160bit) passwords.
+the default feature now produces 28 chars with the same strength.
+But how did we do this?
+We just convert the SHA1 sum output (hex) to base64.
 <br/>
 <code>echo -n 'apex.tldPASSPHRASE'|shasum|cut -f1 -d" "|xxd -r -p|base64</code>
 <br/>
 <code>echo -n 'apex.tldPASSPHRASE'|shasum|awk '{print $1}'|xxd -r -p|base64</code>
-<br/>
-(to avoid storing <code>history</code>, prepend a space to <code>echo</code>)
 <br/>
 This provides us with 28 chars of which the last one is a special char ('=').
 We tested this with 1M records
@@ -178,12 +207,28 @@ we append
 <code>|grep [0-9]|grep [A-Z]|grep [a-z]</code>
 to our initial command.
 If we now get no output (probability of 1%),
-we know one of the character types was missing.
-We solve this by prepending a 'p' (referring to padding)
-to our initial input, giving us 'apex.tldPASSPHRASEp'.
+we just preform a second shasum:
 <br/>
+<code>
+echo -n 360351|shasum|cut -f1 -d\ |tr -d $'\n'|shasum|cut -f1 -d\ |
+<br/>
+xxd -r -p|base64|grep [0-9]|grep [A-Z]|grep [a-z]
+</code>
+<br/>
+Note that we need to remove the newline (tr) after the first round,
+or you can manually use the output of the first round with
+<code>echo -n</code>.
 But don't worry, the tool above does this for you,
 it's just to explain the inner working of this tool.
+<!--
+Therefore we prefix the base64 string with
+a letter,
+a number and a capital letter.
+Which brings us to 31 characters.
+You could choose to only use a number,
+but to provide a generic solution,
+we suggest all three.
+-->
 </section>
 
 <section>
