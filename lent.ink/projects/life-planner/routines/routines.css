@@ -60,7 +60,7 @@
 }
 [data-moscow="could"] .title {
 }
-[data-moscow="would"] .title {
+[data-moscow="would"] .title, [data-moscow="wont"] .title {
   color: gray;
 }
 

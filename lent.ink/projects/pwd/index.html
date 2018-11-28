@@ -48,7 +48,7 @@ The old version can be found
   <tr>
     <td></td>
     <td>
-      <button onclick='sha1base64()'>Generate password</button>
+      <button onclick='sha1base64()'>Generate password and copy to clipboard</button>
     </td>
   </tr>
   <tr>
@@ -62,12 +62,6 @@ The old version can be found
 </table>
 
 <script>
-var saved = localStorage.getItem('pwddatastr')
-if (saved !== null) {
-  document.getElementById('secret').value = saved
-  sha1base64()
-}
-
 function sha1base64(){ generate(function(apex,secret){
   var str = apex + secret
   for (var i=0;i<10;i++) { // probability of 1/100^10 that it fails
@@ -92,7 +86,12 @@ function generate(func) {
   var apex = document.getElementById('apex').value
   var secret = getSecVal()
   var pwd = func(apex, secret).toString()
-  document.getElementById('output').value = pwd
+  var outp = document.getElementById('output')
+  outp.value = pwd
+  outp.disabled = false
+  outp.select()
+  document.execCommand("Copy")
+  outp.disabled = true
 }
 function getSecVal() {
   var secretelem = document.getElementById('secret')
@@ -109,6 +108,12 @@ function eye() {
 function save() {
   localStorage.setItem('pwddatastr',getSecVal())
   alert('Saved to LocalStorage')
+}
+
+var saved = localStorage.getItem('pwddatastr')
+if (saved !== null) {
+  document.getElementById('secret').value = saved
+  getSecVal() // make it type password instead of text
 }
 </script>
 </section>
