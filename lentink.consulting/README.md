@@ -13,10 +13,9 @@ I will be available as a freelance engineer.
 
 ## Availability
 
-Until the summer of 2019, available for only two days per week,
+Until the summer of 2019, available for only three days per week,
 the other days I am finishing my
 MSc. [Security and Network engineering](https://os3.nl).
-
 
 ## links
 
@@ -26,6 +25,12 @@ MSc. [Security and Network engineering](https://os3.nl).
 + [Personal website](https://lent.ink)
 + [Github](https://github.com/svlentink)
 + [Docker hub](https://hub.docker.com/r/svlentink)
+
+## Message to recruiters
+
+For any placement I allow a maximum addition of 20% to my hour rate,
+preventing a chain of intermediates.
+This thus results in a maximum of 16.67% the end customer pays.
 
 ## Vision
 Paradigms that make me tick are
