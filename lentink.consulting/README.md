@@ -26,12 +26,6 @@ MSc. [Security and Network engineering](https://os3.nl).
 + [Github](https://github.com/svlentink)
 + [Docker hub](https://hub.docker.com/r/svlentink)
 
-## Message to recruiters
-
-For any placement I allow a maximum addition of 20% to my hour rate,
-preventing a chain of intermediates.
-This thus results in a maximum of 16.67% the end customer pays.
-
 ## Vision
 Paradigms that make me tick are
 
@@ -70,6 +64,12 @@ The cloud has changed how we manage our IT infrastructure,
 from stateful servers in a datacenter to stateless containers in the cloud.
 Freelancers enable you to allocate their resources (time, expertise)
 like the cloud does for your infrastructure.
+
+## Message to recruiters
+
+For any placement I allow a maximum addition of 20% to my hour rate,
+preventing a chain of intermediates.
+This thus results in a maximum of 16.67% the end customer pays.
 
 
 *This page was generated from [this](https://github.com/svlentink/www/tree/master/lentink.consulting) Markdown file.*

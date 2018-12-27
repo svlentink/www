@@ -11,25 +11,26 @@ section {
   border-radius: 10px;
   border-bottom: 0;
 }
-input { width: 400px; }
+#apex, #secret { width: 350px; }
 </style>
 <title>Password generator</title>
 </head>
 <body>
 
+<section>
 <i>
 Generated a password in the past?
 The old version can be found
 <a href='https://lent.ink/projects/pwd/v1.html'>here</a>.
 </i>
 
-
-<section>
 <h1>Password generator</h1>
+
 <table>
   <tr>
     <td>
       <a href='https://www.google.com/search?q=what+is+an+apex+domain'>Apex</a>
+      (domain)
     </td>
     <td>
       <input id="apex" value="google.com"/>
@@ -46,9 +47,14 @@ The old version can be found
     </td>
   </tr>
   <tr>
-    <td></td>
     <td>
-      <button onclick='sha1base64()'>Generate password and copy to clipboard</button>
+      Generate password
+    </td>
+    <td>
+      
+      <button onclick='fullpwd()'>full size (28)</button>
+      <button onclick='shortpwd()'>short (12)</button>
+      and copy to clipboard
     </td>
   </tr>
   <tr>
@@ -56,36 +62,44 @@ The old version can be found
       Password:
     </td>
     <td>
-      <input disabled id='output'/>
+      <input disabled id='output' style='width:300px;'/>
     </td>
   </tr>
 </table>
 
 <script>
-function sha1base64(){ generate(function(apex,secret){
+function genPwdHash(apex,secret,maxlength){
   var str = apex + secret
-  for (var i=0;i<10;i++) { // probability of 1/100^10 that it fails
-    var hash = CryptoJS.SHA1(str).toString()
-    console.log('Hash used for base64',hash)
-    var pairs = hash.match(/\w{2}/g)
+  for (var i=0;i<100;i++) {
+    var hash1 = CryptoJS.SHA512(str).toString()
+    console.log('First hash, the sha512sum',hash1, hash1.length)
+    var hash2 = CryptoJS.SHA1(hash1).toString()
+    console.log('Hash used for base64',hash2, hash2.length)
+    var pairs = hash2.match(/\w{2}/g)
     var binarr = pairs.map(function(a){return String.fromCharCode(parseInt(a, 16));} )
     var binstr = binarr.join("")
     var base64 = btoa(binstr)
+    if (base64.length > maxlength)
+      base64 = base64.substr(base64.length - maxlength)
     if ( /[0-9]/.test(base64)
         && /[A-Z]/.test(base64)
         && /[a-z]/.test(base64) )
       break
     else {
       str += 'p'
-      console.log('Adding a p as padding, this a 1/100 chance.')
+      console.log('Adding a p as padding')
     }
   }
   return base64
-}) }
-function generate(func) {
+}
+
+function shortpwd(){ generate(12) }
+function fullpwd(){ generate(28) }
+
+function generate(maxlength) {
   var apex = document.getElementById('apex').value
   var secret = getSecVal()
-  var pwd = func(apex, secret).toString()
+  var pwd = genPwdHash(apex, secret, maxlength).toString()
   var outp = document.getElementById('output')
   outp.value = pwd
   outp.disabled = false
@@ -121,21 +135,22 @@ if (saved !== null) {
 
 <section>
 <h2>Is it secure?</h2>
+<ul>
+<li>Unique password for every website (domain), preventing reuse attacks</li>
+<li>No hassle of secure backup of your passwords</li>
+</ul>
+
 The hash generated gives you up to 160bit password strength,
 depending on the passphrase.
 Passwords are unique for every website,
-since the domain is hashed.
-When you create an account at a malicious service,
-it is not able to login into any of your other accounts.
+since the domain is used in the hash.
 <br/>
-You could have multiple pass phrases,
-e.g. one for all work related, one for social media and one for remaining accounts.
+You could have multiple passphrases,
+e.g. one for all work related, one for social media etc.
 <br/>
 NOTE: some websites have a max length on a password,
-this means a lower strenght,
-especially since the hash part is.
-But the requirement of max length already indicates that such a service
-has bad security.
+resulting in lower possible strenght.
+Services demanding a short password could indicate bad security.
 </section>
 
 
@@ -161,17 +176,25 @@ resulting in 40 characters, which we convert to bas64 (28 characters).
 </section>
 
 <section>
-<h2>base64</h2>
+<h2>Technical</h2>
 Since multiple websites have a upperlimit of 32 characters for a password,
 this tool now only supports 28 character (160bit) passwords.
 <br/>
-<code>echo -n 'apex.tldPASSPHRASE'|shasum|cut -f1 -d" "|xxd -r -p|base64</code>
+We do two SHA rounds, preventing
+<a href='https://crypto.stackexchange.com/questions/47177/would-sha1-be-broken-by-sheer-brute-force-even-if-it-had-no-weaknesses-of-its-o'>brute force</a>
+searching for the master passphrase (not needed atm. but makes it future proof).
 <br/>
-<code>echo -n 'apex.tldPASSPHRASE'|shasum|awk '{print $1}'|xxd -r -p|base64</code>
+The first round (sha512sum) to prevent an offline attack when 1 or more passwords are leaked
+and the second round (sha1sum) to have 40 characters base16, which we convert to base64, resulting in 28 characters.
+<br/>
+<code>echo -n 'apex.tldPASSPHRASE'|sha512sum|tr -d '\n -'|sha1sum|cut -f1 -d' '|xxd -r -p|base64</code>
 <br/>
 (to avoid storing <code>history</code>, prepend a space to <code>echo</code>)
 <br/>
 This provides us with 28 chars of which the last one is a special char ('=').
+
+
+<h3>Padding</h3>
 We tested this with 1M records
 <br/>
 <code>for i in {1..1000000};do echo -n $i|shasum|xxd -r -p|base64;done</code>
@@ -189,29 +212,46 @@ to our initial input, giving us 'apex.tldPASSPHRASEp'.
 <br/>
 But don't worry, the tool above does this for you,
 it's just to explain the inner working of this tool.
+
+<h3>Short, 12 character password</h3>
+Some services have a password limit,
+ranging from acceptable (e.g. 32 at digid.nl or namesilo.com)
+to short (e.g. 20 at paypal.com and 16 at microsoftonline.com).
+<br/>
+When 28 chars. is too long,
+we reduce it to 12, which should always fit.
+The same padding technique applies here,
+making it occur more often for shorter passwords.
+<br/>
+To achieve this on your terminal,
+just prepend
+"<code>|cut -c17-28</code>"
+to the command.
 </section>
 
 <section>
 <h2>What about a password manager?</h2>
 The motivation for this password manager was the backup requirement
-of normal password managers.
-This is the main advantage of this solution.
+of normal password managers,
+which need to be done secure.
+This solution does not have this requirement,
+you just remember the master passphrase(s).
 <br/>
 Disadvantages compared to password manager;
 <ul>
-<li>Less bits per char, resulting in weaker passwords when truncated
-(max length on password input field)</li>
 <li>When your secret sentence is compromised,
 one could generate all your passwords
 (the same goes for your password on your online password manager)</li>
 <li>Your sentence unlocks the power to generate all your passwords,
-also the passwords for not yet existing services,
-while a password manager only stores the passwords that are actually used</li>
+also the passwords for not yet existing services
+(not sure if this is an issue)</li>
+<li>password managers provide a list of all your services
+(with this tool you should keep a list for yourself/heirs)</li>
 <li>This password mechanism allows one to generate them on the terminal
 and other insecure places, which could be a risk</li>
-<li>Just like a regular password manager with random passwords,
+<li>Just like a regular password manager that generates random passwords,
 the password cannot be memorized</li>
-<li>This system allows you to use multiple master passwords (e.g. social, work, finance, developers etc.)
+<li>This system allows you to use multiple master passwords (e.g. social, work, finance, team1, team2 etc.)
 however, for teams, this would result in more password rotations.</li>
 <br/>
 Other disadvantages;
