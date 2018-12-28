@@ -129,6 +129,8 @@ if (saved !== null) {
   document.getElementById('secret').value = saved
   getSecVal() // make it type password instead of text
 }
+if (window.location.hash)
+  document.querySelector('#apex').value = window.location.hash.substr('1')
 </script>
 </section>
 
@@ -264,6 +266,9 @@ since it comes pre-installed on most machines</li>
 </ul>
 
 </section>
+
+You can find the unpacked chrome-extension
+<a href='https://github.com/svlentink/www/tree/master/lent.ink/projects/pwd'>here</a>
 
 </body>
 
