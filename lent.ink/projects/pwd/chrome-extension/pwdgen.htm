@@ -1,0 +1,70 @@
+<html>
+<head>
+<style>
+section {
+  width: 600px;
+  margin:0 auto;
+  padding: 25px;
+  margin-bottom: 2px;
+  border: 5px solid;
+  border-radius: 10px;
+  border-bottom: 0;
+}
+#apex, #secret { width: 350px; }
+</style>
+<title>Password generator</title>
+</head>
+<body>
+
+<section>
+
+<table>
+  <tr>
+    <td>
+      <a href='https://www.google.com/search?q=what+is+an+apex+domain'>Apex</a>
+      (domain)
+    </td>
+    <td>
+      <input id="apex" value="google.com"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Secret phrase
+    </td>
+    <td>
+      <input id='secret' value='some long sentence'/>
+      <button id='eyebtn'>&#128065;</button>
+      <button id='savebtn'>&#x1f4be;</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Generate password
+    </td>
+    <td>
+      
+      <button id='fullpwdbtn'>full size (28)</button>
+      <button id='shortpwdbtn'>short (12)</button>
+      and copy to clipboard
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Password:
+    </td>
+    <td>
+      <input disabled id='output' style='width:300px;'/>
+    </td>
+  </tr>
+</table>
+
+<script src="crypto-js.js"></script>
+<script src='pwdgen.js'></script>
+</section>
+
+More info: https://lent.ink/projects/pwd
+
+</body>
+
+</html>

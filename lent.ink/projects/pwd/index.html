@@ -1,6 +1,5 @@
 <html>
 <head>
-<script type="text/javascript" src="https://cdn.lent.ink/generated/bower_components/crypto-js/crypto-js.js"></script>
 <style>
 section {
   width: 600px;
@@ -16,15 +15,13 @@ section {
 <title>Password generator</title>
 </head>
 <body>
-
-<section>
 <i>
 Generated a password in the past?
 The old version can be found
 <a href='https://lent.ink/projects/pwd/v1.html'>here</a>.
 </i>
 
-<h1>Password generator</h1>
+<section>
 
 <table>
   <tr>
@@ -42,8 +39,8 @@ The old version can be found
     </td>
     <td>
       <input id='secret' value='some long sentence'/>
-      <button onclick='eye()'>&#128065;</button>
-      <button onclick='save()'>&#x1f4be;</button>
+      <button id='eyebtn'>&#128065;</button>
+      <button id='savebtn'>&#x1f4be;</button>
     </td>
   </tr>
   <tr>
@@ -52,8 +49,8 @@ The old version can be found
     </td>
     <td>
       
-      <button onclick='fullpwd()'>full size (28)</button>
-      <button onclick='shortpwd()'>short (12)</button>
+      <button id='fullpwdbtn'>full size (28)</button>
+      <button id='shortpwdbtn'>short (12)</button>
       and copy to clipboard
     </td>
   </tr>
@@ -67,71 +64,8 @@ The old version can be found
   </tr>
 </table>
 
-<script>
-function genPwdHash(apex,secret,maxlength){
-  var str = apex + secret
-  for (var i=0;i<100;i++) {
-    var hash1 = CryptoJS.SHA512(str).toString()
-    console.log('First hash, the sha512sum',hash1, hash1.length)
-    var hash2 = CryptoJS.SHA1(hash1).toString()
-    console.log('Hash used for base64',hash2, hash2.length)
-    var pairs = hash2.match(/\w{2}/g)
-    var binarr = pairs.map(function(a){return String.fromCharCode(parseInt(a, 16));} )
-    var binstr = binarr.join("")
-    var base64 = btoa(binstr)
-    if (base64.length > maxlength)
-      base64 = base64.substr(base64.length - maxlength)
-    if ( /[0-9]/.test(base64)
-        && /[A-Z]/.test(base64)
-        && /[a-z]/.test(base64) )
-      break
-    else {
-      str += 'p'
-      console.log('Adding a p as padding')
-    }
-  }
-  return base64
-}
-
-function shortpwd(){ generate(12) }
-function fullpwd(){ generate(28) }
-
-function generate(maxlength) {
-  var apex = document.getElementById('apex').value
-  var secret = getSecVal()
-  var pwd = genPwdHash(apex, secret, maxlength).toString()
-  var outp = document.getElementById('output')
-  outp.value = pwd
-  outp.disabled = false
-  outp.select()
-  document.execCommand("Copy")
-  outp.disabled = true
-}
-function getSecVal() {
-  var secretelem = document.getElementById('secret')
-  secretelem.type = 'password'
-  return secretelem.value
-}
-function eye() {
-  var e = document.getElementById("secret")
-  if(e.type === 'text') return
-
-  e.value = ''
-  e.type = 'text'
-}
-function save() {
-  localStorage.setItem('pwddatastr',getSecVal())
-  alert('Saved to LocalStorage')
-}
-
-var saved = localStorage.getItem('pwddatastr')
-if (saved !== null) {
-  document.getElementById('secret').value = saved
-  getSecVal() // make it type password instead of text
-}
-if (window.location.hash)
-  document.querySelector('#apex').value = window.location.hash.substr('1')
-</script>
+<script src="chrome-extension/crypto-js.js"></script>
+<script src='chrome-extension/pwdgen.js'></script>
 </section>
 
 
