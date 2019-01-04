@@ -14,6 +14,9 @@ RUN ./build.sh
 WORKDIR /github-backup/svlentink_www/lentink.consulting
 RUN ./build.sh
 
+WORKDIR /github-backup/svlentink_www/lent.ink/projects/pwd
+RUN ./build.sh
+
 WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
 RUN npm install -g
 RUN npm run build

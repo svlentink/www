@@ -70,6 +70,10 @@ function save() {
   alert('Saved to LocalStorage')
 }
 
+function enlargeOutputfld() {
+  document.getElementById('output').style = 'width:300px;'
+}
+
 //set the saved password from localstorage
 SVL.storage.get(function(saved){
   if (! saved) return
@@ -107,3 +111,4 @@ document.querySelector('#eyebtn').addEventListener('click',eye)
 document.querySelector('#savebtn').addEventListener('click',save)
 document.querySelector('#fullpwdbtn').addEventListener('click',fullpwd)
 document.querySelector('#shortpwdbtn').addEventListener('click',shortpwd)
+document.querySelector('#enlargeOutputfldbtn').addEventListener('click',enlargeOutputfld)

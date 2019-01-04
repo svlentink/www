@@ -1,28 +1,31 @@
 <html>
 <head>
 <style>
-section {
-  width: 600px;
+#pwdgen {
+  width: 550px;
   margin:0 auto;
-  padding: 25px;
-  margin-bottom: 2px;
-  border: 5px solid;
+  padding:0;
+  border: 1px solid;
   border-radius: 10px;
-  border-bottom: 0;
 }
-#apex, #secret { width: 350px; }
+td:first-child {
+  width:140px;
+  text-align:right;
+}
+#apex, #secret { width: 300px; }
 </style>
 <title>Password generator</title>
 </head>
 <body>
 
-<section>
+<section id='pwdgen'>
+<!--
 
+-->
 <table>
   <tr>
     <td>
-      <a href='https://www.google.com/search?q=what+is+an+apex+domain'>Apex</a>
-      (domain)
+      Apex domain
     </td>
     <td>
       <input id="apex" value="google.com"/>
@@ -54,7 +57,8 @@ section {
       Password:
     </td>
     <td>
-      <input disabled id='output' style='width:300px;'/>
+      <input disabled id='output' style='width:10px;'/>
+      <button id='enlargeOutputfldbtn'>&gt;</button>
     </td>
   </tr>
 </table>
@@ -63,7 +67,9 @@ section {
 <script src='pwdgen.js'></script>
 </section>
 
-More info: https://lent.ink/projects/pwd
+Is it secure? how does it work?
+the chrome-extension and the source code can all be found at:
+<a href='https://github.com/svlentink/www/tree/master/lent.ink/projects/pwd'>github.com/svlentink/www/tree/master/lent.ink/projects/pwd</a>
 
 </body>
 
