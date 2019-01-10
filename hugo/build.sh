@@ -9,8 +9,10 @@ git clone https://github.com/svlentink/hugo-youtube-blog www.nonni.video/themes/
 mkdir -p ./output
 for i in `ls ./`
 do
-  cd $i
-  hugo
-  cd ..
-  mv $i/public output/$i
+  if [[ -d "$i" ]]; then
+    cd $i
+    hugo
+    cd ..
+    mv $i/public output/$i
+  fi
 done
