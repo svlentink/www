@@ -1,7 +1,7 @@
 baseURL = "http://fs.lent.ink/hugo/quickstart/public/"
 languageCode = "en-us"
 title = "Nonni video"
-theme = "hugo-youtube-blog"
+theme = "youtube"
 #googleAnalytics = "Your google analytics tracking ID - optional"
 
 [params]
