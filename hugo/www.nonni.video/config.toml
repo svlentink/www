@@ -1,4 +1,4 @@
-baseURL = "http://fs.lent.ink/hugo/quickstart/public/"
+baseURL = "http://www.nonni.video/"
 languageCode = "en-us"
 title = "Nonni video"
 theme = "youtube"
