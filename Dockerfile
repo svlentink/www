@@ -41,5 +41,6 @@ RUN  rm -r /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www/nginx /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www /var/www;
 
-COPY --from=hugo /hugo/output /var/www/hugo/output
-RUN mv /var/www/hugo/output/* /var/www/
+COPY --from=hugo /hugo/output /output
+RUN cp -r /output/* /var/www/; \
+  rm -r /output
