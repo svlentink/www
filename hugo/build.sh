@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # get themes blogs
 mkdir -p www.nonni.video/themes
@@ -6,13 +7,15 @@ git clone https://github.com/svlentink/hugo-youtube-blog www.nonni.video/themes/
 
 
 # build all blogs
-mkdir -p ./output
+mkdir -p /output
 for i in `ls ./`
 do
   if [[ -d "$i" ]]; then
     cd $i
     hugo
     cd ..
-    mv $i/public output/$i
+    mv $i/public /output/$i
   fi
 done
+mv /output ./
+
