@@ -21,9 +21,24 @@ WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
 RUN npm install -g
 RUN npm run build
 
+#FROM ubuntu AS hugo
+#RUN apt update; \
+#  apt install -y hugo tree
+#RUN apt install -y hugo --no-install-recommends
+FROM alpine AS hugo
+RUN apk add --no-cache \
+  --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+  hugo
+RUN apk add --no-cache git tree
+
+COPY --from=base /github-backup/svlentink_www/hugo /hugo
+WORKDIR /hugo
+RUN ./build.sh
+
 FROM nginx:alpine
 COPY --from=base /github-backup /github-backup
 RUN  rm -r /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www/nginx /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www /var/www;
 
+COPY --from=hugo /hugo/output/* /var/www/

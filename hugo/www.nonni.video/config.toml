@@ -1,0 +1,13 @@
+baseURL = "http://fs.lent.ink/hugo/quickstart/public/"
+languageCode = "en-us"
+title = "Nonni video"
+theme = "hugo-youtube-blog"
+#googleAnalytics = "Your google analytics tracking ID - optional"
+
+[params]
+brand = "Nonni-video"
+#description = "The website's description"
+#homeimg = "URL to the image used for the home button at the bottom of each post - optional"
+#bgimg = "URL to the image used for the page background - optional"
+
+
