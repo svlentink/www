@@ -1,76 +1,65 @@
 <html>
 <head>
+<meta name="viewport" content="width=300">
 <style>
-#pwdgen {
-  width: 550px;
-  margin:0 auto;
-  padding:0;
-  border: 1px solid;
+section {
+  width: 300px;
+  margin: 0 auto;
+}
+article {
+  margin-top: 0.5em;
+  width:15em;
+  border-left: 1px solid gray;
+  padding: 0.3em;
   border-radius: 10px;
 }
-td:first-child {
-  width:140px;
-  text-align:right;
-}
-#apex, #secret { width: 300px; }
+button { margin-right:3%; }
+hr { width: 98%; }
 </style>
 <title>Password generator</title>
 </head>
 <body>
 
 <section id='pwdgen'>
-<!--
+<!--insert-h1-here-->
 
--->
-<table>
-  <tr>
-    <td>
-      Apex domain
-    </td>
-    <td>
-      <input id="apex" value="google.com"/>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Secret phrase
-    </td>
-    <td>
-      <input id='secret' value='some long sentence'/>
-      <button id='eyebtn'>&#128065;</button>
-      <button id='savebtn'>&#x1f4be;</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Generate password
-    </td>
-    <td>
-      
-      <button id='fullpwdbtn'>full size (28)</button>
-      <button id='shortpwdbtn'>short (12)</button>
-      and copy to clipboard
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Password:
-    </td>
-    <td>
-      <input disabled id='output' style='width:10px;'/>
-      <button id='enlargeOutputfldbtn'>&gt;</button>
-    </td>
-  </tr>
-</table>
+<article>
+  Apex domain
+  <br/>
+  <input id="apex" value="google.com"/>
+</article>
+<article>
+  Secret phrase
+  <button id='eyebtn'>&#128065;</button>
+  <button id='savebtn'>&#x1f4be;</button>
+  <br/>
+  <input id='secret' value='some long sentence'/>
+</article>
+<article>
+  Generate password
+  <br/>
+  <button id='fullpwdbtn'>full size (28)</button>
+  <button id='shortpwdbtn'>short (12)</button>
+  <br/>
+  and copy to clipboard
+</article>
+<article>
+  Password:
+  <input disabled id='output' style='width:10px;'/>
+  <button id='enlargeOutputfldbtn'>&gt;</button>
+</article>
 
 <script src="crypto-js.js"></script>
 <script src='pwdgen.js'></script>
 </section>
 
+<hr/>
+<section>
 Is it secure? how does it work?
 the chrome-extension and the source code can all be found at:
-<a href='https://github.com/svlentink/www/tree/master/lent.ink/projects/pwd'>github.com/svlentink/www/tree/master/lent.ink/projects/pwd</a>
-
+<a href='https://github.com/svlentink/www/tree/master/lent.ink/projects/pwd'>github.com/svlentink/www/tree/master/</a>
+<a href='https://github.com/svlentink/www/tree/master/lent.ink/projects/pwd'>lent.ink/projects/pwd</a>
+</section>
 </body>
 
 </html>

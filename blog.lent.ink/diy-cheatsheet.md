@@ -216,3 +216,11 @@ root@OrangePI:~# cat /etc/cron.d/relay
 We now have a smart heater,
 controlled by time and multiple people can change the dropbox file,
 turning the heater on.
+
+This is a very simple example,
+a better way would be
+[ifttt](https://www.iotgadgets.com/2018/02/build-diy-google-assistant-controlled-smart-home-light-raspberry-pi/)
+or using
+[Google Assistant](https://www.makeuseof.com/tag/diy-google-home-assistant-raspberry-pi/).
+
+
