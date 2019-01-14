@@ -6,6 +6,7 @@
   "permissions": [ "tabs", "storage" ],
   "browser_action": {
     "name": "Generate Password",
-    "default_popup": "pwdgen.htm"
+    "default_popup": "pwdgen.htm",
+    "default_icon": "icon.png"
   }
 }
