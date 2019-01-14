@@ -112,3 +112,24 @@ document.querySelector('#savebtn').addEventListener('click',save)
 document.querySelector('#fullpwdbtn').addEventListener('click',fullpwd)
 document.querySelector('#shortpwdbtn').addEventListener('click',shortpwd)
 document.querySelector('#enlargeOutputfldbtn').addEventListener('click',enlargeOutputfld)
+
+
+/*
+The following enables us to have a PWA
+Progressive Web App
+
+Having a service worker is a requirement,
+please see: https://developers.google.com/web/fundamentals/app-install-banners/#criteria
+*/
+if (navigator && 'serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
