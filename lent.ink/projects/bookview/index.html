@@ -1,0 +1,64 @@
+<html>
+<head></head>
+<body>
+<h1>Bookviewer</h1>
+
+During college, you need to read books for exams.
+Sometimes a very expensive book has only one or two chapters you need to know.
+<br/>
+Usually some student somewhere scans the pages and shares them.
+<br/>
+In the past, people shared a folder with images (scanned pages),
+nowadays it's mostly PDF.
+<br/>
+This tool was build before that age.
+<br/>
+
+<table>
+  <tr>
+    <td>
+      <a href='browse/'>Browse</a>
+    </td>
+    <td>
+      Go through pages
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href='list/'>list</a>
+    </td>
+    <td>
+      Compose list of chapters
+    </td>
+  </tr>
+</table>
+
+This tool depends on a CDN which hosts the pictures.
+Usually this content is copy write protected.
+<br/>
+Therefor we have the metadata of the book separate.
+<pre><code>
+{
+  "pagesUrl": "http://shady.server.com/mybook/",
+  "index":{
+    "chapterid": ["title","alternative-title"]
+  },
+  "chapters":{
+    "chapterid": {
+      "start": 42, #number of starting page
+      "end": 45
+    }
+  },
+  "pages":{
+    "42": {
+      "firstChapterOnPage" : "chapterid", #optional
+      "file": "042_mybook.jpg"
+    }
+  }
+}  
+</code></pre>
+
+You supply your .json with this info as a hash parameter to the tools.
+
+</body>
+</html>

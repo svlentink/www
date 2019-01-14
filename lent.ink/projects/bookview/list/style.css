@@ -1,0 +1,39 @@
+body,section {
+  margin:0px;
+  padding:0px;
+}
+
+img {
+  margin:5px;
+  height: 95%;
+  display:block;
+  float:left;
+}
+
+button {
+  display:block;
+}
+
+div {
+  overflow:hidden;
+  float:left;
+}
+
+.image-row,hr {
+  page-break-after:always;
+  clear:both;
+  display:block;
+  min-width:95%;
+}
+
+
+/* clip: shape(top, right, bottom, left); */
+.rightcolumn {
+}
+.leftcolumn {
+/* position: absolute;
+    clip: rect(0, 100px, 200px, 0); */
+}
+
+
+
