@@ -112,7 +112,11 @@ document.querySelector('#savebtn').addEventListener('click',save)
 document.querySelector('#fullpwdbtn').addEventListener('click',fullpwd)
 document.querySelector('#shortpwdbtn').addEventListener('click',shortpwd)
 document.querySelector('#enlargeOutputfldbtn').addEventListener('click',enlargeOutputfld)
-
+document.querySelector('#showHelpBtn').addEventListener('click',function(){
+  var ps = document.querySelectorAll('p')
+  ps.forEach(function(p){ p.style.display = 'block' })
+  document.querySelector('#showHelpBtn').style.display = 'none'
+})
 
 /*
 The following enables us to have a PWA
