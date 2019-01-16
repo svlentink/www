@@ -223,4 +223,75 @@ a better way would be
 or using
 [Google Assistant](https://www.makeuseof.com/tag/diy-google-home-assistant-raspberry-pi/).
 
+NOTE: you may want to google '/etc/timezone'
+
+### actual implementation
+
+The example above was to illustrate how one could do it,
+the actual code:
+
+`/etc/cron.d/heater`
+```shell
+# turn on during these times
+30 4,15 * * * root echo 1 > /run/relay
+
+# turn off during these times
+15 6 * * * root echo 0 > /run/relay
+45 20,23 * * * root echo 0 > /run/relay
+
+# dropbox only checks if current state is off
+*/3 * * * * root /usr/local/bin/check-dropbox.sh
+
+# set state
+* * * * * root /usr/local/bin/set-relay.py `cat /run/relay`
+
+```
+
+`/usr/local/bin/check-dropbox.sh`
+```shell
+#!/bin/sh
+
+# The following can be a link to a shared dropbox file or a file on your server
+FILELOC="https://www.dropbox.com/s/dl/SECRET-TOKEN/filename.txt?dl=1"
+
+grep 0 /run/relay \
+  && curl --silent -L $FILELOC | grep -q 1 \
+  && echo 1 > /run/relay
+
+```
+
+`/usr/local/bin/run-relay-webserver.py`
+```python
+#!/usr/bin/env python
+
+from flask import Flask
+from flask import request
+app = Flask(__name__)
+
+var homepage = '''
+<html>
+<head></head>
+<body>
+Turn the heater
+'<a href="/setrelay/1">on</a>
+or turn it
+'<a href="/setrelay/0">off</a>
+</body>
+</html>
+'''
+
+@app.route('/', methods=['GET'])
+def serve_homepage():
+  return(homepage,200)
+
+@app.route('/setrelay/<int:inp>', methods=['GET'])
+def update_relay(inp):
+#  print(request) # debug
+  with open('/run/relay', 'w') as f: 
+    f.write(inp) 
+  return(inp,200)
+
+if __name__ == '__main__':
+  app.run(debug=True, port=80, host='0.0.0.0')
+```
 
