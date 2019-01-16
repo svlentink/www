@@ -262,7 +262,7 @@ grep 0 /run/relay \
 
 `/usr/local/bin/run-relay-webserver.py`
 ```python
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from flask import Flask
 from flask import request
@@ -273,9 +273,9 @@ var homepage = '''
 <head></head>
 <body>
 Turn the heater
-'<a href="/setrelay/1">on</a>
+<a href="/setrelay/1">on</a>
 or turn it
-'<a href="/setrelay/0">off</a>
+<a href="/setrelay/0">off</a>
 </body>
 </html>
 '''
@@ -284,9 +284,10 @@ or turn it
 def serve_homepage():
   return(homepage,200)
 
-@app.route('/setrelay/<int:inp>', methods=['GET'])
-def update_relay(inp):
+@app.route('/setrelay/<int:value>', methods=['GET'])
+def update_relay(value):
 #  print(request) # debug
+  inp = str(value)
   with open('/run/relay', 'w') as f: 
     f.write(inp) 
   return(inp,200)
@@ -295,3 +296,7 @@ if __name__ == '__main__':
   app.run(debug=True, port=80, host='0.0.0.0')
 ```
 
+deps.:
+```
+pip3 install flask
+```
