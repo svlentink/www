@@ -1,10 +1,12 @@
-# cheatsheet DIY home automation
+---
+title: "cheatsheet DIY home automation"
+date: "2019-01-14"
+draft: false
+---
 
-First let set the scene.
-+ Love cheap solutions for home automation
-+ Love being able to write custom code
-+ Hate it when stuff is dependant on the vendors' server (most smart products)
-+ Don't like the physical aspect, get me the CLI over SSH ASAP
+This cheatsheet shows the steps to a DIY project
+and was used to make my heater smart.
+This guide is only readable to technical people.
 
 In the past I worked with primitive setups like Arduino
 or tried to get an ESP8266 wifi relay working.
@@ -12,17 +14,25 @@ In my opinion,
 too limited and only worth considering if you need analog or economies of scale.
 Therefor, all my DIY home automation have a Linux kernel.
 
+To understand this cheatsheet, this is my point of view;
++ Love cheap solutions for home automation
++ Love being able to write custom code
++ Hate it when stuff is dependent on the vendors' server (most smart products)
++ Don't like the physical aspect, get me the CLI over SSH ASAP
+
+
+
 ## Step00: hardware
 
 Get the required hardware.
 
 + USB to TTL
-+ Board
++ Board with wifi
 + dupont cables
 + power supply
 + relay
 + SD card
-+ Laptop with Linux, Windows or Mac
++ Laptop with Linux, Windows or Mac (i.e. not a Chromebook or tablet)
 + etc.
 
 ## Step01: bootable
@@ -239,7 +249,7 @@ the actual code:
 15 6 * * * root echo 0 > /run/relay
 45 20,23 * * * root echo 0 > /run/relay
 
-# dropbox only checks if current state is off
+# dropbox only checked when current state is off
 */3 * * * * root /usr/local/bin/check-dropbox.sh
 
 # set state
@@ -268,7 +278,7 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-var homepage = '''
+homepage = '''
 <html>
 <head></head>
 <body>
@@ -300,3 +310,5 @@ deps.:
 ```
 pip3 install flask
 ```
+
+The server is started in a `tmux` session.
