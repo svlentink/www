@@ -55,6 +55,7 @@ Currently I use Atom, which I really love!
 Of course there are some things that I would like
 [to see updated](https://github.com/atom/atom/issues/9411).
 But with the following packages:
+
 + markdown-preview-plus
 + language-docker
 + language-latex
@@ -65,9 +66,11 @@ But with the following packages:
 + red-wavy-underline
 + standard-formatter
 + tabs-to-spaces
+
 it is an amazing IDE.
 
 I also disabled some default packages;
+
 + welcome
 + whitespace (only important in this list)
 + language-csharp

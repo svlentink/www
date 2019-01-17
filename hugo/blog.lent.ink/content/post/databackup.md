@@ -141,12 +141,14 @@ parameters:
 When we have clasified the 5 fields for our data set,
 we first check for the post picky field,
 down to the most generic:
+
 - revision
 - confidentiality
 - size
 
 The last two fields can be solved in various ways,
 by providing backup(s) and different forms of availabilities:
+
 - availability
 - value
 

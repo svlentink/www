@@ -16,6 +16,7 @@ too limited and only worth considering if you need analog or economies of scale.
 Therefor, all my DIY home automation have a Linux kernel.
 
 To understand this cheatsheet, this is my point of view;
+
 + Love cheap solutions for home automation
 + Love being able to write custom code
 + Hate it when stuff is dependent on the vendors' server (most smart products)
@@ -129,6 +130,7 @@ set-relay.py 0 # turn off
 ```
 
 Hardware:
+
 - connect the jumper on the relay board between 'VCC' and 'JD VCC'
 - connect the 'VCC' near the 'in1' to 5V on the controller board
 - connect GND to GND

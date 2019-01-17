@@ -112,6 +112,7 @@ But for those on a budget,
 When buying a new phone, specs can be overwhelming.
 A lot of things are marketed and not useful.
 Keep in mind that;
+
 + A phone screen with a resolution higher then FullHD only drains your battery,
 you won't see the difference with the naked eye (maybe with VR).
 + Your phone may only need 1GB of RAM to operate, but the more you have,

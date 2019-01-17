@@ -61,6 +61,7 @@ which has Linux mode.
 ## What it cannot do
 
 The following obvious things I do not do:
+
 + gaming
 + video editing
 + CAD
@@ -70,6 +71,7 @@ which all will not work on a chromebook.
 #### When it failed me
 
 In just two cases,
+
 I used my pinebook (linux) instead of my chromebook;
 + serial console for [DIY home automation project](https://blog.lent.ink/post/diy-cheatsheet/)
 + access Dell server via DRAC, which required Open VPN to access management network
