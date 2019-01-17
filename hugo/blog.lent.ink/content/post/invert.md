@@ -5,7 +5,7 @@ draft: false
 tags: ["old"]
 ---
 
-~~This is an old post, nowadays I use a chromebook with a web IDE running on my server, which is set to dark theme.~~
+*This is an old post, nowadays I use a chromebook with a web IDE running on my server, which is set to dark theme.*
 
 
 Some programmers use flux,

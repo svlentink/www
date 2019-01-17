@@ -5,7 +5,7 @@ draft: false
 tags: ["old"]
 ---
 
-~~This is an old post, nowadays I would recommend [android.com/one](http://android.com/one)~~
+*This is an old post, nowadays I would recommend [android.com/one](http://android.com/one)*
 
 
 We all know it, our phone is crappy and we want to upgrade it.

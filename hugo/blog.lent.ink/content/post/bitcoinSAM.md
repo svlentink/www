@@ -6,7 +6,7 @@ tags: ["edu"]
 ---
 
 
-~~SAM of bitcoin.org/bitcoin.pdf~~
+*SAM of bitcoin.org/bitcoin.pdf*
 
 We first present the different parts,
 before constructing the graphical representation of SAM (Scientific Argumentation Model)
@@ -70,4 +70,4 @@ an amount [..] similar to the level of information released by stock exchanges"
 
 + "The proof-of-work also solves the problem of determining representation in majority decision making."
 
-![alt text](SAM.png "Open with draw.io to edit")
+![Open with draw.io to edit](../SAM.png "Open with draw.io to edit")

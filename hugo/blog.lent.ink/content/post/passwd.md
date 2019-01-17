@@ -5,7 +5,7 @@ draft: false
 tags: ["old"]
 ---
 
-~~Old post, do not use this advice, but the tool found at [lent.ink/projects/pwd](http://lent.ink/projects/pwd)~~
+*Old post, do not use this advice, but the tool found at [lent.ink/projects/pwd](http://lent.ink/projects/pwd)*
 
 
 As a logician, I like to order certain things in my life,

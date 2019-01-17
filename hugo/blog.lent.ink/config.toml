@@ -2,7 +2,7 @@ baseurl = "https://blog.lent.ink/"
 languageCode = "en"
 title = "Blog"
 theme = "kiss"
-#copyright = "footerhtml"
+copyright = "Blog by <a href='https://lent.ink'>lent.ink</a>"
 #googleAnalytics = ""
 # Number of posts per page
 Paginate = 5

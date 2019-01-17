@@ -63,7 +63,7 @@ Warning, next is really geeky, please skip!
 > which takes the keyboard input from a USB OTG keyboard and
 > shows the output not in an in-app browser, but servers them
 > to the tethered device at port 80.
-> Why this set up you ask? Not just the web based SSH on my VPS?
+> Why this setup you ask? Not just the web based SSH on my VPS?
 > Because my ereader (first sony) has an old linux kernel that
 > does not support OTG, which I really need for the keyboard.
 
@@ -73,8 +73,8 @@ and does not need a e-ink screen, this is not an argument.
 But saving money on hardware is.
 
 Compare a macbook pro to a chromebook with 4GB ram and 1080p.
-The difference is 1300eu to 300eu.
-Which is the equivalent of years of powerful VPS rental.
+The difference is 1300eu to 220eu.
+Which can be used to rent a powerful VPS for years.
 
 ## Conclusion
 

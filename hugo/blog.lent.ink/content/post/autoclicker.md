@@ -5,7 +5,7 @@ draft: false
 tags: ["old"]
 ---
 
-~~This tool has helped a colleague find his partner on a dating site.~~
+*This tool has helped a colleague find his partner for life on a dating site.*
 
 
 This post is a little shady.

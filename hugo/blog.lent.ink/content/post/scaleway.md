@@ -5,7 +5,7 @@ draft: false
 tags: ["old"]
 ---
 
-~~This is an old post, Scaleway does offer cheap 64bit VPSes now.~~
+*This is an old post, Scaleway does offer cheap 64bit VPSes now.*
 
 Scaleway has a good deal with their ARM VPS.
 But there are some down sides..
