@@ -1,4 +1,10 @@
-# Open source recruitement
+---
+title: "Open source recruitement"
+date: "2017-03-06"
+draft: true
+tags: ["old"]
+---
+
 
 A lot of companies need skilled software developers and IT operations.
 Which made the demand high and created a whole new market, IT recruitement.

@@ -2,6 +2,7 @@
 title: "data backup strategy"
 date: "2019-01-10"
 draft: false
+tags: ["security"]
 ---
 
 We all have data we value,

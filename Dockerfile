@@ -27,12 +27,14 @@ RUN npm run build
 #RUN apt install -y hugo --no-install-recommends
 FROM alpine AS hugo
 RUN apk add --no-cache \
-  --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+  --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
   hugo
 RUN apk add --no-cache git tree
 
-COPY --from=base /github-backup/svlentink_www/hugo /hugo
-WORKDIR /hugo
+ARG HUGOPATH=/hugo
+COPY --from=base /github-backup/svlentink_www/hugo $HUGOPATH
+WORKDIR $HUGOPATH
+RUN ./get-themes.sh
 RUN ./build.sh
 
 FROM nginx:alpine

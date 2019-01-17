@@ -1,4 +1,9 @@
-# Good programmers are irreplaceable, bad are indispensable
+---
+title: "Good programmers are irreplaceable, bad are indispensable"
+date: "2015-11-18"
+draft: false
+tags: ["philosophy"]
+---
 
 This article walks through an important aspect of code maintenance; responsibility.
 Who is responsible for the code quality, the programmer, the supervisor?
@@ -67,4 +72,3 @@ it will pay back itself.
 And if he leaves, you'll miss him, your next coder will not start on the knowledge level he was,
 but he is able to understand the work that he gets handed over.
 
-- Written by #svlentink at Q4 2015, status : concept -

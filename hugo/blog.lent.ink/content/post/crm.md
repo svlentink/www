@@ -1,4 +1,10 @@
-# A new CMS for your company
+---
+title: "A new CMS for your company"
+date: "2017-06-04"
+draft: true
+tags: ["old"]
+---
+
 
 In our increasingly digital society, choosing the right
 ['Content Management System' (CMS)](https://en.wikipedia.org/wiki/)

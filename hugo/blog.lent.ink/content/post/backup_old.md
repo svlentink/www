@@ -1,8 +1,13 @@
-# Data storage
+---
+title: "Data storage"
+date: "2017-05-13"
+draft: true
+tags: ["old"]
+---
+
 
 This article will contain thoughts on the various
 aspects when choosing what to backup and how.
-Currently: WIP
 
 ## Variables
 

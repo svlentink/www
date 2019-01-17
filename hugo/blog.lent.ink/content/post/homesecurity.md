@@ -1,4 +1,10 @@
-# Home automation
+---
+title: "Home automation security considerations"
+date: "2017-06-04"
+draft: true
+tags: ["old"]
+---
+
 
 Before you start with DIY home automation,
 first ask yourself

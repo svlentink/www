@@ -1,4 +1,12 @@
-# My fav. IDE
+---
+title: "My favorite IDE"
+date: "2015-11-11"
+draft: true
+tags: ["old"]
+---
+
+~~This is an old post, nowadays I use a web IDE.~~
+
 
 We all start with something like notepad++ until we start for something more useful.
 

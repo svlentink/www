@@ -1,4 +1,10 @@
-# Forever 22
+---
+title: "Forever 22"
+date: "2015-11-18"
+draft: false
+tags: ["old"]
+---
+
 
 Let's talk about something that can benefit our lives.
 No, not online clothes shopping, but SSH to your Linux VPS!
@@ -10,16 +16,16 @@ then this article isn't for you
 As a programmer, I see myself as an artist.
 Coding is a creative process for me,
 which results in making creative notes all the time.
-And sometimes, you just want to code that ideas,
+Sometimes, you just want to code that ideas,
 in the park, on the train etc.
 
 Some of us may know the struggle,
 working from public transit, in the park or any place with bad internet.
 We use our phone as modem and make sure not to download dependencies
-on the go. Because doing `apt-get install -y texlive-full` will result
-in your laptop or phone batt. dying before you get it.
+on the go. Because doing `apt-get install -y texlive-full` will drain
+your laptop or phone batt. before you get it.
 
-Zooming out, looking at it from a distance; "What do I want?"
+In perspective; "What do I want?"
 The answer is simple, I want to create and debug code,
 for which I sometimes need large packages.
 
@@ -80,4 +86,3 @@ For me, the consistent internet speed, the freedom to work from many devices,
 the extra level of geek, the money saving and a less heavy laptop,
 make it my current challenge.
 
-- Written by #svlentink at Q4 2015, status : concept -

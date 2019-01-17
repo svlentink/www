@@ -1,4 +1,13 @@
-# Color inversion
+---
+title: "color inversion"
+date: "2015-12-11"
+draft: false
+tags: ["old"]
+---
+
+~~This is an old post, nowadays I use a chromebook with a web IDE running on my server, which is set to dark theme.~~
+
+
 Some programmers use flux,
 which makes sense if you need to view pictures,
 but I prefer to invert the colors, system wide.

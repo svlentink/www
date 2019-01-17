@@ -1,10 +1,7 @@
 #!/bin/sh
 set -e
 
-# get themes blogs
-mkdir -p www.nonni.video/themes
-git clone https://github.com/svlentink/hugo-youtube-blog www.nonni.video/themes/youtube
-
+hugo version
 
 # build all blogs
 mkdir -p /output

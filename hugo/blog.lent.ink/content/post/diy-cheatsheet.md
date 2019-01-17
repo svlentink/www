@@ -2,6 +2,7 @@
 title: "cheatsheet DIY home automation"
 date: "2019-01-14"
 draft: false
+tags: ["DIY"]
 ---
 
 This cheatsheet shows the steps to a DIY project

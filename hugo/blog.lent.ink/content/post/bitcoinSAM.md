@@ -1,4 +1,12 @@
-# SAM of bitcoin.org/bitcoin.pdf
+---
+title: "SAM Scientific Argumentation Model of Bitcoin"
+date: "2017-10-11"
+draft: false
+tags: ["edu"]
+---
+
+
+~~SAM of bitcoin.org/bitcoin.pdf~~
 
 We first present the different parts,
 before constructing the graphical representation of SAM (Scientific Argumentation Model)

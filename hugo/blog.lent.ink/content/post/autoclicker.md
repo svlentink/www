@@ -1,4 +1,12 @@
-# Auto clicker
+---
+title: "Auto clicker"
+date: "2017-05-04"
+draft: false
+tags: ["old"]
+---
+
+~~This tool has helped a colleague find his partner on a dating site.~~
+
 
 This post is a little shady.
 

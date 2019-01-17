@@ -1,17 +1,25 @@
-# Scaleway C3
+---
+title: "Scaleway C3"
+date: "2015-12-16"
+draft: false
+tags: ["old"]
+---
+
+~~This is an old post, Scaleway does offer cheap 64bit VPSes now.~~
 
 Scaleway has a good deal with their ARM VPS.
 But there are some down sides..
-One of them I have fixed (ufw),
-and the other, getting to run docker on them,
+
+One of them I have fixed (ufw).
+The other, getting to run docker on them,
 I have not tried to tackle.
-I'm currently happy, but maybe switch to OVH in the future,
+I'm currently satisfied, but may switch to OVH in the future,
 since their (same price) VPS has 64bit, which will run docker.
 
 ## Scaleway ufw lock out
 
 I could not get the firewall up and running,
-it kept locking me out, when until I found
+it kept locking me out, until I found
 [this]{https://community.scaleway.com/t/how-to-configures-iptables-with-input-rules-with-dynamic-nbd/303/22}
 solution;
 

@@ -1,4 +1,10 @@
-# So you want to become a hacker?
+---
+title: "So you want to become a hacker?"
+date: "2016-03-17"
+draft: false
+tags: ["old"]
+---
+
 
 First lets get one thing straight.
 You have two groups, the angels and the daemons,

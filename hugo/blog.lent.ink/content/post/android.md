@@ -1,4 +1,12 @@
-# The android phone for an iOS user
+---
+title: "The android phone for an iOS user"
+date: "2015-12-22"
+draft: false
+tags: ["old"]
+---
+
+~~This is an old post, nowadays I would recommend [android.com/one](http://android.com/one)~~
+
 
 We all know it, our phone is crappy and we want to upgrade it.
 For a lot of people this means a new iPhone,

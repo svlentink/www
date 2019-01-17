@@ -1,4 +1,12 @@
-# Passwords, can you remember them all?
+---
+title: "Passwords, can you remember them all?"
+date: "2015-09-11"
+draft: false
+tags: ["old"]
+---
+
+~~Old post, do not use this advice, but the tool found at [lent.ink/projects/pwd](http://lent.ink/projects/pwd)~~
+
 
 As a logician, I like to order certain things in my life,
 based on logic, instead of emotion.
