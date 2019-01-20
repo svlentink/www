@@ -8,7 +8,7 @@ RUN pip3 install -r GithubCloner/requirements.txt
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
 RUN zip -r /all.zip /github-backup
 RUN mv /all.zip /github-backup/
-#COPY . /github-backup/svlentink_www
+COPY . /github-backup/svlentink_www
 
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
 RUN ./build.sh
