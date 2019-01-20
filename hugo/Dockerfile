@@ -7,6 +7,6 @@ RUN apk add --no-cache git tree
 ARG HUGOPATH=/hugo
 COPY . $HUGOPATH
 WORKDIR $HUGOPATH
-#RUN ./get-themes.sh
+RUN ./get-themes.sh
 VOLUME $HUGOPATH
 ENTRYPOINT /hugo/build.sh

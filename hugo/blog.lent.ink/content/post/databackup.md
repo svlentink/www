@@ -36,7 +36,6 @@ is not independent of the platform.
 We will first show the raw data
 and then discuss it;
 ```yaml
-
 parameters:
   revision:
     desc: is version control (VCS) a required
@@ -252,8 +251,7 @@ docker save  > image-name.tar
 On my own machine (PC)
 my files are stored on the hdd.
 
-```
-                                      ____________
+```                                   ____________
                                      |sep. backup |
                                      |____________|
                                   __.
@@ -284,9 +282,6 @@ my files are stored on the hdd.
 | | |_________________________| | |
 | |_____________________________| |
 |_________________________________|
-
-
-
 ```
 I have a cloud sync running (e.g. dropbox or drive)
 and see this as my root directory for all my files,

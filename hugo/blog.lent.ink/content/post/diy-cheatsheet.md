@@ -71,7 +71,6 @@ auto wlan0
 iface wlan0 inet dhcp
   wpa-ssid "my wifi network name"
   wpa-psk MyPlainTextPassWord
-
 ```
 
 ## step03 install 
@@ -115,7 +114,6 @@ else:
   GPIO.output(pin,True)
 
 print(val)
- 
 ```
 
 Don't forget to:
@@ -189,8 +187,6 @@ fi
 curl --silent -L $FILELOC \
   | grep 1 \
   || echo 0
-exit
-
 ```
 pay attention to **dl=1**.
 
@@ -257,7 +253,6 @@ the actual code:
 
 # set state
 * * * * * root /usr/local/bin/set-relay.py `cat /run/relay`
-
 ```
 
 `/usr/local/bin/check-dropbox.sh`
@@ -270,7 +265,6 @@ FILELOC="https://www.dropbox.com/s/dl/SECRET-TOKEN/filename.txt?dl=1"
 grep 0 /run/relay \
   && curl --silent -L $FILELOC | grep -q 1 \
   && echo 1 > /run/relay
-
 ```
 
 `/usr/local/bin/run-relay-webserver.py`

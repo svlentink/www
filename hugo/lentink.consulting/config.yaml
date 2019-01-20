@@ -1,0 +1,30 @@
+
+baseURL: http://fs.lent.ink/public/
+languageCode: en-us
+title: Lentink.consulting
+theme: yourfolio
+disableKinds: [RSS, taxonomy, taxonomyTerm]
+#googleAnalytics: UA-XXXXX-Y
+
+# Menu items
+menu:
+  main:
+  - name: About
+    weight: 1
+    url: /about
+  - name: Contact
+    weight: 2
+    url: /contact
+  - name: Resume
+    weight: 6
+    url: /resume
+  - name: Blog
+    weight: 8
+    url: https://blog.lent.ink
+
+# Custom params
+params:
+  env: development
+  logoImage: img/logo.png
+#  logoImageAlt: Yourfolio Theme brand logo
+

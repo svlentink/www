@@ -3,16 +3,18 @@ set -e
 
 hugo version
 
-# build all blogs
-mkdir -p /output
+mkdir -p ./output
+rm -r ./output/* 2>/dev/null || true  #delete previous builds
+
 for i in `ls ./`
 do
-  if [[ -d "$i" ]]; then
+  if [ -d "$i" ] && [ "$i" != "output" ]; then
+    echo START $i
     cd $i
     hugo
     cd ..
-    mv $i/public /output/$i
+    mv $i/public ./output/$i
+    echo END $i
   fi
 done
-mv /output ./
 
