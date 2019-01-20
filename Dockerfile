@@ -8,7 +8,7 @@ RUN pip3 install -r GithubCloner/requirements.txt
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
 RUN zip -r /all.zip /github-backup
 RUN mv /all.zip /github-backup/
-COPY . /github-backup/svlentink_www
+#COPY . /github-backup/svlentink_www
 
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
 RUN ./build.sh
@@ -28,6 +28,7 @@ COPY --from=base /github-backup/svlentink_resume /resume
 WORKDIR /resume
 RUN pip install -r requirements.txt
 
+RUN mv /resume/content /content
 ENV COMPILE_LANGUAGE english
 RUN parsers/generate_all.py
 ENV COMPILE_LANGUAGE dutch
