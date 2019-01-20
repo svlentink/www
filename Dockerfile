@@ -28,6 +28,7 @@ COPY --from=base /github-backup/svlentink_resume /resume
 WORKDIR /resume
 RUN pip install -r requirements.txt
 
+RUN mkdir -p /output
 RUN mv /resume/content /content
 ENV COMPILE_LANGUAGE english
 RUN parsers/generate_all.py
