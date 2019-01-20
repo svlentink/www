@@ -6,6 +6,8 @@ RUN apt install -y python3 python3-pip zip
 RUN git clone https://github.com/mazen160/GithubCloner.git
 RUN pip3 install -r GithubCloner/requirements.txt
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
+RUN zip -r /all.zip /github-backup
+RUN mv /all.zip /github-backup/
 COPY . /github-backup/svlentink_www
 
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
@@ -21,10 +23,17 @@ WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
 RUN npm install -g
 RUN npm run build
 
-#FROM ubuntu AS hugo
-#RUN apt update; \
-#  apt install -y hugo tree
-#RUN apt install -y hugo --no-install-recommends
+FROM python AS resume
+COPY --from=base /github-backup/svlentink_resume /resume
+WORKDIR /resume
+RUN pip install -r requirements.txt
+
+ENV COMPILE_LANGUAGE english
+RUN parsers/generate_all.py
+ENV COMPILE_LANGUAGE dutch
+RUN parsers/generate_all.py
+
+
 FROM alpine AS hugo
 RUN apk add --no-cache \
   --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
@@ -42,6 +51,8 @@ COPY --from=base /github-backup /github-backup
 RUN  rm -r /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www/nginx /etc/nginx/conf.d; \
   mv /github-backup/svlentink_www /var/www;
+
+COPY --from=resume /output /var/www/cdn.lent.ink/resume
 
 COPY --from=hugo /hugo/output /output
 RUN cp -r /output/* /var/www/; \

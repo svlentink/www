@@ -14,12 +14,15 @@ set -e
 # but it required everything in yaml format
 # and links were not showing etc.
 # https://themes.gohugo.io/yourfolio/
+# second, terrassa was too orange
+# # https://themes.gohugo.io/hugo-terrassa-theme/
 ( mkdir lentink.consulting/themes \
-  && git clone https://github.com/danielkvist/hugo-terrassa-theme.git lentink.consulting/themes/terrassa ) \
+  && git clone https://github.com/fredrikloch/hugoscroll.git lentink.consulting/themes/hugoscroll ) \
   || echo theme already downloaded
 # https://themes.gohugo.io/hugo-lodi-theme/
-# https://themes.gohugo.io/hugo-terrassa-theme/
 # https://themes.gohugo.io/hugo-serif-theme/
+# https://themes.gohugo.io/air/
+
 
 # mkdir -p lent.ink/themes
 # https://themes.gohugo.io/hugo-nederburg-theme/

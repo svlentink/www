@@ -1,0 +1,18 @@
+baseurl = "/public/"
+title = "Lentink.consulting"
+author = "Sander Lentink"
+googleAnalytics = ""
+defaultContentLanguage = "en"
+language = "en-US"
+theme = "hugoscroll"
+
+[Params]
+  github = "svlentink"
+#  bitbucket = "floch"
+#  twitter = "svlentink"
+#  email = "sv@lent.ink"
+  description = "Freelance DevOps / Linux Engineer"
+  linkedin = "svlentink"
+  cover = "penguin-container.jpg"
+#  logo = "/img/logo-1.jpg"
+
