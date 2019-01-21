@@ -16,5 +16,9 @@ I'm passionate about technology,
 eager to create and learn,
 diligent and always looking to get the job done.
 
+
+<img src="http://cdn.lent.ink/img/chair.jpg">
+
+
 Love to gain more experience with container orchestration such as kubernetes.
 Like it when my work incorporates data science, security and writing code.
