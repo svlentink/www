@@ -23,18 +23,6 @@ WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
 RUN npm install -g
 RUN npm run build
 
-FROM svlentink/yaml-resume AS resume
-#COPY --from=base /github-backup/svlentink_resume /resume
-#WORKDIR /resume
-#RUN pip install -r requirements.txt
-
-#RUN mkdir -p /output
-#RUN mv /resume/content /content
-ENV COMPILE_LANGUAGE english
-RUN parsers/generate_all.py
-ENV COMPILE_LANGUAGE dutch
-RUN parsers/generate_all.py
-
 
 FROM alpine AS hugo
 RUN apk add --no-cache \
@@ -47,6 +35,21 @@ COPY --from=base /github-backup/svlentink_www/hugo $HUGOPATH
 WORKDIR $HUGOPATH
 RUN ./get-themes.sh
 RUN ./build.sh
+
+
+FROM svlentink/yaml-resume AS resume
+#FROM python AS resume
+#COPY --from=base /github-backup/svlentink_resume /resume
+#WORKDIR /resume
+#RUN pip install -r requirements.txt
+#RUN mkdir -p /output
+#RUN mv /resume/content /content
+ENV COMPILE_LANGUAGE english
+RUN parsers/generate_all.py
+ENV COMPILE_LANGUAGE dutch
+RUN parsers/generate_all.py
+RUN ls /output
+
 
 FROM nginx:alpine
 COPY --from=base /github-backup /github-backup
