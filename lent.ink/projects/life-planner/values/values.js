@@ -30,7 +30,7 @@
       title.innerText = key
       var desc = document.createElement('span')
       desc.setAttribute('class', 'desc desc-' + key)
-      desc.innerText = data[key].desc || 'No_desc_found'
+      desc.innerText = data[key].desc || 'No_description_found'
   
       var fl = document.createElement('article')
       fl.setAttribute('class', 'foundation')
@@ -49,7 +49,7 @@
         
         var d = document.createElement('span')
         d.setAttribute('class', 'desc')
-        d.innerText = obj.desc || 'No_desc_found'
+        d.innerText = obj.desc || 'No_description_found'
         
         li.appendChild(t)
         li.appendChild(d)
