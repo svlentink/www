@@ -62,3 +62,13 @@ COPY ./nginx /etc/nginx/conf.d
 This thus bundles the multiple static generated projects
 into one which is able to serve all content.
 
+### to test
+```
+#does not move hidden:
+mv dir/* dest/
+#does move hidden:
+mv dir/.* dest/
+
+Dockerfile COPY ???
+```
+
