@@ -1,4 +1,4 @@
-FROM svlentink/mywebsitebase
+FROM svlentink/mywebsitebase AS base
 
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
 RUN ls -l /github-backup/ # show cloned repo.s
