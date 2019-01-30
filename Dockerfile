@@ -12,29 +12,12 @@ COPY . /github-backup/svlentink_www
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
 RUN ./build.sh
 
-WORKDIR /github-backup/svlentink_www/lentink.consulting
-RUN ./build.sh
-
 WORKDIR /github-backup/svlentink_www/lent.ink/projects/life-planner
 RUN npm install -g
 RUN npm run build
 
 RUN mkdir -p /data
 RUN mv /github-backup/svlentink_www /data/webroot
-
-FROM alpine AS hugo
-RUN apk add --no-cache \
-  --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-  hugo
-RUN apk add --no-cache git tree
-
-ARG HUGOPATH=/hugo
-COPY --from=base /data/webroot/hugo $HUGOPATH
-WORKDIR $HUGOPATH
-RUN ./get-themes.sh
-RUN ./build.sh
-RUN mkdir -p /data/webroot
-RUN cp -r $HUGOPATH/output/* /data/webroot/
 
 FROM svlentink/yaml-resume AS resume
 #FROM python AS resume
@@ -55,6 +38,7 @@ RUN mkdir -p `dirname $OUTPATH`
 RUN mv /output $OUTPATH
 
 FROM svlentink/pwdgen-data AS pwdgen
+FROM svlentink/myhugoblogs-data AS hugo
 
 FROM busybox AS bundle
 COPY --from=base /github-backup.zip /webroot/github-backup.zip
