@@ -2,8 +2,9 @@ FROM svlentink/mywebsitebase AS base
 
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
 RUN ls -l /github-backup/ # show cloned repo.s
-RUN zip -r /github-backup.zip /github-backup > /dev/null
 COPY . /github-backup/svlentink_www
+RUN rm -r /github-backup/*/.git
+RUN zip -r /github-backup.zip /github-backup > /dev/null
 
 WORKDIR /github-backup/svlentink_www/cdn.lent.ink/js
 RUN ./build.sh
