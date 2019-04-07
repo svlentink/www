@@ -7,9 +7,6 @@ var w = window.innerWidth * 0.95
 var h = window.innerHeight * 0.95
 var currentScale = Math.sqrt(window.innerHeight * window.innerWidth) / 150
 
-function nonLocalHref (href) {
-  return (href && href.indexOf('#') === -1)
-}
 
 var vis = d3.select('#chart')
   .append('svg:svg')
@@ -45,7 +42,10 @@ var node = vis.selectAll('circle.node')
 
 var clickablenodes = vis.selectAll('g')
   .filter(function (d, i) {
-    return nonLocalHref(d.childNodes[0].href)
+    var href = d.childNodes[0].href
+    return (href &&
+//      href.indexOf(window.location.origin) === -1 &&
+      href.indexOf('#') !== (href.length -1))
   })
   .attr('class', 'node clickablenode')
   .style('fill', '#00f')
