@@ -1,0 +1,151 @@
+<html>
+<head>
+  <title>CSV / TSV time series graphing in HTML using Chart.js</title>
+</head>
+<body>
+<h1>CSV / TSV time series graphing in HTML using Chart.js</h1>
+
+<canvas id="graphcanvas" width="100%" height="50%"></canvas>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+<!--
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js'></script>
+-->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
+<script>
+
+function line2xy(line){
+  const y = line.substr(0,4),
+        ints = '0123456789'
+  var i = 4,
+      foundfirst = false,
+      m = '',
+      d = '',
+      sep = '' //separator
+
+  for (;i < line.length;i++){
+    var c = line[i]
+    if (foundfirst && ! ints.includes(c)) break
+    if (ints.includes(c)) foundfirst = true
+    if(foundfirst) m += c
+  }
+  for (;i < line.length;){
+    i++
+    var c = line[i]
+    if (ints.includes(c)) d += c
+    else {
+      sep = c
+      i++
+      break
+    }
+  }
+  var val = line.substr(i).split(sep)[0]
+  var date = new Date(parseInt(y),parseInt(m),parseInt(d)).toISOString().substr(0,10)
+  return {x: date, y: val}
+}
+function parseRAW(blob){
+  var result = [],
+      last = new Date(1970,1,1).toISOString().substr(0,10),
+      lines = blob.split('\n')
+  lines.forEach((val,key) => {
+    if (val.length > 8) result.push(line2xy(val))
+    else console.log('ignoring',key,val)
+  })
+  result.forEach((val,key) => {
+    if (val.x < last) console.log('WARNING please verify order',key,val)
+    last = val.x
+  })
+  return result
+}
+
+function renderGraph(inp){
+console.log('Rendering Graph',inp)
+window.graphdata = inp
+  var dataobj = {datasets: [{data:inp}] }
+  var ctx = document.getElementById('graphcanvas');
+  var chart = new Chart(ctx, {
+      type: 'line',
+      data: dataobj,
+      options: {
+          scales: {
+              xAxes: [{
+                  type: 'time',
+                  distribution: 'linear'
+              }]
+          }
+      }
+  });
+}
+
+
+function loadURL(url,cb) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     cb(this.responseText)
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+
+
+
+function init(){
+  var hash = window.location.hash
+  if (hash && hash.substr(0,5) === '#http') loadURL( hash.substr(1), (blob) => {
+    var data = parseRAW(blob)
+    renderGraph(data)
+  })
+  else {
+    window.location.hash = 'https://cdn.lent.ink/examples/myweight.tsv'
+    window.location.reload()
+  }
+}
+init()
+</script>
+
+<hr style='width:90%;'/>
+<!--
+
+We allow `YYYY?MMM?DsVALUEs`
+where one can have only 4 digits for year,
+unlimited for month and unlimited for day.
+De `s` seperator needs to be the same on both sides of the value.
+
+| A | B | C | D | E | F | G |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2001/2/03 | 12.34 |
+| 2001/02/3 | 12.34 |
+| 2001-02-03 | 12.34 |
+| 2001 | 2 | 3 | 12.34 |
+| 2001 | 2 | 3 | 12.34 | some comment|
+| 2001x02y03 | 12.34 |
+| 2001 | 0002 | 0003 | 12.34 |
+
+-->
+
+
+<p class="line" data-line="20">We allow <code>YYYY?MMM?DsVALUEs</code>
+where one can have only 4 digits for year,
+unlimited for month and unlimited for day.
+De <code>s</code> seperator needs to be the same on both sides of the value.</p>
+<br/>
+example sheet:
+<table>
+<thead>
+<tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr>
+</thead>
+<tbody>
+<tr><td>2001/2/03</td><td>12.34</td></tr>
+<tr><td>2001/02/3</td><td>12.34</td></tr>
+<tr><td>2001-02-03</td><td>12.34</td></tr>
+<tr><td>2001</td><td>2</td><td>3</td><td>12.34</td></tr>
+<tr><td>2001</td><td>2</td><td>3</td><td>12.34</td><td>some comment</td></tr>
+<tr><td>2001x02y03</td><td>12.34</td></tr>
+<tr><td>2001</td><td>0002</td><td>0003</td><td>12.34</td></tr>
+</tbody>
+</table>
+
+
+</body>
+</html>
