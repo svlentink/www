@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://lentink.consulting/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lentink.consulting/post/intro/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lentink.consulting/post/available/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lentink.consulting/post/resume/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lentink.consulting/post/vision/</loc>
+  </url>
+  
+  <url>
+    <loc>https://lentink.consulting/post/recruite/</loc>
+  </url>
+  
+</urlset>
