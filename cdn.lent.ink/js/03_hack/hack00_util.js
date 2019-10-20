@@ -14,10 +14,10 @@
   var execBash = function (cmd, callback) {
     log.enter('execBash', {cmd: cmd})
     // https://dzone.com/articles/execute-unix-command-nodejs
-    var sys = require('sys')
+    var sys = require('util')
     var exec = require('child_process').exec
     function puts (error, stdout, stderr) {
-      sys.puts(stdout)
+      console.log(stdout)
       log.debug('bash', {err: error, stdout: stdout, stderr: stderr})
       if (callback) callback(stdout)
     }
@@ -37,14 +37,17 @@
   * @param {boolean} hasRandomIp (optional)
   * @param {function} callback (optional)
   */
-  var cURL = function (target, formPostData, cookie, hasRandomIp, callback) {
+  var cURL = function (target, formPostData, cookie, hasRandomIp, headers, callback) {
     log.enter('cURL', {target: target, data: formPostData})
     // http://unix.stackexchange.com/questions/167077/sending-curl-request-with-custom-ip
-    var ip = hasRandomIp ? ' --header "X-Forwarded-For: ' + randomIp() + '" ' : ''
-    var data = formPostData ? ' --data "' + formPostData + '" ' : ''
-    var cook = cookie ? ' --cookie "' + cookie + '" ' : ''
+    var options = ''
+    if (hasRandomIp) options += ' --header "X-Forwarded-For: ' + randomIp() + '" '
+    if (formPostData) options += ' --data "' + formPostData + '" '
+    if (cookie) options += ' --cookie "' + cookie + '" '
+    if ( (! headers) || (! headers.length) ) headers = ['user-agent: Mozilla/5.0 (X11; CrOS x86_64 12499.20.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.41 Safari/537.36']
+    headers.forEach(function(h){ options += ' --header "' + h + '" '})
 
-    var bashCMD = 'curl ' + ip + data + cook + target
+    var bashCMD = 'curl ' + options + target
     execBash('echo "' + encodeURI(bashCMD) + '" > /tmp/last_curl_from_nodejs.txt')
     execBash(bashCMD, callback)
   }
