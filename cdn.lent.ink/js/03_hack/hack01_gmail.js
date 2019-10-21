@@ -82,57 +82,6 @@
     }.bind(this), dly)
   }
 
-  Gmail.exampleCode = function (uname) {
-    if (!global) return log.error('Not on Node.js')
-
-    var funcWithCookie = function (email) { /* Gets new cookie per request */
-      var mail = glob.encodeURIComponent(email)
-
-      var target = 'http://website_i_brute_forced_in_the_past'
-      var data = 'action=website_i_brute_forced_in_the_past&email=' + mail
-      // second website
-      data = 'survey=website_i_brute_forced_in_the_past&email=' + mail + '&email_tmp=' + mail + '&form_key='
-      target = 'http://website_i_brute_forced_in_the_past'
-
-      var formPage = 'http://website_i_brute_forced_in_the_past'
-      // https://www.npmjs.com/package/xmlhttprequest
-      var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
-      var xhr = new XMLHttpRequest()
-
-      xhr.onreadystatechange = function () {
-        if (!(Number(xhr.readyState) === 4 && Number(xhr.status) === 200)) return
-        var json = JSON.parse(this.responseText)
-        var key = json.formkey
-        var ckie = 'frontend=' + json.sid
-        log.debug('got data back', json)
-
-        SVL.hack.cURL(target, data + key, ckie, true)
-      }
-      xhr.open('GET', formPage)
-      xhr.send()
-    }
-    
-    var funcWithoutCookie = function (email) {
-      var mail = glob.encodeURIComponent(email)
-      var cookie = 'cookieconsent_status=dismiss'
-      var headers = [
-          'accept: */*',
-          'x-requested-with: XMLHttpRequest',
-          'user-agent: Mozilla/5.0 (X11; CrOS x86_64 12499.20.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.41 Safari/537.36',
-          'content-type: application/x-www-form-urlencoded',
-          'accept-encoding: gzip, deflate, br',
-          'accept-language: en-US,en;q=0.9,en-NL;q=0.8,nl;q=0.7'
-      ]
-      var target = 'https://example.com/vote-form'
-      var data = 'email=' + mail
-      SVL.hack.cURL(target, data, cookie, true, headers)
-    }
-
-    var delay = 1000 * 60 * 20
-    var gmail = new Gmail(uname, true)
-    gmail.foreach(uname, funcWithCookie, delay)
-  }
-
   SVL.set(['hack', 'Gmail'], Gmail)
 }(typeof window !== 'undefined' ? window : global))
 
@@ -143,8 +92,54 @@ https://github.com/nodesource/distributions/blob/master/README.md#deb
 
 cat << EOF >> bruteforcevote.js
 var api = require('./SVL_all.min.js')
-import api from './SVL_all.min.js';
-SVL.hack.Gmail.exampleCode('johndoe')
+//import api from './SVL_all.min.js';
+
+var funcWithCookie = function (email) { // Gets new cookie per request
+  var mail = glob.encodeURIComponent(email)
+
+  var target = 'http://website_i_brute_forced_in_the_past'
+  var data = 'action=website_i_brute_forced_in_the_past&email=' + mail
+  // second website
+  data = 'survey=website_i_brute_forced_in_the_past&email=' + mail + '&email_tmp=' + mail + '&form_key='
+  target = 'http://website_i_brute_forced_in_the_past'
+
+  var formPage = 'http://website_i_brute_forced_in_the_past'
+  // https://www.npmjs.com/package/xmlhttprequest
+  var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+  var xhr = new XMLHttpRequest()
+
+  xhr.onreadystatechange = function () {
+    if (!(Number(xhr.readyState) === 4 && Number(xhr.status) === 200)) return
+    var json = JSON.parse(this.responseText)
+    var key = json.formkey
+    var ckie = 'frontend=' + json.sid
+    log.debug('got data back', json)
+
+    SVL.hack.cURL(target, data + key, ckie, true)
+  }
+  xhr.open('GET', formPage)
+  xhr.send()
+}
+
+var funcWithoutCookie = function (email) {
+  var mail = glob.encodeURIComponent(email)
+  var cookie = 'cookieconsent_status=dismiss'
+  var headers = [
+      'x-requested-with: XMLHttpRequest',
+      'user-agent: Mozilla/5.0 (X11; CrOS x86_64 12499.20.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.41 Safari/537.36',
+      'content-type: application/x-www-form-urlencoded',
+      'accept-encoding: gzip, deflate, br',
+      'accept-language: en-US,en;q=0.9,en-NL;q=0.8,nl;q=0.7'
+  ]
+  var target = 'https://example.com/vote-form'
+  var data = 'email=' + mail
+  SVL.hack.cURL(target, data, cookie, true, headers)
+}
+
+var delay = 1000 * 60 * 20
+var gmail = new Gmail('mygmailusername', true)
+gmail.forEach(funcWithCookie, delay)
+
 EOF
 
 node bruteforcevote.js
