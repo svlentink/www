@@ -95,7 +95,7 @@ var api = require('./SVL_all.min.js')
 //import api from './SVL_all.min.js';
 
 var funcWithCookie = function (email) { // Gets new cookie per request
-  var mail = glob.encodeURIComponent(email)
+  var mail = encodeURIComponent(email)
 
   var target = 'http://website_i_brute_forced_in_the_past'
   var data = 'action=website_i_brute_forced_in_the_past&email=' + mail
@@ -122,7 +122,7 @@ var funcWithCookie = function (email) { // Gets new cookie per request
 }
 
 var funcWithoutCookie = function (email) {
-  var mail = glob.encodeURIComponent(email)
+  var mail = encodeURIComponent(email)
   var cookie = 'cookieconsent_status=dismiss'
   var headers = [
       'x-requested-with: XMLHttpRequest',
@@ -137,7 +137,7 @@ var funcWithoutCookie = function (email) {
 }
 
 var delay = 1000 * 60 * 20
-var gmail = new Gmail('mygmailusername', true)
+var gmail = new SVL.hack.Gmail('mygmailusername', true)
 gmail.forEach(funcWithCookie, delay)
 
 EOF
