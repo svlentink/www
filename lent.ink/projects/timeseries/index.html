@@ -39,7 +39,8 @@ function line2xy(line){
     }
   }
   var val = line.substr(i).split(sep)[0]
-  var date = new Date(parseInt(y),parseInt(m),parseInt(d)).toISOString().substr(0,10)
+  var date = new Date(parseInt(y),parseInt(m),parseInt(d)).toISOString().substr(0,10) // does not do what you would expect
+  date = y + '-' + ('0'+m).substr(-2) + '-' + ('0'+d).substr(-2)
   return {x: date, y: val}
 }
 function parseRAW(blob){
