@@ -144,3 +144,43 @@ EOF
 
 node bruteforcevote.js
 */
+
+/*
+Example code to run in the chrome terminal to auto click on links
+using the html ui: https://mail.google.com/mail/u/0/h/
+
+const matchstr = 'VoteActivate'
+var timedelay = 3000
+function openNextMail(){
+  var unopened = document.getElementsByClassName('zE')
+  if (unopened.length < 1) return
+  var next = unopened[unopened.length -1]
+  next.click()
+  setTimeout(doNextVote,timedelay)
+}
+function doNextVote(){
+  for (const a of document.querySelectorAll('a'))
+    if (a.href && a.href.indexOf(matchstr) !== -1){
+      var urls = localStorage.getItem('voteurls')
+      if (urls === null) urls = ''
+      if (urls.indexOf(a.href) === -1){
+        urls = urls + a.href + ','
+        localStorage.setItem('voteurls',urls)
+        console.log(a.href)
+        a.click()
+      }
+      if (localStorage.getItem('voteurls').indexOf(a.href) === -1)
+        return 'url not saved?!'
+    }
+  setTimeout(openNextMail,1000)
+}
+openNextMail()
+
+
+after which we can do:
+localStorage.getItem('voteurls')
+sed -i 's/,/\n/g' urls
+for i in `cat urls`; do sleep 1; (curl -L $i|head) || true; done
+
+
+*/
