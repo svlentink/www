@@ -150,7 +150,7 @@ Example code to run in the chrome terminal to auto click on links
 using the html ui: https://mail.google.com/mail/u/0/h/
 
 const matchstr = 'VoteActivate'
-var timedelay = 3000
+var timedelay = 5000
 function openNextMail(){
   var unopened = document.getElementsByClassName('zE')
   if (unopened.length < 1) return
@@ -169,8 +169,6 @@ function doNextVote(){
         console.log(a.href)
         a.click()
       }
-      if (localStorage.getItem('voteurls').indexOf(a.href) === -1)
-        return 'url not saved?!'
     }
   setTimeout(openNextMail,1000)
 }
