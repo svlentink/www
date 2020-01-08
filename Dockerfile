@@ -1,6 +1,7 @@
 FROM svlentink/mywebsitebase AS base
 
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup
+RUN GithubCloner/githubcloner.py --user tunroam -o /github-backup
 RUN ls -l /github-backup/ # show cloned repo.s
 COPY . /github-backup/svlentink_www
 RUN rm -r /github-backup/*/.git
