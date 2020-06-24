@@ -13,7 +13,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
 <script>
 
-function line2xy(line){
+function row2xy(line){
   const y = line.substr(0,4),
         ints = '0123456789'
   var i = 4,
@@ -38,17 +38,21 @@ function line2xy(line){
       break
     }
   }
-  var val = line.substr(i).split(sep)[0]
+  var vals = []
+  for (var i of line.substr(i).split(sep)){
+    var num = Number(i)
+    if (num) vals.push(num)
+  }
   var date = new Date(parseInt(y),parseInt(m),parseInt(d)).toISOString().substr(0,10) // does not do what you would expect
   date = y + '-' + ('0'+m).substr(-2) + '-' + ('0'+d).substr(-2)
-  return {x: date, y: val}
+  return {x: date, y: vals}
 }
 function parseRAW(blob){
   var result = [],
       last = new Date(1970,1,1).toISOString().substr(0,10),
       lines = blob.split('\n')
   lines.forEach((val,key) => {
-    if (val.length > 8) result.push(line2xy(val))
+    if (val.length > 8) result.push(row2xy(val))
     else console.log('ignoring',key,val)
   })
   result.forEach((val,key) => {
@@ -57,11 +61,22 @@ function parseRAW(blob){
   })
   return result
 }
+function raw2datasets(inp){
+  var data = []
+  for (var row of inp)
+    for (var j in row.y){
+      if (! data[j]) data[j] = []
+      data[j].push({x : row.x, y : row.y[j]})
+    }
+  var result = []
+  for (var i of data) result.push({data:i})
+  return {datasets: result}
+}
 
 function renderGraph(inp){
 console.log('Rendering Graph',inp)
 window.graphdata = inp
-  var dataobj = {datasets: [{data:inp}] }
+  var dataobj = raw2datasets(inp)
   var ctx = document.getElementById('graphcanvas');
   var chart = new Chart(ctx, {
       type: 'line',
