@@ -26,7 +26,7 @@ ENV COMPILE_LANGUAGE dutch
 RUN parsers/generate_all.py
 RUN ls /output
 
-ARG WEBPATH=cdn.lent.ink/resume
+ARG WEBPATH=lentink.consulting/resume
 ARG OUTPATH=/data/webroot/$WEBPATH
 RUN mkdir -p `dirname $OUTPATH`
 RUN mv /output $OUTPATH
