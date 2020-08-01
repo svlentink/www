@@ -34,6 +34,7 @@ RUN mv /output $OUTPATH
 FROM svlentink/pwdgen-data AS pwdgen
 FROM svlentink/myhugoblogs-data AS hugo
 FROM svlentink/lplan-data AS lifeplanner
+FROM svlentink/formcreator-data AS form
 
 FROM busybox AS bundle
 COPY --from=base /github-backup.zip /webroot/github-backup.zip
@@ -42,6 +43,7 @@ COPY --from=pwdgen /data/webroot /webroot
 COPY --from=resume /data/webroot /webroot
 COPY --from=hugo /data/webroot /webroot
 COPY --from=lifeplanner /data/webroot /webroot
+COPY --from=form /data/webroot /webroot
 
 
 FROM nginx:alpine

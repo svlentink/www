@@ -52,7 +52,7 @@ function parseRAW(blob){
       last = new Date(1970,1,1).toISOString().substr(0,10),
       lines = blob.split('\n')
   lines.forEach((val,key) => {
-    if (val.length > 8) result.push(row2xy(val))
+    if (val.length > 8 && ! isNaN(Number(val.substr(0,4)))) result.push(row2xy(val))
     else console.log('ignoring',key,val)
   })
   result.forEach((val,key) => {
