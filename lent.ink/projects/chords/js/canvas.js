@@ -1,3 +1,4 @@
+
 function canvasCircle(location,radius,fill,color,canvasId){
 	canvasId = canvasId || 'canvas';
 	color = color || 'black';
@@ -25,3 +26,5 @@ function canvasLine(from,to,width,color,canvasId){
 	ctx.fillStyle = color;
 	ctx.stroke();
 }
+
+export { canvasCircle, canvasLine }

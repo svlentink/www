@@ -1,44 +1,62 @@
+import { drawClock } from './canvasClock.js'
+import { stringToChord, getNotes, chords } from './chords.js'
+import { redrawNeck } from './guitarNeck.js'
+
 $( document ).ready(function() {
-    createDownloadBtn('saveChordBtn');
-	showButtons();
+  createDownloadBtn('saveChordBtn')
+  showButtons()
+  attachCallback()
 });
 
-function showButtons(currentChord){
-	var currentChord = currentChord || 'C';//if argument not given
+
+function showButtons(currentChord='C'){
 	drawClock(currentChord, 'clock');
 	var chord = stringToChord(currentChord);			
-	var chordString = '';
-	
-	var strS1 = "<button onclick='showButtons(this.textContent);'>";
-	var strE = "</button>";
+	let btns = document.createElement('div');
 	
 	for(var i = 0;i < getNotes().length; i++){
-		chordString += strS1 + getNotes()[i] + strE;
+		let note = getNotes()[i]
+		let btn = document.createElement('button')
+		btn.innerText = note
+		btn.onclick = function(){showButtons(note)}
+		btns.append(btn)
 		if((i+1) % 6 ==0)
-			chordString += "<br/>";
+			btns.append(document.createElement('br'))
 	}
 	
-	chordString += "<br/>";
+  btns.append(document.createElement('br'))
 	
 	var i = 0;
-	for(key in chords){
-		i++;
-		chordString += strS1 + chord['root'] + key + strE;
+	for(let key in chords){
+		i++
+		let note = chord['root'] + key
+		let btn = document.createElement('button')
+		btn.innerText = note
+		btn.onclick = function(){showButtons(note)}
+		btns.append(btn)
 		if((i) % 4 ==0)
-			chordString += "<br/>";
+			btns.append(document.createElement('br'))
 	}
 	
-	chordString += "<br/><br/>";
+	btns.append(document.createElement('br'))
 	
-	var strS2 = "<button onclick='drawClock(&quot;"+ currentChord +"&quot;+this.textContent, &quot;clock&quot;);'>";
+	let btn = document.createElement('button')
+	btn.onclick = function () { drawClock(currentChord) }
+	var strS2 = "<button onclick='drawClock(&quot;"+ currentChord +"&quot;+this.textContent, &quot;clock&quot;);'>"
 	
 	for(var i = 0;i < getNotes().length; i++){
-		chordString += strS2 + '/' + getNotes()[i] + strE;
+		let note = '/' + getNotes()[i]
+		let btn = document.createElement('button')
+		btn.innerText = note
+		btn.onclick = function(){drawClock(currentChord + note)}
+		btns.append(btn)
 		if((i+1) % 6 ==0)
-			chordString += "<br/>";
+			btns.append(document.createElement('br'))
 	}
 	
-	$('#known').html(chordString);
+	let container = document.querySelector('#known')
+	container.innerHTML = ''
+	container.append(btns)
 }
 
 function createDownloadBtn(containerId){
@@ -49,4 +67,10 @@ function createDownloadBtn(containerId){
 	    link.download = "chord.png";
 	}, false);
 	$('#'+containerId).append(link);
+}
+
+function attachCallback(){
+	for (let e of document.querySelectorAll('select')) {
+		e.onchange = redrawNeck
+	}
 }

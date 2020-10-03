@@ -1,10 +1,13 @@
-function drawClock(chord,canvasId){
+import { setNeck } from './guitarNeck.js'
+import { noteToInt, getNotes } from './chords.js'
+
+function drawClock(chord,canvasId='clock'){
 	var notes = getNotes(chord);
-console.log('drawClock(chord,canvasId) called with notes =' + notes);
+console.log('drawClock(chord,canvasId) called with notes',notes);
 	
 	var c = document.getElementById(canvasId);
-	var size = $(c).attr('height');
-	$(c).attr('width',size);//set width the same as height, also resets canvas to blank
+	var size = c.height
+	c.width = size//set width the same as height, also resets canvas to blank
 	
 	var markings = getNotes();
 	var offset = -90;
@@ -18,7 +21,7 @@ console.log('drawClock(chord,canvasId) called with notes =' + notes);
 
 	
 	//also set the neck
-	setNeck(notes);
+	setNeck(notes)
 }
 
 function drawCircleLines(points, markingsCount, angleOffset, canvasId, circleOffset){
@@ -26,7 +29,7 @@ function drawCircleLines(points, markingsCount, angleOffset, canvasId, circleOff
 	
 	var c = document.getElementById(canvasId);
 	var ctx = c.getContext("2d");
-	var size = $(c).attr('height');
+	var size = c.height
 	var r = size/2;//radius
 	circleOffset = circleOffset||5;
 	
@@ -58,11 +61,11 @@ function drawCircleLines(points, markingsCount, angleOffset, canvasId, circleOff
 }
 
 function drawMarkings(markings, angleOffset, canvasId){
-	var c = document.getElementById(canvasId);
-	var size = $(c).attr('height');
+	var c = document.getElementById(canvasId)
+	var size = c.height
 	var r = size/2;//radius
 	
-	var ctx = c.getContext("2d");
+	var ctx = c.getContext("2d")
 	ctx.font = "20px Arial";
 	
 	ctx.beginPath();
@@ -88,3 +91,5 @@ function drawMarkings(markings, angleOffset, canvasId){
 	ctx.font = "10px Arial";
 	ctx.fillText(font,size-50,size);
 }
+
+export { drawClock }

@@ -1,4 +1,4 @@
-
+#chords-planner{ display:none; }
 section{
 	float:left;
 	margin:5px;
@@ -42,12 +42,6 @@ textarea{
 img{
 	border-radius:35px;
 	border:1px solid;
-}
-#tips{
-	opacity:.3;
-}
-#tips:hover{
-	opacity:1;
 }
 .headWood{
 	padding:0px;

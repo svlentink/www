@@ -1,3 +1,6 @@
+import { canvasCircle, canvasLine } from './canvas.js'
+import { standardTuning, getNotes, notesToInts, intToNote } from './chords.js'
+
 $( document ).ready(function() {
     fillTuners();
 //	redrawNeck();
@@ -5,6 +8,7 @@ $( document ).ready(function() {
 
 var fretHeight = 45;
 var nutHeight = 250;
+var stringSpaced = 35;
 
 		
 function redrawNeck(capo){
@@ -16,14 +20,11 @@ function redrawNeck(capo){
 	
 	drawCapo(capo, canvasId);
 }
-function getCurrentTuning(){
-	var a = $('#tune0').val();
-	var b = $('#tune1').val();
-	var c = $('#tune2').val();
-	var d = $('#tune3').val();
-	var e = $('#tune4').val();
-	var f = $('#tune5').val();
-	return [a,b,c,d,e,f];
+function getCurrentTuning(ids=['tune0','tune1','tune2','tune3','tune4','tune5']){
+	let result = []
+	for (let id of ids)
+	  result.push( document.querySelector('#'+id).value )
+	return result
 }
 
 function getFretCount(){
@@ -32,7 +33,7 @@ function getFretCount(){
 
 function setNeck(notes, capo, tuning){
 	tuning = tuning || getCurrentTuning();
-	capo = capo || $('#capo').val();
+	capo = capo || document.querySelector('#capo').value;
 	
 	//also possible to use notes instead of notenumbers
 	if(typeof notes[0] != "number")
@@ -80,28 +81,29 @@ function drawNeck(){
 function drawStrings(canvasId){
 	canvasId = canvasId || "canvas";
 
-	var height = $('#'+canvasId).attr('height');
-	var width = 35;
+	var height = document.querySelector('#'+canvasId).height
+	var width = stringSpaced;
 	var txtHeight = 25;
 	for(var x = 15; x <= 15+5*width; x+=width)
 		for(var y = nutHeight; y < height; y+=fretHeight)
 			canvasLine([x,y],[x,y+fretHeight-txtHeight]);
 }
 
-function drawTuning(){
+function drawTuning(tunercount=6){
+	let init_height = 30
+	let interval_height = 70
+	let half_tc = parseInt(tunercount/2)
+	let nutHeight = init_height + half_tc * interval_height + 10
 	var nut = nutHeight -25;//-25 to show note bubble above nut
-	canvasCircle([15,30],5);
-	canvasLine([20,30],[15+35*2,nut]);
-	canvasCircle([15,100],5);
-	canvasLine([20,100],[15+35,nut]);
-	canvasCircle([15,170],5);
-	canvasLine([20,170],[15,nut]);
-	canvasCircle([190,30],5);
-	canvasLine([185,30],[15+35*3,nut]);
-	canvasCircle([190,100],5);
-	canvasLine([185,100],[15+35*4,nut]);
-	canvasCircle([190,170],5);
-	canvasLine([185,170],[15+35*5,nut]);
+	for (var i=0; i<half_tc;i++){
+		let height = init_height + interval_height*i
+		let left = 25
+		let right = stringSpaced * tunercount - left -5
+		canvasCircle([left-5,height],5)
+		canvasLine([left,height],[15+stringSpaced*(half_tc-i-1),nut])
+		canvasCircle([right+5,height],5)
+		canvasLine([right,height],[15+stringSpaced*(i+3),nut])
+	}
 }
 
 function drawFrets(canvasId){
@@ -148,37 +150,32 @@ function drawNotes(tuning, color){
 			drawNote([x,y],intToNote(notes[x]+y), color);
 }
 
-function drawNote(loc,txt,color,canvasId){
+function drawNote(loc,txt,color,canvasId,brandtxt="Guitar"){
 	color = color || 'black';
 	canvasId = canvasId || "canvas";
 
-	var x = 7+loc[0]*35;
+	var x = 7+loc[0]*stringSpaced;
 	var y = nutHeight - 9 +loc[1]*fretHeight;
 		
 	canvasCircle([x+8,y-5],12,0,color);
-	var font = "&#83;&#86;&#32;&#76;&#101;&#110;&#116;&#105;&#110;&#107;";
-	font = $('<textarea />').html(font).text();
+	let brand = $('<textarea />').html(brandtxt).text();
 	var c = document.getElementById(canvasId);
 	var ctx = c.getContext("2d");
 	ctx.font = "14px Arial";
 	ctx.fillStyle = color;
 	ctx.fillText(txt,x,y);
-	ctx.fillText(font,70,20);
+	ctx.fillText(brand,80,20);
 	//ctx.endPath();
 }
 
-function drawCapo(position, canvasId){
+function drawCapo(position, canvasId='canvas'){
 	position = position || $('#capo').val();
 	if(position <= 0)
 		return;
 
-	canvasId = canvasId || "canvas";
-
 	var width = $('#'+canvasId).attr('width');
 	var y = position*fretHeight + nutHeight -30;
 	canvasLine([0,y],[width,y],20);
-
-	canvasId = canvasId || "canvas";
 
 	var c = document.getElementById(canvasId);
 	var ctx = c.getContext("2d");
@@ -200,3 +197,5 @@ function fillTuners(){
 		}
 	}
 }
+
+export { setNeck, redrawNeck }

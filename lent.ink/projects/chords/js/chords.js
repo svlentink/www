@@ -164,3 +164,5 @@ function noteToChordNotes(rootNote, chordType){
 		
 	return rtrn;
 }
+
+export { standardTuning, getNotes, noteToInt, notesToInts, intToNote, stringToChord, chords }

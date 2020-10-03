@@ -14,7 +14,7 @@ var fingerFlexAtFret = [4,10];
 
 
 
-function tuningToMatrix(tuning,fretCount){//also works with 7 or 100 strings!
+function tuningToMatrix(tuning,fretCount){
 	var notes = notesToInts(tuning);
 	var rtrn = [tuning.length];//[fretCount][tuning.length];
 	
@@ -44,12 +44,9 @@ function findChord(tuning, chord, bassNote, fingerFlex){
 
 }
 
-function getInvertedChord(tuning, chord, fretCount, fingerFlex){
+function getInvertedChord(tuning, chord, fretCount=13, fingerFlex=4){
 	//inverted means that i pay no attention to the root note,
 	//every note in the chord can be the first
-	
-	fretCount = fretCount || 13;
-	fingerFlex = fingerFlex || 4;
 	
 	//also possible to use notes instead of notenumbers
 	if(typeof tuning[0] != "number")
@@ -79,12 +76,4 @@ console.log(fretboard[str][fret]);
 	
 	return grab;
 }
-
-
-
-
-
-
-
-
 
