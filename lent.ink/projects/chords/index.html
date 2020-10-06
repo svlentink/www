@@ -110,20 +110,20 @@
 				<div id='chordsOut'></div>
 				<script>
 					function transpose(){
-						var inp = $('#chordsIn').val();
-						var trans = $('#transpose').val();
+						var inp = document.querySelector('#chordsIn').value
+						var trans = document.querySelector('#transpose').value
 
-						$('#chordsOut').html(transposeChords(inp,trans));
+						document.querySelector('#chordsOut').innerHTML = transposeChords(inp,trans)
 					}
 					function pushSongToStorage(){
-						var key = $('#songName').val();
-						var val = $('#chordsIn').val();
+						var key = document.querySelector('#songName').value
+						var val = document.querySelector('#chordsIn').value
 
-						var obj = getStorage('songs', 'object');
-						obj[key] = val;
-						setStorage('songs',obj);
+						var obj = getStorage('songs', 'object')
+						obj[key] = val
+						setStorage('songs',obj)
 
-						reloadSongs();
+						reloadSongs()
 					}
 				</script>
 			</article>
