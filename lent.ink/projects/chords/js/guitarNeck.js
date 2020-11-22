@@ -3,7 +3,6 @@ import { standardTuning, getNotes, notesToInts, intToNote } from './chords.js'
 
 $( document ).ready(function() {
     fillTuners();
-//	redrawNeck();
 });
 
 var fretHeight = 45;
@@ -39,27 +38,17 @@ function setNeck(notes, capo, tuning){
 	if(typeof notes[0] != "number")
 		notes = notesToInts(notes);
 	
-//	$('#tune0').val(tuning[0]);
-//	$('#tune1').val(tuning[1]);
-//	$('#tune2').val(tuning[2]);
-//	$('#tune3').val(tuning[3]);
-//	$('#tune4').val(tuning[4]);
-//	$('#tune5').val(tuning[5]);
-	
 	drawNeck();
 	drawNotes(tuning,'DimGray');
 	
 	tuning = notesToInts(tuning);
-//console.log('tuning in setNeck:' +tuning + "; notes are:" + notes+"("+intsToNotes(notes)+"); capo value:"+capo);
 
 	var notesCount = getNotes().length;
 	//+9 because its easiest way to fix ugly problem for drawcapo
 	for(var x = 0;x < tuning.length;x++)
 		for(var y = parseInt(capo); y < (getFretCount() +9 );y++){	//+9
 			var currNote = (tuning[x] + y) % notesCount;
-//console.log("setNeck() currNote: "+intToNote(currNote)+" ("+currNote+"); at loc:["+x +","+y +"]; tuning[x]:"+tuning[x]);
 			if( $.inArray(currNote, notes) !== -1  )
-//console.log("note: "+intToNote(currNote)+"("+currNote+"); at loc:"+x +","+y);
 				drawNote([x,y],intToNote(currNote));
 		}
 	
@@ -165,7 +154,6 @@ function drawNote(loc,txt,color,canvasId,brandtxt="Guitar"){
 	ctx.fillStyle = color;
 	ctx.fillText(txt,x,y);
 	ctx.fillText(brand,80,20);
-	//ctx.endPath();
 }
 
 function drawCapo(position, canvasId='canvas'){
