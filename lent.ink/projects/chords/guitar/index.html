@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>guitar iframe</title>
+
+		<link rel="stylesheet" href="../css.css"/>
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<script type="module" src="js/buttons.js"></script>
+	</head>
+
+	<body>
+		<section id='head'><!-- see js code: createHead()-->
+		    <div class="tunerColumn">
+		        <div class="tuner tunerContainer" id="tuner3">
+		        	<select id='tune2'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner2">
+		        	<select id='tune1'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner1">
+		        	<select id='tune0'></select>
+		        </div>
+		        <div class="tunerContainer">
+		        	Frets:
+		        	<br/>
+		        	<input id='fretCount' type='number' value='13' min='8' max='23' onchange='redrawNeck()'/>
+		        	<br/>
+		        	<br/>
+		        	Capo:
+		        	<br/>
+		        	<input id='capo' type='number' value='0' min='0' max='12' onchange='redrawNeck()'/>
+		        </div>
+		    </div>
+		    <div class="spacerColumn">
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		    </div>
+		    <div class="headWood">
+		    	<canvas id="canvas" width="205" height="1175"></canvas>
+		    </div>
+		    <div class="spacerColumn">
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		        <div class="tunerSpacer"></div>
+		    </div>
+		    <div class="tunerColumn">
+		        <div class="tuner tunerContainer" id="tuner4">
+		        	<select id='tune3'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner5">
+		        	<select id='tune4'></select>
+		        </div>
+		        <div class="tuner tunerContainer" id="tuner6">
+		        	<select id='tune5'></select>
+		        </div>
+<!--
+		        <div class="tunerContainer" style='color:LightGray;'>
+		        	Finger range:
+		        	<br/>
+		        	<input id='fingerRange' type='number' value='4' min='3' max='5'/>
+		        	frets
+		        </div>
+-->
+		    </div>
+		</section>
+	</body>
+</html>
