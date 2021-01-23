@@ -48,9 +48,10 @@ COPY --from=form /data/webroot /webroot
 FROM conoria/alpine-pandoc as markdown
 COPY --from=bundle /webroot /webroot
 RUN for f in `find /webroot -name index.md`;do \
-      OUT=`echo $f|sed 's/md$/\html//' \
+      OUT=`echo $f|sed 's/md$/\html//'` \
       && \
       if [ ! -f "$OUT" ]; then \
+        echo "Generating $OUT"; \
         pandoc --from gfm --to html --self-contained -o "$OUT" "$f"; \
       fi; \
     done
