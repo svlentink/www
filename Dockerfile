@@ -45,8 +45,18 @@ COPY --from=hugo /data/webroot /webroot
 COPY --from=lifeplanner /data/webroot /webroot
 COPY --from=form /data/webroot /webroot
 
+FROM conoria/alpine-pandoc as markdown
+COPY --from=bundle /webroot /webroot
+RUN for f in `find /webroot -name index.md`;do \
+      OUT=`echo $f|sed 's/md$/\html//' \
+      && \
+      if [ ! -f "$OUT" ]; then \
+        pandoc --from gfm --to html --self-contained -o "$OUT" "$f"; \
+      fi; \
+    done
 
 FROM nginx:alpine
 RUN  rm -r /etc/nginx/conf.d
 COPY ./nginx /etc/nginx/conf.d
-COPY --from=bundle /webroot /var/www
+COPY --from=markdown /webroot /var/www
+
