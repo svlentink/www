@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LoginAlsBurger.nl</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<article>
+	<section>
+		<span onclick='switchlanguage("en")'>EN</span>
+		<span style='font-size:135%'>|</span>
+		<span onclick='switchlanguage("nl")'>NL</span>
+	</section>
+	<section>
+		<span class="header nl">Als burger inloggen bij</span>
+		<span class="header en">As citizen log in to</span>
+		<br/>
+		<span id='redirect'>voorbeeld.website.nl</span>
+	</section>
+	<section>
+		<h3 class='nl'>Upload uw RDW pdf</h3>
+		<h3 class='en'>Upload your RDW pdf</h3>
+		<div class='info nl'>
+			&#x1f6c8;
+			Op
+			<a href='https://mijn.rdw.nl/download'>mijn.rdw.nl</a>
+			kunt u een digitaal gewaarmerkte pdf aanvragen met uw persoonsgegevens.
+			<br/>
+			Met deze PDF valideren wij dat u bent wie u bent.
+			<br/>
+			<span style='font-size:80%;'>
+			Wanneer de PDF maximaal 10min oud is,
+			weten wij dat u degene bent die ingelogde bij het RDW.
+			</span>
+		</div>
+		<div class='info en'>
+			&#x1f6c8;
+			On
+			<a href='https://mijn.rdw.nl/download'>mijn.rdw.nl</a>
+			you may request a digitally signed pdf with your personal details.
+			<br/>
+			Using this PDF we validate who you are.
+			<br/>
+			<span style='font-size:80%;'>
+			When the PDF is less than 10min old,
+			we know that you are the one who logged in at RDW.
+			</span>
+		</div>
+      <form action="/pdf" enctype="multipart/form-data" method="post" onsubmit="return submitForm(this,pdfCallback);">
+        <input type="file" name="pdf" />
+        <br/>
+        <input type="submit" class='nl' value="Inloggen >" />
+        <input type="submit" class='en' value="Log in >" />
+      </form>
+	</section>
+</article>
+
+<script>
+	function switchlanguage(lang){
+		let othlang = 'nl'
+		if (lang === 'nl') othlang = 'en'
+		for (let e of document.querySelectorAll('.'+lang))
+		  e.style.display = 'inline-block'
+		for (let e of document.querySelectorAll('.'+othlang))
+		  e.style.display = 'none'
+	}
+	function manageRedirect() {
+		let a = window.location.href.split('?redirect=')
+		if (a.length === 2) {
+			let redirect = decodeURIComponent(a[1].split('&')[0])
+			window.localStorage.setItem('redirect',redirect)
+			let label = redirect.split('//')[1].split('/')[0]
+			document.querySelector('#redirect').innerText = label
+		}
+	}
+	manageRedirect()
+
+function submitForm(oFormElement,callback){
+  let xhr = new XMLHttpRequest()
+  xhr.onload = function(){callback(xhr.responseText)}
+  xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
+  xhr.send(new FormData(oFormElement))
+  return false
+}
+
+function pdfCallback(txt){
+	let obj
+	try {
+		obj = JSON.parse(txt)
+	} catch (err) {
+		return alert(txt)
+	}
+	document.data = obj
+	console.log('FIXME see document.data')
+}
+
+function signCallback(){
+	
+}
+
+/*
+ * Allow custom CSS to be loaded
+ */
+function loadCss(){
+	let url = (new URLSearchParams(window.location.search)).get('css')
+	if (! url) return
+	let link = document.createElement('link')
+	link.rel = 'stylesheet'
+	link.type = 'text/css'
+	link.href = href
+	document.getElementsByTagName('HEAD')[0].appendChild(link)
+}
+loadCss()
+</script>
+
+
+</body>
+</html>
