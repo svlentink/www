@@ -61,4 +61,12 @@ input[type=file] {
 .en {
 	display:none;
 }
-
+#top {
+	width: 100%;
+}
+#top span {
+	float: left;
+}
+#top:last-child {
+	float: right;
+}
