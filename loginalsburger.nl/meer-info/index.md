@@ -1,28 +1,30 @@
 <title>Meer informatie</title>
 
-De [voorwaarden](/terms) zijn geschreven in het Nederlands
-en onze technische documentatie is in het Engels.
+Deze pagina is in het Nederlands
+en onze technische documentatie en
+[voorwaarden](/terms)
+zijn in het Engels.
 Deze service is geschreven voor en door developers,
-om de implementatie van burger gegevens vanuit de overheid
+om de implementatie van persoonsgegevens vanuit de overheid
 makkelijk te kunnen integreren in services.
 
 ## Hoe werkt het?
 
 Een succesvolle gebruikerservaring ziet er als volgt uit:
 
-1. Een webservice geeft aan welke gegevens die van de burger wil ontvangen.
-2. Deze webservice verwijst u door naar LoginAlsBurger.
-3. De LoginAlsBurger website vraagt u:
-  - PDF(s) te downloaden bij de overheid, die alleen toegangelijk is via Digid.
-  - Deze PDF(s) te uploaden.
-4. De LoginAlsBurger server doet het volgende:
-  - controleert de echtheid van de PDF
-  - haalt de persoonsgegevens uit de PDF
-  - delete de PDF van de server
-  - de persoonsgegevens worden [gewaarmerkt](https://en.wikipedia.org/wiki/JSON_Web_Token) op een [vergelijkbare manier](https://en.wikipedia.org/wiki/Public-key_cryptography) als het groene slotje in uw browser
-  - de gewaarmerkte gegevens worden teruggegeven aan de browser van de burger die inlogt, waarna de server [alles direct vergeet](https://en.wikipedia.org/wiki/Stateless_protocol)
-5. De inloggende burger krijgt nu een overzicht van de gegevens en heeft de keuze deze wel of niet door te sturen.
-6. Wanneer de burger de gegevens doorstuurt, worden deze ontvangen door de webservice die hierom vroeg.
+- Een webservice geeft aan welke gegevens die van de burger wil ontvangen.
+- Deze webservice verwijst u door naar LoginAlsBurger.
+- De LoginAlsBurger website vraagt u:
+    - PDF(s) te downloaden bij de overheid, die alleen toegangelijk is via Digid.
+    - Deze PDF(s) te uploaden.
+- De LoginAlsBurger server doet het volgende:
+    - controleert de echtheid van de PDF
+    - haalt de persoonsgegevens uit de PDF
+    - delete de PDF van de server
+    - de persoonsgegevens worden [gewaarmerkt](https://en.wikipedia.org/wiki/JSON_Web_Token) op een [vergelijkbare manier](https://en.wikipedia.org/wiki/Public-key_cryptography) als het groene slotje in uw browser
+    - de gewaarmerkte gegevens worden teruggegeven aan de browser van de burger die inlogt, waarna de server [alles direct vergeet](https://en.wikipedia.org/wiki/Stateless_protocol)
+- De inloggende burger krijgt nu een overzicht van de gegevens en heeft de keuze deze wel of niet door te sturen.
+- Wanneer de burger de gegevens doorstuurt, worden deze ontvangen door de webservice die hierom vroeg.
 
 
 ## Technische documentatie

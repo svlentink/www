@@ -30,10 +30,11 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "school": "Universiteit van Amsterdam"
 "level": "WO Master"
 "birthdate": "1987-01-31"
-"birthyear": "1987"
+"birthyear": 1987
 
 # Obtained from RDW
 "bsn": "123456789"
+"bsnend" "6789"
 "name": "Ali Bert Jansen"
 "address": "Horst 10 99"
 "zipcode": "1234AB"
@@ -45,7 +46,7 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "date": "2020-06-29"
 "year": 2019
 "name": "A B Jansen"
-"amount": 12345
+"annualincome": 12345
 "bsn": "123456789"
 "bsnend" "6789"
 ```
@@ -70,5 +71,19 @@ their
 online,
 which we can use for testing.
 
+
+<script>
+function one_stop_example(){
+  let url = "https://loginalsburger.nl/"
+  // specify where the service needs to return to:
+  url += "?redirect=" + encodeURIcomponent("https://loginalsburger.nl/example/backend")
+  // specify the needed fields:
+  url += "&fields=" + encodeURIcomponent("bsnend,name,birthyear,education,annualincome")
+  // optionally we specify our own CSS:
+  //url += "&css=" + encodeURIcomponent("https://my-service.nl/custom.css")
+
+}
+
+</script>
 
 

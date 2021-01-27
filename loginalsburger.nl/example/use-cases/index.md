@@ -64,7 +64,8 @@ one could use LoginAlsBurger.nl.
 "level": "WO Master"
 "birthdate": "1987-01-31"
 ```
-The `birthdate` or it might not.
+The `birthdate` might be used for validating that the person matches,
+but left out for hiring (to prevent age discrimination).
 
 
 ## Proof of vaccination
