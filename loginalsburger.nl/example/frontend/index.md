@@ -43,8 +43,8 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "timestamp": "2020-07-09T07:05" #retrieved from PDF only for verification
 
 # Obtained from belastingdienst
-"date": "2020-06-29"
-"year": 2019
+"datestamp": "2020-06-29" #retrieved from PDF but has no value
+"incomeyear": 2019
 "name": "A B Jansen"
 "annualincome": 12345
 "bsn": "123456789"
