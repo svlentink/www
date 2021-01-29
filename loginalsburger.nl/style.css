@@ -70,6 +70,7 @@ input[type=file] {
 
 .loader {
   display: none;
+  margin: auto;
   border: 16px solid #fbfbfb;
   border-radius: 50%;
   border-top: 16px solid lightskyblue;
@@ -85,5 +86,15 @@ input[type=file] {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.rdw {
+	display: none;
+}
+.duo {
+	display: none;
+}
+.inkomensverklaring {
+	display: none;
 }
 

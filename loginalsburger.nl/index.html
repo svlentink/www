@@ -19,7 +19,7 @@
 		<br/>
 		<span id='redirect'>voorbeeld.website.nl</span>
 	</section>
-	<section>
+	<section class="rdw">
 		<h3 class='nl'>Upload uw RDW pdf</h3>
 		<h3 class='en'>Upload your RDW pdf</h3>
 		<div class='info nl'>
@@ -48,18 +48,63 @@
 			we know that you are the one who logged in at RDW.
 			</span>
 		</div>
-	<div class="loader"></div>
-      <form action="/pdf" enctype="multipart/form-data" method="post" onsubmit="return submitForm(this,pdfCallback);">
-        <input type="file" name="pdf" />
-        <br/>
-        <input type="submit" class='nl' value="Inloggen >" />
-        <input type="submit" class='en' value="Log in >" />
-      </form>
+	</section>
+	<section class="inkomensverklaring">
+		<h3 class='nl'>Upload uw inkomensverklaring pdf</h3>
+		<h3 class='en'>Upload your income statement pdf</h3>
+		<div class='info nl'>
+			&#9432;
+			Log eerst in op
+			<a href='https://mijn.belastingdienst.nl/GTService/'>mijn.belastingdienst.nl</a>,
+			waarna u uw 'inkomensverklaring opvragen'
+			<a href='https://mijn.belastingdienst.nl/mbd-pmb/pmb.html#inkomen:'>hier</a>
+			kunt downloaden.
+			<br/>
+			Met deze digitaal gewaarmerkte PDF valideren wij uw inkomen.
+		</div>
+		<div class='info en'>
+			&#x1f6c8;
+			First login at
+			<a href='https://mijn.belastingdienst.nl/GTService/'>mijn.belastingdienst.nl</a>,
+			after which you can download your income statement
+			<a href='https://mijn.belastingdienst.nl/mbd-pmb/pmb.html#inkomen:'>here</a>.
+			<br/>
+			Using this digitally signed PDF we validate your income.
+		</div>
+	</section>
+	<section class="duo">
+		<h3 class='nl'>Upload uw diploma uittreksel pdf</h3>
+		<h3 class='en'>Upload your diploma extract pdf</h3>
+		<div class='info nl'>
+			&#9432;
+			Op
+			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister'/>mijn.duo.nl</a>
+			kunt u een uittreksel downloaden van uw diploma.
+			<br/>
+			Met deze digitaal gewaarmerkte PDF valideren wij uw educatie.
+		</div>
+		<div class='info en'>
+			&#x1f6c8;
+			On
+			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister'/>mijn.duo.nl</a>
+			you may download an extract of your diploma.
+			<br/>
+			Using this digitally signed PDF we validate your education.
+		</div>
+	</section>
+	<section class='msg'>
+	</section>
+	<section class='form'>
+		<div class="loader"></div>
+		<form action="/pdf" enctype="multipart/form-data" method="post" onsubmit="return submitForm(this,pdfCallback);">
+			<input type="file" name="pdf" />
+			<br/>
+			<input type="submit" class='nl' value="Ga verder >" />
+			<input type="submit" class='en' value="Continue >" />
+		</form>
 	</section>
 </article>
 
 <script src="main.js"></script>
-
-
 </body>
 </html>

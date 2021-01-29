@@ -28,7 +28,7 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "name": "De heer Ali Bert Jansen"
 "education": "GETUIGSCHRIFT WO Master Security and Network Engineering"
 "school": "Universiteit van Amsterdam"
-"level": "WO Master"
+"edulevel": "WO Master"
 "birthdate": "1987-01-31"
 "birthyear": 1987
 

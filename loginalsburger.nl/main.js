@@ -20,11 +20,27 @@ function main() {
 	if (css) loadCss(css)
 }
 
+function startFlow(fields) {
+	let duo_only = ["education", "school", "edulevel", "birthdate", "birthyear"]
+	let inkomensverklaring_only = ["incomeyear", "annualincome"]
+	let rdw_only = ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
+	let all_fields = duo_only.concat(inkomensverklaring_only).concat(rdw_only)
+	let fields_arr = fields.split(',')
+	for (let f of fields) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
+}
+
+function display_msg...rest() {
+	let msg = rest.join(' ')
+	console.log(msg)
+	document.querySelector('.msg').innerText = msg
+}
+
 function submitForm(oFormElement,callback){
   let xhr = new XMLHttpRequest()
   xhr.onload = function(){callback(xhr.responseText)}
   xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
   xhr.send(new FormData(oFormElement))
+  document.querySelector('.loader').style.display = 'block'
   return false
 }
 
@@ -33,10 +49,12 @@ function pdfCallback(txt){
 	try {
 		obj = JSON.parse(txt)
 	} catch (err) {
-		return alert(txt)
+		return display_msg(txt)
 	}
 	document.data = obj
 	console.log('FIXME see document.data')
+	document.querySelector('.loader').style.display = 'none'
+	document.querySelector('input').value = ''
 }
 
 function signCallback(){
