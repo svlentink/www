@@ -15,9 +15,10 @@ function main() {
 	if (redirect) {
 		let label = redirect.split('//')[1].split('/')[0]
 		document.querySelector('#redirect').innerText = label
-	} else return console.error("No 'redirect' in search params")
-	if (! fields) return console.error("No 'fields' in search params")
+	} else return display_msg("ERROR no 'redirect' in search params")
+	if (! fields) return display_msg("ERROR no 'fields' in search params")
 	if (css) loadCss(css)
+	startFlow(fields)
 }
 
 function startFlow(fields) {
@@ -27,6 +28,7 @@ function startFlow(fields) {
 	let all_fields = duo_only.concat(inkomensverklaring_only).concat(rdw_only)
 	let fields_arr = fields.split(',')
 	for (let f of fields) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
+	console.log('FIXME',fields)
 }
 
 function display_msg...rest() {
