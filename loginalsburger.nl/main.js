@@ -31,7 +31,7 @@ function startFlow(fields) {
 	console.log('FIXME',fields)
 }
 
-function display_msg...rest() {
+function display_msg(...rest) {
 	let msg = rest.join(' ')
 	console.log(msg)
 	document.querySelector('.msg').innerText = msg
