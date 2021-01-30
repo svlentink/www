@@ -28,9 +28,11 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "name": "De heer Ali Bert Jansen"
 "education": "GETUIGSCHRIFT WO Master Security and Network Engineering"
 "school": "Universiteit van Amsterdam"
-"edulevel": "WO Master"
+"edulevel": "WO Master" #NOTE, we are not able to deduce this field for every diploma!
 "birthdate": "1987-01-31"
 "birthyear": 1987
+"graduationdate": "2009-10-12"
+"graduationyear": 2009
 
 # Obtained from RDW
 "bsn": "123456789"
@@ -62,28 +64,36 @@ The same goes for `birthyear` as opposed to `birthdate`,
 since it is best to get the least amount of data that is needed.
 
 
-## Test data
+## Example form
 
-Some people
-[present](https://www.antwanvantilborgh.nl/wp-content/uploads/2019/03/Mbo-Commercieel-medewerker-Junior-Accountmanager.pdf)
-their
-[diploma](https://maartenpaauw.com/static/education/hogeschool-leiden-informatica-bachelor.pdf)
-online,
-which we can use for testing.
+Your website that redirect to LoginAlsBurger
+[MUST](https://tools.ietf.org/html/rfc2119)
+explain every field it requests
+and
+[why it needs](https://en.wikipedia.org/wiki/Need_to_know)
+it.
 
+```
 
 <script>
-function one_stop_example(){
+function onclick_example(){
   let url = "https://loginalsburger.nl/"
   // specify where the service needs to return to:
-  url += "?redirect=" + encodeURIcomponent("https://loginalsburger.nl/example/backend")
+  url += "?redirect=" + encodeURIComponent("https://loginalsburger.nl/example/backend")
   // specify the needed fields:
-  url += "&fields=" + encodeURIcomponent("bsnend,name,birthyear,education,annualincome")
+  url += "&fields=" + encodeURIComponent("name,education,graduationyear,city")
   // optionally we specify our own CSS:
-  //url += "&css=" + encodeURIcomponent("https://my-service.nl/custom.css")
-
+  //url += "&css=" + encodeURIComponent("https://my-service.nl/custom.css")
+  window.open(url,"new_window")
 }
-
 </script>
 
+We will now redirect you to LoginAlsBurger,
+where you can follow the steps presented,
+after which we ONLY get your;
+'name', 'education', 'graduationyear' and 'city',
+which we literally copy to your job profile on our website.
+
+<button onclick="onclick_example()">Continue to LoginAlsBurger</button>
+```
 

@@ -27,7 +27,7 @@ function startFlow(fields) {
 	let rdw_only = ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
 	let all_fields = duo_only.concat(inkomensverklaring_only).concat(rdw_only)
 	let fields_arr = fields.split(',')
-	for (let f of fields) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
+	for (let f of fields_arr) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
 	console.log('FIXME',fields)
 }
 
