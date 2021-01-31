@@ -29,16 +29,26 @@ function getSetStorage(val, key="retrieved", default_val=[]) {
 }
 
 function getFields(fields) {
-	let duo_only = ["education", "school", "edulevel", "birthdate", "birthyear", "graduationdate", "graduationyear"]
-	let inkomensverklaring_only = ["incomeyear", "annualincome"]
-	let rdw_only = ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
-	let all_fields = duo_only.concat(inkomensverklaring_only).concat(rdw_only)
+	let sources = {
+		duo: ["education", "school", "edulevel", "birthdate", "birthyear", "graduationdate", "graduationyear"],
+		inkomensverklaring: ["incomeyear", "annualincome"],
+		rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
+	}
+	let all_fields = Object.values(sources).flat()
 	let fields_arr = fields.split(',')
 	for (let f of fields_arr) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
 	
 	let retrieved_fields = []
 	let retrieved = getSetStorage()
-	// FIME for (let pdf of retrieved)
+	for (let pdf of retrieved){
+		let info = pdf.parsed.info
+		let in_it = Object.keys(info)
+		retrieved_fiels.concat(in_it)
+	}
+	let missing_fields = []
+	for (let needed in fields_arr)
+		if (retrieved_fields.indexOf(needed) === -1) missing_fields.push(needed)
+	console.log('FIXME needed fields',missing_fields)
 }
 
 function display_msg(...rest) {
@@ -66,9 +76,10 @@ function pdfCallback(txt){
 	}
 	let arr = getSetStorage()
 	arr.push(obj)
-	getSetStorage(obj)
+	getSetStorage(arr)
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
+	display_msg('')
 	main()
 }
 
