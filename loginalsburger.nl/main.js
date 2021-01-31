@@ -18,17 +18,27 @@ function main() {
 	} else return display_msg("ERROR no 'redirect' in search params")
 	if (! fields) return display_msg("ERROR no 'fields' in search params")
 	if (css) loadCss(css)
-	startFlow(fields)
+	getFields(fields)
 }
 
-function startFlow(fields) {
-	let duo_only = ["education", "school", "edulevel", "birthdate", "birthyear"]
+function getSetStorage(val, key="retrieved", default_val=[]) {
+	val = val || localStorage.getItem(key) || default_val
+	if (typeof val === "string") val = JSON.parse(val)
+	localStorage.setItem(key,JSON.stringify(val))
+	return val
+}
+
+function getFields(fields) {
+	let duo_only = ["education", "school", "edulevel", "birthdate", "birthyear", "graduationdate", "graduationyear"]
 	let inkomensverklaring_only = ["incomeyear", "annualincome"]
 	let rdw_only = ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
 	let all_fields = duo_only.concat(inkomensverklaring_only).concat(rdw_only)
 	let fields_arr = fields.split(',')
 	for (let f of fields_arr) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
-	console.log('FIXME',fields)
+	
+	let retrieved_fields = []
+	let retrieved = getSetStorage()
+	// FIME for (let pdf of retrieved)
 }
 
 function display_msg(...rest) {
@@ -38,12 +48,13 @@ function display_msg(...rest) {
 }
 
 function submitForm(oFormElement,callback){
-  let xhr = new XMLHttpRequest()
-  xhr.onload = function(){callback(xhr.responseText)}
-  xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
-  xhr.send(new FormData(oFormElement))
-  document.querySelector('.loader').style.display = 'block'
-  return false
+	let xhr = new XMLHttpRequest()
+	xhr.onload = function(){callback(xhr.responseText)}
+	xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
+	xhr.send(new FormData(oFormElement))
+	document.querySelector('.loader').style.display = 'block'
+	display_msg('')
+	return false
 }
 
 function pdfCallback(txt){
@@ -53,10 +64,12 @@ function pdfCallback(txt){
 	} catch (err) {
 		return display_msg(txt)
 	}
-	document.data = obj
-	console.log('FIXME see document.data')
+	let arr = getSetStorage()
+	arr.push(obj)
+	getSetStorage(obj)
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
+	main()
 }
 
 function signCallback(){
