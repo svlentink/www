@@ -43,7 +43,7 @@ function getFields(fields) {
 	for (let pdf of retrieved){
 		let info = pdf.parsed.info
 		let in_it = Object.keys(info)
-		retrieved_fiels.concat(in_it)
+		retrieved_fields.concat(in_it)
 	}
 	let missing_fields = []
 	for (let needed of fields_arr)
