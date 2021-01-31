@@ -46,7 +46,7 @@ function getFields(fields) {
 		retrieved_fiels.concat(in_it)
 	}
 	let missing_fields = []
-	for (let needed in fields_arr)
+	for (let needed of fields_arr)
 		if (retrieved_fields.indexOf(needed) === -1) missing_fields.push(needed)
 	console.log('FIXME needed fields',missing_fields)
 }
