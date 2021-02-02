@@ -97,4 +97,7 @@ input[type=file] {
 .inkomensverklaring {
 	display: none;
 }
+.msg {
+	display: none;
+}
 

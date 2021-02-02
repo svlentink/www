@@ -18,7 +18,8 @@ function main() {
 	} else return display_msg("ERROR no 'redirect' in search params")
 	if (! fields) return display_msg("ERROR no 'fields' in search params")
 	if (css) loadCss(css)
-	getFields(fields)
+	let retrieved_fields = getFields(fields)
+	if (! retrieved_fields) return 
 }
 
 function getSetStorage(val, key="retrieved", default_val=[]) {
@@ -28,44 +29,54 @@ function getSetStorage(val, key="retrieved", default_val=[]) {
 	return val
 }
 
+
+
 function getFields(fields) {
-	let sources = {
-		duo: ["education", "school", "edulevel", "birthdate", "birthyear", "graduationdate", "graduationyear"],
-		inkomensverklaring: ["incomeyear", "annualincome"],
-		rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
-	}
-	let all_fields = Object.values(sources).flat()
 	let fields_arr = fields.split(',')
-	for (let f of fields_arr) if (fields_arr.indexOf(f) === -1) return display_msg('ERROR requested field unknow:',f)
 	
-	let retrieved_fields = []
 	let retrieved = getSetStorage()
-	for (let pdf of retrieved){
-		let info = pdf.parsed.info
-		let in_it = Object.keys(info)
-		retrieved_fields.concat(in_it)
-	}
-	let missing_fields = []
-	for (let needed of fields_arr)
-		if (retrieved_fields.indexOf(needed) === -1) missing_fields.push(needed)
 	console.log('FIXME needed fields',missing_fields)
+
+	if (missing_fiels.length === 0) return 
+	// FIXME
+	// correlate bsn from inkomensverklaring with rdw
+	// and name from duo with rdw
 }
 
 function display_msg(...rest) {
+	let div = document.querySelector('.msg')
+	if(! rest) {
+		div.style.display = 'none'
+		return
+	}
 	let msg = rest.join(' ')
 	console.log(msg)
-	document.querySelector('.msg').innerText = msg
+	div.style.display = 'block'
+	div.innerText = msg
 }
 
 function submitForm(oFormElement,callback){
+	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
 	let xhr = new XMLHttpRequest()
 	xhr.onload = function(){callback(xhr.responseText)}
 	xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
 	xhr.send(new FormData(oFormElement))
 	document.querySelector('.loader').style.display = 'block'
-	display_msg('')
+	display_msg()
 	return false
 }
+function submitSign(oFormElement,callback){
+	return console.log('FIXME submitsign')
+	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
+	let xhr = new XMLHttpRequest()
+	xhr.onload = function(){callback(xhr.responseText)}
+	xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
+	xhr.send(new FormData(oFormElement))
+	document.querySelector('.loader').style.display = 'block'
+	display_msg()
+	return false
+}
+
 
 function pdfCallback(txt){
 	let obj
@@ -77,9 +88,10 @@ function pdfCallback(txt){
 	let arr = getSetStorage()
 	arr.push(obj)
 	getSetStorage(arr)
+	console.log('Retrieved PDF, you can see it with getSetStorage()')
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
-	display_msg('')
+	display_msg()
 	main()
 }
 
