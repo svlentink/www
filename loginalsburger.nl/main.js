@@ -1,3 +1,4 @@
+import { Pdfs } from './pdf.js'
 
 function switchlanguage(lang){
 	let othlang = 'nl'
@@ -35,6 +36,21 @@ function getFields(fields) {
 	let fields_arr = fields.split(',')
 	
 	let retrieved = getSetStorage()
+	let pdfs = new Pdfs(retrieved)
+	if (pdfs.length()){
+		let now = new Date()
+		let hour_ago = now.setHours(now.getHours() -1)
+		pdfs.filter((p) => {
+			if (! p.signature_verified_at) return false
+			if( (new Date(p.signature_verified_at)).getTime() < hour_ago.getTime()) {
+				// FIXME verify magic here
+				submitSign([p.token],() => {})
+				return false
+			}
+			return false
+		})
+	}
+	let missing_fields = 
 	console.log('FIXME needed fields',missing_fields)
 
 	if (missing_fiels.length === 0) return 
@@ -65,18 +81,22 @@ function submitForm(oFormElement,callback){
 	display_msg()
 	return false
 }
-function submitSign(oFormElement,callback){
+function submitSign(tokens,callback){
 	return console.log('FIXME submitsign')
-	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
 	let xhr = new XMLHttpRequest()
 	xhr.onload = function(){callback(xhr.responseText)}
-	xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
-	xhr.send(new FormData(oFormElement))
-	document.querySelector('.loader').style.display = 'block'
-	display_msg()
-	return false
+	xhr.open('POST', '/sign')
+	xhr.send(JSON.stringify(token))
 }
 
+function addToStorage(obj){
+	let stamp = (new Date()).toISOString()
+	obj.signature_verified_at = stamp
+	let arr = getSetStorage()
+	arr.push(obj)
+	getSetStorage(arr)
+	console.log('Retrieved PDFs can be seen with getSetStorage()')
+}
 
 function pdfCallback(txt){
 	let obj
@@ -85,10 +105,6 @@ function pdfCallback(txt){
 	} catch (err) {
 		return display_msg(txt)
 	}
-	let arr = getSetStorage()
-	arr.push(obj)
-	getSetStorage(arr)
-	console.log('Retrieved PDF, you can see it with getSetStorage()')
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
 	display_msg()
@@ -96,7 +112,8 @@ function pdfCallback(txt){
 }
 
 function signCallback(){
-	
+	// the token retrieved from localStorage may be expired
+	// thus we need to account for this possibility
 }
 
 /*

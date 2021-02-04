@@ -9,6 +9,7 @@ class Pdf {
 		let t = this.info.type
 		if (! t) return false
 		this.type = t
+		this.raw = inp
 		if (t === 'rdw') return new Rdw()
 		if (t === 'duo') return new Duo()
 		if (t === 'inkomensverklaring') return new Inkomensverklaring()
@@ -41,11 +42,14 @@ class Pdf {
 		return t.info.key[key]
 	}
 	relateTo(pdf){
-		if (pdf.type !== 'rdw') return false
-		return pdf.relateTo(this)
+		if (pdf.type === 'rdw') return pdf.relateTo(this)
+		return false
 	}
 	inConflict(pdf){
-		return false
+		return (
+			this.type === pdf.type &&
+			this.getAttr('name') !== pdf.getAttr('name')
+		)
 	}
 }
 
@@ -83,13 +87,18 @@ class Rdw extends Pdf {
 
 class Pdfs {
 	constructor(arr){
-		this.list = arr
+		let result = []
+		for (let p in arr) {
+			let pdf = new Pdf(p)
+			if (pdf) result.push(pdf)
+		}
+		this.list = result
 	}
 	field_native_to(key){
 		let sources = {
 			duo: ["education", "school", "edulevel", "birthdate", "birthyear", "graduationdate", "graduationyear"],
 			inkomensverklaring: ["incomeyear", "annualincome"],
-			rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country"]
+			rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country", "timestamp"]
 		}
 
 		for (let s in sources) if ( sources[s].includes(key) ) return s
@@ -117,6 +126,24 @@ class Pdfs {
 		//FIXME also correlate inConflict and relatesTo
 
 	}
+	filter(func){
+		let result = []
+		for (let p in this.list)
+			if (func(p))
+				result.push(p.raw)
+		return new Pdfs(result)
+	}
+	get_raw(){
+		let result = []
+		for (let p in this.list)
+			result.push(p.raw)
+		return result
+	}
+	length(){
+		return this.list.length
+	}
+
+
 }
 
 

@@ -44,11 +44,13 @@ change it within X time frame and block setting a new one for Y time frame.
 "zipcode": "1234AB"
 "city": "Lelystad"
 "country": "NEDERLAND"
+"timestamp": "2020-07-09T07:05"
 ```
 This example use case would request the address details
 (potentially only the `address` and `zipcode`)
 together with the name of the resident,
 to distinguish between residents.
+The timestamp of the PDF helps to figure out who is the latest resident on the address.
 
 ## Recruitement
 

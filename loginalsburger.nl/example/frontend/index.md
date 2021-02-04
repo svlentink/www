@@ -42,7 +42,7 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 "zipcode": "1234AB"
 "city": "Lelystad"
 "country": "NEDERLAND"
-"timestamp": "2020-07-09T07:05" #retrieved from PDF only for verification
+"timestamp": "2020-07-09T07:05" #we use this to determine if the user is the one who dowloaded the pdf
 
 # Obtained from belastingdienst
 "datestamp": "2020-06-29" #retrieved from PDF but has no value
@@ -63,6 +63,9 @@ but does need to avoid having a duplicate of a common name (e.g. Jan Jansen).
 The same goes for `birthyear` as opposed to `birthdate`,
 since it is best to get the least amount of data that is needed.
 
+Since the browser can hold user details in `localStorage`,
+the `timestamp` can be used if for some reason one has
+to be sure the data is recent (like the use case with residents).
 
 ## Example form
 
