@@ -1,4 +1,4 @@
-import { Pdfs } from './pdf.js'
+import { Pdfs } from './pdfs.js'
 
 function switchLanguage(lang){
 	let othlang = 'nl'
