@@ -68,7 +68,7 @@ function getFields(fields) {
 	let missing_fields = 'FIXME'
 	console.log('FIXME needed fields',missing_fields)
 
-	if (missing_fiels.length === 0) return 
+	if (missing_fields.length === 0) return 
 	// FIXME
 	// correlate bsn from inkomensverklaring with rdw
 	// and name from duo with rdw
@@ -130,7 +130,7 @@ function addToStorage(obj){
 function pdfCallback(obj){
 	// check if parsing failed
 	if (typeof obj === 'string') 
-		return display_msg(txt)
+		return display_msg(obj)
 
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
