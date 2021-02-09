@@ -66,6 +66,8 @@ input[type=file] {
 }
 #top :last-child {
 	float: right;
+	font-size:115%;
+	text-decoration:none;
 }
 
 .loader {

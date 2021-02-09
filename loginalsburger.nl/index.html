@@ -8,21 +8,22 @@
 
 <article>
 	<section id="top">
-		<span onclick='switchlanguage("en")'>EN</span>
+		<span onclick='switchLanguage("en")'>EN</span>
 		<span style='font-size:135%'>|</span>
-		<span onclick='switchlanguage("nl")'>NL</span>
+		<span onclick='switchLanguage("nl")'>NL</span>
 		<span style='font-size:115%' onclick='window.open("/meer-info","info")'>&#9432;</span>
+		<a href='/meer-info'>&#9432;</a>
 	</section>
+</article>
+<article class='nl'>
 	<section>
-		<span class="header nl">Als burger inloggen bij</span>
-		<span class="header en">As citizen log in to</span>
+		<span class="header">Als burger inloggen bij</span>
 		<br/>
-		<span id='redirect'>voorbeeld.website.nl</span>
+		<span class='redirectdomain'>voorbeeld.website.nl</span>
 	</section>
 	<section class="rdw">
-		<h3 class='nl'>Upload uw RDW pdf</h3>
-		<h3 class='en'>Upload your RDW pdf</h3>
-		<div class='info nl'>
+		<h3>Upload uw RDW pdf</h3>
+		<div class='info'>
 			&#9432;
 			Op
 			<a href='https://mijn.rdw.nl/download'>mijn.rdw.nl</a>
@@ -35,7 +36,41 @@
 			weten wij dat u degene bent die ingelogde bij het RDW.
 			</span>
 		</div>
-		<div class='info en'>
+	</section>
+	<section class="inkomensverklaring">
+		<h3>Upload uw inkomensverklaring pdf</h3>
+		<div class='info'>
+			&#9432;
+			Log eerst in op
+			<a href='https://mijn.belastingdienst.nl/GTService/'>mijn.belastingdienst.nl</a>,
+			waarna u uw 'inkomensverklaring opvragen'
+			<a href='https://mijn.belastingdienst.nl/mbd-pmb/pmb.html#inkomen:'>hier</a>
+			kunt downloaden.
+			<br/>
+			Met deze digitaal gewaarmerkte PDF valideren wij uw inkomen.
+		</div>
+	</section>
+	<section class="duo">
+		<h3>Upload uw diploma uittreksel pdf</h3>
+		<div class='info'>
+			&#9432;
+			Op
+			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister'/>mijn.duo.nl</a>
+			kunt u een uittreksel downloaden van uw diploma.
+			<br/>
+			Met deze digitaal gewaarmerkte PDF valideren wij uw educatie.
+		</div>
+	</section>
+</article>
+<article class='en'>
+	<section>
+		<span class="header">As citizen log in to</span>
+		<br/>
+		<span class='redirectdomain'>voorbeeld.website.nl</span>
+	</section>
+	<section class="rdw">
+		<h3>Upload your RDW pdf</h3>
+		<div class='info'>
 			&#x1f6c8;
 			On
 			<a href='https://mijn.rdw.nl/download'>mijn.rdw.nl</a>
@@ -50,19 +85,8 @@
 		</div>
 	</section>
 	<section class="inkomensverklaring">
-		<h3 class='nl'>Upload uw inkomensverklaring pdf</h3>
-		<h3 class='en'>Upload your income statement pdf</h3>
-		<div class='info nl'>
-			&#9432;
-			Log eerst in op
-			<a href='https://mijn.belastingdienst.nl/GTService/'>mijn.belastingdienst.nl</a>,
-			waarna u uw 'inkomensverklaring opvragen'
-			<a href='https://mijn.belastingdienst.nl/mbd-pmb/pmb.html#inkomen:'>hier</a>
-			kunt downloaden.
-			<br/>
-			Met deze digitaal gewaarmerkte PDF valideren wij uw inkomen.
-		</div>
-		<div class='info en'>
+		<h3>Upload your income statement pdf</h3>
+		<div class='info'>
 			&#x1f6c8;
 			First login at
 			<a href='https://mijn.belastingdienst.nl/GTService/'>mijn.belastingdienst.nl</a>,
@@ -73,17 +97,8 @@
 		</div>
 	</section>
 	<section class="duo">
-		<h3 class='nl'>Upload uw diploma uittreksel pdf</h3>
-		<h3 class='en'>Upload your diploma extract pdf</h3>
-		<div class='info nl'>
-			&#9432;
-			Op
-			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister'/>mijn.duo.nl</a>
-			kunt u een uittreksel downloaden van uw diploma.
-			<br/>
-			Met deze digitaal gewaarmerkte PDF valideren wij uw educatie.
-		</div>
-		<div class='info en'>
+		<h3>Upload your diploma extract pdf</h3>
+		<div class='info'>
 			&#x1f6c8;
 			On
 			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister'/>mijn.duo.nl</a>
@@ -92,6 +107,8 @@
 			Using this digitally signed PDF we validate your education.
 		</div>
 	</section>
+</article>
+<article>
 	<section class='msg'>
 	</section>
 	<section class='form'>
@@ -105,6 +122,6 @@
 	</section>
 </article>
 
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>
 </body>
 </html>

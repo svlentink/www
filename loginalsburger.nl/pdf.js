@@ -142,8 +142,13 @@ class Pdfs {
 	length(){
 		return this.list.length
 	}
-
-
+	get_tokens(){
+		let result = []
+		for (let p in this.list)
+			result.push(p.token)
+		return result
+	}
 }
 
+export { Pdfs }
 

@@ -1,6 +1,6 @@
 import { Pdfs } from './pdf.js'
 
-function switchlanguage(lang){
+function switchLanguage(lang){
 	let othlang = 'nl'
 	if (lang === 'nl') othlang = 'en'
 	for (let e of document.querySelectorAll('.'+lang))
@@ -15,7 +15,8 @@ function main() {
 	let css = params.get('css')
 	if (redirect) {
 		let label = redirect.split('//')[1].split('/')[0]
-		document.querySelector('#redirect').innerText = label
+		for (let elem of document.querySelectorAll('.redirectdomain'))
+			elem.innerText = label
 	} else return display_msg("ERROR no 'redirect' in search params")
 	if (! fields) return display_msg("ERROR no 'fields' in search params")
 	if (css) loadCss(css)
@@ -38,19 +39,25 @@ function getFields(fields) {
 	let retrieved = getSetStorage()
 	let pdfs = new Pdfs(retrieved)
 	if (pdfs.length()){
+		// If one of the tokens is old, we send it all off to see
+		// if one of them is expired, this can happen when one
+		// of the keys has been rotated
+		// we then are able to purge the expired tokens
 		let now = new Date()
 		let hour_ago = now.setHours(now.getHours() -1)
-		pdfs.filter((p) => {
+		let unverified = pdfs.filter((p) => {
 			if (! p.signature_verified_at) return false
 			if( (new Date(p.signature_verified_at)).getTime() < hour_ago.getTime()) {
-				// FIXME verify magic here
-				submitSign([p.token],() => {})
 				return false
 			}
-			return false
+			return true // we filter it since it is good to go
 		})
+		if (unverified.length)
+			submitSign(unverified.get_tokens(), res => {
+				
+			})
 	}
-	let missing_fields = 
+	let missing_fields = 'FIXME'
 	console.log('FIXME needed fields',missing_fields)
 
 	if (missing_fiels.length === 0) return 
@@ -73,20 +80,34 @@ function display_msg(...rest) {
 
 function submitForm(oFormElement,callback){
 	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
-	let xhr = new XMLHttpRequest()
-	xhr.onload = function(){callback(xhr.responseText)}
-	xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
-	xhr.send(new FormData(oFormElement))
+	let method = oFormElement.method
+	let path = oFormElement.getAttribute("action"))
+	let data = new FormData(oFormElement)
+	submitXhr(path, data, callback)
 	document.querySelector('.loader').style.display = 'block'
 	display_msg()
 	return false
 }
 function submitSign(tokens,callback){
 	return console.log('FIXME submitsign')
+	submitXhr('/sign', JSON.stringify(tokens), callback)
+}
+function submitXhr(path, data, callback){
+	let method = 'GET'
+	if (data) method = 'POST'
 	let xhr = new XMLHttpRequest()
-	xhr.onload = function(){callback(xhr.responseText)}
-	xhr.open('POST', '/sign')
-	xhr.send(JSON.stringify(token))
+	xhr.onload = function(){
+		let res = xhr.responseText
+		try {
+			res = JSON.parse(res)
+		}
+		catch (e) {
+			console.warn('Response not parseable',e)
+		}
+		if (callback) callback(res)
+	}
+	xhr.open(method, path)
+	xhr.send(data)
 }
 
 function addToStorage(obj){
@@ -98,13 +119,11 @@ function addToStorage(obj){
 	console.log('Retrieved PDFs can be seen with getSetStorage()')
 }
 
-function pdfCallback(txt){
-	let obj
-	try {
-		obj = JSON.parse(txt)
-	} catch (err) {
+function pdfCallback(obj){
+	// check if parsing failed
+	if (typeof obj === 'string') 
 		return display_msg(txt)
-	}
+
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
 	display_msg()
@@ -129,4 +148,4 @@ function loadCss(url){
 }
 
 main()
-
+export { submitForm, switchLanguage }

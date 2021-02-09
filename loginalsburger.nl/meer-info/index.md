@@ -74,4 +74,24 @@ hadden omdat deze banken alles digitaal deden.
 De NAW gegevens van een burger zijn waarschijnlijk meer up-to-date
 bij de overheid dan bij een bank.
 
+#### Veiligheid
+
+Wanneer we onze service vergelijken met een Facebook login,
+zien we dat je bij beide service geredirect wordt naar een login pagina van de service.
+Echter, zou een malicious service dat niet doen,
+maar zelf een scherm tonen om het Facebook wachtwoord in te vullen,
+waarna die service nu namens die gebruiker overal inloggen.
+Ditzelfde geld voor deze service.
+Een malicious service zou een PDF upload formulier kunnen presenteren
+en deze vervolgens doorspelen naar de backend van LoginAlsBurger,
+om een login token te verkrijgen voor een andere service.
+
+Net zoals andere login services (bv. Facebook),
+gaan wij er vanuit dat de gebruiker alleen zijn of haar gegevens
+verstrekt aan een betrouwbare partij.
+
+Technisch gezien zou dit verholpen kunnen worden
+wanneer de gebruiker een vrij veld zou kunnen invullen in een gewaarmerkte PDF
+van de overheid, maar dit is nog nergens mogelijk.
+
 
