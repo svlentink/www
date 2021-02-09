@@ -10,7 +10,7 @@ function switchLanguage(lang){
 		e.style.display = 'none'
 }
 function setListeners(){
-	for (let elem of document.querySelector('.switchlang'))
+	for (let elem of document.querySelectorAll('.switchlang'))
 		elem.onclick = function(){ switchLanguage(elem.innerText) }
 	let form = document.querySelector('form')
 	form.onsubmit = function(){ submitForm(form, pdfCallback) }
