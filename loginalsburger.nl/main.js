@@ -81,7 +81,7 @@ function display_msg(...rest) {
 function submitForm(oFormElement,callback){
 	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
 	let method = oFormElement.method
-	let path = oFormElement.getAttribute("action"))
+	let path = oFormElement.getAttribute("action")
 	let data = new FormData(oFormElement)
 	submitXhr(path, data, callback)
 	document.querySelector('.loader').style.display = 'block'
