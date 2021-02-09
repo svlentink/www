@@ -9,9 +9,9 @@
 <article id="bodywrapper">
 <article>
 	<section id="top">
-		<span onclick='switchLanguage("en")'>EN</span>
+		<span class='switchlang'>EN</span>
 		<span style='font-size:135%'>|</span>
-		<span onclick='switchLanguage("nl")'>NL</span>
+		<span class='switchlang'>NL</span>
 		<a href='/meer-info'>&#9432;</a>
 	</section>
 </article>
@@ -113,7 +113,7 @@
 	</section>
 	<section class='form'>
 		<div class="loader"></div>
-		<form action="/pdf" enctype="multipart/form-data" method="post" onsubmit="return submitForm(this);">
+		<form action="/pdf" enctype="multipart/form-data" method="post">
 			<input type="file" name="pdf" />
 			<br/>
 			<input type="submit" class='nl' value="Ga verder >" />

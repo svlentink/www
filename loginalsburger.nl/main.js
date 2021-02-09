@@ -1,12 +1,19 @@
 import { Pdfs } from './pdfs.js'
 
 function switchLanguage(lang){
+	lang = lang.toLowerCase()
 	let othlang = 'nl'
 	if (lang === 'nl') othlang = 'en'
 	for (let e of document.querySelectorAll('.'+lang))
 		e.style.display = 'inline-block'
 	for (let e of document.querySelectorAll('.'+othlang))
 		e.style.display = 'none'
+}
+function setListeners(){
+	for (let elem of document.querySelector('.switchlang'))
+		elem.onclick = function(){ switchLanguage(elem.innerText) }
+	let form = document.querySelector('form')
+	form.onsubmit = function(){ submitForm(form, pdfCallback) }
 }
 function main() {
 	let params = (new URLSearchParams(window.location.search))
@@ -19,6 +26,7 @@ function main() {
 			elem.innerText = label
 	} else return display_msg("ERROR no 'redirect' in search params")
 	if (! fields) return display_msg("ERROR no 'fields' in search params")
+	setListeners()
 	if (css) loadCss(css)
 	let retrieved_fields = getFields(fields)
 	if (! retrieved_fields) return 
@@ -148,4 +156,4 @@ function loadCss(url){
 }
 
 main()
-export { submitForm, switchLanguage }
+
