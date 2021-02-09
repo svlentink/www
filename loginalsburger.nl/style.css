@@ -13,7 +13,7 @@ article {
 	max-width:400px;
 	margin: 0 auto;
 }
-article, input[type=submit] {
+#bodywrapper, input[type=submit] {
 	box-shadow: 0 0 5px 0 grey;
 }
 section {
