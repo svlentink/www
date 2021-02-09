@@ -13,7 +13,7 @@ function setListeners(){
 	for (let elem of document.querySelectorAll('.switchlang'))
 		elem.onclick = function(){ switchLanguage(elem.innerText) }
 	let form = document.querySelector('form')
-	form.onsubmit = function(){ submitForm(form, pdfCallback) }
+	form.onsubmit = function(){ submitForm(form, pdfCallback);return false }
 }
 function main() {
 	let params = (new URLSearchParams(window.location.search))
