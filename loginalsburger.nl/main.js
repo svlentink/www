@@ -78,7 +78,7 @@ function display_msg(...rest) {
 	div.innerText = msg
 }
 
-function submitForm(oFormElement,callback){
+function submitForm(oFormElement,callback=pdfCallback){
 	if (! document.querySelector('input').value) return display_msg('ERROR no file selected')
 	let method = oFormElement.method
 	let path = oFormElement.getAttribute("action")
