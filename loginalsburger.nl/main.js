@@ -22,7 +22,7 @@ function main() {
 	let css = params.get('css')
 	let min_timestamp = params.get('min_timestamp')
 	if (min_timestamp) {
-		if (new Date(min_timestamp)).toISOString() > (new Date()).toISOString() )
+		if ( (new Date(min_timestamp)).toISOString() > (new Date()).toISOString() )
 			display_msg("ERROR min_timestamp in the future")
 		//FIXME check current RDWs for min_timestamp (don't delete but just check for it)
 	}
