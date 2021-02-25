@@ -20,6 +20,12 @@ function main() {
 	let redirect = params.get('redirect')
 	let fields = params.get('fields')
 	let css = params.get('css')
+	let min_timestamp = params.get('min_timestamp')
+	if (min_timestamp) {
+		if (new Date(min_timestamp)).toISOString() > (new Date()).toISOString() )
+			display_msg("ERROR min_timestamp in the future")
+		//FIXME check current RDWs for min_timestamp (don't delete but just check for it)
+	}
 	if (redirect) {
 		let label = redirect.split('//')[1].split('/')[0]
 		for (let elem of document.querySelectorAll('.redirectdomain'))
@@ -84,6 +90,7 @@ function display_msg(...rest) {
 	console.log(msg)
 	div.style.display = 'block'
 	div.innerText = msg
+	document.querySelector('.loader').style.display = 'none'
 }
 
 function submitForm(oFormElement,callback=pdfCallback){

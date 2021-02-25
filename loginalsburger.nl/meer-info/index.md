@@ -93,5 +93,6 @@ verstrekt aan een betrouwbare partij.
 Technisch gezien zou dit verholpen kunnen worden
 wanneer de gebruiker een vrij veld zou kunnen invullen in een gewaarmerkte PDF
 van de overheid, maar dit is nog nergens mogelijk.
+De beste optie voor nu is om de PDF met de nieuwste timestamp (laatst gedownload RDW PDF).
 
 

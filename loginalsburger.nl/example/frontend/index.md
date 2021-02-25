@@ -20,6 +20,32 @@ which allows LoginAlsBurger to check if the PDF was retrieved recently)
 | edu |  | DUO |
 -->
 
+## Timestamp
+
+There are two ways the info from LoginAlsBurger can be used;
+to validate details of a person
+(e.g. if person X indeed has done education Y)
+and/or to authenticate a person
+(e.g. person X has done education Y, but is also person X).
+
+In the case LoginAlsBurger is used to authenticate a person,
+`timestamp`, which is always provided,
+[MUST](https://tools.ietf.org/html/rfc2119)
+be stored by your service and checked.
+
+Some dummy code:
+```
+received_userid, received_timestamp = request_from_loginalsburger.parse()
+last_known_timestamp = dummy_sql_select(received_userid)
+if (last_known_timestamp == received_timestamp)
+	return 'All good, authenticate user'
+if (last_known_timestamp < received_timestamp)
+	dummy_sql_update(received_userid, received_timestamp)
+	return 'All good, user just used more recent PDF document'
+if (last_known_timestamp > received_timestamp)
+	return 'NOT good, it could be that the user used a different browser with an old PDF in localStorage'
+
+```
 
 ## Available data
 
@@ -81,12 +107,19 @@ it.
 <script>
 function onclick_example(){
   let url = "https://loginalsburger.nl/"
+
   // specify where the service needs to return to:
   url += "?redirect=" + encodeURIComponent("https://loginalsburger.nl/example/backend")
+
   // specify the needed fields:
   url += "&fields=" + encodeURIComponent("name,education,graduationyear,city")
+
+  // optionally, provide the current timestamp that you have of this user in the DB, if applies
+  //url += "&min_timestamp=" + encodeURIComponent("2020-07-09T07:05")
+
   // optionally we specify our own CSS:
   //url += "&css=" + encodeURIComponent("https://my-service.nl/custom.css")
+
   window.open(url,"new_window")
 }
 </script>
