@@ -60,6 +60,8 @@ class Inkomensverklaring extends Pdf {
 class Rdw extends Pdf {
 	relateTo(pdf){
 		let t = pdf.type
+		if (t === 'rdw') // multiple RDW pdfs are useless
+			return false
 		if (t === 'inkomensverklaring') {
 			let this_bsn = this.getAttr('bsn')
 			if (! this_bsn) {
@@ -69,12 +71,12 @@ class Rdw extends Pdf {
 			let that_bsn = pdf.getAttr('bsn')
 			return this_bsn === that_bsn
 		}
-		if (t === 'duo' || t === 'rdw'){
+		if (t === 'duo'){
 			let this_name = this.getAttr('name')
 			let that_name = pdf.getAttr('name')
 			return that_name.indexOf(this_name) !== -1
 		}
-		console.log('WARNING unknown pdf type',t)
+		console.warn('unknown pdf type',t)
 		return false
 	}
 	inConflict(pdf){
@@ -82,17 +84,47 @@ class Rdw extends Pdf {
 		// if both are RDW we need it to be the same person!
 		return this.getAttr('name') !== pdf.getAttr('name')
 	}
+	invalidate_timestamp(min_timestamp){
+		let min = (new Date(min_timestamp)).toISOString()
+		let now = (new Date()).toISOString()
+		if (min > now)
+			return "ERROR min_timestamp points to time in future"
+		let pdf_time = (new Date(this.getAttr('timestamp'))).toISOString()
+		if (min < pdf_time)
+			return "INFO RDW pdf too old"
+		return false
+	}
 }
 
-
+/* Since the list of Pdfs stored in localstorage can hold pdfs of multiple people
+ * the order is as follows:
+ * 1 we want to have the last uploaded RDW pdf, if none found, user needs to be prompted
+ * 2 correlate all other pdfs with this latest RDW pdf
+ * 3 see if all desired fields are there
+ * 4 return fields
+ */
 class Pdfs {
-	constructor(arr){
+	constructor(arr, only_relevant_to_rdw_user=true){
 		let result = []
 		for (let p in arr) {
 			let pdf = new Pdf(p)
 			if (pdf) result.push(pdf)
 		}
-		this.list = result
+		if (! only_relevant_to_rdw_user){
+			this.list = result
+			return
+		}
+		this.rdw = this.latest_rdw()
+		if (! this.rdw){
+			this.list = []
+			return
+		}
+		let latest_rdw_user_pdfs = []
+		for (let p in result)
+			if (this.rdw.relateTo(p))
+				latest_rdw_user_pdfs.push(p)
+
+		this.list = latest_rdw_user_pdfs
 	}
 	field_native_to(key){
 		let sources = {
@@ -123,8 +155,10 @@ class Pdfs {
 		return missing_fields
 	}
 	sources_missing(keys){
-		//FIXME also correlate inConflict and relatesTo
-
+		return fields_native_to( fields_missing(keys) )
+	}
+	filter_by(field){
+		return this.filter(p => {field in p})
 	}
 	filter(func){
 		let result = []
@@ -147,6 +181,39 @@ class Pdfs {
 		for (let p in this.list)
 			result.push(p.token)
 		return result
+	}
+	latest_rdw(min_timestamp = '2021'){
+		let latest
+		let arr = filter_by('timestamp')
+		for (let p in arr.list){
+			if(! latest)
+				latest = p
+			if(latest.getAttr('timestamp') < p.getAttr('timestamp'))
+				latest = p
+		}
+		let err = latest.invalid_timestamp(min_timestamp)
+		if (err)
+			console.log(err)
+		else
+			return latest
+	}
+	next_needed(fields, min_timestamp){
+		let needed = this.fields_native_to(fields)
+		if(this.rdw && (
+			fields.includes('bsn') ||
+			fields.includes('bsnend') ||
+			needed.includes('inkomensverklaring')
+			) && (! this.rdw.getAttr('bsn')) )
+			this.rdw = undefined
+		if(! this.rdw){
+			if(fields.includes('bsn' || fields.includes('bsnend'))
+				return 'rdw_bsn'
+			if(needed.includes('inkomensverklaring'))
+				return 'rdw_inkomensverklaring'
+			return 'rdw'
+		}
+		let missing = this.sources_missing(fields)
+		return missing.pop()
 	}
 }
 

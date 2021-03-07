@@ -12,6 +12,13 @@ function switchLanguage(lang){
 function setListeners(){
 	for (let elem of document.querySelectorAll('.switchlang'))
 		elem.onclick = function(){ switchLanguage(elem.innerText) }
+	for (let elem of document.querySelectorAll('.reset_min_timestamp'))
+		elem.onclick = function(){
+			window.location.search = "?min_timestamp=" +
+				(new Date()).toISOString().substr(0,16) +
+				"&" +
+				window.location.search.substr(1)
+		}
 	let form = document.querySelector('form')
 	form.onsubmit = function(){ submitForm(form, pdfCallback);return false }
 }
@@ -21,11 +28,6 @@ function main() {
 	let fields = params.get('fields')
 	let css = params.get('css')
 	let min_timestamp = params.get('min_timestamp')
-	if (min_timestamp) {
-		if ( (new Date(min_timestamp)).toISOString() > (new Date()).toISOString() )
-			display_msg("ERROR min_timestamp in the future")
-		//FIXME check current RDWs for min_timestamp (don't delete but just check for it)
-	}
 	if (redirect) {
 		let label = redirect.split('//')[1].split('/')[0]
 		for (let elem of document.querySelectorAll('.redirectdomain'))
@@ -34,8 +36,18 @@ function main() {
 	if (! fields) return display_msg("ERROR no 'fields' in search params")
 	setListeners()
 	if (css) loadCss(css)
-	let retrieved_fields = getFields(fields)
-	if (! retrieved_fields) return 
+	let fields_arr = fields.split(',')
+	let pdfs = getPdfs()
+	let next = pdfs.next_needed(fields_arr, min_timestamp)
+	if (!next)
+		return console.log('FIXME all fields retrieved')
+	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
+	if (next.indexOf('rdw') !== -1){
+		document.querySelectorAll('.rdw').forEach(x => {x.style.display = 'block'})
+		return
+	}
+	document.querySelectorAll('.rdwname').forEach(x => {x.style.display = 'block'})
+	document.querySelectorAll('.subjectname').forEach(x => {x.innerText = pdfs.rdw.getAttr('name')})
 }
 
 function getSetStorage(val, key="retrieved", default_val=[]) {
@@ -45,11 +57,7 @@ function getSetStorage(val, key="retrieved", default_val=[]) {
 	return val
 }
 
-
-
-function getFields(fields) {
-	let fields_arr = fields.split(',')
-	
+function getPdfs() {
 	let retrieved = getSetStorage()
 	let pdfs = new Pdfs(retrieved)
 	if (pdfs.length()){
@@ -68,16 +76,12 @@ function getFields(fields) {
 		})
 		if (unverified.length)
 			submitSign(unverified.get_tokens(), res => {
-				
+				//FIXME
+				return console.log(res)
+				main()
 			})
 	}
-	let missing_fields = 'FIXME'
-	console.log('FIXME needed fields',missing_fields)
-
-	if (missing_fields.length === 0) return 
-	// FIXME
-	// correlate bsn from inkomensverklaring with rdw
-	// and name from duo with rdw
+	return pdfs
 }
 
 function display_msg(...rest) {

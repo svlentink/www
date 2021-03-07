@@ -54,6 +54,11 @@ te kiezen voor de Nederlandse belastingdienst,
 wanneer je hun services niet fijn vindt.
 Burgers die inloggen op uw service zijn afhankelijk van de authenticatie methode die u kiest.
 
+<!--
+I quote:
+Mijn Belastingdienst is tijdelijk niet bereikbaar. Dit komt doordat het maximale aantal mensen is ingelogd. Wij vragen u om later terug te komen. Onze excuses voor het ongemak.
+-->
+
 Deze service was gemaakt omdat wij de volgende authenticatie methodes niet geschikt vonden.
 
 #### eID van eIDAS

@@ -90,16 +90,10 @@ input[type=file] {
   100% { transform: rotate(360deg); }
 }
 
-.rdw {
+.rdw, .rdwname, .duo, .inkomensverklaring, .msg {
 	display: none;
 }
-.duo {
-	display: none;
-}
-.inkomensverklaring {
-	display: none;
-}
-.msg {
-	display: none;
+.reset_min_timestamp {
+	color: blue;
 }
 
