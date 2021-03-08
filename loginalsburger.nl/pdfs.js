@@ -220,7 +220,8 @@ class Pdfs {
 			return 'rdw'
 		}
 		let missing = this.sources_missing(fields)
-		return missing.pop()
+		if (missing)
+			return missing.values().next().value
 	}
 }
 
