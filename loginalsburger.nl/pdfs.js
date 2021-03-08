@@ -140,7 +140,7 @@ class Pdfs {
 			rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country", "timestamp"]
 		}
 
-		for (let s of sources) if ( sources[s].includes(key) ) return s
+		for (let s in sources) if ( sources[s].includes(key) ) return s
 		return false
 	}
 	fields_native_to(keys){
