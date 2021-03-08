@@ -90,7 +90,7 @@ class Rdw extends AbstractPdf {
 		// if both are RDW we need it to be the same person!
 		return this.getAttr('name') !== pdf.getAttr('name')
 	}
-	invalidate_timestamp(min_timestamp){
+	invalid_timestamp(min_timestamp){
 		let min = (new Date(min_timestamp)).toISOString()
 		let now = (new Date()).toISOString()
 		if (min > now)
