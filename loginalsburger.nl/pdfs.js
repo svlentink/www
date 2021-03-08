@@ -1,19 +1,24 @@
 
 class Pdf {
 	constructor(inp){
+		if (! inp || ! inp.parsed || ! inp.parsed.info) return false
+		let t = inp.parsed.info.type
+		if (t === 'rdw') return new Rdw(inp)
+		if (t === 'duo') return new Duo(inp)
+		if (t === 'inkomensverklaring') return new Inkomensverklaring(inp)
+		return false // unknown type
+	}
+}
+
+class AbstractPdf {
+	constructor(inp){
 		if (! inp || ! inp.parsed) return false
 		for (let key in inp.parsed)
 			this[key] = inp.parsed[key]
 		if (! this.token) return false // no token means not valid
 		if (! this.info) return false
-		let t = this.info.type
-		if (! t) return false
-		this.type = t
+		this.type = this.info.type
 		this.raw = inp
-		if (t === 'rdw') return new Rdw()
-		if (t === 'duo') return new Duo()
-		if (t === 'inkomensverklaring') return new Inkomensverklaring()
-		return false // unknown type
 	}
 	keys(){
 		Object.keys(parsedToken().info)
@@ -58,11 +63,11 @@ class Pdf {
 	}
 }
 
-class Duo extends Pdf {
+class Duo extends AbstractPdf {
 }
-class Inkomensverklaring extends Pdf {
+class Inkomensverklaring extends AbstractPdf {
 }
-class Rdw extends Pdf {
+class Rdw extends AbstractPdf {
 	relateTo(pdf){
 		let t = pdf.type
 		if (t === 'rdw') // multiple RDW pdfs are useless
