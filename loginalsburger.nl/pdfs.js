@@ -144,7 +144,7 @@ class Pdfs {
 		return false
 	}
 	fields_native_to(keys){
-		let result = Set()
+		let result = new Set()
 		for (let key of keys){
 			let s = field_native_to(key)
 			if (s) result.add(s)
