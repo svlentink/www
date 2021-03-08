@@ -116,7 +116,8 @@ class Pdfs {
 		let result = []
 		for (let p of arr) {
 			let pdf = new Pdf(p)
-			if (pdf) result.push(pdf)
+			if (pdf && pdf.type)
+				result.push(pdf)
 		}
 		this.list = result
 		if (! only_relevant_to_rdw_user){
