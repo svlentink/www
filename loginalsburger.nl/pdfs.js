@@ -157,7 +157,7 @@ class Pdfs {
 		for (let pdf of this.list)
 			retrieved_fields = retrieved_fields.concat(pdf.keys())
 		let missing_fields = []
-		for (let needed of desired_fiels)
+		for (let needed of desired_fields)
 			if (! retrieved_fields.includes(needed)) missing_fields.push(needed)
 		return missing_fields
 	}
