@@ -110,8 +110,8 @@ class Pdfs {
 			let pdf = new Pdf(p)
 			if (pdf) result.push(pdf)
 		}
+		this.list = result
 		if (! only_relevant_to_rdw_user){
-			this.list = result
 			return
 		}
 		this.rdw = this.latest_rdw()
@@ -155,7 +155,7 @@ class Pdfs {
 		return missing_fields
 	}
 	sources_missing(keys){
-		return fields_native_to( fields_missing(keys) )
+		return this.fields_native_to( this.fields_missing(keys) )
 	}
 	filter_by(field){
 		return this.filter(p => {field in p})
@@ -184,7 +184,7 @@ class Pdfs {
 	}
 	latest_rdw(min_timestamp = '2021'){
 		let latest
-		let arr = filter_by('timestamp')
+		let arr = this.filter_by('timestamp')
 		for (let p in arr.list){
 			if(! latest)
 				latest = p
