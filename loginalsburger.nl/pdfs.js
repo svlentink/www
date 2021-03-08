@@ -2,6 +2,7 @@
 class Pdf {
 	constructor(inp){
 		if (! inp || ! inp.parsed || ! inp.parsed.info) return false
+		if (! inp.parsed.token) return false // no token means not valid
 		let t = inp.parsed.info.type
 		if (t === 'rdw') return new Rdw(inp)
 		if (t === 'duo') return new Duo(inp)
@@ -12,11 +13,8 @@ class Pdf {
 
 class AbstractPdf {
 	constructor(inp){
-		if (! inp || ! inp.parsed) return false
 		for (let key in inp.parsed)
 			this[key] = inp.parsed[key]
-		if (! this.token) return false // no token means not valid
-		if (! this.info) return false
 		this.type = this.info.type
 		this.raw = inp
 	}
