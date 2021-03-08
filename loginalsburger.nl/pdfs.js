@@ -146,7 +146,7 @@ class Pdfs {
 	fields_native_to(keys){
 		let result = new Set()
 		for (let key of keys){
-			let s = field_native_to(key)
+			let s = this.field_native_to(key)
 			if (s) result.add(s)
 			else return console.error('requested field unknow:',f)
 		}
