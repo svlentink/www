@@ -1,14 +1,12 @@
 
-class Pdf {
-	constructor(inp){
-		if (! inp || ! inp.parsed || ! inp.parsed.info) return false
-		if (! inp.parsed.token) return false // no token means not valid
-		let t = inp.parsed.info.type
-		if (t === 'rdw') return new Rdw(inp)
-		if (t === 'duo') return new Duo(inp)
-		if (t === 'inkomensverklaring') return new Inkomensverklaring(inp)
-		return false // unknown type
-	}
+function parse_pdf(inp){
+	if (! inp || ! inp.parsed || ! inp.parsed.info) return false
+	if (! inp.parsed.token) return false // no token means not valid
+	let t = inp.parsed.info.type
+	if (t === 'rdw') return new Rdw(inp)
+	if (t === 'duo') return new Duo(inp)
+	if (t === 'inkomensverklaring') return new Inkomensverklaring(inp)
+	return false // unknown type
 }
 
 class AbstractPdf {
@@ -115,8 +113,8 @@ class Pdfs {
 	constructor(arr, only_relevant_to_rdw_user=true){
 		let result = []
 		for (let p of arr) {
-			let pdf = new Pdf(p)
-			if (pdf && pdf.type)
+			let pdf = parse_pdf(p)
+			if (pdf)
 				result.push(pdf)
 		}
 		this.list = result
@@ -173,8 +171,8 @@ class Pdfs {
 		let result = []
 		for (let p of this.list)
 			if (func(p))
-				result.push(p.raw)
-		return new Pdfs(result)
+				result.push(p)
+		return result
 	}
 	get_raw(){
 		let result = []
@@ -194,7 +192,7 @@ class Pdfs {
 	latest_rdw(min_timestamp = '2021'){
 		let latest
 		let arr = this.filter_by('timestamp')
-		for (let p of arr.list){
+		for (let p of arr){
 			if(! latest)
 				latest = p
 			if(latest.getAttr('timestamp') < p.getAttr('timestamp'))
