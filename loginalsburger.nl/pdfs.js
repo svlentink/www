@@ -44,7 +44,7 @@ class AbstractPdf {
 	getAttr(key){
 		let t = this.parsedToken()
 		if (! t || ! t.info || ! t.info[key]) return
-		return t.info.key[key]
+		return t.info[key]
 	}
 	contains(key){
 		if ( this.getAttr(key) )
