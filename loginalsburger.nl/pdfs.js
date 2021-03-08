@@ -111,7 +111,7 @@ class Rdw extends Pdf {
 class Pdfs {
 	constructor(arr, only_relevant_to_rdw_user=true){
 		let result = []
-		for (let p in arr) {
+		for (let p of arr) {
 			let pdf = new Pdf(p)
 			if (pdf) result.push(pdf)
 		}
@@ -125,7 +125,7 @@ class Pdfs {
 			return
 		}
 		let latest_rdw_user_pdfs = []
-		for (let p in result)
+		for (let p of result)
 			if (this.rdw.relateTo(p))
 				latest_rdw_user_pdfs.push(p)
 
@@ -138,7 +138,7 @@ class Pdfs {
 			rdw: ["bsn", "bsnend", "name", "address", "zipcode", "city", "country", "timestamp"]
 		}
 
-		for (let s in sources) if ( sources[s].includes(key) ) return s
+		for (let s of sources) if ( sources[s].includes(key) ) return s
 		return false
 	}
 	fields_native_to(keys){
@@ -167,14 +167,14 @@ class Pdfs {
 	}
 	filter(func){
 		let result = []
-		for (let p in this.list)
+		for (let p of this.list)
 			if (func(p))
 				result.push(p.raw)
 		return new Pdfs(result)
 	}
 	get_raw(){
 		let result = []
-		for (let p in this.list)
+		for (let p of this.list)
 			result.push(p.raw)
 		return result
 	}
@@ -183,14 +183,14 @@ class Pdfs {
 	}
 	get_tokens(){
 		let result = []
-		for (let p in this.list)
+		for (let p of this.list)
 			result.push(p.token)
 		return result
 	}
 	latest_rdw(min_timestamp = '2021'){
 		let latest
 		let arr = this.filter_by('timestamp')
-		for (let p in arr.list){
+		for (let p of arr.list){
 			if(! latest)
 				latest = p
 			if(latest.getAttr('timestamp') < p.getAttr('timestamp'))
