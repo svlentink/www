@@ -41,6 +41,11 @@ class Pdf {
 		if (! t || ! t.info || ! t.info[key]) return
 		return t.info.key[key]
 	}
+	contains(key){
+		if ( this.getAttr(key) )
+			return true
+		return false
+	}
 	relateTo(pdf){
 		if (pdf.type === 'rdw') return pdf.relateTo(this)
 		return false
@@ -158,7 +163,7 @@ class Pdfs {
 		return this.fields_native_to( this.fields_missing(keys) )
 	}
 	filter_by(field){
-		return this.filter(p => {field in p})
+		return this.filter(p => {return p.contains(field)})
 	}
 	filter(func){
 		let result = []
