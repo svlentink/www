@@ -198,6 +198,8 @@ class Pdfs {
 			if(latest.getAttr('timestamp') < p.getAttr('timestamp'))
 				latest = p
 		}
+		if (! latest)
+			return
 		let err = latest.invalid_timestamp(min_timestamp)
 		if (err)
 			console.log(err)
