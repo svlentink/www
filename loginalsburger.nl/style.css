@@ -90,7 +90,7 @@ input[type=file] {
   100% { transform: rotate(360deg); }
 }
 
-.rdw, .rdwname, .duo, .inkomensverklaring, .msg {
+.rdw, .rdwname, .rdw_bsn, .rdw_inkomensverklaring, .duo, .inkomensverklaring, .msg {
 	display: none;
 }
 .reset_min_timestamp {

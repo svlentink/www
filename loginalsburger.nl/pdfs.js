@@ -206,7 +206,7 @@ class Pdfs {
 			) && (! this.rdw.getAttr('bsn')) )
 			this.rdw = undefined
 		if(! this.rdw){
-			if(fields.includes('bsn' || fields.includes('bsnend'))
+			if(fields.includes('bsn') || fields.includes('bsnend'))
 				return 'rdw_bsn'
 			if(needed.includes('inkomensverklaring'))
 				return 'rdw_inkomensverklaring'
