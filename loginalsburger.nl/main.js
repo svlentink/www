@@ -63,7 +63,7 @@ function getSetStorage(val, key="retrieved", default_val=[]) {
 
 function getPdfs() {
 	let retrieved = getSetStorage()
-	let pdfs = new Pdfs(retrieved)
+	let pdfs = new Pdfs(retrieved,false)
 	if (pdfs.length()){
 		// If one of the tokens is old, we send it all off to see
 		// if one of them is expired, this can happen when one
@@ -85,7 +85,7 @@ function getPdfs() {
 				main()
 			})
 	}
-	return pdfs
+	return new Pdfs(retrieved)
 }
 
 function display_msg(...rest) {

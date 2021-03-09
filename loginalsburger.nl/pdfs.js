@@ -96,7 +96,7 @@ class Rdw extends AbstractPdf {
 		if (min > now)
 			return "ERROR min_timestamp points to time in future"
 		let pdf_time = (new Date(this.getAttr('timestamp'))).toISOString()
-		if (min < pdf_time)
+		if (min > pdf_time)
 			return "INFO RDW pdf too old"
 		return false
 	}
