@@ -41,6 +41,8 @@ function main() {
 	console.debug('pdfs',pdfs)
 	let next = pdfs.next_needed(fields_arr, min_timestamp)
 	console.debug('next pdf',next)
+	for (let e of ['rdw','rdw_bsn','rdw_inkomensverklaring','inkomensverklaring','duo','rdwname'])
+		document.querySelectorAll('.'+e).forEach(x => {x.style.display = 'none'})
 	if (!next)
 		return console.log('FIXME all fields retrieved')
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
@@ -144,6 +146,7 @@ function pdfCallback(obj){
 	// check if parsing failed
 	if (typeof obj === 'string') 
 		return display_msg(obj)
+	addToStorage(obj)
 
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
