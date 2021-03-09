@@ -38,7 +38,9 @@ function main() {
 	if (css) loadCss(css)
 	let fields_arr = fields.split(',')
 	let pdfs = getPdfs()
+	console.debug('pdfs',pdfs)
 	let next = pdfs.next_needed(fields_arr, min_timestamp)
+	console.debug('next pdf',next)
 	if (!next)
 		return console.log('FIXME all fields retrieved')
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
@@ -86,11 +88,11 @@ function getPdfs() {
 
 function display_msg(...rest) {
 	let div = document.querySelector('.msg')
-	if(! rest) {
+	let msg = rest.join(' ')
+	if(! msg) {
 		div.style.display = 'none'
 		return
 	}
-	let msg = rest.join(' ')
 	console.log(msg)
 	div.style.display = 'block'
 	div.innerText = msg

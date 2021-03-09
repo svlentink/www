@@ -49,15 +49,15 @@ if (last_known_timestamp > received_timestamp)
 
 ## Available data
 
-```
+<!--
 # Obtained from DUO
 "name": "De heer Ali Bert Jansen"
 "education": "GETUIGSCHRIFT WO Master Security and Network Engineering"
 "school": "Universiteit van Amsterdam"
-"edulevel": "WO Master" #NOTE, we are not able to deduce this field for every diploma!
+"edulevel": "WO Master" #NOTE, we are NOT able to deduce this field for every diploma
 "birthdate": "1987-01-31"
 "birthyear": 1987
-"graduationdate": "2009-10-12"
+"graduationdate": "2009-01-31"
 "graduationyear": 2009
 
 # Obtained from RDW
@@ -72,6 +72,34 @@ if (last_known_timestamp > received_timestamp)
 
 # Obtained from belastingdienst
 "datestamp": "2020-06-29" #retrieved from PDF but has no value
+"incomeyear": 2019
+"name": "A B Jansen"
+"annualincome": 12345
+"bsn": "123456789"
+-->
+
+```
+# Obtained from DUO
+"name": "De heer Ali Bert Jansen"
+"education": "GETUIGSCHRIFT WO Master Security and Network Engineering"
+"school": "Universiteit van Amsterdam"
+"edulevel": "WO Master" #NOTE, we are NOT able to deduce this field for every diploma
+"birthdate": "1987-01-31"
+"birthyear": 1987
+"graduationdate": "2009-01-31"
+"graduationyear": 2009
+
+# Obtained from RDW
+"bsn": "123456789"
+"bsnend" "6789"
+"name": "Ali Bert Jansen"
+"address": "Horst 10 99"
+"zipcode": "1234AB"
+"city": "Lelystad"
+"country": "NEDERLAND"
+"timestamp": "2020-07-09T07:05" #we use this to determine if the user is the one who dowloaded the pdf
+
+# Obtained from belastingdienst
 "incomeyear": 2019
 "name": "A B Jansen"
 "annualincome": 12345
