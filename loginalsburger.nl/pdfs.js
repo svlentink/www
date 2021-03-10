@@ -126,7 +126,7 @@ class Pdfs {
 			this.list = []
 			return
 		}
-		let latest_rdw_user_pdfs = []
+		let latest_rdw_user_pdfs = [this.rdw]
 		for (let p of result)
 			if (this.rdw.relateTo(p))
 				latest_rdw_user_pdfs.push(p)
