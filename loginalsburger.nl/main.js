@@ -50,7 +50,9 @@ function main() {
 	for (let e of ['rdw','rdw_bsn','rdw_inkomensverklaring','inkomensverklaring','duo','rdwname'])
 		document.querySelectorAll('.'+e).forEach(x => {x.style.display = 'none'})
 	if (!next)
-		return console.log('FIXME all fields retrieved')
+		return submitSign(fields_arr, pdfs.get_tokens(), res => {
+			console.log(res)
+		})
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
 	if (next.indexOf('rdw') !== -1){
 		document.querySelectorAll('.rdw').forEach(x => {x.style.display = 'block'})
@@ -77,7 +79,7 @@ function getPdfs() {
 		// we then are able to purge the expired tokens
 		let now = new Date()
 		let hour_ago = now.setHours(now.getHours() -1)
-		let unverified = pdfs.filter((p) => {
+		let unverified = pdfs.filter(p => {
 			if (! p.signature_verified_at) return false
 			if( (new Date(p.signature_verified_at)).getTime() < hour_ago.getTime()) {
 				return false
@@ -85,7 +87,7 @@ function getPdfs() {
 			return true // we filter it since it is good to go
 		})
 		if (unverified.length)
-			submitSign(unverified.get_tokens(), res => {
+			submitSign(['name'], unverified.get_tokens(), res => {
 				//FIXME
 				return console.log(res)
 				main()
@@ -117,9 +119,13 @@ function submitForm(oFormElement,callback=pdfCallback){
 	display_msg()
 	return false
 }
-function submitSign(tokens,callback){
-	return console.log('FIXME submitsign')
-	submitXhr('/sign', JSON.stringify(tokens), callback)
+function submitSign(fields, tokens, callback=console.debug){
+	console.debug('submitsign',fields,tokens)
+	submitXhr('/sign', JSON.stringify(tokens), (res) => {
+	// the token retrieved from localStorage may be expired
+	// thus we need to account for this possibility
+		callback(res)
+	})
 }
 function submitXhr(path, data, callback){
 	let method = 'GET'
@@ -160,10 +166,6 @@ function pdfCallback(obj){
 	main()
 }
 
-function signCallback(){
-	// the token retrieved from localStorage may be expired
-	// thus we need to account for this possibility
-}
 
 /*
  * Allow custom CSS to be loaded
