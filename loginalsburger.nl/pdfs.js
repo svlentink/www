@@ -17,7 +17,7 @@ class AbstractPdf {
 		this.raw = inp
 	}
 	keys(){
-		Object.keys(this.parsedToken().info)
+		return Object.keys(this.parsedToken().info)
 	}
 	isValidCert(){
 		if(! this.certificates) return false

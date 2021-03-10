@@ -42,7 +42,7 @@ function main() {
 	if (! fields) return go_back("ERROR no 'fields' in search params")
 	setListeners()
 	if (css) loadCss(css)
-	let fields_arr = fields.split(',')
+	let fields_arr = ('timestamp,' + fields).split(',') //timestamp is always provided for security reasons
 	let pdfs = getPdfs()
 	console.debug('pdfs',pdfs)
 	let next = pdfs.next_needed(fields_arr, min_timestamp)
