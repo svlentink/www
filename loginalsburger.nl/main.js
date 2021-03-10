@@ -1,5 +1,11 @@
 import { Pdfs } from './pdfs.js'
 
+function go_back(reason){
+	console.error('redirecting',reason)
+	let query = '?redirect=http://localhost&fields=name'
+	window.location.search = query
+}
+
 function switchLanguage(lang){
 	lang = lang.toLowerCase()
 	let othlang = 'nl'
@@ -28,12 +34,12 @@ function main() {
 	let fields = params.get('fields')
 	let css = params.get('css')
 	let min_timestamp = params.get('min_timestamp')
-	if (redirect) {
+	if (redirect && redirect.indexOf('//') !== -1) {
 		let label = redirect.split('//')[1].split('/')[0]
 		for (let elem of document.querySelectorAll('.redirectdomain'))
 			elem.innerText = label
-	} else return display_msg("ERROR no 'redirect' in search params")
-	if (! fields) return display_msg("ERROR no 'fields' in search params")
+	} else return go_back("ERROR no (valid) 'redirect' in search params")
+	if (! fields) return go_back("ERROR no 'fields' in search params")
 	setListeners()
 	if (css) loadCss(css)
 	let fields_arr = fields.split(',')
