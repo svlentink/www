@@ -50,7 +50,7 @@ function main() {
 	for (let e of ['rdw','rdw_bsn','rdw_inkomensverklaring','inkomensverklaring','duo','rdwname'])
 		document.querySelectorAll('.'+e).forEach(x => {x.style.display = 'none'})
 	if (!next)
-		return submitSign(fields_arr, pdfs.get_tokens(), res => {
+		return submitSign(fields_arr, pdfs.get_token_types(), redirect, res => {
 			console.log(res)
 		})
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
@@ -87,7 +87,7 @@ function getPdfs() {
 			return true // we filter it since it is good to go
 		})
 		if (unverified.length)
-			submitSign(['name'], unverified.get_tokens(), res => {
+			submitSign(['name'], unverified.get_token_types(), 'validation_check', res => {
 				//FIXME
 				return console.log(res)
 				main()
@@ -119,9 +119,14 @@ function submitForm(oFormElement,callback=pdfCallback){
 	display_msg()
 	return false
 }
-function submitSign(fields, tokens, callback=console.debug){
-	console.debug('submitsign',fields,tokens)
-	submitXhr('/sign', JSON.stringify(tokens), (res) => {
+function submitSign(fields, tokens, subject='missing_subject', callback=console.debug){
+	let data = {
+		subject: subject,
+		data: tokens,
+		keys: fields
+	}
+	console.debug('submitsign', data, fields, tokens)
+	submitXhr('/sign', data, (res) => {
 	// the token retrieved from localStorage may be expired
 	// thus we need to account for this possibility
 		callback(res)

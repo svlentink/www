@@ -189,6 +189,12 @@ class Pdfs {
 			result.push(p.token)
 		return result
 	}
+	get_token_types(){
+		let result = []
+		for (let p of this.list)
+			result.push( {type: p.type, token: p.token} )
+		return result
+	}
 	latest_rdw(min_timestamp = '2021'){
 		let latest
 		let arr = this.filter_by('timestamp')
