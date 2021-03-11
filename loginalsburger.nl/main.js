@@ -125,8 +125,8 @@ function submitSign(fields, tokens, subject='missing_subject', callback=console.
 		data: tokens,
 		keys: fields
 	}
-	console.debug('submitsign', data, fields, tokens)
-	submitXhr('/sign', JSON.stringify(data), (res) => {
+	console.debug('submitsign', data)
+	submitXhr('/sign/', JSON.stringify(data), (res) => {
 	// the token retrieved from localStorage may be expired
 	// thus we need to account for this possibility
 		callback(res)
