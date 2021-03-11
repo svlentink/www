@@ -126,7 +126,7 @@ function submitSign(fields, tokens, subject='missing_subject', callback=console.
 		keys: fields
 	}
 	console.debug('submitsign', data, fields, tokens)
-	submitXhr('/sign', data, (res) => {
+	submitXhr('/sign', JSON.stringify(data), (res) => {
 	// the token retrieved from localStorage may be expired
 	// thus we need to account for this possibility
 		callback(res)
@@ -142,7 +142,7 @@ function submitXhr(path, data, callback){
 			res = JSON.parse(res)
 		}
 		catch (e) {
-			console.warn('Response not parseable',e)
+			console.warn('Response not parseable',res,e)
 		}
 		if (callback) callback(res)
 	}
