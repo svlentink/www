@@ -3,44 +3,28 @@ function parse_pdf(inp){
 	if (! inp || ! inp.parsed || ! inp.parsed.info) return false
 	if (! inp.parsed.token) return false // no token means not valid
 	let t = inp.parsed.info.type
-	if (t === 'rdw') return new Rdw(inp)
-	if (t === 'duo') return new Duo(inp)
-	if (t === 'inkomensverklaring') return new Inkomensverklaring(inp)
+	let token = inp.parsed.token
+	if (t === 'rdw') return new Rdw(token)
+	if (t === 'duo') return new Duo(token)
+	if (t === 'inkomensverklaring') return new Inkomensverklaring(token)
 	return false // unknown type
 }
 
 class AbstractPdf {
-	constructor(inp){
-		for (let key in inp.parsed)
-			this[key] = inp.parsed[key]
-		this.type = this.info.type
-		this.raw = inp
-	}
-	keys(){
-		return Object.keys(this.parsedToken().info)
-	}
-	isValidCert(){
-		if(! this.certificates) return false
-		let certs = this.certificates
-		return (
-			certs.authenticity &&
-			certs.integrity &&
-			certs.verified &&
-			! certs.expired
-		)
-	}
-	parsedToken(){
+	constructor(token){
+		this.token = token
 		let arr = this.token.split('.')
 		if (arr.length !== 3) return console.error('invalid token')
 		let b64 = arr[1]
 		let str = atob(b64)
 		let obj = JSON.parse(str)
-		return obj
+		this.data = obj
+	}
+	keys(){
+		return Object.keys(this.data)
 	}
 	getAttr(key){
-		let t = this.parsedToken()
-		if (! t || ! t.info || ! t.info[key]) return
-		return t.info[key]
+		return this.data[key]
 	}
 	contains(key){
 		if ( this.getAttr(key) )
@@ -48,12 +32,12 @@ class AbstractPdf {
 		return false
 	}
 	relateTo(pdf){
-		if (pdf.type === 'rdw') return pdf.relateTo(this)
+		if (pdf.getAttr('type') === 'rdw') return pdf.relateTo(this)
 		return false
 	}
 	inConflict(pdf){
 		return (
-			this.type === pdf.type &&
+			this.getAttr('type') === pdf.getAttr('type') &&
 			this.getAttr('name') !== pdf.getAttr('name')
 		)
 	}
@@ -65,7 +49,7 @@ class Inkomensverklaring extends AbstractPdf {
 }
 class Rdw extends AbstractPdf {
 	relateTo(pdf){
-		let t = pdf.type
+		let t = pdf.getAttr('type')
 		if (t === 'rdw') // multiple RDW pdfs are useless
 			return false
 		if (t === 'inkomensverklaring') {
@@ -86,7 +70,7 @@ class Rdw extends AbstractPdf {
 		return false
 	}
 	inConflict(pdf){
-		if (t !== 'rdw') return false
+		if (pdf.getAttr('type') !== 'rdw') return false
 		// if both are RDW we need it to be the same person!
 		return this.getAttr('name') !== pdf.getAttr('name')
 	}
@@ -192,7 +176,7 @@ class Pdfs {
 	get_token_types(){
 		let result = []
 		for (let p of this.list)
-			result.push( {type: p.type, token: p.token} )
+			result.push( {type: p.getAttr('type'), token: p.token} )
 		return result
 	}
 	latest_rdw(min_timestamp = '2021'){
