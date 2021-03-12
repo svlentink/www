@@ -1,9 +1,9 @@
 
 function parse_pdf(inp){
 	if (! inp || ! inp.parsed || ! inp.parsed.info) return false
-	if (! inp.parsed.token) return false // no token means not valid
+	if (! inp.token) return false // no token means not valid
 	let t = inp.parsed.info.type
-	let token = inp.parsed.token
+	let token = inp.token
 	if (t === 'rdw') return new Rdw(token)
 	if (t === 'duo') return new Duo(token)
 	if (t === 'inkomensverklaring') return new Inkomensverklaring(token)
