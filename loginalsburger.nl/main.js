@@ -88,8 +88,7 @@ function getPdfs() {
 		})
 		if (unverified.length)
 			submitSign(['name'], unverified.get_token_types(), 'validation_check', res => {
-				//FIXME
-				return console.log(res)
+				console.debug(res)
 				main()
 			})
 	}
@@ -129,7 +128,25 @@ function submitSign(fields, tokens, subject='missing_subject', callback=console.
 	submitXhr('/sign/', JSON.stringify(data), (res) => {
 	// the token retrieved from localStorage may be expired
 	// thus we need to account for this possibility
-		callback(res)
+		try{
+			let result = JSON.parse(res)
+			if ('token' in result) return callback(res)
+			if ('invalid' in result){
+				let still_valid = []
+				let items = getSetStorage()
+				for (let i of items){
+					if (result.invalid.includes(i.token))
+						console.debug('removing invalid token',i)
+					else
+						still_valid.push(i)
+				}
+				getSetStorage(still_valid)
+			}
+			else console.warn('Unknown format',result)
+		} catch (e) {
+			console.error('Parse error',data,e)
+		}
+		main()
 	})
 }
 function submitXhr(path, data, callback){
@@ -156,7 +173,6 @@ function addToStorage(obj){
 	let arr = getSetStorage()
 	arr.push(obj)
 	getSetStorage(arr)
-	console.log('Retrieved PDFs can be seen with getSetStorage()')
 }
 
 function pdfCallback(obj){
