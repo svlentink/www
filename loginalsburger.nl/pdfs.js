@@ -41,6 +41,32 @@ class AbstractPdf {
 			this.getAttr('name') !== pdf.getAttr('name')
 		)
 	}
+	filter(keys){
+		let result = {}
+		for (let k in this.data)
+			if(keys.contains(k)) result[k] = this.getAttr(k)
+		return result
+	}
+	asCheckbox(fields){
+		let inp = document.createElement('input')
+		inp.type = 'checkbox'
+		inp.id = this.token
+		inp.name = this.token
+		inp.value = this.token
+		inp.data-type = this.getAttr('type')
+
+		let lab = document.createElement('label')
+		lab.for = this.token
+		lab.title = JSON.stringify( this.filter(fields) )
+
+		let br = document.createElement('br')
+
+		let cont = document.createElement('div')
+		cont.appendChild(inp)
+		cont.appendChild(lab)
+		cont.appendChild(br)
+		return cont
+	}
 }
 
 class Duo extends AbstractPdf {
@@ -214,6 +240,27 @@ class Pdfs {
 		let missing = this.sources_missing(fields)
 		if (missing)
 			return missing.values().next().value
+	}
+	asCheckboxs(fields){
+		let cont = document.createElement('div')
+		let count = {}
+		for (let p of this.list){
+			let t = p.getAttr('type')
+			if (! t in count)
+				count[t] = 0
+			count[t] += 1
+			cont.appendChild(p.asCheckbox(fields))
+		}
+
+		let scriptstr = ''
+		for (let k in count)
+			if(count[k] !== 1)
+				scriptstr += 'document.querySelectorAll(\'[data-type="' + k + '"]\').forEach(x => {x.disabled = "disabled"});'
+		let script = document.createElement('script')
+		script.innerHTML = scriptstr
+		cont.appendChild(script)
+
+		return cont
 	}
 }
 

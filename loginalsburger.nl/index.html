@@ -12,15 +12,16 @@
 		<span class='switchlang'>EN</span>
 		<span style='font-size:135%'>|</span>
 		<span class='switchlang'>NL</span>
-		<a href='/meer-info'>&#9432;</a>
+		<a href='/meer-info'>&#9432;</a> <!-- &#x1f6c8; -->
 	</section>
-</article>
-<article class='nl'>
 	<section>
-		<span class="header">Als burger inloggen bij</span>
+		<span class="header nl">Als burger inloggen bij</span>
+		<span class="header en">As citizen log in to</span>
 		<br/>
 		<span class='redirectdomain'>voorbeeld.website.nl</span>
 	</section>
+</article>
+<article class='nl upload'>
 	<section class="rdw">
 		<h3>Upload uw RDW pdf</h3>
 		<div class='info'>
@@ -51,6 +52,7 @@
 		<h3>Geverifieerde</h3>
 		<span class='subjectname'>Jan Jansen</span>
 		<div class='info'>
+			&#9432;
 			Mocht de reeds
 			<!--ge&iuml;dentificeerde-->
 			geverifieerde
@@ -85,16 +87,11 @@
 		</div>
 	</section>
 </article>
-<article class='en'>
-	<section>
-		<span class="header">As citizen log in to</span>
-		<br/>
-		<span class='redirectdomain'>voorbeeld.website.nl</span>
-	</section>
+<article class='en upload'>
 	<section class="rdw">
 		<h3>Upload your RDW pdf</h3>
 		<div class='info'>
-			&#x1f6c8;
+			&#9432;
 			On
 			<a href='https://mijn.rdw.nl/download' target="_blank">mijn.rdw.nl</a>
 			you may request a digitally signed pdf with your personal details<span class='rdw_bsn rdw_inkomensverklaring'> and burgerservicenummer</span>.
@@ -121,6 +118,7 @@
 		<h3>Authenticated</h3>
 		<span class='subjectname'>Jan Jansen</span>
 		<div class='info'>
+			&#9432;
 			When the authenticated individual is not the right one,
 			click
 			<span class='reset_min_timestamp'>here</span>
@@ -130,7 +128,7 @@
 	<section class="inkomensverklaring">
 		<h3>Upload your income statement pdf</h3>
 		<div class='info'>
-			&#x1f6c8;
+			&#9432;
 			First login at
 			<a href='https://mijn.belastingdienst.nl/GTService/' target="_blank">mijn.belastingdienst.nl</a>,
 			after which you can download your income statement
@@ -142,7 +140,7 @@
 	<section class="duo">
 		<h3>Upload your diploma extract pdf</h3>
 		<div class='info'>
-			&#x1f6c8;
+			&#9432;
 			On
 			<a href='https://mijn.duo.nl/particulier/portaal/diplomaregister' target="_blank">mijn.duo.nl</a>
 			you may download an extract of your diploma.
@@ -151,7 +149,7 @@
 		</div>
 	</section>
 </article>
-<article>
+<article class='form upload'>
 	<section class='msg'>
 	</section>
 	<section class='form'>
@@ -164,8 +162,20 @@
 		</form>
 	</section>
 </article>
+
+<article class='confirm'>
+	<section class='form'>
+		<form action="/sign/" method="post" onsubmit="return false">
+			<div id="checkboxes"></div>
+			<input type="submit" class='nl' value="Ga verder >" />
+			<input type="submit" class='en' value="Continue >" />
+		</form>
+	</section>
 </article>
+
+</article> <!-- bodywrapper -->
 
 <script type="module" src="main.js"></script>
 </body>
 </html>
+

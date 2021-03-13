@@ -49,10 +49,16 @@ function main() {
 	console.debug('next pdf',next)
 	for (let e of ['rdw','rdw_bsn','rdw_inkomensverklaring','inkomensverklaring','duo','rdwname'])
 		document.querySelectorAll('.'+e).forEach(x => {x.style.display = 'none'})
-	if (!next)
-		return submitSign(fields_arr, pdfs.get_token_types(), redirect, res => {
-			console.log(res)
-		})
+	if (!next){
+		document.querySelectorAll('.upload').forEach(x => {x.style.display = 'none'})
+		document.querySelectorAll('.confirm').forEach(x => {x.style.display = 'block'})
+		let container = document.querySelector('#checkboxes')
+		let boxes = pdfs.asCheckboxes(fields_arr)
+		container.appendChild(boxes)
+		//return submitSign(fields_arr, pdfs.get_token_types(), redirect, res => {
+		//	console.log(res)
+		//})
+	}
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
 	if (next.indexOf('rdw') !== -1){
 		document.querySelectorAll('.rdw').forEach(x => {x.style.display = 'block'})
