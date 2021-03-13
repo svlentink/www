@@ -55,7 +55,7 @@ function main() {
 		let container = document.querySelector('#checkboxes')
 		let boxes = pdfs.asCheckboxes(fields_arr)
 		container.appendChild(boxes)
-		//return submitSign(fields_arr, pdfs.get_token_types(), redirect, res => {
+		//return submitSign(fields_arr, pdfs.get_token_sources(), redirect, res => {
 		//	console.log(res)
 		//})
 	}
@@ -93,7 +93,7 @@ function getPdfs() {
 			return true // we filter it since it is good to go
 		})
 		if (unverified.length)
-			submitSign(['name'], unverified.get_token_types(), 'validation_check', res => {
+			submitSign(['name'], unverified.get_token_sources(), 'validation_check', res => {
 				console.debug(res)
 				main()
 			})

@@ -2,12 +2,12 @@
 function parse_pdf(inp){
 	if (! inp || ! inp.parsed || ! inp.parsed.info) return false
 	if (! inp.token) return false // no token means not valid
-	let t = inp.parsed.info.type
+	let s = inp.parsed.info.src
 	let token = inp.token
-	if (t === 'rdw') return new Rdw(token)
-	if (t === 'duo') return new Duo(token)
-	if (t === 'inkomensverklaring') return new Inkomensverklaring(token)
-	return false // unknown type
+	if (s === 'rdw') return new Rdw(token)
+	if (s === 'duo') return new Duo(token)
+	if (s === 'inkomensverklaring') return new Inkomensverklaring(token)
+	return false // unknown source
 }
 
 class AbstractPdf {
@@ -26,38 +26,39 @@ class AbstractPdf {
 	getAttr(key){
 		return this.data[key]
 	}
-	contains(key){
+	includes(key){
 		if ( this.getAttr(key) )
 			return true
 		return false
 	}
 	relateTo(pdf){
-		if (pdf.getAttr('type') === 'rdw') return pdf.relateTo(this)
+		if (pdf.getAttr('src') === 'rdw') return pdf.relateTo(this)
 		return false
 	}
 	inConflict(pdf){
 		return (
-			this.getAttr('type') === pdf.getAttr('type') &&
+			this.getAttr('src') === pdf.getAttr('src') &&
 			this.getAttr('name') !== pdf.getAttr('name')
 		)
 	}
 	filter(keys){
 		let result = {}
 		for (let k in this.data)
-			if(keys.contains(k)) result[k] = this.getAttr(k)
+			if(keys.includes(k)) result[k] = this.getAttr(k)
 		return result
 	}
-	asCheckbox(fields){
+	asCheckbox(fields, checked=true){
 		let inp = document.createElement('input')
 		inp.type = 'checkbox'
 		inp.id = this.token
 		inp.name = this.token
 		inp.value = this.token
-		inp["data-type"] = this.getAttr('type')
+		inp.setAttribute("data-source", this.getAttr('src'))
+		inp.checked = checked
 
 		let lab = document.createElement('label')
 		lab.for = this.token
-		lab.title = JSON.stringify( this.filter(fields) )
+		lab.innerText = JSON.stringify( this.filter(fields) )
 
 		let br = document.createElement('br')
 
@@ -75,10 +76,10 @@ class Inkomensverklaring extends AbstractPdf {
 }
 class Rdw extends AbstractPdf {
 	relateTo(pdf){
-		let t = pdf.getAttr('type')
-		if (t === 'rdw') // multiple RDW pdfs are useless
+		let s = pdf.getAttr('src')
+		if (s === 'rdw') // multiple RDW pdfs are useless
 			return false
-		if (t === 'inkomensverklaring') {
+		if (s === 'inkomensverklaring') {
 			let this_bsn = this.getAttr('bsn')
 			if (! this_bsn) {
 				console.log('RDW pdf without bsn, which is needed to compare to inkomensverklaring')
@@ -87,16 +88,16 @@ class Rdw extends AbstractPdf {
 			let that_bsn = pdf.getAttr('bsn')
 			return this_bsn === that_bsn
 		}
-		if (t === 'duo'){
+		if (s === 'duo'){
 			let this_name = this.getAttr('name')
 			let that_name = pdf.getAttr('name')
 			return that_name.indexOf(this_name) !== -1
 		}
-		console.warn('unknown pdf type',t)
+		console.warn('unknown pdf source',s)
 		return false
 	}
 	inConflict(pdf){
-		if (pdf.getAttr('type') !== 'rdw') return false
+		if (pdf.getAttr('src') !== 'rdw') return false
 		// if both are RDW we need it to be the same person!
 		return this.getAttr('name') !== pdf.getAttr('name')
 	}
@@ -175,7 +176,7 @@ class Pdfs {
 		return this.fields_native_to( this.fields_missing(keys) )
 	}
 	filter_by(field){
-		return this.filter(p => {return p.contains(field)})
+		return this.filter(p => {return p.includes(field)})
 	}
 	filter(func){
 		let result = []
@@ -199,10 +200,10 @@ class Pdfs {
 			result.push(p.token)
 		return result
 	}
-	get_token_types(){
+	get_token_sources(){
 		let result = []
 		for (let p of this.list)
-			result.push( {type: p.getAttr('type'), token: p.token} )
+			result.push( {src: p.getAttr('src'), token: p.token} )
 		return result
 	}
 	latest_rdw(min_timestamp = '2021'){
@@ -241,21 +242,21 @@ class Pdfs {
 		if (missing)
 			return missing.values().next().value
 	}
-	asCheckboxs(fields){
+	asCheckboxes(fields){
 		let cont = document.createElement('div')
 		let count = {}
 		for (let p of this.list){
-			let t = p.getAttr('type')
-			if (! t in count)
-				count[t] = 0
-			count[t] += 1
+			let s = p.getAttr('src')
+			if (! s in count)
+				count[s] = 0
+			count[s] += 1
 			cont.appendChild(p.asCheckbox(fields))
 		}
 
 		let scriptstr = ''
 		for (let k in count)
 			if(count[k] !== 1)
-				scriptstr += 'document.querySelectorAll(\'[data-type="' + k + '"]\').forEach(x => {x.disabled = "disabled"});'
+				scriptstr += 'document.querySelectorAll(\'[data-source="' + k + '"]\').forEach(x => {x.disabled = "disabled"});'
 		let script = document.createElement('script')
 		script.innerHTML = scriptstr
 		cont.appendChild(script)
