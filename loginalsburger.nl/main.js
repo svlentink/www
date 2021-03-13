@@ -58,6 +58,7 @@ function main() {
 		//return submitSign(fields_arr, pdfs.get_token_sources(), redirect, res => {
 		//	console.log(res)
 		//})
+		return
 	}
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})
 	if (next.indexOf('rdw') !== -1){
