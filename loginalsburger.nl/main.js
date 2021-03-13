@@ -129,20 +129,20 @@ function submitSign(fields, tokens, subject='missing_subject', callback=console.
 	// the token retrieved from localStorage may be expired
 	// thus we need to account for this possibility
 		try{
-			let result = JSON.parse(res)
-			if ('token' in result) return callback(res)
-			if ('invalid' in result){
+			if (typeof res !== 'object') return console.error('Error parsing signing',res)
+			if ('token' in res) return callback(res)
+			if ('invalid' in res){
 				let still_valid = []
 				let items = getSetStorage()
 				for (let i of items){
-					if (result.invalid.includes(i.token))
+					if (res.invalid.includes(i.token))
 						console.debug('removing invalid token',i)
 					else
 						still_valid.push(i)
 				}
 				getSetStorage(still_valid)
 			}
-			else console.warn('Unknown format',result)
+			else console.warn('Unknown format',res)
 		} catch (e) {
 			console.error('Parse error',data,e)
 		}
