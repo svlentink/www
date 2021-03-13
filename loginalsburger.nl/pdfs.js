@@ -53,7 +53,7 @@ class AbstractPdf {
 		inp.id = this.token
 		inp.name = this.token
 		inp.value = this.token
-		inp.data-type = this.getAttr('type')
+		inp["data-type"] = this.getAttr('type')
 
 		let lab = document.createElement('label')
 		lab.for = this.token
