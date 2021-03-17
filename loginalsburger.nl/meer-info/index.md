@@ -79,6 +79,13 @@ hadden omdat deze banken alles digitaal deden.
 De NAW gegevens van een burger zijn waarschijnlijk meer up-to-date
 bij de overheid dan bij een bank.
 
+Daarnaast kregen wij als feedback van een millennial
+dat er meer en meer nederlands zijn die gaan voor
+[gratis buitenlandse bankrekenginen](https://gathering.tweakers.net/forum/list_messages/1984756)
+met maestro, creditcard en
+[iDEAL](https://blog.revolut.com/ideal-live-in-the-netherlands/).
+Voor klanten van deze banken is iDIN geen mogelijkheid.
+
 #### Veiligheid
 
 Wanneer we onze service vergelijken met een Facebook login,

@@ -154,7 +154,7 @@
 	</section>
 	<section class='form'>
 		<div class="loader"></div>
-		<form action="/pdf/" enctype="multipart/form-data" method="post" onsubmit="return false">
+		<form id='pdfform' action="/pdf/" enctype="multipart/form-data" method="post" onsubmit="return false">
 			<input type="file" name="pdf" />
 			<br/>
 			<input type="submit" class='nl' value="Ga verder >" />
@@ -165,7 +165,7 @@
 
 <article class='confirm'>
 	<section class='form'>
-		<form action="/sign/" method="post" onsubmit="return false">
+		<form id='signform' action="/sign/" method="post" onsubmit="return false">
 			<div id="checkboxes"></div>
 			<input type="submit" class='nl' value="Ga verder >" />
 			<input type="submit" class='en' value="Continue >" />

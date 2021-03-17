@@ -2,7 +2,7 @@ import { Pdfs } from './pdfs.js'
 
 function go_back(reason){
 	console.error('redirecting',reason)
-	let query = '?redirect=http://localhost&fields=name'
+	let query = '?redirect=http://www.example.C0M&fields=name'
 	window.location.search = query
 }
 
@@ -25,10 +25,28 @@ function setListeners(){
 				"&" +
 				window.location.search.substr(1)
 		}
-	let form = document.querySelector('form')
-	form.onsubmit = function(){ submitForm(form, pdfCallback);return false }
+	let pdfform = document.querySelector('#pdfform')
+	pdfform.onsubmit = function(){ submitForm(this, pdfCallback);return false }
+	let signform = document.querySelector('#signform')
+	signform.onsubmit = function(){
+		let checkeds = []
+		let sources = []
+		let fields
+		for (let inp of this)
+			if(inp && 'name' in inp){
+				if('checked' in inp && inp.checked){
+					let src = inp.dataset.source
+					checkeds.push({ token: inp.value, src: src })
+					sources.push(src)
+				}
+				//if (inp.name === 'fields')
+				//	fields_arr = inp.value.split(',')
+			}
+		main(checkeds)
+		return false
+	}
 }
-function main() {
+function main(result=false) {
 	let params = (new URLSearchParams(window.location.search))
 	let redirect = params.get('redirect')
 	let fields = params.get('fields')
@@ -52,12 +70,17 @@ function main() {
 	if (!next){
 		document.querySelectorAll('.upload').forEach(x => {x.style.display = 'none'})
 		document.querySelectorAll('.confirm').forEach(x => {x.style.display = 'block'})
+		if(result)
+			return submitSign(fields_arr, result, redirect, res => {
+				if(typeof res !== 'object' || ! 'token' in res)
+					return console.warn('This could happen if the keys to sign the tokens have been rotated',res)
+				console.debug(res)
+				let href = redirect + '?token=' +res.token
+				window.location.href = href
+			})
 		let container = document.querySelector('#checkboxes')
 		let boxes = pdfs.asCheckboxes(fields_arr)
 		container.appendChild(boxes)
-		//return submitSign(fields_arr, pdfs.get_token_sources(), redirect, res => {
-		//	console.log(res)
-		//})
 		return
 	}
 	document.querySelectorAll('.' + next).forEach(x => {x.style.display = 'block'})

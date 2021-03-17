@@ -49,16 +49,17 @@ class AbstractPdf {
 	}
 	asCheckbox(fields, checked=true){
 		let inp = document.createElement('input')
+		let text = JSON.stringify( this.filter(fields) )
+
 		inp.type = 'checkbox'
-		inp.id = this.token
-		inp.name = this.token
+		inp.name = text
 		inp.value = this.token
 		inp.setAttribute("data-source", this.getAttr('src'))
 		inp.checked = checked
 
 		let lab = document.createElement('label')
 		lab.for = this.token
-		lab.innerText = JSON.stringify( this.filter(fields) )
+		lab.innerText = text
 
 		let br = document.createElement('br')
 
@@ -244,6 +245,13 @@ class Pdfs {
 	}
 	asCheckboxes(fields){
 		let cont = document.createElement('div')
+/*
+		let hidden = document.createElement('input')
+		hidden.style.display = 'none'
+		hidden.name = 'fields'
+		hidden.value = fields.join(',')
+		cont.appendChild(hidden)
+*/
 		let count = {}
 		for (let p of this.list){
 			let s = p.getAttr('src')
