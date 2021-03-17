@@ -33,6 +33,11 @@ Een succesvolle gebruikerservaring ziet er als volgt uit:
 - [Frontend example](/example/frontend)
 - [Backend example](/example/backend)
 
+Dear (business) developers, please
+[reach out](https://www.linkedin.com/in/svlentink)
+to us if you want to use this service,
+we would love to help and learn from your feedback on this service.
+
 ## Kosten
 
 Deze service wordt kostenloos aangeboden,
