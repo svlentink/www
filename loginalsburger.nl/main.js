@@ -70,7 +70,8 @@ function main(result=false) {
 	if (!next){
 		document.querySelectorAll('.upload').forEach(x => {x.style.display = 'none'})
 		document.querySelectorAll('.confirm').forEach(x => {x.style.display = 'block'})
-		if(result)
+		if(result){
+			fields_arr.push('src')
 			return submitSign(fields_arr, result, redirect, res => {
 				if(typeof res !== 'object' || ! 'token' in res)
 					return console.warn('This could happen if the keys to sign the tokens have been rotated',res)
@@ -78,6 +79,7 @@ function main(result=false) {
 				let href = redirect + '?token=' +res.token
 				window.location.href = href
 			})
+		}
 		let container = document.querySelector('#checkboxes')
 		let boxes = pdfs.asCheckboxes(fields_arr)
 		container.appendChild(boxes)
@@ -213,7 +215,10 @@ function pdfCallback(obj){
 
 	document.querySelector('.loader').style.display = 'none'
 	document.querySelector('input').value = ''
-	display_msg()
+	if ('parsed' in obj && 'info' in obj.parsed && typeof obj.parsed.info === 'object' && obj.parsed.info.uploaded_outside_timeframe)
+		display_msg('Geupload buiten tijdskader / uploaded outside timeframe')
+	else
+		display_msg()
 	main()
 }
 

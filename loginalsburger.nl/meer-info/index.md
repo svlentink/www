@@ -58,13 +58,17 @@ om een
 te kiezen voor de Nederlandse belastingdienst,
 wanneer je hun services niet fijn vindt.
 Burgers die inloggen op uw service zijn afhankelijk van de authenticatie methode die u kiest.
+Hierin heeft u een aantal keuzes,
+waarbij LoginAlsBurger meer dan
+[11 miljoen](https://opendata.cbs.nl/statline/portal.html?_la=nl&_catalog=CBS&tableId=83488NED&_theme=416)
+burgers kosteloos laat inloggen bij uw service.
 
 <!--
 I quote:
 Mijn Belastingdienst is tijdelijk niet bereikbaar. Dit komt doordat het maximale aantal mensen is ingelogd. Wij vragen u om later terug te komen. Onze excuses voor het ongemak.
 -->
 
-Deze service was gemaakt omdat wij de volgende authenticatie methodes niet geschikt vonden.
+Hieronder nog een overzicht van de alternatieven die er zijn naast deze service.
 
 #### eID van eIDAS
 
@@ -91,13 +95,13 @@ met maestro, creditcard en
 [iDEAL](https://blog.revolut.com/ideal-live-in-the-netherlands/).
 Voor klanten van deze banken is iDIN geen mogelijkheid.
 
-#### Veiligheid
+## Veiligheid
 
 Wanneer we onze service vergelijken met een Facebook login,
-zien we dat je bij beide service geredirect wordt naar een login pagina van de service.
+zien we dat je bij beide services geredirect wordt naar een login pagina van de service.
 Echter, zou een malicious service dat niet doen,
 maar zelf een scherm tonen om het Facebook wachtwoord in te vullen,
-waarna die service nu namens die gebruiker overal inloggen.
+waarna die service nu namens die gebruiker overal kan inloggen.
 Ditzelfde geld voor deze service.
 Een malicious service zou een PDF upload formulier kunnen presenteren
 en deze vervolgens doorspelen naar de backend van LoginAlsBurger,
@@ -110,6 +114,8 @@ verstrekt aan een betrouwbare partij.
 Technisch gezien zou dit verholpen kunnen worden
 wanneer de gebruiker een vrij veld zou kunnen invullen in een gewaarmerkte PDF
 van de overheid, maar dit is nog nergens mogelijk.
-De beste optie voor nu is om de PDF met de nieuwste timestamp (laatst gedownload RDW PDF).
-
+Voor nu dient iedere service die gebruikt maakt van LoginAlsBurger daarom
+de PDF met de nieuwste timestamp (laatst gedownload RDW PDF)
+te zien als de geauthenticeerde burger,
+zoals aangegeven in de technische documentatie.
 
