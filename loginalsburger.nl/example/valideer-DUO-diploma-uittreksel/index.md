@@ -39,6 +39,8 @@ Voorbeelden van diplomas;
 			text = JSON.stringify(res,null,2)
 			if ('parsed' in res && 'token' in res.parsed)
 				alert(':) Gewaarmerkte pdf van de overheid.')
+			else
+				alert(':( Pdf niet succesvol gevalideerd.')
 		}
 		else text = res
 		document.querySelector('pre').innerText = text
