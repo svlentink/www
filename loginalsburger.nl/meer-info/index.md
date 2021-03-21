@@ -32,6 +32,7 @@ Een succesvolle gebruikerservaring ziet er als volgt uit:
 - [Example use cases](/example/use-cases)
 - [Frontend example](/example/frontend)
 - [Backend example](/example/backend)
+- [Get a better understandig through the diploma validation example](/example/valideer-DUO-diploma-uittreksel)
 
 Dear (business) developers, please
 [reach out](https://www.linkedin.com/in/svlentink)

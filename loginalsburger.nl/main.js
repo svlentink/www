@@ -26,9 +26,10 @@ function setListeners(){
 				window.location.search.substr(1)
 		}
 	let pdfform = document.querySelector('#pdfform')
-	pdfform.onsubmit = function(){ submitForm(this, pdfCallback);return false }
+	pdfform.onsubmit = function(e){ e.preventDefault();submitForm(this, pdfCallback);return false }
 	let signform = document.querySelector('#signform')
-	signform.onsubmit = function(){
+	signform.onsubmit = function(e){
+		e.preventDefault()
 		let checkeds = []
 		let sources = []
 		let fields
@@ -235,5 +236,5 @@ function loadCss(url){
 	document.getElementsByTagName('HEAD')[0].appendChild(link)
 }
 
-main()
+export { main, submitForm }
 
