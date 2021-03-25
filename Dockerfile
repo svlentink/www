@@ -53,7 +53,8 @@ RUN for f in `find /webroot -name index.md`;do \
       && \
       if [ ! -f "$OUT" ]; then \
         echo "Generating $OUT"; \
-        pandoc --from gfm --to html --self-contained -c /tmp/style.css -o "$OUT" "$f"; \
+        cat /tmp/style.css "$f" > "$f"
+        pandoc --from gfm --to html --standalone --title-prefix="`grep '^#\s' \"$f\"|head -1|cut -c 3-`" -o "$OUT" "$f"; \
       fi; \
     done
 

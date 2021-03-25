@@ -1,4 +1,4 @@
-<title>Terms | LoginAlsBurger.nl</title>
+# Terms | LoginAlsBurger.nl
 
 #### General
 By uploading your a PDF to this service, one voluntarily hands over the information

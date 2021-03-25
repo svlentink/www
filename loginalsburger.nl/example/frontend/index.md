@@ -1,4 +1,4 @@
-<title>Frontend example</title>
+# Frontend example
 
 Depending on which fields are requested from the user,
 one or more PDFs need to be uploaded by the user.

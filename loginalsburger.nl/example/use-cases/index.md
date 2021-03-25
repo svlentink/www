@@ -1,4 +1,4 @@
-<title>Use case examples</title>
+# Use case examples
 
 # Use case examples
 

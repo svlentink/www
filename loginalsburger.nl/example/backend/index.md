@@ -1,7 +1,3 @@
----
-title: Backend example
-...
-
 # Backend example
 
 ```javascript

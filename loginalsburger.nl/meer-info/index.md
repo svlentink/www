@@ -1,4 +1,4 @@
-<title>Meer informatie</title>
+# Meer informatie
 
 Deze pagina is in het Nederlands
 en onze technische documentatie en
