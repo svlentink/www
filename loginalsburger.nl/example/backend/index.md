@@ -1,6 +1,6 @@
 ---
 title: Backend example
----
+...
 
 # Backend example
 
@@ -37,7 +37,7 @@ function process_token(received_token){
 const server = http.createServer((req, res) => {
 	let data = '';
     req.on('data', chunk => {
-        data += chunk;
+        data += chunk
     })
 
 	if(req.method.toLowerCase() !== 'post')
@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
 	        return res.end('ERROR unknown Origin')
 
     req.on('end', () => {
-    	let received_token = data.split('data=').pop()
+    	let received_token = data.replace('data=','')
     	let result = process_token(received_token)
         res.end(result)
     })

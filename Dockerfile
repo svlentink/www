@@ -53,7 +53,7 @@ RUN for f in `find /webroot -name index.md`;do \
       && \
       if [ ! -f "$OUT" ]; then \
         echo "Generating $OUT"; \
-        pandoc --from gfm --to html --standalone -c /tmp/style.css -o "$OUT" "$f"; \
+        pandoc --from gfm --to html --self-contained -c /tmp/style.css -o "$OUT" "$f"; \
       fi; \
     done
 
