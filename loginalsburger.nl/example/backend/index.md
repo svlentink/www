@@ -1,4 +1,8 @@
-<title>Backend example</title>
+---
+title: Backend example
+---
+
+# Backend example
 
 ```javascript
 const jwt = require('jsonwebtoken')
@@ -14,9 +18,7 @@ request({uri: "https://loginalsburger.nl/main.crt"},
 	})
 })
 
-// The following simulates your custom application
-const server = http.createServer((req, res) => {
-	let received_token = req.url.split('?token=')[1]
+function process_token(received_token){
 	try {
 		var decoded = jwt.verify(received_token, public_key, {algorithm: 'RS256'})
 		let parsed = JSON.parse(decoded)
@@ -24,11 +26,31 @@ const server = http.createServer((req, res) => {
 			for (let pdf of parsed.data)
 				if('timestamp' in pdf)
 					console.log('Timestamp of RDW pdf', pdf.timestamp)
-		} else return res.end('Unknown token format')
-		res.end('Hooray', decoded)
+		} else return 'Unknown token format'
+		return decoded
 	} catch (err) {
-		res.end(err)
+		return err
 	}
+}
+
+// The following simulates your custom application
+const server = http.createServer((req, res) => {
+	let data = '';
+    req.on('data', chunk => {
+        data += chunk;
+    })
+
+	if(req.method.toLowerCase() !== 'post')
+	    return res.end('ERROR not a post msg')
+	if ( (! req.headers.origin) ||
+	     (req.headers.origin.indexOf('//loginalsburger.nl') === -1 ) ) 
+	        return res.end('ERROR unknown Origin')
+
+    req.on('end', () => {
+    	let received_token = data.split('data=').pop()
+    	let result = process_token(received_token)
+        res.end(result)
+    })
 })
 server.listen(3000)
 

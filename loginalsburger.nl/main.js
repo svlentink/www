@@ -49,12 +49,12 @@ function setListeners(){
 }
 function main(result=false) {
 	let params = (new URLSearchParams(window.location.search))
-	let redirect = params.get('redirect')
+	let redirecturl = params.get('redirect')
 	let fields = params.get('fields')
 	let css = params.get('css')
 	let min_timestamp = params.get('min_timestamp')
-	if (redirect && redirect.indexOf('//') !== -1) {
-		let label = redirect.split('//')[1].split('/')[0]
+	if (redirecturl && redirecturl.indexOf('//') !== -1) {
+		let label = redirecturl.split('//')[1].split('/')[0]
 		for (let elem of document.querySelectorAll('.redirectdomain'))
 			elem.innerText = label
 	} else return go_back("ERROR no (valid) 'redirect' in search params")
@@ -73,12 +73,11 @@ function main(result=false) {
 		document.querySelectorAll('.confirm').forEach(x => {x.style.display = 'block'})
 		if(result){
 			fields_arr.push('src')
-			return submitSign(fields_arr, result, redirect, res => {
+			return submitSign(fields_arr, result, redirecturl, res => {
 				if(typeof res !== 'object' || ! 'token' in res)
 					return console.warn('This could happen if the keys to sign the tokens have been rotated',res)
 				console.debug(res)
-				let href = redirect + '?token=' +res.token
-				window.location.href = href
+				redirect(redirecturl, res.token)
 			})
 		}
 		let container = document.querySelector('#checkboxes')
@@ -198,6 +197,22 @@ function submitXhr(path, data, callback){
 	}
 	xhr.open(method, path)
 	xhr.send(data)
+}
+
+function redirect(url, data=undefined){
+	if (data) {
+		let form = document.createElement('form')
+		form.style.display = 'none'
+		form.action = url
+		form.method = 'post'
+		let inp = document.createElement('input')
+		inp.type = 'text'
+		inp.value = (typeof data === 'string') ? data : JSON.stringify(data)
+		inp.name = "data"
+		form.appendChild(inp)
+		document.querySelector('body').appendChild(form)
+		form.submit()
+	} else window.location.href = url
 }
 
 function addToStorage(obj){

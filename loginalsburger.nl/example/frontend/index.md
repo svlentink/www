@@ -129,6 +129,10 @@ explain every field it requests
 and
 [why it needs](https://en.wikipedia.org/wiki/Need_to_know)
 it.
+Requesting
+[everything](https://loginalsburger.nl?redirect=https://loginalsburger.nl/example/backend&fields=education,school,edulevel,birthdate,birthyear,graduationdate,graduationyear,incomeyear,annualincome,bsn,bsnend,name,address,zipcode,city,country,timestamp)
+should only be done during debugging.
+
 
 ```
 
@@ -160,4 +164,3 @@ which we literally copy to your job profile on our website.
 
 <button onclick="onclick_example()">Continue to LoginAlsBurger</button>
 ```
-
