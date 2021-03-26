@@ -47,13 +47,13 @@ COPY --from=form /data/webroot /webroot
 
 FROM conoria/alpine-pandoc as markdown
 COPY --from=bundle /webroot /webroot
-RUN echo "body { max-width:700px; margin:auto; }" > /tmp/style.css
+RUN echo "<style> body { max-width:700px; margin:auto; } </style>" > /tmp/style.css
 RUN for f in `find /webroot -name index.md`;do \
       OUT="`echo $f|sed 's/md\$/html/'`" \
       && \
       if [ ! -f "$OUT" ]; then \
         echo "Generating $OUT"; \
-        cat /tmp/style.css "$f" > "$f"
+        cat /tmp/style.css "$f" > "$f" \
         pandoc --from gfm --to html --standalone --title-prefix="`grep '^#\s' \"$f\"|head -1|cut -c 3-`" -o "$OUT" "$f"; \
       fi; \
     done
