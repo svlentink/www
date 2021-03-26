@@ -52,9 +52,9 @@ RUN for f in `find /webroot -name index.md`;do \
       OUT="`echo $f|sed 's/md\$/html/'`" \
       && \
       if [ ! -f "$OUT" ]; then \
-        TITLE="`grep '^#\s' \"$f\"|head -1|cut -c 3-`"
+        TITLE="`grep '^#\s' \"$f\"|head -1|cut -c 3-`"; \
         echo "Generating $OUT $TITLE"; \
-        cat /tmp/style.css "$f" > "$f" \
+        cat /tmp/style.css "$f" > "$f"; \
         pandoc --from gfm --to html --standalone --title-prefix="$TITLE" -o "$OUT" "$f"; \
       fi; \
     done
