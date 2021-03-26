@@ -15,7 +15,7 @@ COPY --from=form /data/webroot /webroot
 
 FROM conoria/alpine-pandoc as markdown
 COPY --from=bundle /webroot /webroot
-RUN echo "<style> body { max-width:700px; margin:auto; } </style>" > /tmp/style.css
+RUN echo "<style> body { max-width:700px; margin:auto; } #title-block-header { display: none; } </style>" > /tmp/style.css
 RUN for f in `find /webroot -name index.md`;do \
       OUT="`echo $f|sed 's/md\$/html/'`" \
       && \
