@@ -22,8 +22,8 @@ RUN for f in `find /webroot -name index.md`;do \
       if [ ! -f "$OUT" ]; then \
         TITLE=`grep '^#\s' "$f"|head -1|cut -c 3-`; \
         echo "Generating $OUT $TITLE"; \
-        cat /tmp/style.css "$f" > "$f"; \
-        pandoc --from gfm --to html --standalone --metadata title="$TITLE" -o "$OUT" "$f"; \
+        cat /tmp/style.css "$f" > /tmp/file-with-style.md && \
+        pandoc --from gfm --to html --standalone --metadata title="$TITLE" -o "$OUT" /tmp/file-with-style.md; \
       fi; \
     done
 
