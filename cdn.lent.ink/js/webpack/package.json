@@ -1,0 +1,15 @@
+{
+  "name": "bundler",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "chart.js": "*",
+    "webpack": "*",
+    "webpack-cli": "*",
+    "ical-generator": "*", "fs":"*",
+    "yamljs" : "*",
+    "fullcalendar": "4.0.0-alpha.4"
+  }
+}
