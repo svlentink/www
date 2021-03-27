@@ -54,6 +54,11 @@ module.exports = [
     filename: '../yamljs.mjs',
     path: __dirname
   },
+  resolve: {
+    fallback: {
+      fs: false
+    }
+  },
   optimization: {
     minimize: true
   }
