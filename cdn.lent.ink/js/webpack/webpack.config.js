@@ -7,7 +7,7 @@ module.exports = [
     './chart.js.mjs'
   ],
   output: {
-    filename: '../chart.js.mjs',
+    filename: './chart.js.js',
     path: __dirname
   },
   optimization: {
@@ -39,10 +39,6 @@ module.exports = [
   output: {
     filename: './ical-generator.js',
     path: __dirname,
-    library: {
-      name: 'fullcalendarV4',
-      type: 'umd',
-    },
   },
   resolve: {
     fallback: {
