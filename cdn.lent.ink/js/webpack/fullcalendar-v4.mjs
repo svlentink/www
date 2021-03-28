@@ -1,2 +1,2 @@
-import { calendar } from 'fullcalendar'
-export default calendar
+import * as mod from 'fullcalendar'
+export default mod

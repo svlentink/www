@@ -20,12 +20,16 @@ module.exports = [
     './fullcalendar-v4.mjs'
   ],
   output: {
-    filename: '../fullcalendar-v4.mjs',
-    path: __dirname
+    filename: './fullcalendar-v4.js',
+    path: __dirname,
+    library: {
+      name: 'fullcalendarV4',
+      type: 'umd',
+    },
   },
   optimization: {
     minimize: true
-  }
+  },
 },
 {
   mode: "production",
@@ -33,16 +37,20 @@ module.exports = [
     './ical-generator.mjs'
   ],
   output: {
-    filename: '../ical-generator.mjs',
-    path: __dirname
+    filename: './ical-generator.js',
+    path: __dirname,
+    library: {
+      name: 'fullcalendarV4',
+      type: 'umd',
+    },
   },
   resolve: {
     fallback: {
       fs: false
-    }
+    },
   },
   optimization: {
-    minimize: true
+    minimize: true,
   }
 },
 {
@@ -51,7 +59,7 @@ module.exports = [
     './yamljs.mjs'
   ],
   output: {
-    filename: '../yamljs.mjs',
+    filename: './yamljs.js',
     path: __dirname
   },
   resolve: {
