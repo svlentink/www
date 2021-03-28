@@ -29,7 +29,7 @@ uglifyjs --compress --comments --output $file03 ./**/*.js
 echo FIXME, convert to webpack since uglifyjs does not support ES6
 # https://github.com/svlentink/life-planner/blob/master/webpack.config.js
 
-cd webpack
+cd npm
 npm install
 npm run build
 cd -
