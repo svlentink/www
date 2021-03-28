@@ -1,2 +1,3 @@
-import * as ical_generator from 'ical-generator'
-export default ical_generator
+import * as mod from 'ical-generator'
+if (! window.npm) window.npm = {}
+window.npm['ical-generator'] = mod

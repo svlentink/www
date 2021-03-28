@@ -1,2 +1,3 @@
-import YAML from 'yamljs'
-export default YAML
+import * as mod from 'yamljs'
+if (! window.npm) window.npm = {}
+window.npm['yamljs'] = mod

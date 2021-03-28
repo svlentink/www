@@ -22,10 +22,12 @@ module.exports = [
   output: {
     filename: './fullcalendar-v4.js',
     path: __dirname,
+/*
     library: {
       name: 'fullcalendarV4',
       type: 'umd',
     },
+*/
   },
   optimization: {
     minimize: true
