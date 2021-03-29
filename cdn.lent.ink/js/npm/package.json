@@ -9,6 +9,7 @@
     "webpack": "*",
     "webpack-cli": "*",
     "ical-generator": "*", "fs":"*",
+    "ical.js": "*",
     "yamljs" : "*",
     "fullcalendar": "4.0.0-alpha.4"
   }

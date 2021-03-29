@@ -274,4 +274,3 @@ class Pdfs {
 }
 
 export { Pdfs }
-

@@ -1,4 +1,5 @@
 import { Pdfs } from './pdfs.js'
+import { loadCss, submitXhr, redirect } from 'https://cdn.lent.ink/js/mod/urllib.js'
 
 function go_back(reason){
 	console.error('redirecting',reason)
@@ -181,39 +182,7 @@ function submitSign(fields, tokens, subject='missing_subject', callback=console.
 		main()
 	})
 }
-function submitXhr(path, data, callback){
-	let method = 'GET'
-	if (data) method = 'POST'
-	let xhr = new XMLHttpRequest()
-	xhr.onload = function(){
-		let res = xhr.responseText
-		try {
-			res = JSON.parse(res)
-		}
-		catch (e) {
-			console.warn('Response not parseable',res,e)
-		}
-		if (callback) callback(res)
-	}
-	xhr.open(method, path)
-	xhr.send(data)
-}
 
-function redirect(url, data=undefined){
-	if (data) {
-		let form = document.createElement('form')
-		form.style.display = 'none'
-		form.action = url
-		form.method = 'post'
-		let inp = document.createElement('input')
-		inp.type = 'text'
-		inp.value = (typeof data === 'string') ? data : JSON.stringify(data)
-		inp.name = "data"
-		form.appendChild(inp)
-		document.querySelector('body').appendChild(form)
-		form.submit()
-	} else window.location.href = url
-}
 
 function addToStorage(obj){
 	let stamp = (new Date()).toISOString()
@@ -239,17 +208,7 @@ function pdfCallback(obj){
 }
 
 
-/*
- * Allow custom CSS to be loaded
- */
-function loadCss(url){
-	if (! url) return
-	let link = document.createElement('link')
-	link.rel = 'stylesheet'
-	link.type = 'text/css'
-	link.href = href
-	document.getElementsByTagName('HEAD')[0].appendChild(link)
-}
+
 
 export { main, submitForm }
 

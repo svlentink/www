@@ -54,6 +54,19 @@ module.exports = [
 {
   mode: "production",
   entry: [
+    './ical.js.mjs'
+  ],
+  output: {
+    filename: './ical.js.js',
+    path: __dirname,
+  },
+  optimization: {
+    minimize: true,
+  }
+},
+{
+  mode: "production",
+  entry: [
     './yamljs.mjs'
   ],
   output: {
@@ -67,6 +80,6 @@ module.exports = [
   },
   optimization: {
     minimize: true
-  }
-}];
+  },
+}]
 
