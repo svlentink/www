@@ -49,6 +49,9 @@ module.exports = [
   },
   optimization: {
     minimize: true,
+  },
+  node: {
+    Buffer: true
   }
 },
 {
