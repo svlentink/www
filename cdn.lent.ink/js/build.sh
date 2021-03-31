@@ -32,4 +32,5 @@ echo FIXME, convert to webpack since uglifyjs does not support ES6
 cd npm
 npm install
 npm run build
+npm list
 cd -
