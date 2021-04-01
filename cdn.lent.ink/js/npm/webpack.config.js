@@ -45,7 +45,7 @@ module.exports = [
   resolve: {
     fallback: {
       fs: false,
-      buffer: require.resolve("buffer/"),
+//      buffer: require.resolve("buffer/"),
     },
 /*
     alias: {

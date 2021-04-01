@@ -5,7 +5,7 @@ There are two options,
 and
 [browserify](https://stackoverflow.com/questions/51023231/npm-browserify-import-and-export-may-appear-only-with-sourcetype-module).
 
-The default way (by webpack) of accessing the modules (global variable),
+The default way (by webpack) of accessing modules (global variable),
 wasn't my cup of tea,
 the current approach is inspired by
 [this](https://stackoverflow.com/questions/49562978/how-to-use-npm-modules-in-browser-is-possible-to-use-them-even-in-local-pc).
@@ -13,6 +13,5 @@ the current approach is inspired by
 ### Calendar CSS
 
 ```
-  <link href='https://cdn.lent.ink/js/npm/node_modules/fullcalendar/dist/fullcalendar.css' rel='stylesheet' />
-  <link href='https://cdn.lent.ink/js/npm/node_modules/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href='https://cdn.lent.ink/js/npm/node_modules/fullcalendar/dist/fullcalendar.css' rel='stylesheet' />
 ```
