@@ -45,11 +45,13 @@ module.exports = [
   resolve: {
     fallback: {
       fs: false,
-      Buffer: require.resolve("buffer"),
+      buffer: require.resolve("buffer/"),
     },
+/*
     alias: {
       buffer: "buffer",
     },
+*/
   },
   optimization: {
     minimize: true,
