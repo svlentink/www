@@ -45,7 +45,7 @@ module.exports = [
   resolve: {
     fallback: {
       fs: false,
-      Buffer: require.resolve("buffer/").Buffer,
+      Buffer: require.resolve("buffer"),
     },
   },
   optimization: {
