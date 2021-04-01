@@ -10,3 +10,9 @@ wasn't my cup of tea,
 the current approach is inspired by
 [this](https://stackoverflow.com/questions/49562978/how-to-use-npm-modules-in-browser-is-possible-to-use-them-even-in-local-pc).
 
+### Calendar CSS
+
+```
+  <link href='https://cdn.lent.ink/js/npm/node_modules/fullcalendar/dist/fullcalendar.css' rel='stylesheet' />
+  <link href='https://cdn.lent.ink/js/npm/node_modules/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print' />
+```
