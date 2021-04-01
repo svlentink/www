@@ -44,14 +44,12 @@ module.exports = [
   },
   resolve: {
     fallback: {
-      fs: false
+      fs: false,
+      Buffer: require.resolve("buffer/").Buffer,
     },
   },
   optimization: {
     minimize: true,
-  },
-  node: {
-    Buffer: true
   }
 },
 {
