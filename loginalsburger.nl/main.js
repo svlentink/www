@@ -11,9 +11,9 @@ function switchLanguage(lang){
 	lang = lang.toLowerCase()
 	let othlang = 'nl'
 	if (lang === 'nl') othlang = 'en'
-	for (let e of document.querySelectorAll('.'+lang))
+	for (let e of document.querySelectorAll('[lang='+lang+']'))
 		e.style.display = 'inline-block'
-	for (let e of document.querySelectorAll('.'+othlang))
+	for (let e of document.querySelectorAll('[lang='+othlang+']'))
 		e.style.display = 'none'
 }
 function setListeners(){
