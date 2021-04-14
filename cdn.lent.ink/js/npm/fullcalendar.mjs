@@ -1,7 +1,7 @@
 
 // ICAL is needed by iCalendarPlugin
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/icalendar/src/main.ts
-import * as ICAL from 'ical.js'
+import ICAL from 'ical.js'
 window.ICAL = ICAL
 
 import { Calendar } from '@fullcalendar/core'
@@ -26,5 +26,4 @@ let needed = {
 
 if (! window.npm) window.npm = {}
 window.npm['fullcalendar'] = needed
-window.npm['ical.js'] = ICAL
 
