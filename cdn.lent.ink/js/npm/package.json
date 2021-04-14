@@ -8,9 +8,14 @@
     "chart.js": "*",
     "webpack": "*",
     "webpack-cli": "*",
-    "ical-generator": "*", "fs":"*", "buffer": "*",
+    "ical-generator": "*",
+      "fs":"*",
+      "buffer": "*",
     "ical.js": "*",
     "yamljs" : "*",
-    "fullcalendar": "*", "@fullcalendar/icalendar": "*", "@fullcalendar/rrule": "*"
+    "fullcalendar": "*",
+      "@fullcalendar/icalendar": "*",
+      "@fullcalendar/timegrid": "*",
+      "@fullcalendar/core": "*"
   }
 }
