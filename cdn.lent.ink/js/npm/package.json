@@ -16,6 +16,8 @@
     "fullcalendar": "*",
       "@fullcalendar/icalendar": "*",
       "@fullcalendar/timegrid": "*",
-      "@fullcalendar/core": "*"
+      "@fullcalendar/core": "*",
+      "style-loader": "*",
+      "css-loader": "*"
   }
 }
