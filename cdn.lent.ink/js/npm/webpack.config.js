@@ -17,14 +17,14 @@ module.exports = [
 {
   mode: "production",
   entry: [
-    './fullcalendar-v4.mjs'
+    './fullcalendar.mjs'
   ],
   output: {
-    filename: './fullcalendar-v4.js',
+    filename: './fullcalendar.js',
     path: __dirname,
 /*
     library: {
-      name: 'fullcalendarV4',
+      name: 'fullcalendar',
       type: 'umd',
     },
 */
