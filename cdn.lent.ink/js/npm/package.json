@@ -11,6 +11,6 @@
     "ical-generator": "*", "fs":"*", "buffer": "*",
     "ical.js": "*",
     "yamljs" : "*",
-    "fullcalendar": "*", "@fullcalendar/icalendar": "*", "@fullcalendar/rrule": "*",
+    "fullcalendar": "*", "@fullcalendar/icalendar": "*", "@fullcalendar/rrule": "*"
   }
 }
