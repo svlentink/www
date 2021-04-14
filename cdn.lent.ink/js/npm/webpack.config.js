@@ -57,7 +57,7 @@ module.exports = [
     alias: {
       buffer: "buffer",
     },
-*/
+//*/
   },
   optimization: {
     minimize: true,
@@ -65,8 +65,10 @@ module.exports = [
 },
 {
   mode: "production",
-  entry: [
-    './ical.js.mjs'
+  entry: [ /*{
+    polyfills: './polyfills.js',
+    index:*/ './ical.js.mjs',
+//  },
   ],
   output: {
     filename: './ical.js.js',
@@ -74,7 +76,14 @@ module.exports = [
   },
   optimization: {
     minimize: true,
-  }
+  },
+/*
+  resolve: {
+    fallback: {
+      ICAL: false,
+    },
+  },
+//*/
 },
 {
   mode: "production",

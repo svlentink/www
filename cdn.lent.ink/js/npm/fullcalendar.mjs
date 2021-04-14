@@ -1,8 +1,7 @@
 
 // ICAL is needed by iCalendarPlugin
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/icalendar/src/main.ts
-import ICAL from 'ical.js'
-window.ICAL = ICAL
+import * as hack from './polyfills.mjs'
 
 import { Calendar } from '@fullcalendar/core'
 import iCalendarPlugin from '@fullcalendar/icalendar'
