@@ -1,1 +1,1 @@
-window.ICAL = {}
+window.ICAL = window.ICAL || {}
