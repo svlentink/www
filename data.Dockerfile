@@ -4,6 +4,7 @@ FROM node AS base
 RUN apt update && \
     apt install -y python3 python3-pip tar && \
     git clone https://github.com/mazen160/GithubCloner.git && \
+    pip3 install gitpython==3.1.14 && \
     pip3 install -r GithubCloner/requirements.txt
 
 RUN GithubCloner/githubcloner.py --user svlentink -o /github-backup && \
