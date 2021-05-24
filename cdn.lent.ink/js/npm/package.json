@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "chart.js": "*",
+    "exif": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "ical-generator": "*",

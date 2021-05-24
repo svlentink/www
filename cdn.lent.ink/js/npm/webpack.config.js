@@ -17,6 +17,19 @@ module.exports = [
 {
   mode: "production",
   entry: [
+    './exif.mjs'
+  ],
+  output: {
+    filename: './exif.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true
+  }
+},
+{
+  mode: "production",
+  entry: [
     './fullcalendar.mjs'
   ],
   output: {
