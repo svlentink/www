@@ -25,6 +25,12 @@ module.exports = [
   },
   optimization: {
     minimize: true
+  },
+  resolve: {
+    fallback: {
+      "assert": false,
+      "util": false,
+    }
   }
 },
 {
