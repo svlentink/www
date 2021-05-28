@@ -14,6 +14,7 @@ module.exports = [
     minimize: true
   }
 },
+/*
 {
   mode: "production",
   entry: [
@@ -33,6 +34,7 @@ module.exports = [
     }
   }
 },
+*/
 {
   mode: "production",
   entry: [
