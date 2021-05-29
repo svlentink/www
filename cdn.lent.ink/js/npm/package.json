@@ -10,6 +10,7 @@
     "exif": "*",
       "node-polyfill-webpack-plugin": "*",
     "exifreader": "*",
+    "exif-js": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "ical-generator": "*",
