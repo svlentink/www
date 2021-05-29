@@ -26,7 +26,7 @@ module.exports = [
     path: __dirname
   },
   optimization: {
-    minimize: true
+    minimize: true,
   },
   // https://stackoverflow.com/questions/64557638/how-to-polyfill-node-core-modules-in-webpack-5
   resolve: {
@@ -40,12 +40,48 @@ module.exports = [
       "https": false,
       "stream": false,
       "crypto": false,
-    } 
+    },
   },
   plugins: [
     new NodePolyfillPlugin()
   ],
 },
+
+{
+  mode: "production",
+  entry: [
+    './exifreader.mjs'
+  ],
+  output: {
+    filename: './exifreader.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true,
+  },
+  // https://github.com/mattiasw/ExifReader
+  resolve: {
+    fallback: {
+      "Buffer": false,
+      "buffer": false,
+    },
+  },
+},
+
+{
+  mode: "production",
+  entry: [
+    './exif-js.mjs'
+  ],
+  output: {
+    filename: './exif-js.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true,
+  },
+},
+
 {
   mode: "production",
   entry: [
@@ -71,6 +107,7 @@ module.exports = [
     minimize: true
   },
 },
+
 {
   mode: "production",
   entry: [
@@ -95,6 +132,7 @@ module.exports = [
     minimize: true,
   }
 },
+
 {
   mode: "production",
   entry: [ /*{
@@ -117,6 +155,7 @@ module.exports = [
   },
 //*/
 },
+
 {
   mode: "production",
   entry: [

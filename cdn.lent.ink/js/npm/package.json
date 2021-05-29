@@ -9,6 +9,7 @@
     "chart.js": "*",
     "exif": "*",
       "node-polyfill-webpack-plugin": "*",
+    "exifreader": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "ical-generator": "*",
