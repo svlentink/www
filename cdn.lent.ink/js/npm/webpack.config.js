@@ -1,4 +1,5 @@
-const path = require('path');
+//const path = require('path')
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 module.exports = [
 {
@@ -14,7 +15,7 @@ module.exports = [
     minimize: true
   }
 },
-/*
+
 {
   mode: "production",
   entry: [
@@ -27,14 +28,10 @@ module.exports = [
   optimization: {
     minimize: true
   },
-  resolve: {
-    fallback: {
-      "assert": false,
-      "util": false,
-    }
-  }
+  plugins: [
+		new NodePolyfillPlugin()
+	],
 },
-*/
 {
   mode: "production",
   entry: [

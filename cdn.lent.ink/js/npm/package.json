@@ -7,6 +7,7 @@
   "dependencies": {
     "chart.js": "*",
     "exif": "*",
+      "node-polyfill-webpack-plugin": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "ical-generator": "*",
