@@ -1,5 +1,11 @@
 //const path = require('path')
+
+// the following is for exif
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+// https://stackoverflow.com/questions/57161839/module-not-found-error-cant-resolve-fs-in
+config.node = {
+  fs: 'empty',
+}
 
 module.exports = [
 {
