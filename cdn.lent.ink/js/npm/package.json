@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack"
   },
-  "browser": { "fs": false, "path": false, "os": false}
+  "browser": { "fs": false, "path": false, "os": false},
   "dependencies": {
     "chart.js": "*",
     "exif": "*",
