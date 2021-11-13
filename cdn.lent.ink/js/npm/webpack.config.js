@@ -19,6 +19,20 @@ module.exports = [
 {
   mode: "production",
   entry: [
+    './marked.mjs'
+  ],
+  output: {
+    filename: './marked.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true
+  }
+},
+
+{
+  mode: "production",
+  entry: [
     './exif.mjs'
   ],
   output: {
