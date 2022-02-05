@@ -7,6 +7,8 @@
   "browser": { "fs": false, "path": false, "os": false},
   "dependencies": {
     "chart.js": "*",
+      "moment": "*",
+      "chartjs-adapter-moment": "*",
     "exif": "*",
       "node-polyfill-webpack-plugin": "*",
     "exifreader": "*",
