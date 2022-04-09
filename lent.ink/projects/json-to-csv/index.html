@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JSON to CSV</h1>
+
+Please ignore this tool,
+Excel has an import JSON feature
+(Google sheets does not).
+<br/>
+
+<textarea id='input'>
+[
+  {
+    "a":1,
+    "b": {
+      "c":2
+    }
+  },
+  {
+    "a":3,
+    "b": {
+      "c":4
+    },
+    "d": null,
+    "e": true
+  }
+]
+</textarea>
+<br/>
+
+<button id="btn">convert</button>
+<br/>
+
+<textarea disabled id="output"></textarea>
+
+<script type="module">
+  import { saveToFile } from 'https://cdn.lent.ink/js/mod/storage.js'
+
+
+  function process(){
+    let inp = document.querySelector('#input').value
+    let rows = JSON.parse(inp)
+    let flattened = []
+    
+    function flatten(key="", inp_val, add_to={}){
+      if (typeof inp_val === 'object' && inp_val)
+        for (const [k,v] of Object.entries(inp_val)){
+          let new_key = key ? key + "." + k : k
+          flatten(new_key,v,add_to)
+        }
+      else add_to[key] = inp_val
+    }
+    
+    // Loop over all rows an flatten them
+    for (const [key,val] of Object.entries(rows)){
+      let row = {}
+      flatten("",val,row)
+      flattened.push(row)
+    }
+    
+    // gather all keys for the CSV header
+    let all_keys = new Set()
+    for (let row of flattened)
+      for (let k of Object.keys(row))
+        all_keys.add(k)
+    let header_list = Array.from(all_keys.values())
+    // add the header to the output string
+    let output = header_list.toString()
+
+    for (const row of flattened){
+      output += "\n"
+      for (const k of header_list)
+        output += ( row[k] || "null" ) + ","
+    }
+    
+    document.querySelector('#output').value = output
+    saveToFile(output,'out.csv')
+  }
+  
+  document.querySelector('#btn').addEventListener("click", process)
+</script>
+
+</body>
+</html>
