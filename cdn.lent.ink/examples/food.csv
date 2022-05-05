@@ -1,41 +1,43 @@
-title,fat,net carbs,protein,unit size gr/ml,price,comments
-brie,32,0,17,200,1,chene d argent brie lidl
-85% chocolate,50,20,11,125,1.19,moser roth
-camembert,21,0,19,240,,ambassador
-19% coconut milk,19,2,1.6,1000,3.25, aroy-d
-mayonaise,80,1.3,1.7,650,,zaanse
-99% chocolate,51,8,15,50,2,lindt
-100% chocolate,55,8.9,12.1,50,2,lindt
-99% chocolate,64.3,7.4,8.8,80,,vivani panama
-95% chocolate,51.1,12.7,12.5,125,1.19,j.d. gross arriba
+title,fat,net carbs,protein,unit size gr/ml,price,comments,,
+brie,32,0,17,200,1,chene d argent brie lidl,,
+85% chocolate,50,20,11,125,1.19,moser roth,,
+camembert,21,0,19,240,,ambassador,,
+19% coconut milk,19,2,1.6,1000,3.25," aroy-d",,
+mayonaise,80,1.3,1.7,650,,zaanse,,
+99% chocolate,51,8,15,50,2,lindt,,
+100% chocolate,55,8.9,12.1,50,2,lindt,,
+99% chocolate,64.3,7.4,8.8,80,,vivani panama,,
+95% chocolate,51.1,12.7,12.5,125,1.19,j.d. gross arriba,,
 shredded coconut,64.5,7,4,6,9,300,,toko lien
-shredded coconut,37.5,3.1,4,100,,jumbo eigen merk
-coconut milk,18,2.7,1.1,250,,go tan
-coconut milk,19,2,1.6,1000,3.05,aroy-d 3.95 at toko and 3.05 at AH
-coconut milk,18.6,2.2,1.8,1000,3.15,mae ploy 3.95 at toko and 3.15 at Plus
-coconut cream,25.6,1.7,2.3,1000,5.1,kara
-brazil nuts,67.4,3.6,14.7,200,,alesto
-peanut butter,53.8,15.3,23.1,600,,Lidl Vita Dor pindakaas naturel
-peanut butter,55,10,23,600,,ah pindakaas naturel
-peanut butter,48,14,13,1000,4.99,ah pindakaas 100% 1kg
-coconut milk,5,4,0,400,0.8,,nutco
-romige kokos melk,17,2.2,1.3,200,0.89,jumbo eigen merk
-noten petita mix,45.9,16.4,23.4,250,1.19,nutcase
-gezouten noten mix,56.1,10,21.4,200,2.95,jumbo eigen merk
-100% DARK,53,17.6,11,80,,Belvas belgian thins
-macadamias,73,13,8.5,125,,salted
-85% cacao origin happiness,50,16,10,100,1.39,albert heijn
-ritter sport 81& die starke mit kakao aus ghana,52,20,9.4,100,1.49,edeka
-alnatura edelbitter chocolat noir extra fin 87%,50,19,9.5,80,80,1.69,edeka
-gepa grand noir edelbitter 85%,52.8,21.3,8.1,100,2.29,edeka
-gepa grand noir sao tome 95%,61,10.8,8.7,80,2.29,edeka
-vivani feine bitter 85% santo domingo,53.3,20.4,8.2,100,2.49,edeka
-vivani feine bitter 92% panama,59.4,13.1,8.5,80,2.49,edeka
-vivani feine bitter 99% panama,64.3,7.4,8.8,80,2.49,edeka
-edeka milde schweizer edel zartbitter 81%,49.3,24.7,9.4,100,0.99,edeka
-hachez intensive bitter 88%,57,13,9,80,1.99,edeka
-hachez cocoa premier cru 88%,57,13,9,100,2.49,edeka
-lindt edelbitter mild 85%,55,19,8.9,100,1.79,edeka
-lindt edelbitter mild 90%,55,14,10,100,1.79,edeka
-lindt cacao pur 100%,55,8.8,12.1,50,1.79,edeka
-
+shredded coconut,37.5,3.1,4,100,,jumbo eigen merk,,
+coconut milk,18,2.7,1.1,250,,go tan,,
+coconut milk,19,2,1.6,1000,3.05,aroy-d 3.95 at toko and 3.05 at AH,,
+coconut milk,18.6,2.2,1.8,1000,3.15,mae ploy 3.95 at toko and 3.15 at Plus,,
+coconut cream,25.6,1.7,2.3,1000,5.1,kara,,
+brazil nuts,67.4,3.6,14.7,200,,alesto,,
+peanut butter,53.8,15.3,23.1,600,,Lidl Vita Dor pindakaas naturel,,
+peanut butter,55,10,23,600,,ah pindakaas naturel,,
+peanut butter,48,14,13,1000,4.99,ah pindakaas 100% 1kg,,
+coconut milk,5,4,0,400,0.8,nutco,,
+romige kokos melk,17,2.2,1.3,200,0.89,jumbo eigen merk,,
+noten petita mix,45.9,16.4,23.4,250,1.19,nutcase,,
+gezouten noten mix,56.1,10,21.4,200,2.95,jumbo eigen merk,,
+100% DARK,53,17.6,11,80,,Belvas belgian thins,,
+macadamias,73,13,8.5,125,,salted,,
+85% cacao origin happiness,50,16,10,100,1.39,albert heijn,,
+ritter sport 81& die starke mit kakao aus ghana,52,20,9.4,100,1.49,edeka,,
+alnatura edelbitter chocolat noir extra fin 87%,50,19,9.5,80,1.69,edeka,,
+gepa grand noir edelbitter 85%,52.8,21.3,8.1,100,2.29,edeka,,
+gepa grand noir sao tome 95%,61,10.8,8.7,80,2.29,edeka,,
+vivani feine bitter 85% santo domingo,53.3,20.4,8.2,100,2.49,edeka,,
+vivani feine bitter 92% panama,59.4,13.1,8.5,80,2.49,edeka,,
+vivani feine bitter 99% panama,64.3,7.4,8.8,80,2.49,edeka,,
+edeka milde schweizer edel zartbitter 81%,49.3,24.7,9.4,100,0.99,edeka,,
+hachez intensive bitter 88%,57,13,9,80,1.99,edeka,,
+hachez cocoa premier cru 88%,57,13,9,100,2.49,edeka,,
+lindt edelbitter mild 85%,55,19,8.9,100,1.79,edeka,,
+lindt edelbitter mild 90%,55,14,10,100,1.79,edeka,,
+lindt cacao pur 100%,55,8.8,12.1,50,1.79,edeka,,
+geroosterde amandelen gezouten,55.4,5.8,24.9,200,2.49,jumbo,,
+gerookte zalm,10.6,0,21,200,4.99,jumbo
+swiss 81% cacao extra dark,49.6,24.3,8.4,100,
