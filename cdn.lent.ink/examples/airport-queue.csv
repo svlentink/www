@@ -1,0 +1,48 @@
+
+
+
+
+2022-08-13 Schiphol
+10:54 train
+11:06 entry security
+11:51 finished security
+12:01 gate
+
+2022-07-30 Porto
+14:41 metro
+14:45 security entry
+14:49 finished security
+14:54 gate
+
+2022-07-06 Schiphol 
+14:54 train
+15:15 entry security
+15:48 finished security
+15:54 gate
+
+2022-05-27 Porto
+11:10 bus
+11:20-11:25 sec
+11:30 gate
+
+2022-05-19 Schiphol
+16:44 train
+16:48-16:58 obtain boarding pass
+17:04 entry security
+17:26 finished security
+5min to gate
+
+2022-05-15 Stockholm
+15:00 train
+15:05-15:40 security
+15:42 gate
+
+2022-05-08 Schiphol (to Stockholm)
+8:17 trein
+22min security line
+8:54 gate
+
+arrival-tram,tram-to-gate-minutes,location
+2022-02-27T23:50,13,Amsterdam
+2022-03-12T11:10,20,lisbon
+
