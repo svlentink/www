@@ -1,6 +1,6 @@
 
 ## Gyms
-- 9min walk [Fitness Hut](https://www.google.com/maps/place/Fitness+Hut+Matosinhos/@41.1803418,-8.6808796,17z), 25eu/m, best for crossfit / weights
+- 9min walk [Fitness Hut](https://www.google.com/maps/place/Fitness+Hut+Matosinhos/@41.1803418,-8.6808796,17z), 30.9eu/m, best for crossfit / weights (sometimes loud music during group classes)
 - 17min walk [Solinca](https://www.google.com/maps/place/Solinca+Matosinhos/@41.178643,-8.6832647,16z), 30eu/m, best for machines / cardio, including swimming pool and sauna
 
 ## Outdoor gyms
