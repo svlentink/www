@@ -45,7 +45,7 @@
 
         run-walk-routes:
         - type: routes
-          data: $CONTENT_DIR/well-being/routes.md
+          data: $CONTENT_DIR/well-being/routes.yml
 
         health:
         - type: markdown
