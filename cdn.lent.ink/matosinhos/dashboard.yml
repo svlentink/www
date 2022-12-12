@@ -28,6 +28,9 @@
     transportation:
     - type: tabs
       data:
+        Airport:
+        - type: markdown
+          data: $CONTENT_DIR/transportation/airport.md
         Porto:
         - type: markdown
           data: $CONTENT_DIR/transportation/porto.md
@@ -44,7 +47,7 @@
       data:
 
         run-walk-routes:
-        - type: routes
+        - type: route
           data: $CONTENT_DIR/well-being/routes.yml
 
         health:

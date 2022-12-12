@@ -27,6 +27,9 @@ time table
 or
 [south side of road (going to Porto)](https://www.stcp.pt/pt/viajar/horarios/?paragem=ESGZ2&t=smsbus).
 
+And
+[back](https://www.stcp.pt/pt/viajar/horarios/?paragem=IKEA1&t=smsbus)
+from MAR shopping.
 
 ## Month pass
 
