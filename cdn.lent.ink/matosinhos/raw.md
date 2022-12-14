@@ -46,3 +46,10 @@ https://www.metrodoporto.pt/metrodoporto/uploads/document/file/612/horarios_inve
 Google maps is did this correct since it is used on this PDF.
 Thus MetroDoPorto their planner is incompetent, please use google maps.
 
+disclaimer, not an office;
+no hot iron for clothes
+no night stand
+no night light
+no closet (but there is a 85cm clothes rack in each room, e.g. for jackets and clothing)
+no breakfast service
+no daily house keeping of the rooms (because we assume you work in the room during the day)
