@@ -53,3 +53,48 @@ no night light
 no closet (but there is a 85cm clothes rack in each room, e.g. for jackets and clothing)
 no breakfast service
 no daily house keeping of the rooms (because we assume you work in the room during the day)
+no bed light, night stand, breakfast, tv,
+
+
+freezer only for people stay 2.5weeks or more
+
+no smelly food
+(e.g. soft french cheese)
+
+Restaurante Swaad
++351 931 809 171
+https://maps.app.goo.gl/EZaMzAhz5CEu941m8
+
+
+around rush hour, bus more than 1/2h late, halfway it's route
+
+Cannabis Store Amsterdam Matosinhos
++351 912 933 653
+https://maps.app.goo.gl/meHBr8VkGZEFUWp68
+
+Park Ciência
+https://maps.app.goo.gl/4FUGL5pvGEF6bv1G8
+
+Waimea Surf & Culture
++351 22 937 5820
+https://maps.app.goo.gl/sd2JC4xYc7zRj4HR7
+
+Ecocaminho de Custóias
+https://maps.app.goo.gl/gR8vUK5WNtRDA57S9
+
+
+https://www.stcp.pt/pt/viajar/horarios/?paragem=IKEA1&t=smsbus
+mar to casa
+
+before washing anything with hooks or anything else that can damage the machine, please put it into a washing net
+
+towels and bedsheets are washed at 60degrees or more to kill germs
+
+salame
+ovos molos
+
+cod fish, bacalhau, ask if possible without bones, otherwise pick a different dish
+
+Senhora da Hora Fair
+https://maps.app.goo.gl/RGbE5xLXUohfeyAt5
+
