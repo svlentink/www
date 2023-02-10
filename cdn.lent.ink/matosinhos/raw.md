@@ -98,3 +98,11 @@ cod fish, bacalhau, ask if possible without bones, otherwise pick a different di
 Senhora da Hora Fair
 https://maps.app.goo.gl/RGbE5xLXUohfeyAt5
 
+end of year countdown on TV if it's rainy;
+https://www.rtp.pt/play/direto/rtp3
+
+https://www.portugalist.com/groupon-portugal-alternatives/
+https://wetravelportugal.com/discount-codes-portugal/
+https://beportugal.com/groupon-in-portugal/
+
+https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=distance

@@ -2,41 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="Sander Lentink social media" />
+    <meta name="description" content="Contact page" />
     <script type="text/javascript">
       var data = {
         name : {
           'first' : 'Curly',
           'surname': 'Ninja'
         },
-        description : 'Hello my name is Sander Lentink, you can find all my social media links here.<br/>To learn more about me, see my <a href="https://lent.ink">website</a>.',
-        imageurl : 'https://media.giphy.com/media/Dr3zJNT9XPzONLGXpO/giphy.gif', //'https://cdn.lent.ink/img/bench.jpg',
+        description : "Hi, it's Ѵіnсеnt Аntоnіuѕ, in case you got this url from me, please reach out.",
+        imageurl : 'https://media.giphy.com/media/Dr3zJNT9XPzONLGXpO/giphy.gif',
         uname : { // user names of various social media
           youtube : '',
           instagram : '',
           pinterest: '',
-          linkedin: 'svlentink',
+          linkedin: '',
           soundcloud: '',
-          twitter: 'svlentink',
-          github: 'svlentink',
-          runkeeper: 'svlentink',
+          twitter: '',
+          github: '',
+          runkeeper: '',
           couchsurfing: '',
           angellist: '',
           tumblr: '',
           snapchat: '',
           tinder: '',
-          dockerhub: 'svlentink',
-          untappd: 'svlentink'
+          dockerhub: '',
+          untappd: ''
         },
         uid : { // user id's of various social media
           facebook : '', // not every user has a username
           googleplus: '',
-          modelmayhem: '3848411',
+          modelmayhem: '',
           upwork: ''
         },
         contact : {
           email : '',
-          phone: '+31617012655'
+          phone: '+351920312690'
         },
         tags : [
           'Developer',
@@ -145,7 +145,9 @@
 
     <section id='links'>
 
-      <article id="links-container"></article>
+      <article id="links-container">
+        <a href="https://www.facebook.com/search/top/?q=Ѵіnсеnt%20Аntоnіuѕ"><img class="icon-link" src="https://facebook.com/favicon.ico"></a>
+      </article>
       <style media="screen">
         .icon-link {
           width:30px;
@@ -235,7 +237,7 @@
           },
           phone : {
             url : 'tel:',
-            icon: 'https://www.whatsapp.com/favicon.ico'
+            icon: 'https://cdn-icons-png.flaticon.com/512/733/733585.png' //'https://www.whatsapp.com/favicon.ico'
           },
           snapchat : {
             url : 'https://snapchat.com/add/',
@@ -252,7 +254,7 @@
         }
 
         function getLinkString (url, ico) {
-          return '<a href="' + url + '"><img class="icon-link" src="' + ico + '"/></a>'
+          return document.querySelector('#links-container').getInnerHTML() + '<a href="' + url + '"><img class="icon-link" src="' + ico + '"/></a>'
         }
         function insertIcon (key, val) {
           console.log('entering inserIcon with ' + key + ', ' + val)
@@ -321,7 +323,7 @@
     </section>    
 
     <footer>
-      Made with L&hearts;ve in <a href='https://lent.ink'>Amsterdam</a>
+      Made with L&hearts;ve in Amsterdam
     </footer>
 
   </body>
