@@ -106,3 +106,14 @@ https://wetravelportugal.com/discount-codes-portugal/
 https://beportugal.com/groupon-in-portugal/
 
 https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=distance
+
+Wij zijn afgelopen weekend een dagje wezen toeren naar o.a. Bragança, Chaves en Podence, waar ze nog een traditionele carnaval houden. 
+
+https://viladocondefashionoutlet.pt/
+last thursday of month= sale
+
+end of june; Sao Joao https://www.visitar-porto.com/en/whats-on/porto-events/festa-de-sao-joao.html
+march: Carnival
+may; uni students https://www.visitar-porto.com/en/whats-on/porto-events/porto-queima-das-fitas.html
+https://www.visitar-porto.com/en/whats-on/porto-events.html
+
