@@ -117,3 +117,10 @@ march: Carnival
 may; uni students https://www.visitar-porto.com/en/whats-on/porto-events/porto-queima-das-fitas.html
 https://www.visitar-porto.com/en/whats-on/porto-events.html
 
+English speaking surfchurch.pt
+12min walk, 5:30 pm
+
+running events;
+https://eventsport.pt/
+
+
