@@ -1,7 +1,7 @@
 - type: baseurl
   data: CONTENT_DIR=https://cdn.lent.ink/matosinhos
-- type: baseurl
-  data: CONTENT_DIR=https://dev-fs.lent.ink/gits/www/cdn.lent.ink/matosinhos
+#- type: baseurl
+#  data: CONTENT_DIR=https://dev-fs.lent.ink/gits/www/cdn.lent.ink/matosinhos
 - type: css
   data: ./stylesheets/tabs.css
 - type: title
