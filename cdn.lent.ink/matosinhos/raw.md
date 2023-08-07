@@ -124,3 +124,12 @@ running events;
 https://eventsport.pt/
 
 
+Gentle man's clubs
+https://www.google.com/maps/place/De+Puta+Madre/@41.1857453,-8.6951876,19z/
+https://www.google.com/maps/place/Moulin+Rouge/@41.1865167,-8.6907825,21z
+https://www.google.com/maps/place/V%C3%ADcios+do+Corpo/@41.1848431,-8.6937593,20.41z/
+
+outdoor pools
+[park pool](https://www.google.com/maps/place/Piscina+da+Quinta+da+Concei%C3%A7%C3%A3o/@41.1968578,-8.687227,18z)
+[beach pool](https://www.google.com/maps/place/Piscina+das+Mar%C3%A9s/@41.1928941,-8.7033023,16.41z)
+[nature pool](https://www.google.com/maps/place/Cascata+do+Pincho/@41.7970735,-8.7538855,15z)

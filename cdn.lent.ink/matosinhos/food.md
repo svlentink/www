@@ -29,3 +29,8 @@ Near beach;
 - North, see Lidl above
 - [South](https://www.google.com/maps/place/Pingo+Doce+-+Matosinhos+Brito+e+Cunha/@41.1762882,-8.6894371,18.42z/)
 
+## Alcohol
+
+- [Beer brewery](https://www.cervejacolossus.pt/home)
+- [Wine tasting](https://blog.winetourismportugal.com/10-wine-tours-you-cant-miss-in-porto)
+
