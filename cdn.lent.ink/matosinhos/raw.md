@@ -133,3 +133,6 @@ outdoor pools
 [park pool](https://www.google.com/maps/place/Piscina+da+Quinta+da+Concei%C3%A7%C3%A3o/@41.1968578,-8.687227,18z)
 [beach pool](https://www.google.com/maps/place/Piscina+das+Mar%C3%A9s/@41.1928941,-8.7033023,16.41z)
 [nature pool](https://www.google.com/maps/place/Cascata+do+Pincho/@41.7970735,-8.7538855,15z)
+
+[PPL school 1](https://aecporto.com/actividades/cursos-de-piloto/curso-de-piloto-privado-avioes.html)
+[PPL school 2](https://www.aeroclubeaveiro.com/Piloto-Privado-Avi%E3o.php)
