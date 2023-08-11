@@ -15,7 +15,7 @@
 
         To open the front door,
         connect to the WiFi network using the provided credentials
-        and [open the door](http://192.168.1.14).
+        and [open the door](http://192.168.1.66).
     Welcome:
     - type: title
       data: Bemvendo
@@ -68,3 +68,5 @@
     - type: markdown
       data: $CONTENT_DIR/links.md
 
+    - type: nightlife
+      data: $CONTENT_DIR/nightlife.md

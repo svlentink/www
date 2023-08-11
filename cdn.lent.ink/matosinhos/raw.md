@@ -15,9 +15,6 @@ Officially 3zones ticket needed from Parque Real to go to Porto, but people have
 11 tickets (10+1) 2z = 12.50, 11 tickets 3z = 16eu
 The blue Andante metro card (0.50eu) for Porto is set to the amount of zones on purchase and cannot be changed later.
 
-campanha campainha
-
-https://www.freetour.com/porto/free-tour-oporto
 
 
 
@@ -90,16 +87,6 @@ before washing anything with hooks or anything else that can damage the machine,
 
 towels and bedsheets are washed at 60degrees or more to kill germs
 
-salame
-ovos molos
-
-cod fish, bacalhau, ask if possible without bones, otherwise pick a different dish
-
-Senhora da Hora Fair
-https://maps.app.goo.gl/RGbE5xLXUohfeyAt5
-
-end of year countdown on TV if it's rainy;
-https://www.rtp.pt/play/direto/rtp3
 
 https://www.portugalist.com/groupon-portugal-alternatives/
 https://wetravelportugal.com/discount-codes-portugal/
@@ -109,30 +96,14 @@ https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=di
 
 Wij zijn afgelopen weekend een dagje wezen toeren naar o.a. Bragança, Chaves en Podence, waar ze nog een traditionele carnaval houden. 
 
-https://viladocondefashionoutlet.pt/
-last thursday of month= sale
 
 end of june; Sao Joao https://www.visitar-porto.com/en/whats-on/porto-events/festa-de-sao-joao.html
 march: Carnival
 may; uni students https://www.visitar-porto.com/en/whats-on/porto-events/porto-queima-das-fitas.html
 https://www.visitar-porto.com/en/whats-on/porto-events.html
 
-English speaking surfchurch.pt
-12min walk, 5:30 pm
-
-running events;
-https://eventsport.pt/
 
 
-Gentle man's clubs
-https://www.google.com/maps/place/De+Puta+Madre/@41.1857453,-8.6951876,19z/
-https://www.google.com/maps/place/Moulin+Rouge/@41.1865167,-8.6907825,21z
-https://www.google.com/maps/place/V%C3%ADcios+do+Corpo/@41.1848431,-8.6937593,20.41z/
 
-outdoor pools
-[park pool](https://www.google.com/maps/place/Piscina+da+Quinta+da+Concei%C3%A7%C3%A3o/@41.1968578,-8.687227,18z)
-[beach pool](https://www.google.com/maps/place/Piscina+das+Mar%C3%A9s/@41.1928941,-8.7033023,16.41z)
-[nature pool](https://www.google.com/maps/place/Cascata+do+Pincho/@41.7970735,-8.7538855,15z)
 
-[PPL school 1](https://aecporto.com/actividades/cursos-de-piloto/curso-de-piloto-privado-avioes.html)
-[PPL school 2](https://www.aeroclubeaveiro.com/Piloto-Privado-Avi%E3o.php)
+

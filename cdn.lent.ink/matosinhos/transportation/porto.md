@@ -1,13 +1,17 @@
-## Public transit
 
-### &#128661; Taxi apps
+## &#128661; Taxi apps
 
+- [Bolt](https://play.google.com/store/apps/details?id=ee.mtakso.client)
 - Uber
 - [Free Now](https://www.free-now.com/pt/)
 
-There are 2 options; metr
+
+## Public transit
 
 ### &#128647; Metro
+
+Be aware there are two almost identical sounding stops on the same line;
+campanha and campainha.
 
 #### &#128649; closest stop (6min walk)
 
@@ -31,7 +35,7 @@ And
 [back](https://www.stcp.pt/pt/viajar/horarios/?paragem=IKEA1&t=smsbus)
 from MAR shopping.
 
-## Month pass
+### Month pass
 
 Monthly passes are available at
 [Andante Shops](https://www.linhandante.com/en/rede-de-vendas)
