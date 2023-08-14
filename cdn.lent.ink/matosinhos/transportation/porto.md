@@ -1,4 +1,19 @@
 
+## &#128748; Metro from Airport &#128747;
+
+Get a card with Z3 (3 zones passing) trips,
+to travel between the airport and the office
+(this same Z3 is needed between the office and Porto).
+
+At the airport;
+- Metro to Trinidade
+- transfer at Senhora na Hora
+- check-in again at this transfer (no extra cost, but needed)
+- take metro to Sr. de Matosinhos (most eastern metro track)
+- get out at Parque Real
+- 4min walk to office
+
+
 ## &#128661; Taxi apps
 
 - [Bolt](https://play.google.com/store/apps/details?id=ee.mtakso.client)
@@ -15,7 +30,7 @@ campanha and campainha.
 
 #### &#128649; closest stop (6min walk)
 
-[Parque Real](https://www.google.com/maps/place/Parque+de+Real/@41.1822698,-8.6922089,15z)
+[Parque Real](geo:41.179166,-8.673639?q=41.179166,-8.673639(Metro+Parque+de+Real))
 
 ### &#128652; Bus
 
@@ -25,7 +40,7 @@ the time tables displayed are not correct half of the time.
 
 #### &#128655; closest stop (4min walk)
 
-[E. Sec. G. Zarco](https://www.google.com/maps/place/E.+Sec.+G.+Zarco/@41.1796844,-8.6765643,19.41z),
+[E. Sec. G. Zarco](geo:41.179266,-8.676600?q=41.179266,-8.676600(bus+stops)),
 time table
 [north side of road (going North)](https://www.stcp.pt/pt/viajar/horarios/?paragem=ESGZ1&t=smsbus)
 or
@@ -40,7 +55,7 @@ from MAR shopping.
 Monthly passes are available at
 [Andante Shops](https://www.linhandante.com/en/rede-de-vendas)
 of which
-[Brito Capelo](https://www.google.com/maps/place/41.18399998303627,-8.69149589676562)
+[this](geo:41.18399998303627,-8.69149589676562?q=41.18399998303627,-8.69149589676562(Brito+Capelo))
 is the closest.
 
 Note that if you buy it at the end of the month,

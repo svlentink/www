@@ -5,8 +5,8 @@ The following two parks are used by locals to sit down and watch the sunset over
 accompanied by drinks they brought themselves.
 You will find a lot of students here as well.
 
-- [Jardim do Morro](https://www.google.com/maps/place/Jardim+do+Morro/@41.1491542,-8.6485274,14.49z/)
-- [Passeio das Virtudes](https://www.google.com/maps/place/Passeio+das+Virtudes,+Porto/@41.1441145,-8.6189795,19z) (has a Spar Supermarket to buy your alcohol, they have a bottle opener for you)
+- [Jardim do Morro](geo:41.137658,-8.609171?q=41.137658,-8.609171(Jardim+do+Morro))
+- [Passeio das Virtudes](geo:41.144353,-8.618312?q=41.144353,-8.618312(Passeio+das+Virtudes+Porto)) (has a Spar Supermarket to buy your alcohol, they have a bottle opener for you)
 
 
 
@@ -28,7 +28,7 @@ You will find a lot of students here as well.
 
 
 ## Gentle man's clubs Matosinhos
-- [puta madre](https://www.google.com/maps/place/De+Puta+Madre/@41.1857453,-8.6951876,19z/)
-- [moulin rouge](https://www.google.com/maps/place/Moulin+Rouge/@41.1865167,-8.6907825,21z)
-- [Vícios do Corpo](https://www.google.com/maps/place/V%C3%ADcios+do+Corpo/@41.1848431,-8.6937593,20.41z/)
+- [puta madre](geo:41.185916,-8.694505?q=41.185916,-8.694505(De+Puta+Madre))
+- [moulin rouge](geo:41.1865167,-8.6907825?q=41.1865167,-8.6907825(Moulin+Rouge))
+- [Vícios do Corpo](geo:41.1848431,-8.6937593?q=41.1848431,-8.6937593(V%C3%ADcios+do+Corpo))
 

@@ -1,7 +1,6 @@
 - type: baseurl
   data: CONTENT_DIR=https://cdn.lent.ink/matosinhos
-#- type: baseurl
-#   data: CONTENT_DIR=https://dev-fs.lent.ink/gits/www/cdn.lent.ink/matosinhos
+#  data: CONTENT_DIR=https://dev-fs.lent.ink/gits/www/cdn.lent.ink/matosinhos
 - type: css
   data: ./stylesheets/tabs.css
 - type: title
@@ -30,9 +29,6 @@
     transportation:
     - type: tabs
       data:
-        Airport:
-        - type: markdown
-          data: $CONTENT_DIR/transportation/airport.md
         Porto:
         - type: markdown
           data: $CONTENT_DIR/transportation/porto.md
@@ -65,8 +61,14 @@
           data: $CONTENT_DIR/well-being/personal-care.md
 
     miscellaneous:
-    - type: markdown
-      data: $CONTENT_DIR/links.md
+    - type: tabs
+      data:
 
-    - type: nightlife
-      data: $CONTENT_DIR/nightlife.md
+        links:
+        - type: markdown
+          data: $CONTENT_DIR/links.md
+
+        nightlife:
+        - type: markdown
+          data: $CONTENT_DIR/nightlife.md
+
