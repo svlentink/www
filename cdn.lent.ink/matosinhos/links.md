@@ -15,9 +15,19 @@
 
 ## Other
 
+- [Porto tourist card](https://visitporto.travel/en-GB/porto-card-landing-page)
+- [Tourist map Porto](https://ontheworldmap.com/portugal/city/porto/porto-hotels-and-sightseeings-map.jpg)
 - [Museum/park/gardens (13eu entry)](geo:41.159554,-8.660100?q=41.159554,-8.660100(Parque+de+Serralves))
 - [My favorite place in Porto](geo:41.146412,-8.627379?q=41.146412,-8.627379(Miradouro+da+Ponte+da+Arr%C3%A1bida))
 - [Botanical gardens/theme park (free entrence)](geo:41.153992,-8.642458?q=41.153992,-8.642458(Jardim+Bot%C3%A2nico+do+Porto+%7C+Museu+de+Hist%C3%B3ria+Natural+e+da+Ci%C3%AAncia+da+U.Porto))
 - [Free city tour](https://www.freetour.com/porto/free-tour-oporto)
 - [end of year countdown on TV if it's rainy](https://www.rtp.pt/play/direto/rtp3)
+- [geocaching](https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=distance)
+
+
+## Long term rental
+
+- facebook groups
+- [Bq](https://www.bquarto.pt/porto/)
+- [Idealista](https://www.idealista.pt/en/arrendar-quarto/porto-distrito/?ordem=precos-asc)
 

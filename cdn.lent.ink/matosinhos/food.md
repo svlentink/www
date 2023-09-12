@@ -1,10 +1,18 @@
 
 ## Recommentations
 
+Drinks;
+- guarana
+- vinho do porto
+- caipirinha
+
+
 Supermarket items;
-- pastel de nata
+- pastel de nata (Continente is the supermarket with the best one, [Fabrica da Nata](geo:41.149129,-8.606054?q=41.149129,-8.606054(Fabrica+da+Nata)) is even better)
 - salame (arretjescake)
 - ovos molos
+- pastel de bacalhau
+- acai (better at an Acai store)
 
 Restaurant;
 - bacalhau (cod fish), ask if possible without bones, otherwise you might want to pick a different dish

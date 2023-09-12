@@ -13,3 +13,4 @@ If you go to Lisboa, you want to get out at Sete Rios or Oriente, not Sintra.
 ## train
 
 - [cp](https://www.cp.pt/passageiros/pt)
+- [49eu month pass](https://www.cp.pt/passageiros/pt/consultar-horarios/precos/ferroviario-nacional) for whole country

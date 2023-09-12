@@ -2,8 +2,6 @@
 <meta name="robots" content="noindex, noimageindex, nofollow">
 </head>
 
-
-
 Using bus to Porto is faster, but irregular
 metro stops every 10 minutes on weekdays,
 you can take any metro, it'll stop in the center of Porto.
@@ -14,14 +12,6 @@ https://www.linhandante.com/en/web/tip/t%C3%ADtulos-di%C3%A1rios
 Officially 3zones ticket needed from Parque Real to go to Porto, but people have been using 2Z as well and got away with it.
 11 tickets (10+1) 2z = 12.50, 11 tickets 3z = 16eu
 The blue Andante metro card (0.50eu) for Porto is set to the amount of zones on purchase and cannot be changed later.
-
-
-
-
-
-## Lunch walk
-
-https://ginasios.fitness/pt/z/77871-matosinhos/
 
 
 
@@ -65,10 +55,6 @@ https://maps.app.goo.gl/EZaMzAhz5CEu941m8
 
 around rush hour, bus more than 1/2h late, halfway it's route
 
-Cannabis Store Amsterdam Matosinhos
-+351 912 933 653
-https://maps.app.goo.gl/meHBr8VkGZEFUWp68
-
 Park Ciência
 https://maps.app.goo.gl/4FUGL5pvGEF6bv1G8
 
@@ -92,7 +78,7 @@ https://www.portugalist.com/groupon-portugal-alternatives/
 https://wetravelportugal.com/discount-codes-portugal/
 https://beportugal.com/groupon-in-portugal/
 
-https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=distance
+
 
 Wij zijn afgelopen weekend een dagje wezen toeren naar o.a. Bragança, Chaves en Podence, waar ze nog een traditionele carnaval houden. 
 
@@ -102,8 +88,9 @@ march: Carnival
 may; uni students https://www.visitar-porto.com/en/whats-on/porto-events/porto-queima-das-fitas.html
 https://www.visitar-porto.com/en/whats-on/porto-events.html
 
+work laptop in timezone of work, to not confuse with screen sharing
+headset with external microphone
+VPN setup to home country
 
-
-
-
+- [offgrid houses](https://www.pureportugal.co.uk/)
 

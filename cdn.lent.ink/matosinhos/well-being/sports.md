@@ -2,6 +2,8 @@
 ## Gyms
 - 9min walk [Fitness Hut](geo:41.178499,-8.681223?q=41.178499,-8.681223(Fitness+Hut+Matosinhos)), 30.9eu/m, best for crossfit / weights (sometimes loud music during group classes)
 - 17min walk [Solinca](geo:41.176813,-8.686972?q=41.176813,-8.686972(Solinca+Matosinhos)), 30eu/m, best for machines / cardio, including swimming pool and sauna
+- [other gyms](https://ginasios.fitness/pt/z/77871-matosinhos/)
+
 
 ## Outdoor gyms
 - 28min walk [Parque desportivo overlooking beach (recommended)](geo:41.169273,-8.689003?q=41.169273,-8.689003(Parque+Desportivo+Castelo+do+Queijo)), overlooking the beach and castle, next to basketball court
