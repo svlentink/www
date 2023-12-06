@@ -1,64 +1,52 @@
-
-
-
-
-2022-08-13 Schiphol
-10:54 train
-11:06 entry security
-11:51 finished security
-12:01 gate
-
-2022-07-30 Porto
-14:41 metro
-14:45 security entry
-14:49 finished security
-14:54 gate
-
-2022-07-06 Schiphol 
-14:54 train
-15:15 entry security
-15:48 finished security
-15:54 gate
-
-2022-05-27 Porto
-11:10 bus
-11:20-11:25 sec
-11:30 gate
-
-2022-05-19 Schiphol
-16:44 train
-16:48-16:58 obtain boarding pass
-17:04 entry security
-17:26 finished security
-5min to gate
-
-2022-05-15 Stockholm
-15:00 train
-15:05-15:40 security
-15:42 gate
-
-2022-05-08 Schiphol (to Stockholm)
-8:17 trein
-22min security line
-8:54 gate
-
-arrival-tram,tram-to-gate-minutes,location
-2022-02-27T23:50,13,Amsterdam
-2022-03-12T11:10,20,lisbon
-
-2022-09-18 eindhoven airport
-7:36 sec entry outside
-9:29 sec done
-9:33 gate
-
-porto metro 20:35
-2022-09-12
-sec :38 (bag checked)
-about 2-3min
-
-2023-05-13 porto airport
-14:54 metro
-14:57 sec
-15:11 sec done
-
-
+when,where,how,to-sec,sec,priority,checked
+2022-02-27T23:50,AMS,train,4,2,0
+2022-03-12T11:10,LIS,metro,4,11,0
+2022-05-08T08:17,AMS,train,,22,0
+2022-05-15T15:00,ARN,train,5,35,0
+2022-05-19T16:44,AMS,train,20,22,0
+2022-05-27T11:10,OPO,bus,10,5,0
+2022-07-06T14:54,AMS,train,21,33,0
+2022-07-30T14:41,OPO,metro,4,5,0
+2022-08-13T10:54,AMS,train,12,45,0
+2022-09-12T20:35,OPO,metro,3,3,0,1
+2022-09-18T07:36,EIN,bus,1,112,0
+2022-10-09T12:50,MADt2,metro,4,5,0,0
+2022-10-10T13:45,OPO,metro,3,7,0
+2022-10-17T16:39,AMSt1,,6,0
+2022-11-26T06:50,OPO,metro,3,11,0,1
+2022-12-03T09:32,EIN,bus,6,19,0
+2023-02-09T18:30,OPO,metro,4,3,0
+2023-02-15T12:20,AMSt3,train,10,10,0
+2023-03-04T06:49,OPO,metro,3,15,0
+2023-03-09T12:28,AMS,train,4,10,1
+2023-05-13T14:54,OPO,metro,3,14,0
+2023-05-19T12:51,AMS,train,5,5
+2023-06-02T05:52,OPO,car,2,6,0
+2023-06-10T18:15,EIN,bus,2,18,0
+2023-06-16T14:16,OPO,metro,3,3,0
+2023-06-18T05:32,BIO,bus,2,4,0
+2023-06-22T17:44,EIN,bus,2,11,0
+2023-06-23T10:10,EIN,bus,2,3,0
+2023-07-02T04:59,OPO,car,2
+2023-07-03T18:32,MANt3,car,9,29,0
+2023-07-16T08:12,OPO,metro,3,7,0,1
+2023-07-19T05:42,OPO,car,1,16,0,1
+2023-07-23T15:00,TOS,car,2,14,0,1
+2023-07-23T18:05,OSL,transfer
+2023-07-24T12:10,AMS,train,7,2,,1
+2023-08-23T06:04,OPO,car,1,4,0,0
+2023-09-03T18:11,NRN,run,1,14,0,0
+2023-09-05T16:12,EDI,bus,4,12,0,1
+2023-09-05T23:12,BOD,transfer,,,2,0
+2023-09-15T06:01,OPO,car,1,6,0,0
+2023-10-06T12:00,OPO,metro,2,5,0,0
+2023-10-13T13:15,OPO,metro,3,4,0,0
+2023-10-18T14:09,MANt2,car,35,5,0,1
+2023-10-21T05:50,OPO,car,1,11,0,0
+2023-10-21T17:50,MADt1,metro,19,4,0,0
+2023-11-06T13:32,LISt2,metro,16,6,0,1
+2023-11-08T14:55,AMSt1,train,3,6,1,0
+2023-11-12T05:50,ATHtB,train,5,3,0,1
+2023-11-12T09:15,ZRH,transfer,,4,0
+2023-11-29T09:48,LISt1,car,2,19,0,0
+2023-12-03T11:58,TFS,car,5,7,0,1
