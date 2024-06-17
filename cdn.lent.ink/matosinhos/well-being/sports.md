@@ -19,6 +19,7 @@ less than 3min walk;
 less than 10min walk;
 - [Municipal swimming pool](geo:41.183495,-8.678614?q=41.183495,-8.678614(indoor+swimming+pool))
 - [Soccer field](geo:41.181575,-8.672475?q=41.181575,-8.672475(soccer+field))
+- [Indoor climbing](geo:41.178929,-8.682243?q=41.178929,-8.682243(Proa+Climbing+Center))
 
 less than 15min walk;
 - [Soccer in biggest park of Porto](geo:41.169851,-8.678648?q=41.169851,-8.678648(Bola+Parque+Cidade))
@@ -42,4 +43,5 @@ Other;
 - [Light house to run to for long distance running](geo:41.145432,-8.678698?q=41.145432,-8.678698(Farolim+da+Barra+do+Douro))
 - [Another scenic spot to run/bike to](geo:41.203510,-8.716098?q=41.203510,-8.716098(Capela+da+Boa+Nova))
 - [running events](https://eventsport.pt/)
+- [Zumba nearby](https://www.zumba.com/en-US/class_detail/index/e16a01b0-860d-488a-b6eb-8b8a578789b6)
 

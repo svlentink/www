@@ -60,3 +60,16 @@ is the closest.
 
 Note that if you buy it at the end of the month,
 you still pay full price and only get until the end of that month.
+
+
+### Estadio do Mar
+
+Fun fact.
+On the metro line,
+we can step out at Estadio do Mar
+and walk to metro Senhora da Hora, which will take 6.5min,
+while the metro takes 6min.
+Thus in case you have a transfer at Senhora da Hora
+(e.g. to the airport) and have a lot of time,
+you can also choose to walk a bit.
+
