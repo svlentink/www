@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Config</title>
+<style>
+    body{
+        width: 90%;
+    }
+    label, input, button, h3 {
+        display: block;
+        width: 50%;
+        margin: auto;
+    }
+    label, button {
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+    <h3>Config | CSV forms 2 git</h3>
+
+    Config your Git PAT auth key to a repository with CSV files.
+    This tools then lists the CSV files in the Git repo.
+    and generate forms for it.
+    When submitting the form, it will be commited as a line appended to the CSV file in Git.
+
+    <label>username:</label>
+    <input id="username" placeholder="myusername">
+
+    If you are using Github, make sure to use the classic tokens, because the Beta ones are not able to push changes.
+
+    <label>
+        PAT token
+        (<a href="https://github.com/settings/tokens">github</a> (public_repo, repo:status, security_events),
+        <a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Linux">devops</a>,
+        <a href="https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html">gitlab</a>,
+        <a href="https://confluence.atlassian.com/bitbucketserver/http-access-tokens-939515499.html">bitbucket</a>):
+    </label>
+    <input id="pat_token" placeholder="github_pat_ABC123...">
+
+    <label>HTTPS clone url:</label>
+    <input id="https_clone_url" placeholder="https://github.com/svlentink/lp-config-example.git">
+
+    <label>branch:</label>
+    <input id="branch" value="main">
+
+    <button onclick="save()">Save in browser</button>
+
+<script>
+    function input_ids(){
+        inputs = document.querySelectorAll("input")
+        return Array.from(inputs).map(x => x.id)
+    }
+    function load(){
+        const json = localStorage.getItem("csvforms.auths")
+        if (!json) return
+        const config = JSON.parse(json)[0] // it's an array so we can have multiple in the future
+
+        for(const i of input_ids()){
+            document.getElementById(i).value = config[i] || null
+        }
+    }
+    load()
+
+    function save(){
+        var obj = {}
+        for(const i of input_ids())
+            obj[i] = document.getElementById(i).value
+        const json = JSON.stringify([obj])
+        localStorage.setItem('csvforms.auths', json)
+        console.log(json)
+        window.location.href = "./index.html#" + btoa(json)
+    }
+</script>
+</body>
+</html>

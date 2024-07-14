@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Config</title>
+<style>
+    body{
+        width: 90%;
+    }
+    label, input, button, h3, hr {
+        display: block;
+        width: 50%;
+        margin: auto;
+    }
+    label, button, hr, input[type="submit"] {
+        margin-top: 10px;
+    }
+    form input[type="text"] {
+      background:lightgrey;
+    }
+</style>
+</head>
+<body>
+
+    <h3>Form | CSV forms 2 git</h3>
+
+    <div id="form_inputs"></div>
+    <hr/>
+    <form method="POST" action="https://lent.ink/projects/csvforms/appendline">
+      <label>
+        Preview of line to be appended:
+      </label>
+      <input id="result" name="result" type="text"/>
+      <label>
+        to file:
+      </label>
+      <input id="path" name="path" type="text"/>
+      <label>
+        using auth:
+      </label>
+      <input id="auth" name="auth" type="text"/>
+      <input type="submit" value="Submit">
+    </form>
+
+<script>
+
+</script>
+
+<script type='module'>
+    import { Csv } from 'https://lent.ink/projects/life-planner/mods/csv.js'
+
+    const create_line = () => {
+        let inputs = document.querySelectorAll(".datapoint")
+        let result = Array.from(inputs).map(x => x.value).join(',')
+        document.querySelector("#result").value = result
+        console.log(result)
+        return result
+    }
+
+    let auths = JSON.parse(localStorage.getItem("csvforms.auths"))
+    document.querySelector("#auth").value = JSON.stringify(auths[0])
+
+    let target = JSON.parse(atob(window.location.hash.substr(1)))
+    document.querySelector("#path").value = target.path
+    let csv = new Csv(target.path, target.lastline, target.header)
+    let form_fields = csv.form_fields()
+
+    let form = document.querySelector("#form_inputs")
+    for (let inp of form_fields){
+      let label = document.createElement("label")
+      label.innerText = inp["name"]
+      form.appendChild(label)
+      let elem = document.createElement("input")
+      for (let key in inp){
+        elem[key] = inp[key]
+      }
+      elem.className = "datapoint"
+      elem.onchange = create_line
+      form.appendChild(elem)
+    }
+
+</script>
+</body>
+</html>

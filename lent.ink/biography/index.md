@@ -32,6 +32,7 @@ Besides that we would be many weekends in the
 of grandma.
 
 <!-- https://emojiguide.org/flags -->
+<!-- Austria -->&#127462;&#127481;
 <!-- Belgium -->&#127463;&#127466;
 <!-- Bulgaria -->&#127463;&#127468;
 <!-- Canada -->&#127464;&#127462;

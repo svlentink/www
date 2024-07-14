@@ -1,4 +1,9 @@
 
+If you feel sick sometime after doing exercise in the heat,
+don't go under the blankets but drink water (with salt?) and take a cold shower,
+it's more likely to be a (mild) heat stroke.
+
+
 ## Gyms
 - 9min walk [Fitness Hut](geo:41.178499,-8.681223?q=41.178499,-8.681223(Fitness+Hut+Matosinhos)), 30.9eu/m, best for crossfit / weights (sometimes loud music during group classes)
 - 17min walk [Solinca](geo:41.176813,-8.686972?q=41.176813,-8.686972(Solinca+Matosinhos)), 30eu/m, best for machines / cardio, including swimming pool and sauna

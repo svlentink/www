@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSV form 2 git</title>
+<style>
+    a {
+        display:block;
+    }
+</style>
+</head>
+<body>
+
+<h1>CSV form 2 git</h1>
+
+<script>
+    function set_hash(){
+        if (window.location.hash) return
+        const json = localStorage.getItem("csvforms.auths")
+        if (!json) return
+        window.location.hash = btoa(json)
+    }
+    set_hash()
+
+    let json = atob(window.location.hash.substr(1))
+    if (!json) window.location.href = "./config.html"
+
+    function loadURL(url,cb) {
+        //*
+        fetch(url)
+        .then(
+            function(response) {
+                if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                return;
+                }
+
+                response.json().then(function(data) {
+                console.log(data);
+                cb(data)
+                });
+            }
+            )
+ 
+        return//*/
+        var xhttp = new XMLHttpRequest()
+        xhttp.timeout = 0;
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                cb(this.responseText)
+            }
+        }
+        xhttp.open("GET", url, true)
+        xhttp.send()
+    }
+
+    function links_to_csvs(csvs){
+        for (path in csvs) {
+            let elem = document.createElement("a")
+            elem.innerText = path
+            data = csvs[path]
+            data["path"] = path
+            elem.href = "./form.html#" + btoa(JSON.stringify(data))
+            document.body.appendChild(elem)
+        }
+    }
+
+    let csvs = localStorage.getItem('csvforms.csvs')
+    if (!csvs) loadURL("https://lent.ink/projects/csvforms/listcsvs/"+window.location.hash.substr(1),(data) => {
+        csvs = typeof data == "object" ? data : JSON.parse(data)
+        localStorage.setItem('csvforms.csvs', data)
+        console.log(csvs)
+        links_to_csvs(csvs)
+    })
+    else {
+        links_to_csvs(JSON.parse(csvs))
+    }
+</script>
+</body>
+</html>
