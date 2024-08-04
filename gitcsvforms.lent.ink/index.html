@@ -66,7 +66,7 @@
     }
 
     let csvs = localStorage.getItem('csvforms.csvs')
-    if (!csvs) loadURL("https://gitcsvforms.lent.ink/listcsvs/"+window.location.hash.substr(1),(data) => {
+    if (!csvs) loadURL("./listcsvs/"+window.location.hash.substr(1),(data) => {
         csvs = typeof data == "object" ? data : JSON.parse(data)
         localStorage.setItem('csvforms.csvs', data)
         console.log(csvs)
