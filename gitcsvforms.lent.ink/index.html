@@ -68,7 +68,7 @@
     let csvs = localStorage.getItem('csvforms.csvs')
     if (!csvs) loadURL("./listcsvs/"+window.location.hash.substr(1),(data) => {
         csvs = typeof data == "object" ? data : JSON.parse(data)
-        localStorage.setItem('csvforms.csvs', data)
+        localStorage.setItem('csvforms.csvs', JSON.stringify(csvs))
         console.log(csvs)
         links_to_csvs(csvs)
     })
