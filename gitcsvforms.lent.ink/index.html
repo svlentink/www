@@ -23,6 +23,7 @@
 
     let json = atob(window.location.hash.substr(1))
     if (!json) window.location.href = "./config.html"
+    localStorage.setItem('csvforms.auths', json)
 
     function loadURL(url,cb) {
         //*
