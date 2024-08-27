@@ -11,3 +11,5 @@
 - [Fashion Outlet](https://viladocondefashionoutlet.pt/), every last thursday of month is sale
 - [Senhora da Hora Fair](geo:41.186036,-8.663598?q=41.186036,-8.663598(Senhora da Hora Fair))
 
+- [toastmasters](https://www.toastmasters.org/find-a-club?q=Porto%2C+Portugal&radius=5)
+
