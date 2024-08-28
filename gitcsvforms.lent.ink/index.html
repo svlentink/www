@@ -58,9 +58,10 @@
     function links_to_csvs(csvs){
         for (path in csvs) {
             let elem = document.createElement("a")
-            elem.innerText = path
+            elem.innerText = path.split('.git/')[1]
             data = csvs[path]
             data["path"] = path
+            elem.dataset.path = path
             elem.href = "./form.html#" + btoa(JSON.stringify(data))
             document.body.appendChild(elem)
         }
