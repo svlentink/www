@@ -9,15 +9,16 @@ Drinks;
 
 Supermarket items;
 - pastel de nata (Continente is the supermarket with the best one, [Fabrica da Nata](geo:41.149129,-8.606054?q=41.149129,-8.606054(Fabrica+da+Nata)) is even better)
-- salame (arretjescake)
+- 🤤salame (arretjescake)
 - ovos molos (sugar with egg)
 - pastel de bacalhau
-- acai (better at an Acai store)
+- 🤤acai (better at an Acai store)
 
 Restaurant;
-- [Acai icecream near beach](geo:41.174891,-8.689267?q=41.174891,-8.689267(Acai))
+- [Acai icecream near beach 1](geo:41.174891,-8.689267?q=41.174891,-8.689267(Acai))
+- [Acai icecream near beach 2](geo:41.174842,-8.688459?q=41.174842,-8.688459(Oakberry+Acai))
 - bacalhau (cod fish), ask if possible without bones, otherwise you might want to pick a different dish
-- picanha (beef)
+- 🤤picanha (beef)
 - [Francesinha](https://cafesantiago.pt/#francesinha) (at some restaurant I said no pork, but still got ham on it..)
 
 
@@ -30,17 +31,18 @@ Restaurant;
 
 10min walk;
 - [South Indian](geo:41.179693,-8.683621?q=41.179693,-8.683621(Restaurante+Swaad))
-- [Pizza D'Artista](geo:41.180601,-8.683337?q=41.180601,-8.683337(Pizza+DArtista+Matosinhos))
+- 🤤[Pizza D'Artista](geo:41.180601,-8.683337?q=41.180601,-8.683337(Pizza+DArtista+Matosinhos))
+- [Café da Praça](geo:41.183620,-8.682547?q=41.183620,-8.682547(Cafe+da+Praca))
 
 Less than 20 min walk;
 - [North Indian](geo:41.179283,-8.689423?q=41.179283,-8.689423(Masala+Magic+Indian+Tandoori+Resturante)) with 9eu menu of the day
 
 
 Non walkable distance;
-- [Honest greens](geo:41.147866,-8.606494?q=41.147866,-8.606494(Honest+Greens+Santa+Catarina))
+- 🤤[Honest greens](geo:41.147866,-8.606494?q=41.147866,-8.606494(Honest+Greens+Santa+Catarina))
 - [10eu unlimited sushi](geo:41.1442991,-8.60569?q=41.1442991,-8.60569(Tokyo+Sushi))
 - [12eu unlimited sushi](geo:41.1551498,-8.628450?q=41.1551498,-8.628450(Rakuya+Restaurante+Japon%C3%AAs))
-- [20eu unlimited rodizio/bbq/buffet](geo:41.180965,-8.654543?q=41.180965,-8.654543(Fogo+de+Ch%C3%A3o+Norte+Shopping))
+- 🤤[20eu unlimited rodizio/bbq/buffet](geo:41.180965,-8.654543?q=41.180965,-8.654543(Fogo+de+Ch%C3%A3o+Norte+Shopping))
 - [Genitalia shaped pastries](geo:41.1471708,-8.61708?q=41.1471708,-8.61708(Pirocaria))
 - [cat cafe (vegan)](geo:41.145912,-8.597657?q=41.145912,-8.597657(O+Porto+dos+gatos))
 
@@ -58,12 +60,10 @@ Walking distance
 - 12min walk [Mercadona](geo:41.177139,-8.682037?q=41.177139,-8.682037(Mercadona))
 - 9min walk [Pingo doce](geo:41.180885,-8.682489?q=41.180885,-8.682489(Pingo+Doce))
 - 11min walk [Mini preco](geo:41.184996,-8.681085?q=41.184996,-8.681085(Minipreco))
-- 16min walk [Mini preco beach](geo:41.178517,-8.688901?q=41.178517,-8.688901(Minipre%C3%A7o))
 - 17min walk [Lidl](geo:41.179610,-8.690402?q=41.179610,-8.690402(Lidl+Matosinhos+Sul))
 
 Near beach;
-- North, see Lidl above (sells ice creams per piece)
-- Middle, see Mini Preco (sells chilled beverages per can, beer is 0.59)
+- North, see Lidl above (in summer sells ice creams per piece)
 - [South](geo:41.175230,-8.688930?q=41.175230,-8.688930(Pingo+Doce))
 
 
