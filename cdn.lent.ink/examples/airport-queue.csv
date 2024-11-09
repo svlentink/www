@@ -93,4 +93,8 @@ when,where,how,to-sec,sec,priority,checked
 2024-08-11T07:20,MADt1,bus,5,7,0,0
 2024-08-12T14:42,OPO,taxi,2,2,0,0
 2024-08-16T09:16,CPH,metro,2,3,0,0
-
+2024-09-12T21:44,OPO,metro,3,2,0,0
+2024-09-17T09:43,ATH,bus,12,9
+2024-09-17T13:55,GVA,transfer
+2024-10-14T17:45,LISt1,walk,4,11,0,0
+2024-10-19T19:42,VLC,metro,3,2,0,0

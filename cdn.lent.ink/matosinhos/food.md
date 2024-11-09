@@ -10,11 +10,12 @@ Drinks;
 Supermarket items;
 - pastel de nata (Continente is the supermarket with the best one, [Fabrica da Nata](geo:41.149129,-8.606054?q=41.149129,-8.606054(Fabrica+da+Nata)) is even better)
 - salame (arretjescake)
-- ovos molos
+- ovos molos (sugar with egg)
 - pastel de bacalhau
 - acai (better at an Acai store)
 
 Restaurant;
+- [Acai icecream near beach](geo:41.174891,-8.689267?q=41.174891,-8.689267(Acai))
 - bacalhau (cod fish), ask if possible without bones, otherwise you might want to pick a different dish
 - picanha (beef)
 - [Francesinha](https://cafesantiago.pt/#francesinha) (at some restaurant I said no pork, but still got ham on it..)
@@ -29,6 +30,7 @@ Restaurant;
 
 10min walk;
 - [South Indian](geo:41.179693,-8.683621?q=41.179693,-8.683621(Restaurante+Swaad))
+- [Pizza D'Artista](geo:41.180601,-8.683337?q=41.180601,-8.683337(Pizza+DArtista+Matosinhos))
 
 Less than 20 min walk;
 - [North Indian](geo:41.179283,-8.689423?q=41.179283,-8.689423(Masala+Magic+Indian+Tandoori+Resturante)) with 9eu menu of the day
