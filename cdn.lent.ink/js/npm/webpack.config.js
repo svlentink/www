@@ -33,6 +33,20 @@ module.exports = [
 {
   mode: "production",
   entry: [
+    './dompurify.mjs'
+  ],
+  output: {
+    filename: './dompurify.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true
+  }
+},
+
+{
+  mode: "production",
+  entry: [
     './exif.mjs'
   ],
   output: {
