@@ -1,20 +1,30 @@
 
+## Avoid
+
+- Fries; Portuguese restaurants just defrost them, they are soft, not crunchy
+
 ## Recommentations
 
 Drinks;
 - guarana
 - vinho do porto
 - caipirinha
+- vinho verde
+- aguardente
+- Ginjinha
+- Brisa
 
 
 Supermarket items;
-- pastel de nata (Continente is the supermarket with the best one, [Fabrica da Nata](geo:41.149129,-8.606054?q=41.149129,-8.606054(Fabrica+da+Nata)) is even better)
+- [Saturday Biologica Market in Parque da Cidade](https://ambiente.cm-porto.pt/educacao-ambiental/feira-produtos-biologicos)
+- pastel de nata (Continente is the supermarket with the best one, [Fabrica da Nata](geo:41.149129,-8.606054?q=41.149129,-8.606054(Fabrica+da+Nata)) is even better, but a warm one from [Manteigaria](geo:41.148638,-8.607016?q=41.148638,-8.607016(Manteigaria)) is the best)
 - 🤤salame (arretjescake)
 - ovos molos (sugar with egg)
 - pastel de bacalhau
 - 🤤acai (better at an Acai store)
 
 Restaurant;
+- [list](https://www.tripadvisor.com/FindRestaurants?geo=652092&establishmentTypes=10591&priceTypes=10953&broadened=false)
 - [Acai icecream near beach 1](geo:41.174891,-8.689267?q=41.174891,-8.689267(Acai))
 - [Acai icecream near beach 2](geo:41.174842,-8.688459?q=41.174842,-8.688459(Oakberry+Acai))
 - bacalhau (cod fish), ask if possible without bones, otherwise you might want to pick a different dish

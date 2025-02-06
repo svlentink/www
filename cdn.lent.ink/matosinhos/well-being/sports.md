@@ -49,5 +49,6 @@ Other;
 - [Light house to run to for long distance running](geo:41.145432,-8.678698?q=41.145432,-8.678698(Farolim+da+Barra+do+Douro))
 - [Another scenic spot to run/bike to](geo:41.203510,-8.716098?q=41.203510,-8.716098(Capela+da+Boa+Nova))
 - [running events](https://eventsport.pt/)
+- [all running events](https://www.portugalrunning.com/corridas-porto/)
 - [Zumba nearby](https://www.zumba.com/en-US/class_detail/index/e16a01b0-860d-488a-b6eb-8b8a578789b6)
-
+- [marathons](https://www.finishers.com/en/destinations/europe/portugal/porto-district)

@@ -6,6 +6,7 @@ import * as hack from './polyfills.mjs'
 import { Calendar } from '@fullcalendar/core'
 import iCalendarPlugin from '@fullcalendar/icalendar'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import rrulePlugin from '@fullcalendar/rrule'
 /*
 @fullcalendar/interaction
 @fullcalendar/bootstrap
@@ -20,7 +21,8 @@ import rrulePlugin from '@fullcalendar/rrule'
 let needed = {
 	Calendar,
 	timeGridPlugin,
-	iCalendarPlugin
+	iCalendarPlugin,
+	rrulePlugin,
 }
 
 if (! window.npm) window.npm = {}

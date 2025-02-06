@@ -22,6 +22,7 @@
       "buffer": "*",
     "yamljs" : "*",
     "fullcalendar": "*",
+      "@fullcalendar/rrule": "*",
       "@fullcalendar/icalendar": "*",
         "ical.js": "*",
       "@fullcalendar/timegrid": "*",

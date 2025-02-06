@@ -113,6 +113,7 @@ module.exports = [
   },
   module: {
     rules: [
+      // FIXME, this is old https://webpack.js.org/guides/asset-modules/
       { test: /\.txt$/, use: 'raw-loader' },
       { test: /\.css$/, use: ['style-loader','css-loader'] },
     ],
