@@ -29,8 +29,8 @@ less than 10min walk;
 
 less than 15min walk;
 - [Soccer in biggest park of Porto](geo:41.169851,-8.678648?q=41.169851,-8.678648(Bola+Parque+Cidade))
-- [Padel tennis](geo:41.177286,-8.680076?q=41.177286,-8.680076(padel tennis))
-- [Padel tennis](geo:41.171532,-8.680903?q=41.171532,-8.680903(padel tennis))
+- [Padel tennis](geo:41.177286,-8.680076?q=41.177286,-8.680076(padel+tennis))
+- [Padel tennis](geo:41.171532,-8.680903?q=41.171532,-8.680903(padel+tennis))
 
 By direct metro line;
 - [Trampoline park](geo:41.1758863,-8.6467817?q=41.1758863,-8.6467817(Jumpers+Trampolim+Parque+Porto))
@@ -50,5 +50,6 @@ Other;
 - [Another scenic spot to run/bike to](geo:41.203510,-8.716098?q=41.203510,-8.716098(Capela+da+Boa+Nova))
 - [running events](https://eventsport.pt/)
 - [all running events](https://www.portugalrunning.com/corridas-porto/)
+- [more running events](https://runporto.com/pt/)
 - [Zumba nearby](https://www.zumba.com/en-US/class_detail/index/e16a01b0-860d-488a-b6eb-8b8a578789b6)
 - [marathons](https://www.finishers.com/en/destinations/europe/portugal/porto-district)
