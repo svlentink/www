@@ -5,7 +5,7 @@ Get a card with Z3 (3 zones passing) trips,
 to travel between the airport and the office
 (this same Z3 is needed between the office and Porto).
 
-At the airport;
+At the [airport](https://www.flightsfrom.com/explorer/OPO?mapview);
 - Metro to Trinidade
 - transfer at Senhora na Hora
 - check-in again at this transfer (no extra cost, but needed)
@@ -13,6 +13,8 @@ At the airport;
 - get out at Parque Real
 - 4min walk to office
 
+NOTE: you can easily fly to LIS airport,
+then walk/metro to Oriente station and then take a flixbus or rede-expressos to Campanha and then a metro.
 
 ## &#128661; Taxi apps
 

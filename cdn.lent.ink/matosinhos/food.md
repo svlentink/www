@@ -34,6 +34,28 @@ Restaurant;
 
 ## Restaurants
 
+TheFork app!
+
+https://www.tripadvisor.com/FindRestaurants?geo=652092&diningOptions=10612&establishmentTypes=10591&broadened=false
+https://www.thefork.com/restaurants/matosinhos-c338723/all-you-can-eat-buffet-t516
+
+walk to all you can eat;
+- 10min, [Sweet Center](geo:41.179602,-8.681845?q=41.179602,-8.681845(Sweet+Center))
+- 13min, [Rodízio Baby Beef](geo:41.178106,-8.682969)
+- 17min, Vegetarian! daTerra Matosinhos, 41.18175864739468, -8.685756950280803
+- 20min, Japanese [Ninki Matosinhos]()
+- 22min, Rodízio Gaúcho's, 41.18198625565948, -8.691296523371262
+- 30min, [Tokyo Sushi](geo:41.188640,-8.660848?q=41.188640,-8.660848(Tokyo+Sushi))
+- 20min, Restaurante rodízio - Art' Da Picanha, 41.18057829344575, -8.690390872381812
+- 45min (24min with metro), [City Wok I](geo:41.181150,-8.648541?q=41.181150,-8.648541(City+Wok+I))
+- 40min Fogo de chao NorteShopping
+- 40min Pizzahut NorteShopping
+- 40min Vegetarian daTerra NorteShopping
+- 44min (35min metro), Brasileirão, 41.17282855690579, -8.65041830606404
+- 18min, Bulls, 41.17814634737087, -8.688216648501038
+- 
+
+
 5min walk;
 - [Burger bar](geo:41.179112,-8.675373?q=41.179112,-8.675373(Burru's+slow+meat))
 - [Brazilian food cafe](geo:41.180424,-8.679084?q=41.1803545,41.180424,-8.679084(Taska+do+Brazuca+-+Caf%C3%A9+e+Restaurante+Brasileiro))
@@ -55,6 +77,7 @@ Non walkable distance;
 - 🤤[20eu unlimited rodizio/bbq/buffet](geo:41.180965,-8.654543?q=41.180965,-8.654543(Fogo+de+Ch%C3%A3o+Norte+Shopping))
 - [Genitalia shaped pastries](geo:41.1471708,-8.61708?q=41.1471708,-8.61708(Pirocaria))
 - [cat cafe (vegan)](geo:41.145912,-8.597657?q=41.145912,-8.597657(O+Porto+dos+gatos))
+- [get paid by doing a food challenge](https://www.foodchallenges.com/challenges/restaurante-verso-em-pedras-mega-francesinha-challenge-portugal/)
 
 
 ## Delivery

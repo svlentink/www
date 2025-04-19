@@ -13,6 +13,7 @@
       "node-polyfill-webpack-plugin": "*",
     "exifreader": "*",
     "exif-js": "*",
+    "mermaid": "*",
     "marked": "*",
       "dompurify": "*",
     "webpack": "*",

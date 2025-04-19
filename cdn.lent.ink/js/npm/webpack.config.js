@@ -33,6 +33,20 @@ module.exports = [
 {
   mode: "production",
   entry: [
+    './mermaid.mjs'
+  ],
+  output: {
+    filename: './mermaid.js',
+    path: __dirname
+  },
+  optimization: {
+    minimize: true
+  }
+},
+
+{
+  mode: "production",
+  entry: [
     './exif.mjs'
   ],
   output: {

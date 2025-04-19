@@ -23,6 +23,7 @@
 - [Free city tour](https://www.freetour.com/porto/free-tour-oporto)
 - [end of year countdown on TV if it's rainy](https://www.rtp.pt/play/direto/rtp3)
 - [geocaching](https://www.geocaching.com/play/map?lat=41.18&lng=-8.68&zoom=14&asc=true&sort=distance)
+- [Tourist office: cheap matosinhos branded items](geo:41.17998265853328,-8.69415996927541?q=41.17998265853328,-8.69415996927541(Loja Interativa de Turismo de Matosinhos))
 
 
 ## Long term rental
