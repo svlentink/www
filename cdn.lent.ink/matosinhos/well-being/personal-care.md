@@ -1,6 +1,6 @@
 
 ## Hair dressers
-- literly below the kitchen on lowest level, only services women
+- literally below the kitchen on lowest level, only services women
 - [Graca](geo:41.1803803,-8.6821773?q=41.1803803,-8.6821773(Graca+Ribeiro+Cabeleireiros)) 16eu for men
 
 ## English churches

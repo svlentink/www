@@ -1,5 +1,5 @@
 
-
+# Camino Portugues
 
 - [Buen Camino App](https://play.google.com/store/apps/details?id=com.editorialbuencamino.buencamino&hl=en)
 - [app website](https://www.editorialbuencamino.com/app-del-camino-de-santiago/)
@@ -8,7 +8,7 @@ Make sure you pick a time of the year with enough
 [hours of daylight](https://weatherspark.com/compare/y/32397~32567/Comparison-of-the-Average-Weather-in-Porto-and-Santiago-de-Compostela#Figures-Daylight).
 
 If one is significantly stronger than the other,
-consider using bearfoot shoes to increase difficulty.
+consider using barefoot shoes to increase difficulty.
 
 
 ## Hybrid schedule for work week before
